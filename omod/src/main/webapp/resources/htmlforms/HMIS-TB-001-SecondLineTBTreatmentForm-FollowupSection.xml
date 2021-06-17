@@ -662,46 +662,7 @@
                                         </repeat>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        DST Results
-                                    </div>
-                                    <div class="card-body">
-                                        <repeat>
-                                            <template>
-                                                <obsgroup groupingConceptId="166152">
-                                                    <span class="row add-remove-section">
-                                                        <div class="col-md-3">
-                                                            <label>Sample Collection Date</label>
-                                                            <obs conceptId="166137" allowTime="false" id="166137_{n}"/>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>Test</label>
-                                                            <obs conceptId="159956" id="160021_{n}"/>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <label>Result</label>
-                                                            <obs conceptId="159984" answerConceptIds="159956,159958,159972,1138,90001" 
-                                                                    answerLabels="Resistant,Susceptible,Contaminated,Indeterminate,Unknown"
-                                                                    id="159984_{n}" />
-                                                         
-                                                        </div>
-                                                        <div class="col-md-1">
-                                                            <br/>
-                                                            <a href="#" class="add add-more-link"><i class= "icon-plus-sign"></i></a>
-                                                            <a href="#" class="remove remove-more-link required"><i class="icon-minus"></i></a>
-                                                        </div>
-                                                    </span>
-                                                </obsgroup>
-                                            </template>
-                                            <render n="1"/>
-                                            <render n="2"/>
-                                            <render n="3"/>
-                                            <render n="4"/>
-                                            <render n="5"/>
-                                        </repeat>
-                                    </div>
-                                </div>
+
                                 <div class="card">
                                     <div class="card-header">
                                         X-ray Results
