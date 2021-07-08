@@ -2253,6 +2253,9 @@
                                                                             <obs labelText="Drugs"  id="{id}-drug" conceptId="1282" answerClasses="Drug" style="autocomplete" class="fullwidth"/>
                                                                         </div>
                                                                         <div class="col-2">
+                                                                            <obs labelText="Drug Strength" conceptId="1444" style="dropdown"/>
+                                                                        </div>
+                                                                        <div class="col-2">
                                                                             <obs labelText="Quantity" conceptId="160856"/>
                                                                         </div>
                                                                         <div class="col-2">
@@ -2265,7 +2268,8 @@
                                                                         <div class="col-2">
                                                                             <obs conceptId="1732" labelText="Duration unit"/>
                                                                         </div>
-                                                                        <div class="col-2">
+
+                                                                        <div class="col-1">
                                                                             <div class="add-entry">
                                                                                 <a href="#" id="{id}-addEntry" class="addEntry add-more-link"><i class="icon-plus-sign"></i></a>
                                                                                 <a href="#" class="removeEntry remove-more-link" id="{id}-removeEntry"><i class="icon-minus"></i></a>
@@ -2300,6 +2304,9 @@
                                                                 <div class="row multi-drug-other" id="{id}-toggleContainer-other">
                                                                     <div class="col-2">
                                                                         <obs labelText="Drug" id="{id}-drugother" conceptId="99035" class="fullwidth"/>
+                                                                    </div>
+                                                                    <div class="col-2">
+                                                                        <obs labelText="Drug Strength" conceptId="1444" style="dropdown"/>
                                                                     </div>
                                                                     <div class="col-2">
                                                                         <obs labelText="Quantity" conceptId="160856"/>
