@@ -232,6 +232,22 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor ART_REGIMEN_CHANGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Regimen Change";
+        }
+
+        @Override
+        public String description() {
+            return "ART Regimen Switch or Change Encounter";
+        }
+
+        public String uuid() {
+            return "c11774c1-3b4a-4bdb-a847-6060895e006d";
+        }
+    };
+
     public static EncounterTypeDescriptor COVID19_ENROLLMENT = new EncounterTypeDescriptor() {
         @Override
         public String name() {

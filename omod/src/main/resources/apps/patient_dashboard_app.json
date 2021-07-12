@@ -152,7 +152,7 @@
     "id": "ugandaemr.lastARTVisitSummary",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "Information from the patient's last ART visit",
-    "order": 1,
+    "order": 3,
     "config": {
       "widget": "latestobsforconceptlist",
       "icon": "icon-user-md",
@@ -164,6 +164,31 @@
       {
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
         "appId": "ugandaemr.lastARTVisitSummary",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.regimenlines.summary",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "ART Regimen Lines",
+    "order": 5,
+    "config": {
+      "widget": "programstatus",
+      "icon": "icon-stethoscope",
+      "label": "ART Regimen Lines",
+      "dateFormat": "dd MMM yyyy",
+      "program": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741"
+    },
+    "requiredPrivilege": "App: ugandaemr.widget.regimenLinesSummary",
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+        "appId": "ugandaemr.regimenlines.summary",
         "extensionPointId": "patientDashboard.secondColumnFragments",
         "extensionParams": {
           "provider": "coreapps",

@@ -112,7 +112,8 @@
 	<concept concept_id="5240" retired="false" datatype_id="2" class_id="3" is_set="false" creator="1" date_created="2008-08-15 15:27:51.0" version="" uuid="0cbe2ed3-cd5f-4f46-1159-26127c926533"/>
 	<concept concept_id="90306" retired="false" datatype_id="2" class_id="3" is_set="false" creator="1" date_created="2008-08-15 15:27:51.0" version="" uuid="0cbe2ed3-cd5f-4f46-1159-26127c926544"/>
 	<concept concept_id="5096" retired="false" datatype_id="6" class_id="11" is_set="0" creator="1" date_created="2004-08-12 00:00:00" version="" uuid="dcac04cf-30ab-102d-86b0-7a5022ba4115"/>
-
+	<concept concept_id="1067" retired="false" datatype_id="4" class_id="11" is_set="0" creator="1" date_created="2005-01-06 00:00:00" version="" uuid="1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+	<concept  concept_id="166214"  retired="0"   datatype_id="4"  class_id="5"   is_set="0"  creator="1"  date_created="2021-02-05 12:55:36"  version="1.0.0"  changed_by="1"  date_changed="2021-02-05 12:55:36"    uuid="e6a72c98-1c79-4e76-84b1-2db63d27bce6"/>
 	<concept_name concept_id="99423" name="Treatment Outcome" locale="en_GB" creator="1" date_created="2004-08-12 00:00:00.0" concept_name_id="1939" concept_name_type="FULLY_SPECIFIED" locale_preferred="1" voided="false" uuid="9bc5693a-f558-40c9-8177-145a4b119cb9"/>
 	<concept_name concept_id="90306" name="Transferred out" locale="en_GB" creator="1" date_created="2004-08-12 00:00:00.0" concept_name_id="2439" concept_name_type="FULLY_SPECIFIED" locale_preferred="1" voided="false" uuid="9bc5693a-f558-40c9-8177-145a4b119cc4"/>
 	<concept_name concept_id="5240" name="Lost to follow up" locale="en_GB" creator="1" date_created="2004-08-12 00:00:00.0" concept_name_id="3439" concept_name_type="FULLY_SPECIFIED" locale_preferred="1" voided="false" uuid="9bc5693a-f558-40c9-8177-145a4b119ce2"/>
@@ -140,12 +141,19 @@
 
 	<program program_id="11" concept_id="9" creator="1" date_created="2008-08-15 16:07:11.0" changed_by="1" date_changed="2008-08-15 17:04:50.0" retired="false" name="TB PROGRAM" description="tb program" uuid="9dc21a72-0971-11e7-8037-507b9dc4c741"/>
 	<program program_id="12" concept_id="9" creator="1" date_created="2008-08-15 16:07:11.0" changed_by="1" date_changed="2008-08-15 17:04:50.0" retired="false" name="MCH PROGRAM" description="mch program" uuid="5e8c094c-0a36-11e7-b779-507b9dc4c741"/>
-	
+
+	<program_workflow  program_workflow_id="3"  program_id="1"  concept_id="166214"  creator="1"  date_created="2021-02-05 12:56:14"  retired="0"  changed_by="1"  date_changed="2021-02-05 12:56:14"  uuid="4c30d724-dbcc-42db-ba9b-a9b9d2aadc00"/>
+	<program_workflow_state  program_workflow_state_id="10"  program_workflow_id="3"  concept_id="1067"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="ec890f83-fd47-4406-9c86-8f779b38f6d6"/>
+
 	<patient_program patient_program_id="11" patient_id="7" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="b75462a0-4c92-451e-b8bc-e98b38b76511"/>
     <patient_program patient_program_id="22" patient_id="8" program_id="12" date_enrolled="2008-08-02 00:00:00.0" creator="1" date_created="2008-08-18 11:41:19.0" voided="false" uuid="2edf272c-bf05-4208-9f93-2fa213ed0422"/>
 	<patient_program patient_program_id="33" patient_id="10001" program_id="11" date_enrolled="2016-09-09 00:00:00.0" creator="1" date_created="2016-09-09 11:40:48.0" changed_by="1" date_changed="2016-09-09 12:29:29.0" voided="false" uuid="b8bd5c91-254e-4e67-9116-eeb42b1a7258"/>
 	<patient_program patient_program_id="44" patient_id="10002" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="511391c1-b57f-4564-9a7e-d3a25850675d"/>
-	
+	<patient_program patient_program_id="55" patient_id="10007" program_id="3" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="c64468e1-ac75-4c8f-95e1-44a917ad2752"/>
+
+	<patient_state patient_state_id="11" patient_program_id="11" state="10" start_date="2001-01-01" creator="1" date_created="2008-08-18 12:29:29.0" voided="false" uuid="39321704-b1a3-43d6-acb2-dff2dc76e928"/>
+	<patient_state patient_state_id="12" patient_program_id="55" state="10" start_date="2001-01-01" end_date="2005-01-10" creator="1" date_created="2008-08-18 12:29:29.0" voided="false" uuid="51a3d665-a964-4960-8433-918e5aa04da1"/>
+
 	<encounter encounter_id="3" encounter_type="2" patient_id="8" location_id="1" form_id="1" encounter_datetime="2009-08-01 00:00:00.0" creator="1" date_created="2008-08-18 14:09:05.0" voided="false" uuid="6519d653-393b-4118-9c83-a3715b82d4xz"/>
 
 </dataset>

@@ -1889,7 +1889,6 @@
     <concept  concept_id="166447"  retired="0"   datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2021-05-06 14:46:13"  version="1.0"  changed_by="1"  date_changed="2021-05-06 14:46:13"  uuid="af9b4e36-1470-4ceb-89a0-0cf2074cb4c2"/>
     <concept  concept_id="166448"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2021-05-07 10:26:35" version="1.0" changed_by="1"  date_changed="2021-05-07 10:26:35" uuid="25123105-2e4e-40d3-88b8-6b21f18ba825"/>
 
-    
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
     <concept_numeric  concept_id="160081"  allow_decimal="0" />

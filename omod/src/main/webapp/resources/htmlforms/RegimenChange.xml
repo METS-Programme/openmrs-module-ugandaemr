@@ -1,0 +1,170 @@
+<htmlform formName="ART Regimen Change"
+          formDescription="ART Regimen Change"
+          formUuid="53a3850c-855a-11eb-8dcd-0242ac130003"
+          formEncounterType="c11774c1-3b4a-4bdb-a847-6060895e006d"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-exchange"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formDisplayStyle="Standard"
+          formLabel="ART Regimen Change">
+
+        <lookup complexExpression="#if ($encounter) #set ($encounterDate = $encounter.encounterDatetime) #else #set ($encounterDate = $visit.startDatetime) #end"/>
+    <lookup complexExpression="#set ($regimenLineId = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.Id)" />
+    <lookup complexExpression="#set ($regimenLineName = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.name)" />
+    <script type="text/javascript">
+        beforeSubmit.push(function () {
+            // ensure that the current regimen is not the same as the switch or substituted regimen
+            var current_regimen_id = jq("#current-regimen-id").html();
+
+            if (current_regimen_id == getValue('new-regimen.value')) {
+                getField('new-regimen.error').html('The new regimen ' + jq("#current-regimen-name").html() + ' cannot be the same as the current regimen ').show();
+                jq().toastmessage('showErrorToast', "The new regimen " + jq("#current-regimen-name").html() + " cannot be the same as the current regimen");
+                return false;
+            }
+            return true;
+        });
+    </script>
+
+    <div>
+        <div class="row">
+            <div class="col-md-11">
+                <H1>ART Regimen Switch and Substitution</H1>
+            </div>
+            <div>
+                <div class="col-md-1">
+                    <submit class="confirm" submitLabel="Save" submitStyle="customSubmit"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <table id="art-history" class="table table-borderless">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label><b>Date</b></label>
+                        </td>
+                        <td>
+                            <div class="right-inner-addon">
+                                <i class=" icon-calendar small right-inner-addon-row"></i>
+                                <encounterDate default="today"
+                                               disallowMultipleEncountersOnDate="block"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Current Regimen</b></label>
+                        </td>
+                        <td>
+                            <lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.name"/>
+                            <span class="hidden" id="current-regimen-id"><lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.Id"/></span>
+                            <span class="hidden" id="current-regimen-name"><lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.name"/></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Current Line</b></label>
+                        </td>
+                        <td>
+                            <lookup expression="fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.name" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label><b>Clinician</b></label>
+                        </td>
+                        <td>
+                            <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                      required="required" default="currentUser"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td nowrap="">
+                            <label><b>Regimen Change Type</b></label>
+                        </td>
+                        <td>
+                            <ifMode mode="EDIT">
+                                <lookup complexExpression="$fn.latestObs(166339,$encounterDate).valueCoded.name"/>
+                            </ifMode>
+                            <ifMode mode="EDIT" include="false">
+                                <obs id="regimen-change-actions" conceptId="166339" answerConceptIds="1371,1372">
+                                    <controls>
+                                        <when value="1371" thenDisplay="#regimen-switch-line,#regimen-switch-reason"/>
+                                        <when value="1372" thenDisplay="#regimen-substitution-reason"/>
+                                    </controls>
+                                </obs>
+                            </ifMode>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>New Regimen</b></label>
+                        </td>
+                        <td>
+                            <obs id="new-regimen" conceptId="90315">
+                                <controls>
+                                    <when value="90002" thenDisplay="#new-regimen-other"/>
+                                </controls>
+                            </obs>
+                            <span id="new-regimen-other">
+                                <obs conceptId="99126"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr id="regimen-switch-line">
+                        <td>
+                            <label><b>New Regimen Line for Switch</b></label>
+                        </td>
+                        <td>
+                            <ifMode mode="EDIT">
+                                <!-- in Edit mode just display the name of the regimen line - do not allow it to be changed here again -->
+                                <lookup complexExpression="$regimenLineName" />
+                            </ifMode>
+                            <ifMode mode="EDIT" include="false">
+                                <!-- Current Regimen is Second Line so only shows Third Line -->
+                                <includeIf velocityTest="$regimenLineId == 90305">
+                                    <workflowState workflowId="3" stateId="13" stateLabel="Third Line" />
+                                </includeIf>
+                                <!-- Current Regimen is First Line so shows Second and Third Line -->
+                                <includeIf velocityTest="$regimenLineId == 90271">
+                                    <workflowState type="radio" workflowId="3" stateIds="12,13" stateLabels="Second Line,Third Line" />
+                                </includeIf>
+                            </ifMode>
+                        </td>
+                    </tr>
+                    <tr id="regimen-switch-reason">
+                        <td>
+                            <label><b>Reason for regimen switch</b></label>
+                        </td>
+                        <td>
+                            <obs conceptId="90247" rows="5"/>
+                        </td>
+                    </tr>
+                    <tr id="regimen-substitution-reason">
+                        <td>
+                            <label><b>Reason for regimen substitution</b></label>
+                        </td>
+                        <td>
+                            <obs conceptId="90246" rows="5"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Clinician Notes</b></label>
+                        </td>
+                        <td>
+                            <obs conceptId="159395" rows="5"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</htmlform>

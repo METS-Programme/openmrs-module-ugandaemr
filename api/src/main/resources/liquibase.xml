@@ -533,6 +533,24 @@ VALUES
 		</sql>
 	</changeSet>
 
+	<changeSet id="ugandaemr-27-10-2021-01" author="ssmusoke">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(program_workflow_state_id) FROM program_workflow_state  WHERE uuid = 'ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2';
+			</sqlCheck>
+		</preConditions>
+		<comment>Move all patients who have ever enrolled into care into the HIV program and set the state to UNKNOWN only after the state has been loaded </comment>
+		<sql>
+			<!-- move the patients to the HIV Program on the date that they were enrolled into care -->
+			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
+			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='18c6d4aa-0a36-11e7-8dbb-507b9dc4c741') AS program,encounter_datetime AS date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
+
+			<!-- set the initial state to First Line -->
+			INSERT INTO patient_state(patient_program_id,state,start_date,creator,date_created,uuid)
+			SELECT pp.patient_program_id, 11, pp.date_enrolled, 1, pp.date_enrolled, uuid() FROM patient_program pp, program p WHERE pp.program_id = p.program_id AND p.uuid = '18c6d4aa-0a36-11e7-8dbb-507b9dc4c741'
+		</sql>
+	</changeSet>
+
 	<changeSet id="ugandaemr-2021-03-15-1756" author="slubwama">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="1">

@@ -5,6 +5,8 @@
     <program_workflow  program_workflow_id="1"  program_id="2"  concept_id="159792"  creator="1"  date_created="2020-07-29 20:04:43"  retired="0"  changed_by="1"  date_changed="2020-07-29 20:06:21"  uuid="b70f609e-c3e8-4e4f-bd9e-97df5e95796a"/>
     <program_workflow  program_workflow_id="2"  program_id="2"  concept_id="166053"  creator="1"  date_created="2020-09-18 15:44:42"  retired="0"  changed_by="1"  date_changed="2020-09-18 16:09:17"  uuid="d6e3ed60-ffc7-4108-ab07-706d7b542d99"/>
 
+    <!-- HIV Program - Regimen Status -->
+    <program_workflow  program_workflow_id="3"  program_id="1"  concept_id="166214"  creator="1"  date_created="2021-02-05 12:56:14"  retired="0"  changed_by="1"  date_changed="2021-02-05 12:56:14"  uuid="4c30d724-dbcc-42db-ba9b-a9b9d2aadc00"/>
 
 
     <!--Program Workflow State-->
@@ -17,8 +19,6 @@
     <program_workflow_state  program_workflow_state_id="4"  program_workflow_id="2"  concept_id="166119"  initial="1"  terminal="0"  creator="1"  date_created="2020-09-18 15:47:17"  retired="0" uuid="dc3fbc52-15a9-444c-99d1-65f01f9199dd"/>
     <program_workflow_state  program_workflow_state_id="5"  program_workflow_id="2"  concept_id="156080"  initial="1"  terminal="0"  creator="1"  date_created="2020-09-18 15:47:17"  retired="0" uuid="673966b1-e181-4b46-a526-f7ac6954c59b"/>
 
-
-
     <!--Program Attributes-->
     <!--TB Program Attribute -->
     <program_attribute_type  program_attribute_type_id="3"  name="TB District No."  description="The number that Identifies a patient in a TB program at District level"   datatype="org.openmrs.customdatatype.datatype.FreeTextDatatype"  min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="af9bac5e-d245-11ea-87d0-0242ac130003"/>
@@ -27,4 +27,9 @@
     <program_attribute_type  program_attribute_type_id="6"  name="Initial Phase Regimen"  description="The regimen the patient is currently on when in Initial Phase"   datatype="org.openmrs.customdatatype.datatype.FreeTextDatatype"  min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid=" af9bb1a4-d245-11ea-87d0-0242ac130003"/>
     <program_attribute_type  program_attribute_type_id="7"  name="Continuation Phase Regimen"  description="The regimen the patient is currently on when in Continuation Phase"   datatype="org.openmrs.customdatatype.datatype.FreeTextDatatype"  min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="af9bb26c-d245-11ea-87d0-0242ac130003"/>
     <program_attribute_type  program_attribute_type_id="8"  name="DR TB No"  description="The number that Identifies a patient in a TB program Who is Drug resistant"   datatype="org.openmrs.customdatatype.datatype.FreeTextDatatype"  min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="1628fa4e-fda2-11ea-adc1-0242ac120002"/>
+
+    <!-- HIV Program - ART Regimen Lines -->
+    <program_workflow_state  program_workflow_state_id="11"  program_workflow_id="3"  concept_id="90271"  initial="0"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2"/>
+    <program_workflow_state  program_workflow_state_id="12"  program_workflow_id="3"  concept_id="90305"  initial="0"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="9a42a3ad-d8a4-4f2e-9fa0-04d5f2e6436e"/>
+    <program_workflow_state  program_workflow_state_id="13"  program_workflow_id="3"  concept_id="162987"  initial="0"  terminal="0"  creator="1"  date_created="2020-07-29 21:17:16"  retired="0"  uuid="5d2d0e7e-69a6-408a-b5ce-8d93fb72bc21"/>
 </dataset>
