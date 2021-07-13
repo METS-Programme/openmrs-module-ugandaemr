@@ -39,6 +39,7 @@
                disable_fields("specify-other-art-regimens");
                disable_fields("specify-other-therapeutic");
                disable_fields("specify-other-satin");
+               disable_fields("intravenous-fluids");
                disable_fields("worst-pressure-support");
                disable_fields("worst-spo-fio-ratio");
                disable_fields("pH");
@@ -76,9 +77,8 @@
                disable_fields("specify-other-hypertension-medication");
                disable_fields("specify-other-clinical-features");
               
-
-             jq(".facility-details").change(function () {
-               if (jq(this).find('#other-facility-details').find(':checkbox').prop('checked')) {
+             jq("#facility-details").change(function () {
+               if (jq(this).find("select").find(":selected").val() == "90002") {
                enable_fields("specify-other-facility-details");
                } else {
                disable_fields("specify-other-facility-details");
@@ -183,7 +183,15 @@
                if (jq(this).find("input[type='radio']:checked").val() == "90003") {
                enable_fields("infiltrates-present");
                } else {
-               disable_fields("infiltrates-present");
+               disable_fields("infiltrates-present");  
+               }
+            });
+
+            jq("#intravenous-fluids-given").click(function () {
+               if (jq(this).find("input[type='radio']:checked").val() == "90003") {
+               enable_fields("intravenous-fluids");
+               } else {
+               disable_fields("intravenous-fluids");  
                }
             });
 
@@ -636,21 +644,16 @@
                               </div>
                               <div class="card">
                                 <div class="card-header">
-                                    Facility Details   <!-- make answers radio after inquirely-->
+                                    Facility Details  
                                 </div>
                                 <div class="card-body">
-                                  <div class="row facility-details">
-                                      <obs conceptId="166317" answerConceptId="166313" answerLabel="Isolation Ward for Suspect Cases" 
-                                           style="checkbox" class="col-md-3"/> 
-                                      <obs conceptId="166317" answerConceptId="166314" answerLabel="Isolation Ward for Confirmed Cases" 
-                                           style="checkbox" class="col-md-3" />
-                                      <obs conceptId="166317" answerConceptId="166315" answerLabel="High Dependency Unit" 
-                                           style="checkbox" class="col-md-2" />
-                                      <obs conceptId="166317" answerConceptId="161936" answerLabel="ICU" style="checkbox" class="col-md-1" />
-                                  </div>
                                   <div class="row">
-                                      <obs conceptId="166317" answerConceptId="90002" answerLabel="Other" style="checkbox" class="col-md-3" id="other-facility-details"/>
-                                      <obs conceptId="166316" labelText="Specify Other" class="col-md-3" id="specify-other-facility-details"/>
+                                    <div class="col-md-4">
+                                      <obs conceptId="166317" answerConceptIds="166313,166314,166315,161936,90002" answerLabels="Isolation Ward for Suspect Cases,Isolation Ward for Confirmed Cases,High Dependency Unit,ICU,Other" labelText="Ward" id="facility-details"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <obs conceptId="166316" labelText="Specify Other" id="specify-other-facility-details"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -724,16 +727,10 @@
                                 <div class="card">
                                   <div class="card-body">
                                     <div class="row">
-                                      <div class="col-md-3">
-                                        <label>AVPU Assessment</label>
+                                      <div class="col-md-4">
+                                        <obs conceptId="166410" answerConceptIds="166425,166426,166427,166428" answerLabels="A - Awake,V - Verbal,P - Pain,U - Unresponsive" labelText="AVPU Assessment"/>
                                       </div>
                                     </div>
-                                    <!-- <div class="row"> still has N/A
-                                      <obs conceptId="166410" answerConceptId="166425" answerLabel="A - Awake" style="radio" class="col-md-3"/>
-                                      <obs conceptId="166410" answerConceptId="166426" answerLabel="V - Verbal" style="radio" class="col-md-3"/>
-                                      <obs conceptId="166410" answerConceptId="166427"  answerLabel="P - Pain" style="radio" class="col-md-3"/>
-                                      <obs conceptId="166410" answerConceptId="166428" answerLabel="U - Unresponsive" style="radio" class="col-md-3"/>
-                                    </div> -->
                                   </div>
                                 </div>
                               </div>
@@ -893,8 +890,8 @@
                                       <div class="row">
                                         <div class="col-md-3">
                                           <label>Oral/Fluids Given</label>
-                                          <!-- <obs conceptId="165578" answerConceptIds="90003,90004" answerLabels="Yes, No" 
-                                               style="radio" class="horizontal"/> -->
+                                          <obs conceptId="166452" answerConceptIds="90003,90004" answerLabels="Yes, No" 
+                                               style="radio" class="horizontal"/>
                                         </div>
                                       </div>
                                       <div class="row"></div>
@@ -902,12 +899,12 @@
                                         <div class="col-md-4">
                                           <label>Intravenous Fluids Given</label>
                                           <obs conceptId="166342" answerConceptIds="90003,90004" answerLabels="Yes, No" 
-                                               style="radio" class="horizontal"/>
+                                               style="radio" class="horizontal" id="intravenous-fluids-given"/>
                                         </div>
                                         <div class="col-md-4">
                                           <label>Intravenous Fluids</label>
                                           <obs conceptId="166342" answerConceptIds="166340,166341" answerLabels="Crystalloid, Colloids" 
-                                               style="radio" class="horizontal"/>
+                                               style="radio" class="horizontal" id="intravenous-fluids"/>
                                         </div>
                                       </div>
                                     </div>
