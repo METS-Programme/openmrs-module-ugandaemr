@@ -1,16 +1,16 @@
 <htmlform formName="Walk-in ART Service"
-          formDescription="Walk-in Client Data Capture Tool"
-          formEncounterType="d18bd8f2-dfcd-11eb-ba80-0242ac130004"
-          formUuid="32f56e18-8dbf-4f17-8d09-d1fa3fb84843"
-          formVersion="3.0"
-          formAddMetadata="yes"
-          formUILocation="patientDashboard.visitActions"
-          formOrder="3"
-          formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='7c231e1a-1db5-11ea-978f-2e728ce88125')"
-          formDisplayStyle="Standard">
+formDescription="Walk-in Client Data Capture Tool"
+formEncounterType="d18bd8f2-dfcd-11eb-ba80-0242ac130004"
+formUuid="32f56e18-8dbf-4f17-8d09-d1fa3fb84843"
+formVersion="3.0"
+formAddMetadata="yes"
+formUILocation="patientDashboard.visitActions"
+formOrder="3"
+formIcon="icon-medkit"
+formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='7c231e1a-1db5-11ea-978f-2e728ce88125')"
+formDisplayStyle="Standard">
 
-          <script type="text/javascript">
+    <script type="text/javascript">
 
             if (jQuery) {
     
@@ -45,191 +45,173 @@
     
         </script>
 
-<div>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Walk-in ART Service</h3>
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Walk-in ART Service</h3>
+            </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+                <submit class="confirm mb-2" submitLabel="Save" />
+            </div>
         </div>
-        <div class="col-md-5"></div>
-        <div class="col-md-1"><submit class="confirm mb-2" submitLabel="Save"/></div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-            <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
 
-                <div class="card-header">
-                    <ul class="nav nav-tabs nav-fill card-header-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#patient-history-category-section">Walk-in Art Service</a>
-                        </li>                        
-                    </ul>
-                </div>
+                    <div class="card-header">
+                        <ul class="nav nav-tabs nav-fill card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#patient-history-category-section">Walk-in Art Service</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="card-body">
-                    <div class="tab-content">
+                    <div class="card-body">
+                        <div class="tab-content">
 
-                        <div class="tab-pane active" id="patient-history-category-section">
-                            <div class="card">
-                                <div class="card-header">
+                            <div class="tab-pane active" id="patient-history-category-section">
+                                <div class="card">
+                                    <div class="card-header">
                                     Patient History
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label>Parent Health Facility</label>
-                                            <obs conceptId="159395" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>District of Parent Health Facility</label>
-                                            <obs conceptId="90199" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Reason for Visit</label>
-                                            <obs id="reason-for-visit"
-                                                 conceptId="1305"
-                                                 answerConceptIds="1301,1306,1304, 5622"
-                                                 answerLabels="Lockdown, Admission, Natural Disaster, other spcify"/>
-                                        </div>                                          
-                                        <div class="col-md-3">
-                                            <label>Other Specify</label>
-                                            <obs id="reason-for-visit-other"
-                                                 conceptId="856"/>
-                                        </div>                                                                                                                    
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Parent Health Facility</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>District of Parent Health Facility</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Reason for Visit</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Other Specify</label>
+                                                <obs id="reason-for-visit-other" conceptId="856" />
+                                            </div>
                                         </div>
 
                                         <div class="row">
-                                         <div class="col-md-3">
-                                            <obs id="art-regimen" conceptId="90315" labelText="Current Regimen"
-                                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
-                                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+                                            <div class="col-md-3">
+                                                <obs id="art-regimen" conceptId="90315" labelText="Current Regimen" answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002" answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Other Regimen</label>
+                                                <obs id="other-regimen" conceptId="99126" />
+                                            </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label>Other Regimen</label>
-                                            <obs id="other-regimen" conceptId="99126"/>
-                                        </div>                                                                                                                                                               
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Client category</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card">                            
-                                <div class="card-body">
-                                    <div class="row">                                        
-                                        <div class="col-md-3">
-                                            <label>Client category</label>
-                                            <obs id="client-category" conceptId="90315"
-                                            answerConceptIds="99015,99016,99005,99006,90041,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282"
-                                            answerLabels="ART - General ART client,AGYW - Adolescent Girls and Young Women,IDU - Injectable drug user,RF- Refugees,Preg - Pregnant,NIDU - Non-IDUs,BF - Breastfeeding,UF - Uniformed forces,TB - TB/HIV client,MW - Migrant workers,HEI - HIV Exposed Infant ,OPP - Other PPs ,FF - Fisher folk,OKP - Other KPs ,LTD - Long distance truck drivers"/>
-                                        </div>                                          
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
-                        <div class="card">
-                            <div class="card-header">
+                            <div class="card">
+                                <div class="card-header">
                                 Patient History
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label>Weight</label>
-                                        <obs conceptId="5089" />
-                                    </div>                                
-                                    <div class="col-md-2">
-                                        <label>Blood Pressure</label>
-                                        <div class="row ml-1">
-                                            <obs conceptId="5085" id="bp_systolic" />
-                                            <p class="left" >
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Weight</label>
+                                            <obs conceptId="5089" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Blood Pressure</label>
+                                            <div class="row ml-1">
+                                                <obs conceptId="5085" id="bp_systolic" />
+                                                <p class="left">
                                                 /
                                             </p>
-                                            <obs conceptId="5086" id="bp_diastolic"/>
+                                                <obs conceptId="5086" id="bp_diastolic" />
+                                            </div>
                                         </div>
-                                      </div>
 
-                                    <div class="col-md-3">
-                                         <label>Temperature (c)</label>
-                                         <obs conceptId="CIEL:5088" id="temperature"/>
+                                        <div class="col-md-3">
+                                            <label>Temperature (c)</label>
+                                            <obs conceptId="CIEL:5088" id="temperature" />
                                         </div>
                                         <div class="col-md-3">
                                             <label>TB Status</label>
-                                            <obs id="tb-status" class="long-value-select"
-                                            conceptId="90216"
-                                            answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071"
-                                            answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx"/> 
-                                        </div>                                                    
-                                    </div>                                    
+                                            <obs id="tb-status" class="long-value-select" conceptId="90216" answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071" answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx" />
+                                        </div>
+                                    </div>
 
                                     <div class="row">
-                                        
+
                                         <div class="col-md-3">
                                             <label>TB Pills</label>
                                             <obs conceptId="159395" />
                                         </div>
                                         <div class="col-md-3">
                                             <label>INH Status</label>
-                                                <obs id="tpt-status" conceptId="165288"
-                                                     answerConceptIds="1090,90072,165307,90040,160035"
-                                                     answerLabels="H0-Never Initiated,H1-On INH,H2-Defaulted,H3-Taken off due to side effects,H4-Completed"/>
-                                            </div>
+                                            <obs id="tpt-status" conceptId="165288" answerConceptIds="1090,90072,165307,90040,160035" answerLabels="H0-Never Initiated,H1-On INH,H2-Defaulted,H3-Taken off due to side effects,H4-Completed" />
+                                        </div>
                                         <div class="col-md-3">
                                             <label>INH Pills</label>
-                                            <obs conceptId="160856" id="inh-pills"/>
-                                        </div>                                                                                                           
-                            </div>                            
-                        </div>                    
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Nutrition Status</label>
-                                            <obs conceptId="165050"
-                                            answerConceptIds="1115, 99271, 99272, 99273, 5277"
-                                            answerLabels="N - Normal, MAM - Moderate Acute Malnutrition, SAM - Severe Acute Malnutrition,
-                                            SAMO - Severe Acute Malnutrition with Oedema, O - Overweight/Obese"/>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <obs labelText="CTX Refill" id="160856" conceptId="160856"/>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>ART Regimen</label>
-                                        <obs id="art-refill" conceptId="90315" /> 
-                                    </div>                                                                                                         
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label>ART Refill</label>
-                                        <obs id="no-of-art-pills" conceptId="99038"/>
+                                            <obs conceptId="160856" id="inh-pills" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
 
-                        <div class="card">
-                            <div class="card-header">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Nutrition Status</label>
+                                            <obs conceptId="165050" answerConceptIds="1115, 99271, 99272, 99273, 5277" answerLabels="N - Normal, MAM - Moderate Acute Malnutrition, SAM - Severe Acute Malnutrition,
+                                            SAMO - Severe Acute Malnutrition with Oedema, O - Overweight/Obese" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <obs labelText="CTX Refill" id="160856" conceptId="160856" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>ART Regimen</label>
+                                            <obs id="art-refill" conceptId="90315" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>ART Refill</label>
+                                            <obs id="no-of-art-pills" conceptId="99038" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
                                 Follow-up after Emergency
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Client Follow-up Done?</label>
-                                        <obs id="patient-follow-up" conceptId="165113" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" class="horizontal" />
-                                    </div> 
-                                    <div class="col-md-6">
-                                        <label>Client Follow-up Status</label>
-                                        <obs id="patient-status" conceptId="166285" answerConceptIds="90003,90004,90004" answerLabels="Active at Parent Facility, Active at Temporary Facility, Not followed-up" />
-                                    </div>                                                                            
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Client Follow-up Done?</label>
+                                            <obs id="patient-follow-up" conceptId="165113" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Client Follow-up Status</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
-
                 </div>
             </div>
-            </div>
-      </div>
-</div>
+        </div>
+    </div>
 </htmlform>
