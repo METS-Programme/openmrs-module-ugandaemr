@@ -109,7 +109,8 @@ formDisplayStyle="Standard">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label>Client category</label>
+                                                <label>Client Category</label>
+                                                <obs id="client-category" conceptId="165169" answerConceptIds="90315, 165132, 159674, 162198, 165125, 90041, 99601, 157351, 99087,165133, 159991, 165127" answerLabels="MW- Migrant Workers, AGYW- Adoloscent Girls and Young Women, FF- Fisher Folk, LDT- Long Distance Truck Drivers, UF- Uniformed Forces, Preg- Pregnant, BF- Breastfeeding, IDU- Injectable Drug User, HEI- HIV Exposed Infant, OKP- Other KPs, TB- TB/HIV Client, RF- Refugee" />
                                             </div>
                                         </div>
                                     </div>
