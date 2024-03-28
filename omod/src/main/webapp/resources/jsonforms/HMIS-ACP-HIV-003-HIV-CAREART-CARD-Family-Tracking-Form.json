@@ -1,0 +1,200 @@
+{
+  "name": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form",
+  "description": "Summary entry form for patients enrolled for ART",
+  "pages": [
+    {
+      "label": "HIV Care/ART CARD - Family Tracking Page",
+      "sections": [
+        {
+          "label": "FAMILY TRACKING SECTION",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obsGroup",
+              "required": false,
+              "id": "familyTracking",
+              "questionOptions": {
+                "rendering": "repeating",
+                "concept": "8452e0ac-a83a-428e-bfda-21cb39eef79f"
+              },
+              "questions": [
+                {
+                  "label": "Name",
+                  "type": "obs",
+                  "required": true,
+                  "id": "name",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "e96d0880-e80e-4088-9787-bb2623fd46af"
+                  }
+                },
+                {
+                  "label": "Age",
+                  "type": "obs",
+                  "required": true,
+                  "id": "age",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c"
+                  }
+                },
+                {
+                  "label": "Age Unit",
+                  "type": "obs",
+                  "required": true,
+                  "id": "ageUnit",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "33b18e88-0eb9-48f0-8023-2e90caad4469",
+                    "answers": [
+                      {
+                        "concept": "1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Months"
+                      },
+                      {
+                        "concept": "a13b394d-74ea-4441-aa90-71bacc39c073",
+                        "label": "Years"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "HIV Status",
+                  "type": "obs",
+                  "id": "hivStatus",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
+                    "answers": [
+                      {
+                        "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Positive"
+                      },
+                      {
+                        "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Negative"
+                      },
+                      {
+                        "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Unknown"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "HIV  Status Test Date",
+                  "type": "obs",
+                  "required": true,
+                  "id": "hivStatusDate",
+                  "datePickerType": "calendar",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "b7f597e7-39b5-419e-9ec5-de5901fffb52"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ]
+                },
+                {
+                  "label": "Relationship to client",
+                  "type": "obs",
+                  "id": "relationshipToClient",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "164352AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers": [
+                      {
+                        "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Spouse"
+                      },
+                      {
+                        "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Child"
+                      },
+                      {
+                        "concept": "dcc37f5c-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Other relative"
+                      },
+                      {
+                        "concept": "52aa721c-d5a6-49a5-af0f-e669dcf825a5",
+                        "label": "Other Sexual partner"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "EID Care (Y/N)",
+                  "type": "obs",
+                  "required": true,
+                  "id": "eidCare(Y/N)",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "e77b5448-129f-4b1a-8464-c684fb7dbde8",
+                    "answers": [
+                      {
+                        "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                        "label": "No"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "HIV Care (Y/N)",
+                  "type": "obs",
+                  "required": true,
+                  "id": "hivCare(Y/N)",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "dce13f66-30ab-102d-86b0-7a5022ba4115",
+                    "answers": [
+                      {
+                        "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                        "label": "No"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "EID No./Pt Clinic No.",
+                  "type": "obs",
+                  "required": true,
+                  "id": "eidNo./PtClinicNo.",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "dce11a89-30ab-102d-86b0-7a5022ba4115"
+                  }
+                },
+                {
+                  "label": "Contact",
+                  "type": "obs",
+                  "required": true,
+                  "id": "contact",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "591cba6a-5c5f-11ee-8c99-0242ac120002",
+  "referencedForms": [],
+  "uuid": "330b3cc5-6b8a-433c-93fa-d67feaa4fdae",
+  "version": "4.0.0"
+}
