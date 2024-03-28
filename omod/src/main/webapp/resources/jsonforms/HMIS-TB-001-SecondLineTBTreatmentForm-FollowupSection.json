@@ -60,7 +60,6 @@
                 {
                   "label": "Event Date",
                   "type": "encounterDatetime",
-                  "required": false,
                   "id": "event-date",
                   "questionOptions": {
                     "rendering": "date",
@@ -73,7 +72,6 @@
                 {
                   "label": "Event",
                   "type": "obs",
-                  "required": false,
                   "id": "event",
                   "questionOptions": {
                     "rendering": "select",
@@ -135,7 +133,6 @@
                 {
                   "label": "Event Grade",
                   "type": "obs",
-                  "required": false,
                   "id": "event-grade",
                   "questionOptions": {
                     "rendering": "select",
@@ -192,7 +189,6 @@
                 {
                   "label": "Drug",
                   "type": "obs",
-                  "required": false,
                   "id": "drug",
                   "questionOptions": {
                     "rendering": "select",
@@ -314,7 +310,6 @@
                 {
                   "label": "Side Effects",
                   "type": "obs",
-                  "required": false,
                   "id": "drug-side-effects",
                   "questionOptions": {
                     "rendering": "select",
@@ -474,7 +469,6 @@
             {
               "label": "Total Doses for DR TB Missed",
               "type": "obs",
-              "required": false,
               "id": "total-doses-for-DR-TB-missed",
               "questionOptions": {
                 "rendering": "number",
@@ -487,7 +481,6 @@
             {
               "label": "Percentage Doses MDR-TB Drugs Missed",
               "type": "obs",
-              "required": false,
               "id": "percentage-doses-MDR-TB-drugs-missed",
               "questionOptions": {
                 "rendering": "number",
@@ -500,7 +493,6 @@
             {
               "label": "Percentage Doses ARVs Missed",
               "type": "obs",
-              "required": false,
               "id": "percentage-doses-ARVs-missed",
               "questionOptions": {
                 "rendering": "number",
@@ -518,8 +510,7 @@
           "questions": [
             {
               "label": "Outcome",
-              "type": "",
-              "required": false,
+              "type": "obs",
               "id": "Outcome",
               "questionOptions": {
                 "rendering": "select",

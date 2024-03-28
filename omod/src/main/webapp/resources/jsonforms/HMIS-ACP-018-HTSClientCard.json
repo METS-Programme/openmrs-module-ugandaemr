@@ -49,7 +49,7 @@
             {
               "label": "Serial number",
               "type": "obs",
-              "required": false,
+              "required": "true",
               "id": "serial_number",
               "questionOptions": {
                 "rendering": "text",
@@ -58,21 +58,6 @@
                 "answers": []
               },
               "validators": []
-            },
-            {
-              "label": "Specify",
-              "type": "obs",
-              "required": false,
-              "id": "specify",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "6cb349b1-9f45-4c96-84c7-9d7037c6a056",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "hide": {
-                "hideWhenExpression": "accompanied_by !== 'dcc37f5c-30ab-102d-86b0-7a5022ba4115'"
-              }
             },
             {
               "label": "HTS delivery model",
@@ -119,7 +104,7 @@
             {
               "label": "Entry point for health facility testing",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "entry_point_HF_testing",
               "questionOptions": {
                 "rendering": "select",
@@ -195,7 +180,6 @@
             {
               "label": "Other entry point",
               "type": "obs",
-              "required": false,
               "id": "other_entry_point",
               "questionOptions": {
                 "rendering": "text",
@@ -210,7 +194,7 @@
             {
               "label": "Entry point for community health testing",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "entry_point_community_testing",
               "questionOptions": {
                 "rendering": "select",
@@ -256,7 +240,6 @@
             {
               "label": "Other community entry point",
               "type": "obs",
-              "required": false,
               "id": "other_community_entry_point",
               "questionOptions": {
                 "rendering": "text",
@@ -271,7 +254,7 @@
             {
               "label": "Reason for testing",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "reason_for_testing_pitc",
               "questionOptions": {
                 "rendering": "select",
@@ -322,7 +305,6 @@
             {
               "label": "Other reasons for testing",
               "type": "obs",
-              "required": false,
               "id": "other_reasons_for_testing_pitc",
               "questionOptions": {
                 "rendering": "text",
@@ -337,7 +319,7 @@
             {
               "label": "Reason for testing",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "reason_for_testing_citc",
               "questionOptions": {
                 "rendering": "select",
@@ -363,7 +345,6 @@
             {
               "label": "Other reasons for testing",
               "type": "obs",
-              "required": false,
               "id": "other_reasons_for_testing_citc",
               "questionOptions": {
                 "rendering": "text",
@@ -384,7 +365,6 @@
             {
               "label": "Special categories",
               "type": "obs",
-              "required": false,
               "id": "special_categories",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -457,7 +437,6 @@
             {
               "label": "Other special categories",
               "type": "obs",
-              "required": false,
               "id": "other_special_categories",
               "questionOptions": {
                 "rendering": "text",
@@ -493,7 +472,6 @@
             {
               "label": "Last HIV visit date",
               "type": "obs",
-              "required": false,
               "id": "last_hiv_visit_date",
               "questionOptions": {
                 "rendering": "date",
@@ -509,7 +487,6 @@
             {
               "label": "Number of Months Since Last Tested",
               "type": "obs",
-              "required": false,
               "id": "number_of_months_since_last_tested",
               "questionOptions": {
                 "rendering": "number",
@@ -549,7 +526,6 @@
             {
               "label": "Previous Test Location",
               "type": "obs",
-              "required": false,
               "id": "previous_test_location",
               "questionOptions": {
                 "rendering": "text",
@@ -565,7 +541,6 @@
             {
               "label": "Times tested in last 12 Months",
               "type": "obs",
-              "required": false,
               "id": "times_tested_in_last_12_months",
               "questionOptions": {
                 "rendering": "number",
@@ -581,7 +556,6 @@
             {
               "label": "Number of sexual partners in the last 12 months",
               "type": "obs",
-              "required": false,
               "id": "number_of_sexual_partners_last_12_mnths",
               "questionOptions": {
                 "rendering": "number",
@@ -797,7 +771,6 @@
             {
               "label": "HIV Recency Viral Load Result",
               "type": "obs",
-              "required": false,
               "id": "hiv_recency_viral_load_results",
               "questionOptions": {
                 "rendering": "number",
@@ -837,7 +810,6 @@
             {
               "label": "Recency Sample ID",
               "type": "obs",
-              "required": false,
               "id": "recency_sample_id",
               "questionOptions": {
                 "rendering": "text",
@@ -1053,7 +1025,6 @@
             {
               "label": "Other prevention services",
               "type": "obs",
-              "required": false,
               "id": "other_prevention_services",
               "questionOptions": {
                 "rendering": "text",
@@ -1087,7 +1058,7 @@
             {
               "label": "Place of referral",
               "type": "obs",
-              "required": false,
+              "required": "true",
               "id": "place_of_referral",
               "questionOptions": {
                 "rendering": "text",

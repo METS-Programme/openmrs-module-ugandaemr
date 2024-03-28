@@ -2,9 +2,8 @@
   "name": "DR TB Enrollment Form",
   "version": "4.0.0",
   "description": "This is enrollment page of the DR TB Treatment program",
-  "encounterType": "0271ee3d-f274-49d1-b376-c842f075413f",
   "encounter": "DR TB Summary (Enrollment)",
-  "uuid": "4929f668-f8d0-11ea-adc1-0242ac120002",
+  "uuid": "8d3e2b4f-9c0a-4211-a3c8-5c5db44e3147",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -54,22 +53,20 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "District TB No.",
-              "type": "obs",
-              "required": false,
-              "id": "district-tb-no",
+              "type": "patientIdentifier",
+              "label": "District Reg Number",
+              "questionInfo": "",
+              "required": "true",
+              "id": "districtRegNum",
+              "default": "",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
+                "identifierType": "357e7a13-3832-47db-92cc-8ea416400158"
+              }
             },
             {
               "label": "Unit TB No.",
               "type": "obs",
-              "required": false,
               "id": "unit-tb-no",
               "questionOptions": {
                 "rendering": "text",
@@ -81,7 +78,6 @@
             {
               "label": "DR TB No.",
               "type": "obs",
-              "required": false,
               "id": "dr-tb-no",
               "questionOptions": {
                 "rendering": "text",
@@ -94,7 +90,6 @@
             {
               "label": "Treatment Initiation Facility",
               "type": "obs",
-              "required": false,
               "id": "treatment-initiation-facility",
               "questionOptions": {
                 "rendering": "text",
@@ -106,8 +101,7 @@
             },
             {
               "label": "Followup Health Facility",
-              "type": "encounterLocation",
-              "required": false,
+              "type": "obs",
               "id": "followup-health-facility",
               "questionOptions": {
                 "rendering": "text",
@@ -115,12 +109,14 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(treatment-initiation-facility)"
+              }
             },
             {
               "label": "Date Transferred to this Facility",
               "type": "encounterDatetime",
-              "required": false,
               "id": "date-transferred-to-this-facility",
               "questionOptions": {
                 "rendering": "date",
@@ -128,7 +124,15 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(encounterLocation)"
+              }
             }
           ]
         }
@@ -144,10 +148,9 @@
             {
               "label": "Risk Group",
               "type": "obs",
-              "required": false,
               "id": "risk-group",
               "questionOptions": {
-                "rendering": "multiCheckbox",
+                "rendering": "select",
                 "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
                 "conceptMappings": [],
                 "answers": [
@@ -216,7 +219,6 @@
             {
               "label": "Treatment Supporter Name",
               "type": "obs",
-              "required": false,
               "id": "treatment-supporter-name",
               "questionOptions": {
                 "rendering": "text",
@@ -229,7 +231,6 @@
             {
               "label": "Supporter Phone Number",
               "type": "obs",
-              "required": false,
               "id": "support-phone-number",
               "questionOptions": {
                 "rendering": "text",
@@ -242,7 +243,6 @@
             {
               "label": "District",
               "type": "obs",
-              "required": false,
               "id": "district",
               "questionOptions": {
                 "rendering": "text",
@@ -255,7 +255,6 @@
             {
               "label": "Sub County",
               "type": "obs",
-              "required": false,
               "id": "sub-county",
               "questionOptions": {
                 "rendering": "text",
@@ -268,7 +267,6 @@
             {
               "label": "Parish",
               "type": "obs",
-              "required": false,
               "id": "parish",
               "questionOptions": {
                 "rendering": "text",
@@ -281,7 +279,6 @@
             {
               "label": "Village",
               "type": "obs",
-              "required": false,
               "id": "village",
               "questionOptions": {
                 "rendering": "text",
@@ -305,7 +302,6 @@
             {
               "label": "Treatment Start Date",
               "type": "obs",
-              "required": false,
               "id": "treatment-start-date",
               "questionOptions": {
                 "rendering": "date",
@@ -313,12 +309,16 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
             },
             {
               "label": "Date of Prior TB Registration",
               "type": "obs",
-              "required": false,
               "id": "date-of-prior-tb-registration",
               "questionOptions": {
                 "rendering": "date",
@@ -326,12 +326,16 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
             },
             {
               "label": "Reason for 2nd Line Treatment",
               "type": "obs",
-              "required": false,
               "id": "reason-for-2nd-line-treatment",
               "questionOptions": {
                 "rendering": "select",
@@ -353,7 +357,6 @@
             {
               "label": "Transfer In",
               "type": "obs",
-              "required": false,
               "id": "transfer-in",
               "questionOptions": {
                 "rendering": "radio",
@@ -361,11 +364,11 @@
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
                     "label": "Yes"
                   },
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
                     "label": "No"
                   }
                 ]
@@ -375,7 +378,6 @@
             {
               "label": "Health Center Name",
               "type": "obs",
-              "required": false,
               "id": "health-center-name",
               "questionOptions": {
                 "rendering": "text",
@@ -383,7 +385,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "transfer-in !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
@@ -394,7 +399,6 @@
             {
               "label": "Registration Group",
               "type": "obs",
-              "required": false,
               "id": "registration-group",
               "questionOptions": {
                 "rendering": "select",
@@ -431,7 +435,6 @@
             {
               "label": "Known MDR-TB Contact",
               "type": "obs",
-              "required": false,
               "id": "known-mdr-tb-contact",
               "questionOptions": {
                 "rendering": "radio",
@@ -453,7 +456,6 @@
             {
               "label": "Patient Name",
               "type": "obs",
-              "required": false,
               "id": "patient-name",
               "questionOptions": {
                 "rendering": "text",
@@ -461,12 +463,14 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "known-mdr-tb-contact !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "Date Initial Home Assessment Completed",
               "type": "encounterDatetime",
-              "required": false,
               "id": "date-initial-home-assessment-completed",
               "questionOptions": {
                 "rendering": "date",
@@ -474,322 +478,18 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Medication Diagnosis",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Medication Diagnosis",
-              "type": "obsGroup",
-              "id": "medication-diagnosis",
-              "questionOptions": {
-                "rendering": "repeating",
-                "concept": "ce85d44b-9abb-42af-8327-1fc39b1ad1c3",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "questions": [
+              "validators": [
                 {
-                  "label": "Date of Diagnosis",
-                  "type": "encounterDatetime",
-                  "required": false,
-                  "id": "date-of-diagnosis",
-                  "questionOptions": {
-                    "rendering": "date",
-                    "concept": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "conceptMappings": [],
-                    "answers": []
-                  },
-                  "validators": []
-                },
-                {
-                  "label": "Type",
-                  "type": "obs",
-                  "required": false,
-                  "id": "type",
-                  "questionOptions": {
-                    "rendering": "select",
-                    "concept": "71aae99f-5e5e-4e8b-be9c-e811ffbd7f8d",
-                    "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Diabetes"
-                      },
-                      {
-                        "concept": "134337AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Mental Illness"
-                      },
-                      {
-                        "concept": "dc655734-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Malnutrition"
-                      },
-                      {
-                        "concept": "2c948f40-79fa-408b-931a-d82eacbfbf87",
-                        "label": "Liver Disease"
-                      },
-                      {
-                        "concept": "dcd4d521-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Renal Disease"
-                      },
-                      {
-                        "concept": "145131AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Viral Hepatitis"
-                      },
-                      {
-                        "concept": "c14695ca-6f11-4f1c-9af5-8f3bd5ddb3a3",
-                        "label": "Substance Abuse"
-                      },
-                      {
-                        "concept": "983c18d8-8031-4567-b829-6b286a19e551",
-                        "label": "Other Diagnosis"
-                      },
-                      {
-                        "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Unknown"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "label": "Treatment Provided",
-                  "type": "obs",
-                  "required": false,
-                  "id": "treatment-provided",
-                  "questionOptions": {
-                    "rendering": "text",
-                    "concept": "c4dbec6b-8024-40b2-a84c-e5210efb3de7",
-                    "conceptMappings": [],
-                    "answers": []
-                  },
-                  "validators": []
+                  "type": "date",
+                  "allowFutureDates": "false"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "label": "Previous TB Treatment",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Previous TB Treatment",
-              "type": "obsGroup",
-              "id": "previous-tb-treatment",
-              "questionOptions": {
-                "rendering": "repeating",
-                "concept": "d400e1ff-afcc-43f2-ae07-745e04d89a6c",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "questions": [
-                {
-                  "label": "TB Reg No",
-                  "type": "obs",
-                  "required": false,
-                  "id": "tb-reg-no",
-                  "questionOptions": {
-                    "rendering": "text",
-                    "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
-                    "conceptMappings": [],
-                    "answers": []
-                  },
-                  "validators": []
-                },
-                {
-                  "label": "Facility",
-                  "type": "obs",
-                  "required": false,
-                  "id": "facility",
-                  "questionOptions": {
-                    "rendering": "text",
-                    "concept": "5e448a73-c9ef-41f2-8eee-2605eb75281b",
-                    "conceptMappings": [],
-                    "answers": []
-                  },
-                  "validators": []
-                },
-                {
-                  "label": "Start Date",
-                  "type": "encounterDatetime",
-                  "required": false,
-                  "id": "start-date",
-                  "questionOptions": {
-                    "rendering": "date",
-                    "concept": "dc980e0b-30ab-102d-86b0-7a5022ba4115",
-                    "conceptMappings": [],
-                    "answers": []
-                  },
-                  "validators": []
-                },
-                {
-                  "label": "Regimen",
-                  "type": "obs",
-                  "required": false,
-                  "id": "regimen",
-                  "questionOptions": {
-                    "rendering": "select",
-                    "concept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
-                    "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "b539f758-b24b-417f-9400-4edeca0f6e06",
-                        "label": "2RHZ/4RH"
-                      },
-                      {
-                        "concept": "d250bcae-5889-4bb4-9903-e47f8594f746",
-                        "label": "2RHZE/4H"
-                      },
-                      {
-                        "concept": "73cd1cda-e82a-43d8-938c-fbaf97b7642b",
-                        "label": "2RHZE/6EH"
-                      },
-                      {
-                        "concept": "eb1f1131-d0e2-414a-94a5-d5c7ad126c9f",
-                        "label": "2RHZE/4RH"
-                      },
-                      {
-                        "concept": "7f47837f-1ea5-4a99-b4dd-5ca268d24ba8",
-                        "label": "2RHZE/10RH"
-                      },
-                      {
-                        "concept": "c25e5586-4660-4020-83cd-ee7f7f7fec20",
-                        "label": "2SRHZE/RHZE/5RHE"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "label": "Outcome",
-                  "type": "obs",
-                  "required": false,
-                  "id": "outcome",
-                  "questionOptions": {
-                    "rendering": "select",
-                    "concept": "e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6",
-                    "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Cure, outcome"
-                      },
-                      {
-                        "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Died"
-                      },
-                      {
-                        "concept": "dcb23465-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Lost to follow up"
-                      },
-                      {
-                        "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Not assessed"
-                      },
-                      {
-                        "concept": "031d9b15-62d5-4f73-a374-5503f0421427",
-                        "label": "TB Treatment Completed"
-                      },
-                      {
-                        "concept": "ef032260-4c35-4c28-82d6-5af55297562d",
-                        "label": "TB treatment not completed"
-                      },
-                      {
-                        "concept": "159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Tuberculosis treatment failure"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "label": "Previous 2nd Line Drugs",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Use of 2nd Line Drug More Than Once Previously",
-              "type": "obs",
-              "required": false,
-              "id": "use-of-2nd-line-drugs-more-than-once",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "fc4db3d6-dc2e-4752-9c37-a036f0d568f6",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "DR TB No.",
-              "type": "obs",
-              "required": false,
-              "id": "dr-tb-number",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "2c64410a-9f08-4b4f-9d00-23105e8730d4",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Inpatient at tx Initiation",
-              "type": "obs",
-              "required": false,
-              "id": "inpatient-at-tx-initiation",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "06682a02-c144-4888-b452-255ab0d72f61",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Date of Admission",
-              "type": "encounterDatetime",
-              "required": false,
-              "id": "date-of-admission",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "cb9b223e-a09c-4f8a-b34d-a0934a2af04a",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
             }
           ]
         }
       ]
     }
   ],
-  "referencedForms": []
+  "referencedForms": [],
+  "encounterType": "0271ee3d-f274-49d1-b376-c842f075413f"
 }

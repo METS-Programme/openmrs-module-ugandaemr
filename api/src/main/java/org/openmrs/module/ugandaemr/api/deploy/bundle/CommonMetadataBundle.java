@@ -35,6 +35,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.PATIENT_IUC_HEALTH_ID);
         install(PatientIdentifierTypes.PATIENT_ORGANIZATION_ID);
         install(PatientIdentifierTypes.PATIENT_OPD_IDENTIFICATION_NUMBER);
+        install(PatientIdentifierTypes.DISTRICT_REG_TB_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types

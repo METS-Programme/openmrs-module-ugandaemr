@@ -1,0 +1,234 @@
+{
+  "name": "DS TB Enrollment Form",
+  "version": "4.0.0",
+  "description": "This is the enrollment form for a DS TB patient",
+  "encounterType": "334bf97e-28e2-4a27-8727-a5ce31c7cd66",
+  "encounter": "Ds TB Enrollment",
+  "uuid": "2e26cc12-df19-4588-afc0-38ea107769fe",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
+  "pages": [
+    {
+      "label": "Case Summary/Patient Type",
+      "sections": [
+        {
+          "label": "Visit details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Provider:",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider "
+            },
+            {
+              "label": "Location:",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encLocation"
+            }
+          ]
+        },
+        {
+          "label": "Case Summary - Patient Type",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "patientIdentifier",
+              "label": "District TB Number",
+              "questionInfo": "",
+              "id": "districtRegNum",
+              "required": "true",
+              "default": "",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "8110f2d2-1f98-4c38-aef3-11b19bb0a589"
+              }
+            },
+            {
+              "label": " Unit TB No.",
+              "type": "obs",
+              "id": "unit-tb-number",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Disease Classification and Patient Type",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Disease Classification and Patient Type",
+              "type": "obs",
+              "required": "true",
+              "id": "disease-classification",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d45871ee-62d6-4d4d-b905-f7b75a3fd3bb",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "d7134dc4-ca6f-4cf4-b085-3f13ede07a54",
+                    "label": "Pulmonary Bacteriologically Comfirmed PTB"
+                  },
+                  {
+                    "concept": "b997423b-eb7b-4a79-bfd9-2b06afc8377c",
+                    "label": "Pulmonary Clinically Diagnosed PTB"
+                  },
+                  {
+                    "concept": "fa8e6d5a-759f-4e94-b558-a81a6b3af4dc",
+                    "label": "Extra Pulmonary PTB"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicate Site",
+              "type": "obs",
+              "id": "indication-site",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9c78a74a-6c28-4c83-89e5-2ced9fec78d4",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Patient Type",
+              "type": "obs",
+              "id": "patient-type",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "b3c43c5e-1987-42c1-a7b3-2c71dc58c126",
+                    "label": "New"
+                  },
+                  {
+                    "concept": "8ad53c8c-e136-41e3-aab8-eace935a3bbe",
+                    "label": "Relapse"
+                  },
+                  {
+                    "concept": "13678f4d-69d4-4a93-a2f2-a7d21aadd1f9",
+                    "label": "Treament after lost to follow up"
+                  },
+                  {
+                    "concept": "fa87a1c0-0315-4e95-a868-7394e2429d6d",
+                    "label": "Treament after failure"
+                  },
+                  {
+                    "concept": "d493a2d8-f519-4a57-9458-7962e61f4398",
+                    "label": "Treament history unknown"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Risk Group",
+      "sections": [
+        {
+          "label": "Risk Group",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Risk Groups",
+              "type": "obs",
+              "id": "risk-groups",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "AGYW"
+                  },
+                  {
+                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                    "label": "Breast feeding"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current drug user"
+                  },
+                  {
+                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Disability"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisherman"
+                  },
+                  {
+                    "concept": "2ab8849a-8f4a-49f4-9e8b-cd84f40162cf",
+                    "label": "General ART Client"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "In prison"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance truck driver"
+                  },
+                  {
+                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Migrant Worker"
+                  },
+                  {
+                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
+                    "label": "Non IDU"
+                  },
+                  {
+                    "concept": "342db3a7-74c4-4cb0-943a-432c6b3693b6",
+                    "label": "Other PPs"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PREGNANT"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee Camp"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Officer"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

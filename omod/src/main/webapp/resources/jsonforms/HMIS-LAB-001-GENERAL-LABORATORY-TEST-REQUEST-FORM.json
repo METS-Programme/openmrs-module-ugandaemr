@@ -49,7 +49,6 @@
             {
               "label": "Choose Priority Level",
               "type": "obs",
-              "required": false,
               "id": "priority_level",
               "questionOptions": {
                 "rendering": "select",
@@ -78,7 +77,6 @@
             {
               "label": "Clinical Notes",
               "type": "obs",
-              "required": false,
               "id": "clinical_notes",
               "questionOptions": {
                 "rendering": "textarea",
@@ -95,7 +93,6 @@
                 "concept": "dca07f4a-30ab-102d-86b0-7a5022ba4115",
                 "rendering": "group"
               },
-              "required": false,
               "questions": [
                 {
                   "label": "Tests Ordered",
@@ -598,7 +595,7 @@
                       },
                       {
                         "concept": "df09f8d4-fb7a-45a9-b309-240e700e37d3",
-                        "label": "Verification HIV Tes",
+                        "label": "Verification HIV Test",
                         "conceptMappings": []
                       }
                     ]

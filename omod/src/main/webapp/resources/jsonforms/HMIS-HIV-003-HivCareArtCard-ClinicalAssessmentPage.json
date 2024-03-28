@@ -50,7 +50,6 @@
             {
               "label": "Pregnancy",
               "type": "obs",
-              "required": false,
               "id": "pregnant",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -78,12 +77,14 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {
               "label": "EDD",
               "type": "obs",
-              "required": false,
               "id": "edd",
               "questionOptions": {
                 "rendering": "date",
@@ -91,7 +92,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "EMTCT",
@@ -112,12 +116,14 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {
               "label": "Gestation Age in Weeka",
               "type": "obs",
-              "required": false,
               "id": "age_in_weeks",
               "questionOptions": {
                 "rendering": "number",
@@ -125,12 +131,14 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "ANC No.",
               "type": "obs",
-              "required": false,
               "id": "anc_no",
               "questionOptions": {
                 "rendering": "number",
@@ -138,7 +146,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
@@ -165,6 +176,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {
@@ -211,7 +225,10 @@
                   }
                 ]
               },
-              "id": "family_planning_methods"
+              "id": "family_planning_methods",
+              "hide": {
+                "hideWhenExpression": "isEmpty(on_family_planning) || on_family_planning != 'dcdd6c4a-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Intention to conceive in the next three months",
@@ -232,12 +249,14 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {
               "label": "CACX Status",
               "type": "obs",
-              "required": true,
               "id": "cacx_status",
               "questionOptions": {
                 "rendering": "select",
@@ -265,6 +284,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
               }
             }
           ]
@@ -276,7 +298,6 @@
             {
               "label": "TB Status",
               "type": "obs",
-              "required": false,
               "id": "tb_status",
               "questionOptions": {
                 "rendering": "select",
@@ -340,7 +361,6 @@
             {
               "label": "TB Start Date",
               "type": "obs",
-              "required": false,
               "id": "tb_start_date",
               "questionOptions": {
                 "rendering": "date",
@@ -353,7 +373,6 @@
             {
               "label": "Reg No.",
               "type": "obs",
-              "required": false,
               "id": "reg_no",
               "questionOptions": {
                 "rendering": "number",
@@ -366,7 +385,6 @@
             {
               "label": "TB Stop Date",
               "type": "obs",
-              "required": false,
               "id": "tb_stop_date",
               "questionOptions": {
                 "rendering": "date",
@@ -379,7 +397,7 @@
             {
               "label": "TPT Status",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "tpt_status",
               "questionOptions": {
                 "rendering": "select",
@@ -417,7 +435,6 @@
             {
               "label": "TPT Date Initiated",
               "type": "obs",
-              "required": false,
               "id": "tpt_date_initiated",
               "questionOptions": {
                 "rendering": "date",
@@ -430,7 +447,6 @@
             {
               "label": "TPT Date Completed",
               "type": "obs",
-              "required": false,
               "id": "tpt_date_completed",
               "questionOptions": {
                 "rendering": "date",
@@ -443,7 +459,6 @@
             {
               "label": "TPT Side Effects",
               "type": "obs",
-              "required": false,
               "id": "tpt_date_completed",
               "questionOptions": {
                 "rendering": "text",
@@ -456,7 +471,6 @@
             {
               "label": "Signs and Symptoms",
               "type": "obs",
-              "required": false,
               "id": "signs_and_symptoms",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -554,7 +568,6 @@
             {
               "label": "Side effects of ART",
               "type": "obs",
-              "required": false,
               "id": "side_effects_of_ART",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -632,7 +645,7 @@
             {
               "label": "Advanced Disease Status",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "advanced_disease_status",
               "questionOptions": {
                 "rendering": "select",
@@ -680,7 +693,7 @@
             {
               "label": "WHO Clinical Stages",
               "type": "obs",
-              "required": true,
+              "required": "true",
               "id": "who_clinical_stages",
               "questionOptions": {
                 "rendering": "select",
@@ -775,7 +788,6 @@
             {
               "label": "Syphilis Status",
               "type": "obs",
-              "required": false,
               "id": "syphillis_status",
               "questionOptions": {
                 "rendering": "select",
@@ -804,6 +816,105 @@
                   }
                 ]
               }
+            },
+            {
+              "label": "ART - adherence ",
+              "type": "obs",
+              "id": "art-adherence",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Good"
+                  },
+                  {
+                    "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fair"
+                  },
+                  {
+                    "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Why Poor/Fair",
+              "type": "obs",
+              "id": "why-poor-fair",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dce045a4-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcdf020e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ALCOHOL"
+                  },
+                  {
+                    "concept": "dcdefbac-30ab-102d-86b0-7a5022ba4115",
+                    "label": "DELIVERY OR TRAVEL PROBLEMS"
+                  },
+                  {
+                    "concept": "dcdf0a67-30ab-102d-86b0-7a5022ba4115",
+                    "label": "DEPRESSION"
+                  },
+                  {
+                    "concept": "dcda671a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "DRUG STOCK-OUT"
+                  },
+                  {
+                    "concept": "dcdedd4a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "FELT BETTER"
+                  },
+                  {
+                    "concept": "dcded6f0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "FORGETFULNESS"
+                  },
+                  {
+                    "concept": "dcda7fb0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ILLNESS OR HOSPITALIZATION"
+                  },
+                  {
+                    "concept": "2f905260-f276-43a8-8ef9-a1fff46d3883",
+                    "label": "LACK OF FOOD"
+                  },
+                  {
+                    "concept": "dcda87f3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PATIENT DECISION"
+                  },
+                  {
+                    "concept": "dcda83d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PATIENT LACKED SUFFICIENT FINANCIAL RESOURCES"
+                  },
+                  {
+                    "concept": "dcdee36f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PATIENT TOO ILL"
+                  },
+                  {
+                    "concept": "dcdf10f4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PILL BURDEN"
+                  },
+                  {
+                    "concept": "dcdeefd8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PILLS RAN OUR OR WERE LOST"
+                  },
+                  {
+                    "concept": "dcdee9a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STIGMA"
+                  },
+                  {
+                    "concept": "dcda4d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TOXICITY OR SIDE-EFFECTS"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(art-adherence) || art-adherence != 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
@@ -814,7 +925,6 @@
             {
               "label": "Duration on Current Regimen",
               "type": "obs",
-              "required": false,
               "id": "duration_on_current_regimen",
               "questionOptions": {
                 "rendering": "number",
@@ -827,7 +937,6 @@
             {
               "label": "Duration on ART",
               "type": "obs",
-              "required": false,
               "id": "duration_on_art",
               "questionOptions": {
                 "rendering": "number",

@@ -348,4 +348,21 @@ public class PatientIdentifierTypes {
         }
     };
 
+    public static PatientIdentifierTypeDescriptor DISTRICT_REG_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "District Registration TB Number";
+        }
+
+        @Override
+        public String description() {
+            return "Unique District Registration Number that is Assigned to every TB patient";
+        }
+
+        public String uuid() {
+            return "357e7a13-3832-47db-92cc-8ea416400158";
+        }
+    };
+
 }
