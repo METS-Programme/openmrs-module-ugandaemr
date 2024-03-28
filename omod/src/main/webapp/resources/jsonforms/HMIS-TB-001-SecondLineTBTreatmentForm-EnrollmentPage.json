@@ -147,7 +147,7 @@
               "required": false,
               "id": "risk-group",
               "questionOptions": {
-                "rendering": "multiCheckbox",
+                "rendering": "checkbox",
                 "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
                 "conceptMappings": [],
                 "answers": [
@@ -361,11 +361,11 @@
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
                     "label": "Yes"
                   },
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
                     "label": "No"
                   }
                 ]

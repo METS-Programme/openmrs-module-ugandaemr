@@ -196,7 +196,7 @@
                   "id": "drug",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "160021AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "conceptMappings": [],
                     "answers": [
                       {
@@ -244,10 +244,6 @@
                         "label": "LEVOFLOXACIN"
                       },
                       {
-                        "concept": "dcddab4c-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FATIGUE"
-                      },
-                      {
                         "concept": "80133AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label": "MOXIFLOXACIN"
                       },
@@ -266,10 +262,6 @@
                       {
                         "concept": "82772AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label": "PROTHIONAMIDE"
-                      },
-                      {
-                        "concept": "dcde2606-30ab-102d-86b0-7a5022ba4115",
-                        "label": "INSOMNIA"
                       },
                       {
                         "concept": "160019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",

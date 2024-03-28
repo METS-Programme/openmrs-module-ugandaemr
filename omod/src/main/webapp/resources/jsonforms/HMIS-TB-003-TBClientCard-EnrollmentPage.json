@@ -1,0 +1,239 @@
+{
+  "name": "DS TB Enrollment Form",
+  "version": "4.0.0",
+  "description": "This is the enrollment form for a DS TB patient",
+  "encounterType": "334bf97e-28e2-4a27-8727-a5ce31c7cd66",
+  "encounter": "Ds TB Enrollment",
+  "uuid": "a1468eda-f5c8-493a-9b54-46939a3063d0",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Case Summary/Patient Type",
+      "sections": [
+        {
+          "label": "Case Summary - Patient Type",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "District TB No.",
+              "type": "obs",
+              "required": false,
+              "id": "district-tb-number",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": " Unit TB No.",
+              "type": "obs",
+              "required": false,
+              "id": "unit-tb-number",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Disease Classification and Patient Type",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Disease Classification and Patient Type",
+              "type": "obs",
+              "required": false,
+              "id": "disease-classification",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d45871ee-62d6-4d4d-b905-f7b75a3fd3bb",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "d7134dc4-ca6f-4cf4-b085-3f13ede07a54",
+                    "label": "Pulmonary Bacteriologically Comfirmed PTB"
+                  },
+                  {
+                    "concept": "b997423b-eb7b-4a79-bfd9-2b06afc8377c",
+                    "label": "Pulmonary Clinically Diagnosed PTB"
+                  },
+                  {
+                    "concept": "fa8e6d5a-759f-4e94-b558-a81a6b3af4dc",
+                    "label": "Extra Pulmonary PTB"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicate Site",
+              "type": "obs",
+              "required": false,
+              "id": "indication-site",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9c78a74a-6c28-4c83-89e5-2ced9fec78d4",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Patient Type",
+              "type": "obs",
+              "required": false,
+              "id": "patient-type",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "b3c43c5e-1987-42c1-a7b3-2c71dc58c126",
+                    "label": "New"
+                  },
+                  {
+                    "concept": "8ad53c8c-e136-41e3-aab8-eace935a3bbe",
+                    "label": "Relapse"
+                  },
+                  {
+                    "concept": "13678f4d-69d4-4a93-a2f2-a7d21aadd1f9",
+                    "label": "Treament after lost to follow up"
+                  },
+                  {
+                    "concept": "fa87a1c0-0315-4e95-a868-7394e2429d6d",
+                    "label": "Treament after failure"
+                  },
+                  {
+                    "concept": "d493a2d8-f519-4a57-9458-7962e61f4398",
+                    "label": "Treament history unknown"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Treatment/Risk Group",
+      "sections": [
+        {
+          "label": "TB Drug Resistance",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Diagnosed with DR TB",
+              "type": "obs",
+              "required": false,
+              "id": "diagnosed-with-dr-tb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c069ca01-e8e2-4ae2-ac36-ab0ee4540347",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Date",
+              "type": "obs",
+              "required": false,
+              "id": "date-diagnosed-with-dr-tb",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "67ac3702-5ec1-4c52-8e80-405ec99b723b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Risk Group",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Risk Groups",
+              "type": "obs",
+              "required": false,
+              "id": "risk-groups",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "a89da896-80fa-460f-8209-abdd58140a39",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Health Worker"
+                  },
+                  {
+                    "concept": "b5171d08-77bf-40a8-a864-51caa6cd2480",
+                    "label": "TB Contact"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisher Folk"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "In prison"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed/Armed Personnel"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee Camp"
+                  },
+                  {
+                    "concept": "119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Diabetic Patient"
+                  },
+                  {
+                    "concept": "952c6973-e163-4c0d-b6c8-a7071bd05e2a",
+                    "label": "Miner"
+                  },
+                  {
+                    "concept": "1455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Tobacco User"
+                  },
+                  {
+                    "concept": "134337AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mentally Ill"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Risk Group",
+              "type": "obs",
+              "required": false,
+              "id": "other-risk-group",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "eac4e9c2-a086-43fc-8d43-b5a4e02febb4",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

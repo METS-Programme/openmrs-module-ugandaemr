@@ -58,7 +58,7 @@
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "P - Pregnant",
                     "conceptMappings": []
                   },
@@ -68,7 +68,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "cbbbe73a-a7e2-11ed-afa1-0242ac120002",
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "NPB - Not pregnant nor breast feeding",
                     "conceptMappings": []
                   },
@@ -102,12 +102,12 @@
                 "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
                     "label": "Yes",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
                     "label": "No",
                     "conceptMappings": []
                   }
@@ -356,7 +356,7 @@
               "required": false,
               "id": "reg_no",
               "questionOptions": {
-                "rendering": "number",
+                "rendering": "text",
                 "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
                 "conceptMappings": [],
                 "answers": []
@@ -370,7 +370,7 @@
               "id": "tb_stop_date",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "ddd2adde2-30ab-102d-86b0-7a5022ba4115",
+                "concept": "dd2adde2-30ab-102d-86b0-7a5022ba4115",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -444,10 +444,10 @@
               "label": "TPT Side Effects",
               "type": "obs",
               "required": false,
-              "id": "tpt_date_completed",
+              "id": "tpt_side_effects",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "23a6dc6e-ac16-4fa6-8029-155522548d04",
+                "concept": "57416419-085f-4b91-81ac-0f7c0261ed50",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -645,7 +645,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "dd552fe1-6701-4099-a032-bbb3fcb086dc",
+                    "concept": "bd552fe1-6701-4099-a032-bbb3fcb086dc",
                     "label": "2 - Suspected Adv. Disease",
                     "conceptMappings": []
                   },
