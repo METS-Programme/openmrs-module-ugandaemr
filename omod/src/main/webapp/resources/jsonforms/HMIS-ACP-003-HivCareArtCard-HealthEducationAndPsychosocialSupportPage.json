@@ -31,7 +31,7 @@
                   },
                   {
                     "concept": "e9332f1e-3af5-499a-b5ea-5c196cdf24c2",
-                    "label": "HEALTH EDUCATION HOME BASED CARE"
+                    "label": "Health Education Home Based Care"
                   },
                   {
                     "concept": "865811ad-796f-48c2-b575-1f530122c408",
@@ -39,7 +39,7 @@
                   },
                   {
                     "concept": "159928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "school"
+                    "label": "School"
                   }
                 ]
               },
@@ -56,11 +56,11 @@
                 "answers": [
                   {
                     "concept": "c14695ca-6f11-4f1c-9af5-8f3bd5ddb3a3",
-                    "label": "Alcohol and Substance Abuse"
+                    "label": "Harmful Habits (Alcohol and Substance Abuse)"
                   },
                   {
                     "concept": "dcde3d87-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ANXIETY"
+                    "label": "Fear/Anxiety"
                   },
                   {
                     "concept": "1b532410-60c4-4514-be80-12ee3d8224a7",
@@ -68,11 +68,11 @@
                   },
                   {
                     "concept": "6cec43a1-1f3c-42ab-844a-c3f786ec06f2",
-                    "label": "Denial"
+                    "label": "Denial/Coping with results"
                   },
                   {
                     "concept": "b9884d17-08a1-430b-b003-3b79d467a9f0",
-                    "label": "Dysfunctional Family"
+                    "label": "Dysfunctional Family/Client Support System"
                   },
                   {
                     "concept": "f6e863c5-1e09-445a-a714-fe4a2255ae64",
@@ -92,11 +92,11 @@
                   },
                   {
                     "concept": "c8c6939c-a36b-4ee0-8c6e-85c6a259a0eb",
-                    "label": "Poverty"
+                    "label": "Economic Challenges/Poverty"
                   },
                   {
                     "concept": "fbc8c14f-8348-4acc-abd7-f14df60eff2d",
-                    "label": "Risky Sexual Behavior"
+                    "label": "Risky Sexual Behaviors"
                   },
                   {
                     "concept": "762cfa56-2d56-4e89-912a-3f61bf4c23e8",
@@ -104,11 +104,11 @@
                   },
                   {
                     "concept": "dcdee9a8-30ab-102d-86b0-7a5022ba4115",
-                    "label": "STIGMA"
+                    "label": "Stigma & Discrimination"
                   },
                   {
                     "concept": "0e36d228-8f19-407b-ad0b-b8b5bc4d3ba8",
-                    "label": "Stress"
+                    "label": "Anger/Stress"
                   },
                   {
                     "concept": "421dbf80-169b-4f02-a285-295d21ff64e9",
@@ -132,16 +132,16 @@
                     "label": "ART Literacy"
                   },
                   {
+                    "concept": "a5e7ff4b-99b9-402a-b03e-3b90679ee23a",
+                    "label": "Adherence preparation and plan"
+                  },
+                  {
                     "concept": "b465e067-a447-44a6-afc2-b4cdfe8189bc",
-                    "label": "HEALTH EDUCATION ART READY"
+                    "label": "Ready to start Art & initiation"
                   },
                   {
-                    "concept": "0df2a7db-caed-4351-925c-8e45a3621504",
-                    "label": "Mild hypertension"
-                  },
-                  {
-                    "concept": "012c5218-25d7-4cd0-aad5-1f028d9404ad",
-                    "label": "Not ready to start and initiate"
+                    "concept": "14626aed-049a-48b1-afca-aedd7fd9a57f",
+                    "label": "Not ready to start & initiate"
                   },
                   {
                     "concept": "bd4f0efb-8a43-4e5c-9048-eda47b675bb7",
@@ -149,7 +149,7 @@
                   },
                   {
                     "concept": "497bb6d8-f648-49f7-a3fa-d84708a8ce57",
-                    "label": "Severe hypertension"
+                    "label": "Intensive Adherence counselling & support"
                   }
                 ]
               },
@@ -166,7 +166,7 @@
                 "answers": [
                   {
                     "concept": "e6284961-f3fa-43be-aa05-8463dab5dbf1",
-                    "label": "More than two weeks in pleasurable activities"
+                    "label": "More than two weeks loss of interest in pleasurable activities"
                   },
                   {
                     "concept": "5f22ca76-bead-43fc-8d70-92479c658b38",
@@ -195,7 +195,7 @@
                   },
                   {
                     "concept": "c5160b00-0641-4742-8672-97081379a92d",
-                    "label": "Emotional or Psyschosocial Harm"
+                    "label": "Emotional or Psychological Harm"
                   },
                   {
                     "concept": "1490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -224,11 +224,11 @@
                 "answers": [
                   {
                     "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "YES"
+                    "label": "Yes"
                   },
                   {
                     "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NO"
+                    "label": "No"
                   }
                 ]
               },
@@ -269,15 +269,18 @@
                   },
                   {
                     "concept": "f56e8d46-5b2f-488b-861a-94a89d16adf6",
-                    "label": "Non-suppressed"
+                    "label": "Non-suppressed viral load"
                   },
                   {
                     "concept": "0251af24-dc19-4d68-a2bb-4b3f3867b949",
-                    "label": "Not In School"
+                    "label": "Not in School"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > '20'"
+              }
             },
             {
               "label": "OVC Assessment",
@@ -298,7 +301,7 @@
                   },
                   {
                     "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not assessed"
+                    "label": "Not yet assessed"
                   },
                   {
                     "concept": "513d3a81-68d2-44f4-88a3-8dc74b5e1249",
@@ -310,7 +313,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > '20'"
+              }
             },
             {
               "label": "PHDP Components",
@@ -331,11 +337,11 @@
                   },
                   {
                     "concept": "0815c786-5994-49e4-aa07-28b662b0e428",
-                    "label": "Family plannign counselling provided"
+                    "label": "Family planning counselling provided"
                   },
                   {
                     "concept": "dc9ae14d-30ab-102d-86b0-7a5022ba4115",
-                    "label": "DISCLOSURE COUNSELING"
+                    "label": "Disclosure Counseling"
                   },
                   {
                     "concept": "dc98d576-2623-4677-8a08-2061e195864f",
@@ -343,11 +349,11 @@
                   },
                   {
                     "concept": "dc7620b3-30ab-102d-86b0-7a5022ba4115",
-                    "label": "METHOD OF FAMILY PLANNING"
+                    "label": "Family planning method provided"
                   },
                   {
                     "concept": "7cb048f9-550b-4be2-9eb9-cc8e19c87041",
-                    "label": "NUTRITION COUNSELLING ONLY >2YRS"
+                    "label": "Nutrition Counseling ONLY >2YRS"
                   },
                   {
                     "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
@@ -363,7 +369,7 @@
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
+                    "label": "Others Specify"
                   }
                 ]
               },
@@ -421,9 +427,9 @@
               }
             },
             {
-              "label": "Intervation Approaches",
+              "label": "Intervention Approaches",
               "type": "obs",
-              "id": "intervationApproaches",
+              "id": "interventionApproaches",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "eb7c1c34-59e5-46d5-beba-626694badd54",
@@ -435,7 +441,7 @@
                   },
                   {
                     "concept": "a806304b-bef4-483f-b4d0-9514bfc80621",
-                    "label": "Health Education Linkages and  Refferals"
+                    "label": "Linkages and  Referrals"
                   },
                   {
                     "concept": "f1229461-aa7e-4a4f-a916-e1188c1ce622",

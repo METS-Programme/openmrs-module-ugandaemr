@@ -93,7 +93,7 @@
               }
             },
             {
-              "label": "Gestation Age in Weeka",
+              "label": "Gestation Age in Weeks",
               "type": "obs",
               "id": "ageInWeeks",
               "questionOptions": {
@@ -482,7 +482,7 @@
             {
               "label": "Signs and Symptoms",
               "type": "obs",
-              "id": "signs_And_Symptoms",
+              "id": "signsAndSymptoms",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
@@ -586,7 +586,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(signs_And_Symptoms) || signs_And_Symptoms !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(signsAndSymptoms) || signsAndSymptoms != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -809,7 +809,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hep_b_status !== '159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "hepBStatus != '159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
