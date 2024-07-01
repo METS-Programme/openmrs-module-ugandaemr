@@ -145,7 +145,7 @@ public class StabilityCriteriaResource extends DelegatingCrudResource<StabilityC
         Patient patient = null;
         Visit visit = null;
 
-        if (context.getParameter("visit") != null) {
+        if (context.getParameter("visit") != null && !context.getParameter("visit").equals("null")) {
             if (isUuid(context.getParameter("visit"))) {
                 visit = Context.getVisitService().getVisitByUuid(context.getParameter("visit"));
             } else {
@@ -159,13 +159,14 @@ public class StabilityCriteriaResource extends DelegatingCrudResource<StabilityC
                 patient = Context.getPatientService().getPatient(Integer.parseInt(context.getParameter("patient")));
             }
         }
-        if (context.getParameter("encounter") != null) {
+        if (context.getParameter("encounter") != null && !context.getParameter("encounter").equals("null")) {
             if (isUuid(context.getParameter("encounter"))) {
                 encounter = Context.getEncounterService().getEncounterByUuid(context.getParameter("encounter"));
             } else {
                 encounter = Context.getEncounterService().getEncounter((Integer.parseInt(context.getParameter("encounter"))));
             }
         }
+
 
         StabilityCriteria stabilityCriteria = generateStabilityCriteria(patient, encounter, visit);
 

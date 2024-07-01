@@ -42,8 +42,8 @@ img {
             if (enableCliniciansMakeStabilityDecisions !== true && enableCliniciansMakeStabilityDecisions!=="true") {
                 var stability = queryRestData(stability_url)
 
-                if (stability != null && stability.result) {
-                    var stabilityResults = stability.result[0];
+                if (stability != null && stability.hasOwnProperty("results")) {
+                    var stabilityResults = stability.results[0];
 
                     jq("#vl").html(stabilityResults.vlObs)
                     jq("#vlDate").html(stabilityResults.vlDateObs)
@@ -79,7 +79,6 @@ img {
         })
     }
 </script>
-
 <div id="stability_criteria">
     <div class="stability">
         <div id="vl"></div>
