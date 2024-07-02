@@ -111,18 +111,16 @@
                     }
                 });
 
-                jq("#dsdm_approach").change(function () {
-                    var model= jq("#dsdm_approach").find("select").find(":selected").val();
-                    if (model === "7e2acb9c-25e9-4b8f-b012-8436051d5c32" || model === "0ca3db87-567f-4159-acc0-0ec14d0b8036") {
+                jq("#165143 select").change(function () {
+                    var model= jq("#165143").find("select").find(":selected").val();
+                    if (model === "165142" || model === "165141") {
                         enable_fields("cddp_category");
                         enable_fields("next_facility_visit_date");
-                        if (model === "7e2acb9c-25e9-4b8f-b012-8436051d5c32"){
-                            hideContainer("#cddp_category");
-                            jq("#refill_point_select_id").attr("disabled", false);
-                            getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
-                        }
-                    }else {
-                        jq('#refill_point_select_id').empty();
+                    }else if (model === "165141"){
+                        hideContainer("#cddp_category");
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
+                    } else {
                         setValue('refill_point_id.value', '');
                         jq("#refill_point_select_id  option").prop("selected", false);
                         jq("#cddp_category  option").prop("selected", false);
@@ -1671,10 +1669,10 @@
         }
 
         /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
-        if (jq("#patient-categorization").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#dsdm_approach").find("select").find(":selected").val() !== "4eae684a-ee1f-4f62-87f3-e3e58c91f417" &amp;&amp; jq("#dsdm_approach").find("select").find(":selected").val() !== "6b4906b1-388c-4984-974a-81e6f86f7737" &amp;&amp; jq("#dsdm_approach").find("select").find(":selected").val() !== "")) {
-        getField('dsdm_approach.error').html('Patient Not Stable due to ' + instabilityCause + '. \n Only Stable Patients can be enrolled in ' + jq("#dsdm_approach").find("select").find(":selected").text()).show();
+        if (jq("#patient-categorization").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val() !== "165138" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "165140" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "")) {
+        getField('165143.error').html('Patient Not Stable due to ' + instabilityCause + '. \n Only Stable Patients can be enrolled in ' + jq("#165143").find("select").find(":selected").text()).show();
 
-        jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#dsdm_approach").find("select").find(":selected").text());
+        jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#165143").find("select").find(":selected").text());
         return false;
         }
 
@@ -3254,8 +3252,12 @@
                                                              answerLabels="S - Stable, US - Unstable"
                                                              class="horizontal"/>
                                                     </div>
-                                                    <div class="col-md-3" id="dsdm_approach">
-                                                        <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                                    <div class="col-md-3">
+                                                        <label>Approach</label>
+                                                        <obs id="165143" conceptId="165143"
+                                                             answerConceptIds="165138,165140,165139,165142,165141"
+                                                             answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
+                                                             class="long-value-select" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -3277,7 +3279,8 @@
                                                 <div class="row">
                                                     <div class="col-md-3" id="cddp_category">
                                                         <label>CDDP Category</label>
-                                                        <workflowState workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                                        <workflowState workflowId="4" stateIds="16,14,15"
+                                                                       stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>DSD Group Refill Point</label>
@@ -4712,8 +4715,11 @@
                                              class="horizontal long-value-select"/>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group" id="dsdm_approach">
-                                            <workflowState workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                        <div class="form-group">
+                                            <obs id="165143" conceptId="165143"
+                                                 answerConceptIds="165138,165140,165139,165142,165141"
+                                                 answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
+                                                 labelText="Approach" class="horizontal long-value-select"/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -4740,7 +4746,8 @@
                                     <div class="row">
                                         <div class="col-md-3" id="cddp_category">
                                             <label>CDDP Category</label>
-                                            <workflowState workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                            <workflowState workflowId="4" stateIds="16,14,15"
+                                                           stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                         </div>
                                         <div class="col-md-3">
                                             <label>DSD Group Refill Point</label>

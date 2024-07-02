@@ -1055,35 +1055,33 @@
             },
             {
               "label": "Approach",
-              "type": "programState",
+              "type": "obs",
               "id": "dsdmApproach",
               "questionOptions": {
                 "concept": "73312fee-c321-11e8-a355-529269fb1459",
+                "rendering": "select",
                 "answers": [
                   {
-                    "value": "4eae684a-ee1f-4f62-87f3-e3e58c91f417",
+                    "concept": "733144c0-c321-11e8-a355-529269fb1459",
                     "label": "FBIM - Facility Based Individual Management"
                   },
                   {
-                    "value": "6b4906b1-388c-4984-974a-81e6f86f7737",
+                    "concept": "73313c96-c321-11e8-a355-529269fb1459",
                     "label": "FBG - Facility Based Group"
                   },
                   {
-                    "value": "5e122a20-3e23-4e65-bb1b-9f1324f97396",
+                    "concept": "73313f20-c321-11e8-a355-529269fb1459",
                     "label": "FTDR - Fast-Track Drug Refills"
                   },
                   {
-                    "value": "0ca3db87-567f-4159-acc0-0ec14d0b8036",
+                    "concept": "733139e4-c321-11e8-a355-529269fb1459",
                     "label": "CCLAD - Community Client-Led ART Delivery"
                   },
                   {
-                    "value": "7e2acb9c-25e9-4b8f-b012-8436051d5c32",
+                    "concept": "73313728-c321-11e8-a355-529269fb1459",
                     "label": "CDDP - Community Drug Distribution Point"
                   }
-                ],
-                "rendering": "select",
-                "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
-                "workflowUuid": "b8d44412-9d8a-422f-8952-7fe15997f8b6"
+                ]
               }
             },
             {
