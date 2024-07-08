@@ -659,5 +659,5 @@
 
     <concept_description  concept_description_id="18739"  concept_id="168695"  description="Entry point for cancer patients"    locale="en"  creator="1"  date_created="2023-04-04 16:57:28"   uuid="fc24eb63-d463-4bf1-a4c3-22e31e3bfbd2"/>
     <concept_description  concept_description_id="18740"  concept_id="168697"  description="Is patient Currently Menstruating"  locale="en"  creator="1"  date_created="2023-04-04 17:00:41"   uuid="13e56678-0ba8-4b60-86e6-a3dfa47c4489"/>
-
+    <concept_description  concept_description_id="18741"  concept_id="186353"  description="Depot (SC) Medroxyprogesterone Acetate 104 mg/0.65 mL, Pre-Filled Uniject Device"  locale="en"  creator="1"  date_created="2024-06-30 12:12:07" uuid="694fc95a-7a83-4bc0-a759-51684b75b8da"/>
 </dataset>
