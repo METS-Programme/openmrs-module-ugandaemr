@@ -1,0 +1,590 @@
+{
+  "name": "HMIS ACP 003 : HIV CARE/ART CARD - HEALTH EDUCATION AND PSYCHOSOCIAL SUPPORT PAGE v2",
+  "version": "4.0.1",
+  "description": "Captures health eduction and counseling encounters",
+  "encounter": "ART Card - Health Education Encounter",
+  "encounterType": "e22e39fd-7db2-45e7-80f1-60fa0d5a4378",
+  "uuid": "26687e48-c7ea-4ca7-b878-e90b742b01f5",
+  "processor": "EncounterFormProcessor",
+  "published": false,
+  "retired": false,
+  "pages": [
+    {
+      "label": "PSS1",
+      "sections": [
+        {
+          "label": "PSS1(Assess)",
+          "questions": [
+            {
+              "label": "Economic",
+              "type": "obs",
+              "id": "pss1AssessEconomic",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2d5a0641-ef12-4101-be76-533d4ba651df"
+              }
+            },
+            {
+              "label": "Social",
+              "type": "obs",
+              "id": "pss1AssessSocial",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "7d5a0642-ef12-4101-be76-533d4ba651df",
+                    "label": "Non- disclosure"
+                  },
+                  {
+                    "concept": "7d5a0643-ef12-4101-be76-533d4ba651df",
+                    "label": " Stigma & discrimination"
+                  },
+                  {
+                    "concept": "7d5a0644-ef12-4101-be76-533d4ba651df",
+                    "label": "Dysfunctional family support system"
+                  },
+                  {
+                    "concept": "7d5a0645-ef12-4101-be76-533d4ba651df",
+                    "label": "Harmful habits (Alcohol & substance use)"
+                  },
+                  {
+                    "concept": "7d5a0646-ef12-4101-be76-533d4ba651df",
+                    "label": "Risky sexual behaviors"
+                  },
+                  {
+                    "concept": "7d5a0647-ef12-4101-be76-533d4ba651df",
+                    "label": "Lack of life survival skills"
+                  },
+                  {
+                    "concept": "7d5a0648-ef12-4101-be76-533d4ba651df",
+                    "label": "Transition challenges"
+                  },
+                  {
+                    "concept": "7d5a0649-ef12-4101-be76-533d4ba651df",
+                    "label": "Economic challenges"
+                  },
+                  {
+                    "concept": "7d5a0610-ef12-4101-be76-533d4ba651df",
+                    "label": " Had 1 meal a day"
+                  },
+                  {
+                    "concept": "7d5a0611-ef12-4101-be76-533d4ba651df",
+                    "label": "  Malnourished"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "OVC Screening",
+              "type": "obs",
+              "id": "pss1OVCScreening",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "8d5a0642-ef12-4101-be76-533d4ba651df",
+                    "label": "  No Signs"
+                  },
+                  {
+                    "concept": "8d5a0643-ef12-4101-be76-533d4ba651df",
+                    "label": "  Had ≤ 1 meal a day"
+                  },
+                  {
+                    "concept": "8d5a0644-ef12-4101-be76-533d4ba651df",
+                    "label": "  Not in school"
+                  },
+                  {
+                    "concept": "8d5a0645-ef12-4101-be76-533d4ba651df",
+                    "label": "  Malnourished"
+                  },
+                  {
+                    "concept": "8d5a0646-ef12-4101-be76-533d4ba651df",
+                    "label": "  Care giver unemployed/causal labourer"
+                  },
+                  {
+                    "concept": "8d5a0647-ef12-4101-be76-533d4ba651df",
+                    "label": "  Non-suppressed viral"
+                  },
+                  {
+                    "concept": "8d5a0648-ef12-4101-be76-533d4ba651df",
+                    "label": "  Missed Appointment in the last 3 months"
+                  },
+                  {
+                    "concept": "8d5a0649-ef12-4101-be76-533d4ba651df",
+                    "label": "  Has signs of abuse, exploitation or neglect"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "OVC Assessment",
+              "type": "obs",
+              "id": "pss1OVCAssessment",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "9d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "9d5a0643-ef12-4101-be76-533d4ba651df",
+                    "label": "Not yet Assessed"
+                  },
+                  {
+                    "concept": "9d5a0644-ef12-4101-be76-533d4ba651df",
+                    "label": "Assessed, Eligible not yet enrolled"
+                  },
+                  {
+                    "concept": "9d5a0645-ef12-4101-be76-533d4ba651df",
+                    "label": "Assessed and Not Eligible"
+                  },
+                  {
+                    "concept": "9d5a0646-ef12-4101-be76-533d4ba651df",
+                    "label": "Enrolled"
+                  },
+                  {
+                    "concept": "9d5a0647-ef12-4101-be76-533d4ba651df",
+                    "label": "Graduated"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "OVC Number",
+              "type": "obs",
+              "id": "pss1OVCNumber",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            },
+            {
+              "label": "Gender Based Violence(GBV)/ Violence Against Children (VAC)",
+              "type": "obs",
+              "id": "pss1GBV",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ad5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "ad5a0642-ef12-4101-be76-533d4ba651df",
+                    "label": "No signs"
+                  },
+                  {
+                    "concept": "ad5a0643-ef12-4101-be76-533d4ba651df",
+                    "label": "Emotional or psychological harm"
+                  },
+                  {
+                    "concept": "ad5a0644-ef12-4101-be76-533d4ba651df",
+                    "label": "Physical harm"
+                  },
+                  {
+                    "concept": "ad5a0645-ef12-4101-be76-533d4ba651df",
+                    "label": "Inappropriately touched/fondled"
+                  },
+                  {
+                    "concept": "ad5a0646-ef12-4101-be76-533d4ba651df",
+                    "label": "Forced sexual intercourse"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Disclosed / Disclosed to Y/N",
+              "type": "obs",
+              "id": "pss1Disclosed",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c2f9c9f3-3e46-456c-9f17-7bb23c473f1b"
+              }
+            },
+            {
+              "label": "Relationship",
+              "type": "obs",
+              "id": "pss1Relationship",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "bd5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "bd5a0642-ef12-4101-be76-533d4ba651df",
+                    "label": " Spouse"
+                  },
+                  {
+                    "concept": "bd5a0643-ef12-4101-be76-533d4ba651df",
+                    "label": "Parent"
+                  },
+                  {
+                    "concept": "bd5a0644-ef12-4101-be76-533d4ba651df",
+                    "label": "Children"
+                  },
+                  {
+                    "concept": "bd5a0645-ef12-4101-be76-533d4ba651df",
+                    "label": "Friend"
+                  },
+                  {
+                    "concept": "bd5a0646-ef12-4101-be76-533d4ba651df",
+                    "label": "Others Specify"
+                  },
+                  {
+                    "concept": "bd5a0647-ef12-4101-be76-533d4ba651df",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Patient Categorization",
+              "type": "obs",
+              "id": "pss1PatientCategorization",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dd5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "dd5a0642-ef12-4101-be76-533d4ba651df",
+                    "label": "PLHIV newly identified and or re-engaging in care when clinically well"
+                  },
+                  {
+                    "concept": "dd5a0643-ef12-4101-be76-533d4ba651df",
+                    "label": "PLHIV newly identified and or re-engaging in care with advanced HIV disease"
+                  },
+                  {
+                    "concept": "dd5a0644-ef12-4101-be76-533d4ba651df",
+                    "label": "PLHIV established on ART and or with controlled chronic illnesses / NCDs"
+                  },
+                  {
+                    "concept": "dd5a0645-ef12-4101-be76-533d4ba651df",
+                    "label": "PLHIV with uncontrolled chronic illness / NCDs, and any Drug limiting toxicities"
+                  },
+                  {
+                    "concept": "dd5a0646-ef12-4101-be76-533d4ba651df",
+                    "label": " PLHIV with treatment failure"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "PSS2",
+      "sections": [
+        {
+          "label": "Advise",
+          "questions": [
+            {
+              "label": "PSS2",
+              "type": "obs",
+              "id": "pss2Advise",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "PSS3",
+      "sections": [
+        {
+          "label": "Agree",
+          "questions": [
+            {
+              "label": "PSS3",
+              "type": "obs",
+              "id": "pss3Agree",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "PSS4",
+      "sections": [
+        {
+          "label": "Assist",
+          "questions": [
+            {
+              "label": "ART preparation, readiness, initiation,Adherence support& monitoring",
+              "type": "obs",
+              "id": "artPreparation",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "label": " Pre-ART Counseling",
+                    "concept": "6d5a0642-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "ART literacy",
+                    "concept": "6d5a0642-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Adherence preparation & plan",
+                    "concept": "6d5a0643-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Ready to start & Initiate",
+                    "concept": "6d5a0644-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Not ready to start",
+                    "concept": "6d5a0645-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Ongoing Adherence counseling & support",
+                    "concept": "6d5a0646-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Intensive Adherence counseling & support",
+                    "concept": "6d5a0647-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Appointment tracking and followup of lost clients",
+                    "concept": "6d5a0648-ef12-4101-be76-533d4ba651df"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Intervention Approaches",
+              "type": "obs",
+              "id": "interventionApproaches",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "label": "Individual counseling",
+                    "concept": "5d5a0642-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Group Counseling",
+                    "concept": "5d5a0643-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Peer Psychosocial Support(Peer counseling)",
+                    "concept": "5d5a0644-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Peer Psychosocial Support(Peer Support Group)",
+                    "concept": "5d5a0645-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Linkages and Referrals",
+                    "concept": "5d5a0646-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Mobilize for Index Testing",
+                    "concept": "5d5a0647-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Distribution of HIVST Kits",
+                    "concept": "5d5a0648-ef12-4101-be76-533d4ba651df"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Linkages & Referrals",
+              "type": "obs",
+              "id": "linkagesAndReferrals",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "label": "Mental health care/ Rehabilitation",
+                    "concept": "4d5a0642-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Livelihood Support",
+                    "concept": "4d5a0643-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "GBV /VAC care",
+                    "concept": "4d5a0644-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Legal support",
+                    "concept": "4d5a0645-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Educational Support",
+                    "concept": "4d5a0646-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "OVC services (for all below 20 yrs)",
+                    "concept": "4d5a0647-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Spiritual care",
+                    "concept": "4d5a0648-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Community Support",
+                    "concept": "4d5a0649-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Peer support",
+                    "concept": "4d5a0610-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Counseling",
+                    "concept": "4d5a0611-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Nutritional Support",
+                    "concept": "4d5a0612-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Sexual and Reproductive Health services (SRH)",
+                    "concept": "4d5a0613-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Others",
+                    "concept": "4d5a0614-ef12-4101-be76-533d4ba651df"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "PSS5",
+      "sections": [
+        {
+          "label": "Arrange",
+          "questions": [
+            {
+              "label": "Arrange",
+              "type": "obs",
+              "id": "pss5Arrange",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "label": "Pharmacy",
+                    "concept": "3d5a0641-ef12-4101-be76-533d4ba651d1"
+                  },
+                  {
+                    "label": "Health Facility",
+                    "concept": "3d5a0641-ef12-4101-be76-533d4ba651d2"
+                  },
+                  {
+                    "label": "School (visit)",
+                    "concept": "3d5a0641-ef12-4101-be76-533d4ba651d3"
+                  },
+                  {
+                    "label": "Home (visit)",
+                    "concept": "3d5a0641-ef12-4101-be76-533d4ba651d4"
+                  },
+                  {
+                    "label": "Community",
+                    "concept": "3d5a0641-ef12-4101-be76-533d4ba651d5"
+                  },
+                  {
+                    "label": "Virtual Support",
+                    "concept": "3d5a0641-ef12-4101-be76-533d4ba651d6"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "PSS Notes",
+      "sections": [
+        {
+          "label": "PSS Notes",
+          "questions": [
+            {
+              "label": "PSS Notes",
+              "type": "obs",
+              "id": "pssNotes",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Name of Service Provider",
+      "sections": [
+        {
+          "label": "Name of Service Provider",
+          "questions": [
+            {
+              "label": "Name of Service Provider",
+              "type": "obs",
+              "id": "nameOfServiceProvider",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            },
+            {
+              "label": "Cadre",
+              "type": "obs",
+              "id": "cadre",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "label": "Medical Officer/Specialist",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d1"
+                  },
+                  {
+                    "label": " Clinical Officer",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d2"
+                  },
+                  {
+                    "label": "Nurse",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d3"
+                  },
+                  {
+                    "label": "Counselor/Social Worker",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d4"
+                  },
+                  {
+                    "label": "Peer/Mentor Mother",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d5"
+                  },
+                  {
+                    "label": "YAPs",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d6"
+                  },
+                  {
+                    "label": " Linkage Facilitator",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d7"
+                  },
+                  {
+                    "label": "Para Social Workers",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d8"
+                  },
+                  {
+                    "label": "Others Specify",
+                    "concept": "1d5a0641-ef12-4101-be76-533d4ba651d9"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
