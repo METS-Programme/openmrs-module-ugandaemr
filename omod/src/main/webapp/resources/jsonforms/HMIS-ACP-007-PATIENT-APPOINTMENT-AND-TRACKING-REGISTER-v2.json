@@ -1,0 +1,330 @@
+{
+  "encounterType": "e22e39fd-7db2-45e7-80f1-60fa0d5a4378",
+  "name": "HMIS ACP 007: PATIENT APPOINTMENT AND TRACKING REGISTER v2",
+  "processor": "EncounterFormProcessor",
+  "uuid": "045f8082-45c9-4d1b-9d80-d4a86b9b5c37",
+  "version": "4.0.1",
+  "published": false,
+  "retired": false,
+  "pages": [
+    {
+      "label": "PATIENT APPOINTMENT AND TRACKING REGISTER",
+      "sections": [
+        {
+          "questions": [
+            {
+              "id": "patientAppointmentDate",
+              "label": "Patient Appointment Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "a-system-defined-concept-uuid"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Registration and Personal Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "reasonForAppointment",
+              "label": "Reason For Appointment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3239",
+                "answers": [
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3231",
+                    "label": "ART Drug refill"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3232",
+                    "label": "Lab Monitoring"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3233",
+                    "label": "Mental/Psychosocial Monitoring including IAC"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3234",
+                    "label": "Clinical Assessment"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3235",
+                    "label": "PMTCT"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3236",
+                    "label": "TB Drug Refill"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3237",
+                    "label": "EID"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3210",
+                    "label": "Pre-PrEP"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3211",
+                    "label": "PrEP"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3212",
+                    "label": "G-ANC"
+                  },
+                  {
+                    "concept": "36617297-bf43-4a8d-b9c3-efadaf0b3213",
+                    "label": "Others Specify"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "dsdmApproach",
+              "label": "DSDM Approach",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "b581b3ba-6f9e-4e87-a848-011770c82b66",
+                "answers": [
+                  {
+                    "concept": "b581b3ba-6f9e-4e87-a848-011770c82b61",
+                    "label": "GMH"
+                  },
+                  {
+                    "concept": "b581b3ba-6f9e-4e87-a848-011770c82b62",
+                    "label": "GMC"
+                  },
+                  {
+                    "concept": "b581b3ba-6f9e-4e87-a848-011770c82b63",
+                    "label": "IMF"
+                  },
+                  {
+                    "concept": "b581b3ba-6f9e-4e87-a848-011770c82b64",
+                    "label": "IMC"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Appointment Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "patientAttended",
+              "label": "Patient Attended ?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "system-defined-concept-uuid",
+                "answers": [
+                  {
+                    "concept": "another-system-defined-concept-uuid",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "another-system-defined-concept-uuid",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "patientFollowedUp",
+              "label": "If No,Patient Followed up",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "system-defined-concept-uuid",
+                "answers": [
+                  {
+                    "concept": "another-system-defined-concept-uuid",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "yet-another-system-defined-concept-uuid",
+                    "label": "No"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Tracking Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "followUpAttempts",
+              "label": "Follow-up Attempts(Aim to return client to care within 4 weeks of missed appointment)",
+              "type": "obsGroup",
+              "questionOptions": {
+                "concept": "163153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "repeating"
+              },
+              "questions": [
+                {
+                  "label": "Duration",
+                  "type": "obs",
+                  "id": "duration",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers": [
+                      {
+                        "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1",
+                        "label": "Week 1"
+                      },
+                      {
+                        "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+                        "label": "Week 2"
+                      },
+                      {
+                        "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3",
+                        "label": "Week 3"
+                      },
+                      {
+                        "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4",
+                        "label": "Week 4"
+                      },
+                      {
+                        "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5",
+                        "label": "Month 2"
+                      },
+                      {
+                        "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6",
+                        "label": "Month 3"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Date",
+                  "type": "obs",
+                  "id": "date",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  }
+                },
+                {
+                  "label": "Follow Up Action",
+                  "type": "obs",
+                  "id": "followupAction",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  }
+                },
+                {
+                  "label": "OutCome",
+                  "type": "obs",
+                  "id": "outCome",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "id": "patientAppointmentDate",
+              "label": "Outcome by end of quarter when patient missed appointment for reporting",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date"
+              }
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "id": "outComeDate",
+              "label": "Outcome Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "eda1b14e-d1e9-4f0a-b9a7-35b31d5469ff"
+              }
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "id": "causeOfDeath",
+              "label": "Cause Of Death",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1753d6be-b78b-482b-a923-fe5ed5671c35",
+                "answers": [
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c31",
+                    "label": "D1- Died of TB"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c32",
+                    "label": "D2- Died of Cancer"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c33",
+                    "label": "D3- Died of Infectious disease other than TB"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c34",
+                    "label": "D4- Died of Non-infectious disease"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c35",
+                    "label": "D5- Died of Natural causes"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c36",
+                    "label": "D6- Died of Non natural causes"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c37",
+                    "label": "D7- Died of ADR"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c38",
+                    "label": "D8- Died of NCD"
+                  },
+                  {
+                    "concept": "1753d6be-b78b-482b-a923-fe5ed5671c39",
+                    "label": "D9- Died of Unknown"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "questions": [
+            {
+              "id": "comment",
+              "label": "Comment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "description": "An Updated version of appointment tracking"
+}
