@@ -1,0 +1,982 @@
+{
+  "name": "HMIS ACP 044: CERVICAL CANCER SCREENING AND PRE-CANCER TREATMENT REGISTER v2",
+  "version": "4.0.1",
+  "description": "Cervical Cancer Screening Form",
+  "encounterType": "91725548-2d90-4b28-be6d-0509ba37bb0f",
+  "encounter": "CaCx Screening Eligibility Log Encounter",
+  "uuid": "b70c3107-2b69-415b-929d-302e9d176189",
+  "processor": "EncounterFormProcessor",
+  "published": false,
+  "retired": false,
+  "pages": [
+    {
+      "label": "HMIS ACP 044: CERVICAL CANCER SCREENING AND PRE-CANCER TREATMENT REGISTER",
+      "sections": [
+        {
+          "label": "Introduction",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "markdown",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "id": "fooMarkdown",
+              "value": [
+                "**Use this form to:** Screen for Cervical Cancer"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Client Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Serial Number",
+              "type": "obs",
+              "required": true,
+              "id": "serialNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Reg. No.",
+              "type": "obs",
+              "id": "regNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "934337b1-8e08-4977-97b5-fd15b12db8fd"
+              },
+              "validators": []
+            },
+            {
+              "label": "Referred In",
+              "type": "obs",
+              "required": "true",
+              "id": "referredIn",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "0f0432a5-4695-4bb4-bc0b-1140e231b29d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Entry Point:",
+              "type": "obs",
+              "id": "entryPoint",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "164993AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "OPD"
+                  },
+                  {
+                    "concept": "165047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ART Clinic"
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Clinic"
+                  },
+                  {
+                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ostnatal Clinic"
+                  },
+                  {
+                    "concept": "f0d12a70-04a3-4f7f-992b-bed4ad331908",
+                    "label": "Mother Baby Care Point"
+                  },
+                  {
+                    "concept": "164984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Family Planning Clinic"
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI Clinic"
+                  },
+                  {
+                    "concept": "5ec36701-7870-40b5-82bf-30841beefbdb",
+                    "label": "Cancer Unit"
+                  },
+                  {
+                    "concept": "dcd9dd84-30ab-102d-86b0-7a5022ba4115",
+                    "label": "In patient ward"
+                  },
+                  {
+                    "concept": "7b082783-658c-4867-a650-ba5bdfa65d53",
+                    "label": "Community/Outreach"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Client Category",
+              "type": "obs",
+              "id": "clientCategory",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAA1",
+                    "label": "OPD"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+                    "label": "OPD"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HIV status",
+              "type": "obs",
+              "id": "hivStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA21",
+                    "label": "NEG"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA22",
+                    "label": "POS"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA23",
+                    "label": "UK"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "ART status",
+              "type": "obs",
+              "id": "artStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA21",
+                    "label": "NEG"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA22",
+                    "label": "POS"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA23",
+                    "label": "UK"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "ART Number",
+              "type": "obs",
+              "id": "artStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA21",
+                    "label": "NEG"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA22",
+                    "label": "POS"
+                  },
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAA23",
+                    "label": "UK"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Ever been screened for cervical cancer",
+              "id": "everBeenScreened",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a174e888-9485-454b-90ce-4ed06a2fab1a",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Given Pre-Test counselling",
+              "id": "givenPreTest",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "018dedaf-ff60-437f-a7ee-4708418d218b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Eligibility Criteria",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Are you menstruating now",
+              "type": "obs",
+              "id": "menstruatingNow",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "4e7521ed-be97-430f-97dc-1ff34038bb3b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Are you pregnant?",
+              "type": "obs",
+              "id": "pregnantNow",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(menstruatingNow) || menstruatingNow !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Have you been pregnant in the last 3 months",
+              "type": "obs",
+              "id": "beenPregnantLastThreeMonths",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "beffcc96-ac3c-4593-a3c5-9045cfbc532d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnantNow) || pregnantNow !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Have you had a total hysterectomy",
+              "type": "obs",
+              "id": "hysterectomy",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "af1558b3-225a-42b9-a7df-5fe9af2f52c5",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Have you previously been on cervical cancer treatment",
+              "type": "obs",
+              "id": "previouslyOnCacxTreatment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "a1ae8c0c-127c-41e1-b734-31195be76e81",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Eligible for cervical cancer screening",
+              "type": "obs",
+              "id": "cacxScreening",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e3d1683f-b79b-41ba-b05c-f5963229ca7d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(everBeenScreened) ||  everBeenScreened !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Ready to receive service",
+              "type": "obs",
+              "id": "readyToReceiveService",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278befc",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Visit Type",
+              "type": "obs",
+              "id": "visitType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278bef1",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1A",
+                    "label": "Initial Screening"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA12",
+                    "label": "Rescreening at 3year"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA13",
+                    "label": "Rescreening at 5years"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA14",
+                    "label": "Cancer Suspect investigation and Management"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA15",
+                    "label": " Post treatment follow up at 6 weeks"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA16",
+                    "label": "Post treatment follow up at 1 year"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA16",
+                    "label": "Others"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HPV Test Done",
+              "type": "obs",
+              "id": "hpvTest",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278bef2",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA11A",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA112",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HPV Result",
+              "type": "obs",
+              "id": "hpvResult",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278befw",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA21A",
+                    "label": "NEG"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA212",
+                    "label": "POS"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA213",
+                    "label": "NOT DONE"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "VIA Done",
+              "type": "obs",
+              "id": "viaDone",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278beff",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA31A",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA312",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Why No",
+              "type": "obs",
+              "id": "whyNo",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278befb",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA41A",
+                    "label": "No SCJ"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA412",
+                    "label": "Cancer Suspect"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA413",
+                    "label": "Onset of Menstrual periods"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA414",
+                    "label": "No supplies/equipment"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA415",
+                    "label": "Refused"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "VIA Procedure Screening Results",
+              "type": "obs",
+              "id": "viaProcedures",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278befb",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA51A",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA512",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA513",
+                    "label": "Cancer Suspect"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "VIA/VAT Procedure Results",
+              "type": "obs",
+              "id": "viaVatProcedures",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278b1fb",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA61A",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA612",
+                    "label": "Positive"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Colposcopy Results",
+              "type": "obs",
+              "id": "colposcopyResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278b1fk",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA71A",
+                    "label": "N - Normal"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA712",
+                    "label": "LG - Low Grade"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA713",
+                    "label": "HG - High Grade"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA714",
+                    "label": "US - Unsatisfactory"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Pap Smear Results",
+              "type": "obs",
+              "id": "papSmearResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278b1fl",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA81A",
+                    "label": "NILM - NEGATIVE for Intra-epithelial Lesion or Malignancy"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA812",
+                    "label": "LSIL - POSITIVE (Low grade Squamous Intra-epithelial Lesion)"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA813",
+                    "label": "POSITIVE (High grade Squamous Intra-epithelial Lesion)"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA814",
+                    "label": "Suspicious of Cancer"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "History Results",
+              "type": "obs",
+              "id": "historyResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278b1fm",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAA91A",
+                    "label": "CIN1 - Cervical Intra-epithelial Neoplasia 1"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA912",
+                    "label": "CIN2 - Cervical Intra-epithelial Neoplasia 2"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA913",
+                    "label": "CIN3 - Cervical Intra-epithelial Neoplasia 3 "
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA914",
+                    "label": "CaCx - Invasive Cancer"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA915",
+                    "label": "Normal - No Malignancy seen"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA916",
+                    "label": "ASCUS - Atypical Squamous Cells of Undermined Significancy"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAA917",
+                    "label": "ASC-H - Atypical Squamous Cells of High grade"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Treatment Provided",
+              "type": "obs",
+              "id": "treatmentProvided",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0f84459d-fcb6-4be8-9c57-3ea86278b1fn",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA101A",
+                    "label": "Thermocoagulation/ Thermoablation"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA1012",
+                    "label": "Cryotherapy"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA1013",
+                    "label": "LEEP"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA1014",
+                    "label": "Cold knife conization"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA1015",
+                    "label": "Hysterectomy"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAA1016",
+                    "label": "Other recommended treatment (specify)"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Management of Test Positive",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Timeliness",
+              "id": "timelines",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cf",
+                "answers": [
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1a1",
+                    "label": "Same day"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1a2",
+                    "label": "Postponed"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1a3",
+                    "label": "Referred"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Reason for Postponing",
+              "id": "reasonForPostponing",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cg",
+                "answers": [
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1g1",
+                    "label": "Lack of supplies"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1g2",
+                    "label": "Health worker capacity"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1g3",
+                    "label": "Client Related"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1g4",
+                    "label": "Others"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Observations and Complications",
+              "id": "observations",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cf"
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Other Services Provided",
+              "id": "otherServicesProvided",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cr",
+                "answers": [
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1r1",
+                    "label": "HIV Testing Services"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1r2",
+                    "label": "ART services"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1r3",
+                    "label": "Family planning"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1r4",
+                    "label": "Breast cancer screening"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1r5",
+                    "label": "NCDs (Hypertension,Diabetes, Mental Health etc)"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Other Treatment",
+              "id": "otherTreatment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cf"
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Reasons for Referral",
+              "id": "reasonsForReferral",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1ck",
+                "answers": [
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k1",
+                    "label": "LEEP"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k2",
+                    "label": "PAP Smear"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k3",
+                    "label": "Colposcopy and Biopsy"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k4",
+                    "label": "Cryotherapy/Thermablation"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k5",
+                    "label": "Uncertain VIA management"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k6",
+                    "label": "Cancer Suspect"
+                  },
+                  {
+                    "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1k7",
+                    "label": "Others, specify"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HF referred to",
+              "id": "hfReferredTo",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cf"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Linkage for Cancer Suspects",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Service Offered",
+              "id": "serviceOffered",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cf"
+              }
+            },
+            {
+              "label": "Date Service Offered",
+              "id": "dateServiceOffered",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "7e3cc82b-f395-4b31-8736-25c68a6ed1cf"
+              }
+            }
+          ]
+        },
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Comments",
+              "type": "obs",
+              "required": false,
+              "id": "comments",
+              "questionOptions": {
+                "rendering": "text"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}
