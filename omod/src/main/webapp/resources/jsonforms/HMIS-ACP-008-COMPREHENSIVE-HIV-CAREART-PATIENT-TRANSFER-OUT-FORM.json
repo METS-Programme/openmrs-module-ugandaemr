@@ -1,0 +1,519 @@
+{
+  "name": "HMIS ACP 008: COMPREHENSIVE HIV CARE/ART PATIENT TRANSFER OUT FORM",
+  "version": "4.0.0",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Patient Transfer/Referral Form (Transfer Out)",
+      "sections": [
+        {
+          "label": "Introduction",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "markdown",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "id": "fooMarkdown",
+              "value": [
+                "**Use this form to:** Transfer out a client"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Transfer-Out Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Transfer-Out Date (Date transfer-out takes effect)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967",
+                "conceptMappings": []
+              },
+              "id": "transferOutDate"
+            },
+            {
+              "label": "To where",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "id": "recievingHealthFacility"
+            }
+          ]
+        },
+        {
+          "label": "Patient ART History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Regimen",
+              "type": "obs",
+              "id": "regimen",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'c3332e8d-2548-4ad6-931d-6855692694a3'))"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Date started",
+              "type": "obs",
+              "required": false,
+              "id": "dateStarted",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440'))"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Baseline Lab (At Start of ART)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Viral Load",
+              "type": "obs",
+              "id": "vloadira",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '33096391-d101-4e89-bbe8-8d1d4861e855'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "HB",
+              "type": "obs",
+              "id": "hb",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '3814409a-0caa-4816-895e-67e843ad2a2d'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "id": "cd4",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4 (%)",
+              "type": "obs",
+              "id": "cdPercent",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc86e9fb-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "TLC:",
+              "type": "obs",
+              "id": "tlc",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'e7ef2a60-a83d-11ed-afa1-0242ac120002'))"
+                }
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Baseline Clinic Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Weight (Kg)",
+              "type": "obs",
+              "id": "weight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "Height (cm)",
+              "type": "obs",
+              "id": "height",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "WHO Clinic Status",
+              "type": "obs",
+              "id": "whoClinicStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'd65cfbee-ba13-4cba-aa5c-2a6438219a90'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "Functional Status",
+              "type": "obs",
+              "required": false,
+              "id": "functionalStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dce09a15-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Current Regimen",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Regimen",
+              "type": "obs",
+              "id": "currentRegimen",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "Regimen Issued until",
+              "type": "obs",
+              "id": "regimenIssuedUntil",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'aa791416-71b7-4ab0-8fcc-0a11d5910244'))"
+                }
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Most Recent Lab(Date done)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Viral Load",
+              "type": "obs",
+              "id": "mostRecentViralLoad",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dca12261-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "HB",
+              "type": "obs",
+              "id": "mostRecentHb",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc548e89-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "id": "mostRecentCD4",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4 (%)",
+              "type": "obs",
+              "id": "mostRecentCD4Percent",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc86e9fb-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "TLC",
+              "type": "obs",
+              "id": "mostRecentTLC",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc92757d-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Current Clinic Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Weight (Kg)",
+              "type": "obs",
+              "id": "currentWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "Height (cm)",
+              "type": "obs",
+              "id": "Currentheight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "WHO Clinic Status",
+              "type": "obs",
+              "id": "currentWHOClinicStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": []
+            },
+            {
+              "label": "Functional Status",
+              "type": "obs",
+              "required": false,
+              "id": "functionalStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dce09a15-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Pregnancy Status",
+              "type": "obs",
+              "id": "PregnancyStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "TB Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "TB Status",
+              "type": "obs",
+              "id": "tbStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "TB Start Date",
+              "type": "obs",
+              "id": "tbStartDate",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dce02eca-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Other Opportunist Infections and Medications",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Other Opportunist Infections",
+              "type": "obs",
+              "id": "otherOpportunistInfections",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc9b5b8f-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Opportunist Infections",
+              "type": "obs",
+              "id": "otherOpportunistInfections",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dce0e02a-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Medications",
+              "type": "obs",
+              "id": "otherMedications",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc9b5b8f-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Any Drug Allergies",
+              "type": "obs",
+              "id": "anyDrugAllergies",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc674105-30ab-102d-86b0-7a5022ba4115'))"
+                },
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Reasons For Transfer",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Reasons For Transfer",
+              "type": "obs",
+              "required": false,
+              "id": "reasonForTransfer",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f88453e3-1676-4b23-9273-39795ac29524"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "37be0b17-c62c-4033-90ef-3cbedb7fe0a0",
+  "referencedForms": [],
+  "encounterType": "e305d98a-d6a2-45ba-ba2a-682b497ce27c",
+  "encounter": "Transfer Out",
+  "allowUnspecifiedAll": true,
+  "description": "HMIS ACP 008: COMPREHENSIVE HIV CARE/ART PATIENT TRANSFER OUT FORM"
+}
