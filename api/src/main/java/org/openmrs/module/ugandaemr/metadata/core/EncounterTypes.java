@@ -594,4 +594,20 @@ public class EncounterTypes {
             return "08478ad9-ccc1-4cbe-9e55-473447984158";
         }
     };
+
+    public static EncounterTypeDescriptor HIV_SELF_TESTING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TB Screening";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter type for to record clients accessing HIV Self-Test kits at Health facility and community distribution points";
+        }
+
+        public String uuid() {
+            return "b75fc5be-83a6-4771-afae-87d1b68af4f7";
+        }
+    };
 }

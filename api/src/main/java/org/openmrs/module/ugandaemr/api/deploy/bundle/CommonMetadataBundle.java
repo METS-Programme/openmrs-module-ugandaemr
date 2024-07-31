@@ -102,6 +102,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.REGISTRATION);
         install(EncounterTypes.MEDICATION_ORDER);
         install(EncounterTypes.TB_SCREENING_ENCOUNTER);
+        install(EncounterTypes.HIV_SELF_TESTING_ENCOUNTER);
 
 
         //installing programs metadata
