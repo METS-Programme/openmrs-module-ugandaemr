@@ -1113,6 +1113,9 @@
                 "rendering": "select",
                 "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
                 "workflowUuid": "306c02b7-198e-4066-8b2c-39e40a1bcc53"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach == '733144c0-c321-11e8-a355-529269fb1459' || dsdmApproach == '73313c96-c321-11e8-a355-529269fb1459' || dsdmApproach == '73313f20-c321-11e8-a355-529269fb1459' || dsdmApproach == '733139e4-c321-11e8-a355-529269fb1459'"
               }
             },
             {
@@ -1134,6 +1137,21 @@
                     "conceptMappings": []
                   }
                 ]
+              }
+            },
+            {
+              "label": "Next Return Date At Facility",
+              "type": "obs",
+              "required": false,
+              "id": "nextFacilityVisitDate",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f6c456f7-1ab4-4b4d-a3b4-e7417c81002a"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach == '733144c0-c321-11e8-a355-529269fb1459' || dsdmApproach == '73313c96-c321-11e8-a355-529269fb1459' || dsdmApproach == '73313f20-c321-11e8-a355-529269fb1459'"
               }
             }
           ]
