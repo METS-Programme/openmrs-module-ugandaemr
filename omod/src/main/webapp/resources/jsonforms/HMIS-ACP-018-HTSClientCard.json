@@ -17,10 +17,10 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Serial number",
+              "label": "HTS No",
               "type": "obs",
               "required": "true",
-              "id": "serialNumber",
+              "id": "htsNumber",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -265,6 +265,41 @@
                     "concept": "b9e13a75-fbd8-4ba9-a2de-eb432c0a2a65",
                     "label": "Social Network Strategy (SNS)",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "160456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Maternity",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "409eae6b-9457-4896-b5fa-2667ad5ceffc",
+                    "label": "SMC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PNC services",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "164984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "FP services",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "11c12455-2f54-4bb5-b051-0ecfd4a5fe96",
+                    "label": "Nutrition",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -305,6 +340,11 @@
                     "concept": "6e2317a8-4865-4049-99b7-2680048ea65b",
                     "label": "Self-initiative",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -329,9 +369,95 @@
           ]
         },
         {
-          "label": "HIV Risk Assessment",
+          "label": "HIV Risk Assessment, HIV Test History",
           "isExpanded": "true",
           "questions": [
+            {
+              "label": "Special Categories",
+              "type": "obs",
+              "id": "specialCategories",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "AGYW"
+                  },
+                  {
+                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                    "label": "Breast feeding"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current drug user"
+                  },
+                  {
+                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Disability"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisher Folks"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "People Who Inject Drugs (PWID)"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Adolescent and young persons (YAPS)"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prisoners (PIP)"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance drivers (Truckers)"
+                  },
+                  {
+                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Migrant Worker"
+                  },
+                  {
+                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
+                    "label": "Non IDU"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pregnant"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Forces (UF)"
+                  },
+                  {
+                    "concept": "342db3a7-74c4-4cb0-943a-432c6b3693b6",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Special Category",
+              "type": "obs",
+              "id": "otherSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(specialCategories) || specialCategories !== '342db3a7-74c4-4cb0-943a-432c6b3693b6'"
+              }
+            },
             {
               "label": "First HIV test (has never tested before)",
               "type": "obs",
@@ -363,10 +489,15 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "firstHivTest !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
             },
             {
               "label": "Number of Months Since Last Tested",
@@ -423,7 +554,7 @@
               }
             },
             {
-              "label": "Times tested in last 12 Months",
+              "label": "Number of times tested in last 12 Months",
               "type": "obs",
               "id": "timesTestedInLast12Months",
               "questionOptions": {
@@ -510,21 +641,73 @@
               }
             },
             {
+              "label": "Client at risk of acquiring HIV",
+              "type": "obs",
+              "id": "riskOfGettingHiv",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Risk profile",
+              "type": "obs",
+              "id": "riskProfile",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Low Risk",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Moderate Risk",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "High Risk",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "riskOfGettingHiv !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
               "label": "Pre -Test Counseling done/information given",
               "type": "obs",
-              "id": "preTestCounsellingDone",
-              "required": "true",
+              "id": "counsellingDone",
+              "required": "false",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "193039f1-c378-4d81-bb72-653b66c69914",
                 "answers": [
                   {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Yes",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No",
                     "conceptMappings": []
                   }
@@ -540,6 +723,11 @@
                 "concept": "b92b1777-4356-49b2-9c83-a799680dc7d4",
                 "answers": [
                   {
+                    "concept": "6ef3d796-7940-44fe-b0d9-06ab1b824e5b",
+                    "label": "Couple",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "c61ea879-2a23-484d-bec1-ab177a926265",
                     "label": "Individual",
                     "conceptMappings": []
@@ -550,289 +738,9 @@
                     "conceptMappings": []
                   }
                 ]
-              }
-            }
-          ]
-        },
-        {
-          "label": "HIV Results",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "HIV final test results",
-              "type": "obs",
-              "id": "hivFinalTestResults",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "3d292447-d7df-417f-8a71-e53e869ec89d",
-                "answers": [
-                  {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "HIV final Syphillis-Duo results",
-              "type": "obs",
-              "id": "hivFinalApyhillisDuoResults",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "16091701-69b8-4bc7-82b3-b1726cf5a5df",
-                "answers": [
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-reactive",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Do you agree to have blood drawn for recency?",
-              "type": "obs",
-              "id": "agreeToHaveBloodDrawnForRecency",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "0698a45b-771c-4d11-84ff-095598c8883c",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
               },
               "hide": {
-                "hideWhenExpression": "hivFinalTestResults !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "HIV recency test result",
-              "type": "obs",
-              "id": "hivRecencyTestResults",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "141520BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "answers": [
-                  {
-                    "concept": "141519BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                    "label": "Long term infection",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "141518BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                    "label": "Recent infection",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
-            },
-            {
-              "label": "HIV Recency Viral Load Result",
-              "type": "obs",
-              "id": "hivRecencyViralLoadResults",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "5fd38584-21a7-4145-be4b-c126c5fb3d73",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
-            },
-            {
-              "label": "HIV Recency Viral Load Qaulitative",
-              "type": "obs",
-              "id": "hivRecencyVlQualitative",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "0787cd66-0816-46f1-ade4-eb75b166144e",
-                "answers": [
-                  {
-                    "concept": "5684822b-c2ea-4e03-8293-415e2370f763",
-                    "label": "VL undetectable",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "4f4134d9-6792-4cfd-9257-54c52952fa59",
-                    "label": "VL detected",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
-            },
-            {
-              "label": "Recency Sample ID",
-              "type": "obs",
-              "id": "recencySampleId",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "0f998893-ab24-4ee4-922a-f197ac5fd6e6",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
-            }
-          ]
-        },
-        {
-          "label": "Other Testing Information",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Results received as individual",
-              "type": "obs",
-              "id": "resultsReceivedAsIndividual",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "3437ae80-bcc5-41e2-887e-d56999a1b467",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "counseledAs !== 'c61ea879-2a23-484d-bec1-ab177a926265'"
-              }
-            },
-            {
-              "label": "Results received as a couple",
-              "type": "obs",
-              "id": "resultsReceivedAsCouple",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "2aa9f0c1-3f7e-49cd-86ee-baac0d2d5f2d",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "counseledAs !== '934cd2fa-210e-430e-babf-ac846ee4a8b2'"
-              }
-            },
-            {
-              "label": "Couple results",
-              "type": "obs",
-              "id": "coupleResults",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "94a5bd0a-b79d-421e-ab71-8e382eed100f",
-                "answers": [
-                  {
-                    "concept": "dcd6774e-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Discordant Couple",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "6a37baee-d13a-4b5f-817f-abe880c58e7d",
-                    "label": "Concordant Negative",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "799fe713-c665-463a-ae6f-3c9d539eff15",
-                    "label": "Concordant positive",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "resultsReceivedAsCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
-            },
-            {
-              "label": "Client has presumptive TB",
-              "type": "obs",
-              "id": "clientHasPresumptiveTb",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "b80f04a4-1559-42fd-8923-f8a6d2456a04",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Presumptive TB case referred for TB Services",
-              "type": "obs",
-              "id": "presumptiveTBCaseReferredForTb",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "c5da115d-f6a3-4d13-b182-c2e982a3a796",
-                "answers": [
-                  {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "clientHasPresumptiveTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "counsellingDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -944,6 +852,824 @@
           ]
         }
       ]
+    },
+    {
+      "label": "HIV Test Results",
+      "sections": [
+        {
+          "label": "HIV Test - 1",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Test Kit",
+              "type": "obs",
+              "id": "testKit1",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Determine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "HIV- Syphilis-Duo",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "hivTestResults1",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-Reactive (NR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive (R)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "HIV Test - 2",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Stat Pak",
+              "type": "obs",
+              "id": "testKit2",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "hivTestResults2",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-Reactive (NR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive (R)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "HIV Test - 3",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "SD Bioline",
+              "type": "obs",
+              "id": "testKit3",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "hivTestResults3",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-Reactive (NR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive (R)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "HIV Final Test Results",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Test results",
+              "type": "obs",
+              "id": "hivFinalTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3d292447-d7df-417f-8a71-e53e869ec89d",
+                "answers": [
+                  {
+                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HIV final Syphillis-Duo results",
+              "type": "obs",
+              "id": "hivFinalSpyhillisDuoResults",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "16091701-69b8-4bc7-82b3-b1726cf5a5df",
+                "answers": [
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-reactive",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Sample sent to Reference Laboratory",
+              "type": "obs",
+              "id": "referredToLaboratory",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }]
+    },
+    {
+      "label": "MCH Test Results",
+      "sections": [
+        {
+          "label": "HIV Test - 1",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Determine",
+              "type": "obs",
+              "id": "mchDetermineKit",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "mchHivTestResults1",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-Reactive (NR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive (R)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "HIV Test - 2",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Stat Pak",
+              "type": "obs",
+              "id": "mchTestKit2",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "mchHivTestResults2",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-Reactive (NR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive (R)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "HIV Test - 3",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "SD Bioline",
+              "type": "obs",
+              "id": "mchhTestKit3",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "mchHivTestResults3",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Non-Reactive (NR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Reactive (R)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "HIV Final Test Results",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Test results",
+              "type": "obs",
+              "id": "mchHivFinalTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3d292447-d7df-417f-8a71-e53e869ec89d",
+                "answers": [
+                  {
+                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  }
+                ],
+                "hide": {
+                  "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+                }
+              }
+            },
+            {
+              "label": "Sample sent to Reference Laboratory",
+              "type": "obs",
+              "id": "mchReferredToLaboratory",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "testKit2 !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hivFinalSpyhillisDuoResults !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        }]
+    },
+    {
+      "label": "Recency Testing, Other Testing Information",
+      "sections": [
+        {
+          "label": "Recency Testing",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Do you agree to have blood drawn for recency?",
+              "type": "obs",
+              "id": "agreeToHaveBloodDrawnForRecency",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "0698a45b-771c-4d11-84ff-095598c8883c",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivFinalTestResults != 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HIV recency test result",
+              "type": "obs",
+              "id": "hivRecencyTestResults",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "141520BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "answers": [
+                  {
+                    "concept": "141519BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "label": "Long term infection",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "141518BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "label": "Recent infection",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Other Testing Information",
+          "isExpanded": "true",
+          "questions": [{
+            "label": "Results received as individual",
+            "type": "obs",
+            "id": "resultsReceivedAsIndividual",
+            "questionOptions": {
+              "rendering": "radio",
+              "concept": "3437ae80-bcc5-41e2-887e-d56999a1b467",
+              "answers": [
+                {
+                  "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Yes",
+                  "conceptMappings": []
+                },
+                {
+                  "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "No",
+                  "conceptMappings": []
+                }
+              ]
+            }
+          },
+            {
+              "label": "Results received as a couple",
+              "type": "obs",
+              "id": "resultsReceivedAsCouple",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "2aa9f0c1-3f7e-49cd-86ee-baac0d2d5f2d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Couple results",
+              "type": "obs",
+              "id": "coupleResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "94a5bd0a-b79d-421e-ab71-8e382eed100f",
+                "answers": [
+                  {
+                    "concept": "dcd6774e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Discordant Couple",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6a37baee-d13a-4b5f-817f-abe880c58e7d",
+                    "label": "Concordant, negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "799fe713-c665-463a-ae6f-3c9d539eff15",
+                    "label": "Concordant, positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "resultsReceivedAsCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Screened for TB",
+              "type": "obs",
+              "id": "screenedForTb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Client has presumptive TB",
+              "type": "obs",
+              "id": "clientHasPresumptiveTb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b80f04a4-1559-42fd-8923-f8a6d2456a04",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "screenedForTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Presumptive TB case referred for TB Testing",
+              "type": "obs",
+              "id": "presumptiveTBCaseReferredForTb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c5da115d-f6a3-4d13-b182-c2e982a3a796",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "clientHasPresumptiveTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Linked for HIV Care",
+              "type": "obs",
+              "id": "linkedForHivCare",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3d620422-0641-412e-ab31-5e45b98bc459",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivFinalTestResults !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Health Facility Name",
+              "type": "obs",
+              "id": "healthFacilityName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dd252ff9-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "linkedForHivCare !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "ART Number",
+              "type": "obs",
+              "id": "artNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "105ef9de-ad90-4c08-bcd5-ab48f74f6287",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "linkedForHivCare !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }]
+        }
+      ]
+    },
+    {
+      "label": "Linkage to HIV Combination Prevention Services",
+      "sections": [
+        {
+          "label": "HIV Prevention Services",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Linked to HIV Prevention Services",
+              "type": "obs",
+              "id": "linkedToHIVPreventionServices",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3d620422-0641-412e-ab31-5e45b98bc459",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivFinalTestResults !== 'dcdf4653-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Place of Referral",
+              "type": "obs",
+              "id": "referralLocation",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "linkedToHIVPreventionServices !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Prevention Services",
+              "type": "obs",
+              "id": "preventionServices",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
+                "answers": [
+                  {
+                    "concept": "2aa4eeb6-14d3-410c-aa50-94219b0d7866",
+                    "label": "Prevention Information",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdd712d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Condoms",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2c48beab-1fc0-4000-91e0-523f8d22f0b5",
+                    "label": "STI Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9fd4c833-652b-4c84-a5f2-d5b7171fa89e",
+                    "label": "STI treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8f38d77a-6488-49ad-a22e-0f84ab91ed7c",
+                    "label": "Post-GBV",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
+                    "label": "PEP",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                    "label": "PREP",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other prevention services",
+              "type": "obs",
+              "id": "otherPreventionServices",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f3419b12-f6da-4aed-a001-e9f0bd078140",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "preventionServices(Empty) || preventionServices !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }]
+        }]
     }
   ],
   "referencedForms": []
