@@ -112,7 +112,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(testType)"
+              }
             },
             {
               "label": "In School",
@@ -133,7 +136,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 5 || age > 19"
+              }
             },
             {
               "label": "Care Entry Point",
