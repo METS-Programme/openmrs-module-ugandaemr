@@ -112,10 +112,7 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "isEmpty(testType)"
-              }
+              "validators": []
             },
             {
               "label": "In School",
@@ -136,10 +133,7 @@
                   }
                 ]
               },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "age < 5 || age > 19"
-              }
+              "validators": []
             },
             {
               "label": "Care Entry Point",
@@ -273,7 +267,7 @@
               "id": "otherRelationshipToIndexClient",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcc37f5c-30ab-102d-86b0-7a5022ba4115"
+                "concept": "632b3be3-626d-4cc0-b6a5-27aeb8155314"
               },
               "validators": [],
               "hide": {
