@@ -140,7 +140,7 @@
                     "label": "Missed Appointment in the last 3 months"
                   },
                   {
-                    "concept": "",
+                    "concept": "bafa7b0a-aaa5-4a23-843f-f40ab68ecc43",
                     "label": "Not Screened"
                   }
                 ]
@@ -161,23 +161,38 @@
                 "answers": [
                   {
                     "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not yet Assessed"
+                    "label": "Not yet Assessed",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening != 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "513d3a81-68d2-44f4-88a3-8dc74b5e1249",
-                    "label": "Assessed, Eligible not yet enrolled"
+                    "label": "Assessed, Eligible not yet enrolled",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "8578c43e-bb81-4adf-a4a5-389a9c716a49",
-                    "label": "Assessed and Not Eligible"
+                    "label": "Assessed and Not Eligible",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "52aed7c2-ef3d-4220-8302-78b841f6ff24",
-                    "label": "Enrolled"
+                    "label": "Enrolled",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "9669522d-d96a-411d-a534-5b13a7d65fc3",
-                    "label": "Graduated"
+                    "label": "Graduated",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   }
                 ]
               },
