@@ -27,31 +27,31 @@
                 "answers": [
                   {
                     "concept": "5f0b55b8-d4ec-46e7-a052-7f1176a91077",
-                    "label": "Normal Blood pressure"
+                    "label": "Normal Blood pressure (BP<140/90 mmHg)"
                   },
                   {
                     "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed and on lifestyle modification"
+                    "label": "Newly Diagnosed (BP ≥140 or ≥ 90mmHg) and on lifestyle modification"
                   },
                   {
                     "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
-                    "label": "Newly Diagnosed and on lifestyle modification & Medication"
+                    "label": "Newly Diagnosed (BP ≥140 or ≥ 90mmHg) and on lifestyle modification & Medication"
                   },
                   {
                     "concept": "5b839510-a3d0-41fa-bbeb-e446d98140d8",
-                    "label": "Known Hypertensive, not controlled and on lifestyle modification"
+                    "label": "Known Hypertensive, not controlled (BP ≥140 or ≥ 90mmHg) and on lifestyle modification"
                   },
                   {
                     "concept": "0e43e79e-92ba-42dd-b436-564e1bc1d856",
-                    "label": "Known Hypertensive, not controlled and on lifestyle modification & Medication"
+                    "label": "Known Hypertensive, not controlled (BP ≥140 or ≥  90mmHg) and on lifestyle modification & Medication"
                   },
                   {
                     "concept": "4c71f560-3d28-4ed5-9a81-e79e9706960d",
-                    "label": "Known Hypertensive and Controlled and on lifestyle modification"
+                    "label": "Known Hypertensive and Controlled (BP<140/90mmHg)  and on lifestyle modification"
                   },
                   {
                     "concept": "f569d1a9-de58-4c80-8f97-807cc6129a6b",
-                    "label": "Known Hypertensive and Controlled and on lifestyle modification & Medication"
+                    "label": "Known Hypertensive and Controlled (BP<140/90mmHg) and on lifestyle modification & Medication"
                   },
                   {
                     "concept": "00a80828-26be-463c-8090-9c6d1c11a885",
@@ -310,66 +310,15 @@
               "questionOptions": {
                 "rendering": "select",
                 "concept": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "6002"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "IMO ProblemIT",
-                    "value": "42607"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "5143"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH Malawi",
-                    "value": "460"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "460"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "460"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "460"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "ICD-11-WHO",
-                    "value": "MG29 (Oedema)"
-                  },
-                  {
-                    "relationship": "NARROWER-THAN",
-                    "type": "ICD-10-WHO",
-                    "value": "R60.9"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED CT",
-                    "value": "267038008"
-                  }
-                ],
+                "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "YES"
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
                   },
                   {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NO"
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
                   }
                 ]
               },
@@ -384,9 +333,12 @@
                 "min": "0",
                 "max": "100",
                 "concept": "b644c29c-9bb0-447e-9f73-2ae89496a709",
-                "disallowDecimals": true
+                "disallowDecimals": "false"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "nutritionalStatus == 'dc9816bd-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
@@ -398,7 +350,7 @@
               "label": "Pregnancy Status",
               "type": "obs",
               "id": "pregnant",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "cd48b900-dd21-45ce-ae6b-b38ad2a3a695",
@@ -528,6 +480,21 @@
               }
             },
             {
+              "label": "LNMP",
+              "type": "obs",
+              "id": "lnmp",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
               "label": "EDD",
               "type": "obs",
               "id": "edd",
@@ -539,31 +506,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(pregnant) || pregnant !== 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "EMTCT",
-              "type": "obs",
-              "id": "emtct",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(pregnant) || pregnant !== 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -578,7 +521,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(pregnant) || pregnant !== 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -594,7 +537,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(pregnant) || pregnant !== 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(pregnant) || pregnant != 'dcda5179-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -616,7 +559,10 @@
                 ]
               }
             }
-          ]
+          ],
+          "hide": {
+            "hideWhenExpression": "sex !== 'F' || age < 10"
+          }
         },
         {
           "label": "CaCx Management",
@@ -737,9 +683,6 @@
                     "label": "Cryotherapy"
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {
@@ -784,7 +727,7 @@
               "label": "TB Status",
               "type": "obs",
               "id": "tbStatus",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
@@ -945,7 +888,7 @@
             {
               "label": "TPT Status",
               "type": "obs",
-              "required": "true",
+              "required": "false",
               "id": "tptStatus",
               "questionOptions": {
                 "rendering": "select",
@@ -1027,7 +970,7 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(tptStatus) || tptStatus !== 'dcdaaae4-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "tptStatus !== '502afa51-bef8-4db6-a4b4-262b082b633f' && tptStatus !== 'fe436064-c3e0-453f-b0bb-c1352e77f1d9' && tptStatus !== '5cd9b30b-949a-454b-9ba5-71809588f749'"
               }
             },
             {
@@ -1167,7 +1110,7 @@
             {
               "label": "Other Signs and Symptoms",
               "type": "obs",
-              "id": "othersySymptoms",
+              "id": "otherSymptoms",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "d4f4c0e7-06f5-4aa6-a218-17b1f97c5a44"
@@ -1317,7 +1260,7 @@
             {
               "label": "Other Diagnosis",
               "type": "obs",
-              "id": "otherDDiagnosis",
+              "id": "otherDiagnosis",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "d4f4c0e7-06f5-4aa6-a218-17b1f97c5a44"
@@ -1330,7 +1273,7 @@
             {
               "label": "Advanced Disease Status",
               "type": "obs",
-              "required": "true",
+              "required": "false",
               "id": "advancedDiseaseStatus",
               "questionOptions": {
                 "rendering": "select",
@@ -1353,6 +1296,24 @@
                     "conceptMappings": []
                   }
                 ]
+              }
+            },
+            {
+              "label": "Duration on ART",
+              "type": "obs",
+              "id": "artDuration",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "9ce522a8-cd6a-4254-babb-ebeb48b8ce2f",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient?.id, '9ce522a8-cd6a-4254-babb-ebeb48b8ce2f')).then(obs => obs?.valueQuantity?.value ?? null)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "true"
               }
             },
             {
@@ -1388,22 +1349,34 @@
                   {
                     "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
                     "label": "T1",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "artDuration < '6'"
+                    }
                   },
                   {
                     "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
                     "label": "T2",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "artDuration < '6'"
+                    }
                   },
                   {
                     "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
                     "label": "T3",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "artDuration < '6'"
+                    }
                   },
                   {
                     "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
                     "label": "T4",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "artDuration < '6'"
+                    }
                   }
                 ]
               }
@@ -1439,6 +1412,186 @@
                     "label": "Not Eligible"
                   }
                 ]
+              }
+            },
+            {
+              "label": "ARV Adherence",
+              "type": "obs",
+              "id": "arvAdherence",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Good ≥ 95%"
+                  },
+                  {
+                    "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fair 85-94%"
+                  },
+                  {
+                    "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor 85-94%"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Why Poor/Fair Adherence",
+              "type": "obs",
+              "id": "whyPoorFair",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dce045a4-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcda4d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Toxicity/side effects"
+                  },
+                  {
+                    "concept": "dcded6f0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Forgot"
+                  },
+                  {
+                    "concept": "dcdee36f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Too ill"
+                  },
+                  {
+                    "concept": "dcda671a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Drug stock out"
+                  },
+                  {
+                    "concept": "dcdefbac-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Delivery/travel problems"
+                  },
+                  {
+                    "concept": "dcdf020e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Alcohol"
+                  },
+                  {
+                    "concept": "dcdf10f4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pill Burden or privacy issues"
+                  },
+                  {
+                    "concept": "2f905260-f276-43a8-8ef9-a1fff46d3883",
+                    "label": "Lack of food"
+                  },
+                  {
+                    "concept": "dcdeceb9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Share with others"
+                  },
+                  {
+                    "concept": "dcdedd4a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Felt Better"
+                  },
+                  {
+                    "concept": "dcdee9a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stigma, disclosure"
+                  },
+                  {
+                    "concept": "dcdeefd8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Patient lost/ran out of pills"
+                  },
+                  {
+                    "concept": "dcda83d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Inability to pay"
+                  },
+                  {
+                    "concept": "dcdf0a67-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Depression"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(artAdherence) || artAdherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Why Stop",
+              "type": "obs",
+              "id": "txtWhy",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "af0b99f2-4ef5-49a8-b208-e5585ba5538a",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcda4d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Toxicity/Side effects",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda6cd2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Treatment failure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor adherence",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda7fb0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Illness, hospitalization",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda671a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Drugs out of stock",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda83d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Patient lacks finances",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda87f3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other patient decision",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda8be6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Planned Rx interruption",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3fc15700-0a92-4e70-a7cc-b6f6b1a14101",
+                    "label": "Excluded HIV infection",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(interruptionStopLost) && interruptionStopLost !== 'dca26b47-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Other Reason Stopped Treatment",
+              "type": "obs",
+              "id": "otherTreatmentStopReason",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(txtWhy) || txtWhy !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
