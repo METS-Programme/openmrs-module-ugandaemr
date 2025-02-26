@@ -470,7 +470,7 @@
               "id": "ccmDiagnosis",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "1f7dfe47-26a8-480d-a3db-5571cd6af3b9",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -493,7 +493,7 @@
               "id": "ccmTreatment",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "bbf8b6ec-d0dc-4f8d-a597-b4547ee06d15",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -614,7 +614,7 @@
               "id": "histoplasmosisScreening",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "29924e7f-39c0-493b-8f0a-cb8c08e7a924",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -634,7 +634,7 @@
               "id": "histoplasmosisResults",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "aae2c3c1-5697-4ad0-9abb-99864a167d26",
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
@@ -656,7 +656,7 @@
               "id": "aspergillosisScreening",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "93e9b081-96df-4248-a13a-f138d29821b1",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -813,7 +813,7 @@
                   "id": "vlSampleCollection",
                   "questionOptions": {
                     "rendering": "radio",
-                    "concept": "",
+                    "concept": "8068ded4-5e85-4f3d-9962-a70957b8c3c6",
                     "answers": [
                       {
                         "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -988,11 +988,11 @@
                     "label": "Non-suppressed and switched to 2nd line regimen"
                   },
                   {
-                    "concept": "",
+                    "concept": "43e682eb-02bb-4d9c-87a8-fbb1e3bc122d",
                     "label": "Non-suppressed and switched to 3rd line regimen"
                   },
                   {
-                    "concept": "",
+                    "concept": "163163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Non - suppressed and referred for HIV resistance testing"
                   },
                   {
@@ -1233,7 +1233,7 @@
                     "label": "Non-suppressed & Substituted"
                   },
                   {
-                    "concept": "",
+                    "concept": "91113782-2a82-4825-b54e-684398a4516b",
                     "label": "Non-suppressed & Switched"
                   },
                   {
