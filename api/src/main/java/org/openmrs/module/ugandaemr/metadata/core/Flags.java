@@ -10,8 +10,8 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_FIRST_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfatap.client_id, DATE_FORMAT(DATE_ADD(baseline_regimen_start_date, INTERVAL 6 MONTH), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_audit_tool_art_patients mfatap\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(baseline_regimen_start_date, INTERVAL 6 MONTH), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_audit_tool_art_patients mfatap on p.patient_id = mfatap.client_id\n" +
                     "LEFT JOIN mamba_fact_patients_latest_viral_load mfplvl ON mfatap.client_id = mfplvl.client_id\n" +
                     "LEFT JOIN mamba_fact_transfer_out mfto ON mfatap.client_id = mfto.client_id\n" +
                     "LEFT JOIN mamba_fact_patients_latest_viral_load_ordered mfplvlo ON mfatap.client_id = mfplvlo.client_id\n" +
@@ -56,8 +56,8 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_FIRST_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfatap.client_id, DATE_FORMAT(DATE_ADD(baseline_regimen_start_date, INTERVAL 6 MONTH), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_audit_tool_art_patients mfatap\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(baseline_regimen_start_date, INTERVAL 6 MONTH), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_audit_tool_art_patients mfatap on p.patient_id = mfatap.client_id\n" +
                     "LEFT JOIN mamba_fact_patients_latest_viral_load mfplvl ON mfatap.client_id = mfplvl.client_id\n" +
                     "LEFT JOIN mamba_fact_transfer_out mfto ON mfatap.client_id = mfto.client_id\n" +
                     "LEFT JOIN mamba_fact_patients_latest_viral_load_ordered mfplvlo ON mfatap.client_id = mfplvlo.client_id\n" +
@@ -103,8 +103,8 @@ public class Flags {
     public static FlagDescriptor BLED_FOR_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfplvlo.client_id,DATE_FORMAT(order_date,'%d.%b.%Y')\n" +
-                    "FROM mamba_fact_patients_latest_viral_load_ordered mfplvlo\n" +
+            return "SELECT p.patient_id,DATE_FORMAT(order_date,'%d.%b.%Y')\n" +
+                    "FROM patient p inner join  mamba_fact_patients_latest_viral_load_ordered mfplvlo on p.patient_id=mfplvlo.client_id\n" +
                     "         INNER JOIN mamba_fact_art_patients mfap ON mfplvlo.client_id = mfap.client_id\n" +
                     "        WHERE dead= FALSE and TIMESTAMPDIFF(MONTH,order_date,CURDATE()) <=1";
         }
@@ -143,12 +143,12 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_ROUTINE_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfplvl.client_id,\n" +
+            return "SELECT p.patient_id,\n" +
                     "       DATE_FORMAT(\n" +
                     "               IF(TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) < 16,\n" +
                     "                  DATE_ADD(mfplvl.hiv_viral_collection_date, INTERVAL 6 MONTH),\n" +
                     "                  DATE_ADD(mfplvl.hiv_viral_collection_date, INTERVAL 12 MONTH)), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_patients_latest_viral_load mfplvl\n" +
+                    "FROM patient p inner join  mamba_fact_patients_latest_viral_load mfplvl on p.patient_id = mfplvl.client_id\n" +
                     "         INNER JOIN mamba_fact_art_patients mfap ON mfplvl.client_id = mfap.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_out mfto ON mfplvl.client_id = mfto.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_in mfti ON mfti.client_id = mfto.client_id\n" +
@@ -194,12 +194,12 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_ROUTINE_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfplvl.client_id,\n" +
+            return "SELECT p.patient_id,\n" +
                     "       DATE_FORMAT(\n" +
                     "               IF(TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) < 16,\n" +
                     "                  DATE_ADD(mfplvl.hiv_viral_collection_date, INTERVAL 6 MONTH),\n" +
                     "                  DATE_ADD(mfplvl.hiv_viral_collection_date, INTERVAL 12 MONTH)), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_patients_latest_viral_load mfplvl\n" +
+                    "FROM patient p inner join mamba_fact_patients_latest_viral_load mfplvl on p.patient_id =mfplvl.client_id\n" +
                     "         INNER JOIN mamba_fact_art_patients mfap ON mfplvl.client_id = mfap.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_out mfto ON mfplvl.client_id = mfto.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_in mfti ON mfti.client_id = mfto.client_id\n" +
@@ -245,8 +245,8 @@ public class Flags {
     public static FlagDescriptor UPCOMING_APPOINTMENT = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT client_id, DATE_FORMAT(latest_return_date, '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_active_in_care\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(latest_return_date, '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_active_in_care mfac on p.patient_id = mfac.client_id\n" +
                     "WHERE dead = FALSE\n" +
                     "  AND transfer_out_date IS NULL\n" +
                     "  AND latest_return_date >= CURRENT_DATE()";
@@ -286,8 +286,8 @@ public class Flags {
     public static FlagDescriptor MISSED_APPOINTMENT = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT client_id, DATE_FORMAT(latest_return_date, '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_active_in_care\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(latest_return_date, '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_active_in_care mfac on p.patient_id = mfac.client_id\n" +
                     "WHERE dead = FALSE\n" +
                     "AND days_left_to_be_lost BETWEEN 7 AND 27\n" +
                     "  AND transfer_out_date IS NULL;";
@@ -327,8 +327,8 @@ public class Flags {
     public static FlagDescriptor PATIENT_LOST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT client_id, DATE_FORMAT(DATE_ADD(latest_return_date, INTERVAL 28 DAY), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_active_in_care\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(latest_return_date, INTERVAL 28 DAY), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_active_in_care mfac on mfac.client_id = p.patient_id\n" +
                     "WHERE dead = FALSE\n" +
                     "  AND days_left_to_be_lost  BETWEEN 28 AND 89\n" +
                     "  AND transfer_out_date IS NULL;";
@@ -368,8 +368,8 @@ public class Flags {
     public static FlagDescriptor PATIENT_LOST_TO_FOLLOWUP = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT client_id, DATE_FORMAT(DATE_ADD(latest_return_date, INTERVAL 90 DAY), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_active_in_care\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(latest_return_date, INTERVAL 90 DAY), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_active_in_care mfac on p.patient_id = mfac.client_id\n" +
                     "WHERE dead = FALSE\n" +
                     "  AND days_left_to_be_lost >= 90\n" +
                     "  AND transfer_out_date IS NULL;";
@@ -409,8 +409,8 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_FIRST_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 6 WEEK), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 6 WEEK), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -455,8 +455,8 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_FIRST_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 6 WEEK), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 6 WEEK), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -501,8 +501,8 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_SECOND_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 9 WEEK), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 9 WEEK), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -547,8 +547,8 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_SECOND_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 9 WEEK), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 9 WEEK), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -593,8 +593,8 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_THIRD_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 13 MONTH), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 13 MONTH), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -640,8 +640,8 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_THIRD_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 13 MONTH), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 13 MONTH), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id =mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -686,8 +686,8 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_RAPID_TEST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 18 MONTH), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 18 MONTH), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -732,8 +732,8 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_RAPID_TEST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfep.client_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 18 MONTH), '%d.%b.%Y')\n" +
-                    "FROM mamba_fact_eid_patients mfep\n" +
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(eid_dob, INTERVAL 18 MONTH), '%d.%b.%Y')\n" +
+                    "FROM patient p inner join  mamba_fact_eid_patients mfep on p.patient_id = mfep.client_id\n" +
                     "         INNER JOIN mamba_dim_person mdp ON mfep.client_id = mdp.person_id\n" +
                     "        LEFT JOIN mamba_fact_art_patients mfap ON mfep.client_id = mfap.client_id\n" +
                     "        LEFT JOIN mamba_fact_transfer_out mfto on mfto.client_id = mfep.client_id\n" +
@@ -778,8 +778,8 @@ public class Flags {
     public static FlagDescriptor HAS_DETECTABLE_VIRAL_LOAD = new FlagDescriptor()   {
         @Override
         public String criteria() {
-            return "SELECT mfplvl.client_id, hiv_viral_load_copies, DATE_FORMAT(mfplvl.encounter_date, '%d. %b. %Y'), specimen_type\n" +
-                    "FROM mamba_fact_patients_latest_viral_load mfplvl\n" +
+            return "SELECT p.patient_id, hiv_viral_load_copies, DATE_FORMAT(mfplvl.encounter_date, '%d. %b. %Y'), specimen_type\n" +
+                    "FROM patient p inner join mamba_fact_patients_latest_viral_load mfplvl on p.patient_id = mfplvl.client_id\n" +
                     "         INNER JOIN mamba_fact_art_patients mfap ON mfplvl.client_id = mfap.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_out mfto ON mfto.client_id = mfplvl.client_id\n" +
                     "WHERE (hiv_viral_load_copies>=1000) OR (specimen_type='WHOLE BLOOD' and hiv_viral_load_copies >200) OR (specimen_type='Dried Blood Spot' and hiv_viral_load_copies >400)\n" +
@@ -821,8 +821,8 @@ public class Flags {
     public static FlagDescriptor PATIENT_TRANSFERED_OUT = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT mfto.client_id, transfer_out_date\n" +
-                    "FROM mamba_fact_transfer_out mfto\n" +
+            return "SELECT p.patient_id, transfer_out_date\n" +
+                    "FROM patient p inner join mamba_fact_transfer_out mfto on p.patient_id =mfto.client_id\n" +
                     "         INNER JOIN mamba_fact_art_patients mfap ON mfap.client_id = mfto.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_in mfti on mfti.client_id = mfto.client_id\n" +
                     "where dead=false and (mfti.client_id is NULL or mfti.transfer_in_date > mfto.transfer_out_date)";
