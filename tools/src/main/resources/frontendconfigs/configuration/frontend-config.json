@@ -1968,7 +1968,7 @@
   "@ugandaemr/esm-patient-registration-app": {
     "defaultPatientIdentifierTypes": ["f0c16a6d-dc5f-4118-a803-616d0075d282"],
     "logo": {
-      "src": "/openmrs/spa/logo.svg",
+      "src": "/openmrs/spa/logo-white.svg",
       "alt": "UgandaEMR+ logo"
     },
     "sections": [
@@ -2310,7 +2310,7 @@
       }
     },
     "logo": {
-      "src": "/openmrs/spa/log.svg",
+      "src": "/openmrs/spa/logo-white.svg",
       "alt": "UgandaEMR+ logo"
     }
   },
