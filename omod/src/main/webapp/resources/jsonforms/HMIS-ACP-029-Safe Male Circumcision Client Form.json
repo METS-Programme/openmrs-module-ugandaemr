@@ -1133,6 +1133,48 @@
           ]
         },
         {
+          "label": "Consent/Assent",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Client First Name",
+              "type": "obs",
+              "id": "clientFirstName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce10512-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Client Last Name",
+              "type": "obs",
+              "id": "clientLastName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce10100-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Parent/Guardian Name",
+              "type": "obs",
+              "id": "parentGuardianName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e96d0880-e80e-4088-9787-bb2623fd46af",
+                "conceptMappings": [],
+                "answers": [],
+                "hide": {
+                  "hideWhenExpression": "age < '12' || age > '17'"
+                }
+              }
+            }
+          ]
+        },
+        {
           "label": "Eligibility For Circumcision",
           "isExpanded": "true",
           "questions": [
@@ -1220,14 +1262,26 @@
               },
               "questions": [
                 {
-                  "label": "Date of circumcision",
+                  "label": "Start Date of circumcision",
                   "type": "obs",
                   "required": "false",
-                  "id": "dateOfCircumcission",
+                  "id": "startDateOfCircumcission",
                   "datePickerFormat": "both",
                   "questionOptions": {
                     "rendering": "date",
-                    "concept": "46bfb245-35ac-496d-8977-e01bbd165039",
+                    "concept": "dd2717a6-30ab-102d-86b0-7a5022ba4115",
+                    "answers": []
+                  }
+                },
+                {
+                  "label": "End Date of circumcision",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "endDateOfCircumcission",
+                  "datePickerFormat": "both",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "dd274206-30ab-102d-86b0-7a5022ba4115",
                     "answers": []
                   }
                 },
@@ -1425,10 +1479,21 @@
                   }
                 },
                 {
+                  "label": "Name of Circumciser",
+                  "type": "obs",
+                  "id": "circumciserName",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "ec491006-6fce-4259-bec8-cbdc2f11e66a",
+                    "conceptMappings": [],
+                    "answers": []
+                  }
+                },
+                {
                   "label": "Adverse events during procedure",
                   "type": "obs",
                   "required": "false",
-                  "id": "adverseEventsDuringProcedure?",
+                  "id": "adverseEventsDuringProcedure",
                   "questionOptions": {
                     "rendering": "radio",
                     "concept": "a18466c4-44dd-4cb5-93b3-abd87fb6bfb8",
@@ -1453,7 +1518,7 @@
                   "required": "false",
                   "id": "typeOfAe",
                   "questionOptions": {
-                    "rendering": "select",
+                    "rendering": "multiCheckbox",
                     "concept": "8d67cb48-b2c2-4dda-bae8-709287f9b088",
                     "answers": [
                       {
@@ -1476,7 +1541,10 @@
                         "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
                         "label": "Others Specify"
                       }
-                    ]
+                    ],
+                    "hide": {
+                      "hideWhenExpression": "adverseEventsDuringProcedure !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
                   }
                 },
                 {
@@ -1491,7 +1559,7 @@
                   },
                   "validators": [],
                   "hide": {
-                    "hideWhenExpression": "typeOfAe !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                    "hideWhenExpression": "typeOfAe != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
                   }
                 },
                 {
@@ -1538,48 +1606,6 @@
                 "concept": "0eb6201b-ade7-4f1b-9bdd-26be384c9f42"
               },
               "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Consent/Assent",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Client First Name",
-              "type": "obs",
-              "id": "clientFirstName",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dce10512-30ab-102d-86b0-7a5022ba4115",
-                "conceptMappings": [],
-                "answers": []
-              }
-            },
-            {
-              "label": "Client Last Name",
-              "type": "obs",
-              "id": "clientLastName",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dce10100-30ab-102d-86b0-7a5022ba4115",
-                "conceptMappings": [],
-                "answers": []
-              }
-            },
-            {
-              "label": "Parent/Guardian Name",
-              "type": "obs",
-              "id": "parentGuardianName",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "e96d0880-e80e-4088-9787-bb2623fd46af",
-                "conceptMappings": [],
-                "answers": [],
-                "hide": {
-                  "hideWhenExpression": "age < '12' || age > '17'"
-                }
-              }
             }
           ]
         }
