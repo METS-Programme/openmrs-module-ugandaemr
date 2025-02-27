@@ -526,6 +526,335 @@
               ]
             }
           ]
+        },
+        {
+          "label": "PRIOR ARV/ART",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Prior ARV/ART",
+              "type": "obs",
+              "id": "priorART",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "902e30a1-2d10-4e92-8f77-784b6677109a",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Pep Set",
+              "type": "obsGroup",
+              "id": "pepSet",
+              "questionOptions": {
+                "concept": "331f1521-14ac-4f06-b064-d1d6e928d47e",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "PEP",
+                  "type": "obs",
+                  "id": "pepChecked",
+                  "questionOptions": {
+                    "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "PEP"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "PEP Regimen Start Date",
+                  "type": "obs",
+                  "id": "pepStartDate",
+                  "questionOptions": {
+                    "concept": "999dea3b-ad8b-45b4-b858-d7ab98de486c",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pepChecked)"
+                  }
+                },
+                {
+                  "label": "PEP Duration in Months",
+                  "type": "obs",
+                  "id": "pepDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "0b5fa454-0757-4f6d-b376-fefd60ae42ba",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pepChecked)"
+                  }
+                },
+                {
+                  "label": "PrEP",
+                  "type": "obs",
+                  "id": "prepChecked",
+                  "questionOptions": {
+                    "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "PrEP"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "PrEP Regimen Start Date",
+                  "type": "obs",
+                  "id": "prepStartDate",
+                  "questionOptions": {
+                    "concept": "9a7b4b98-4cbb-4f94-80aa-d80a56084181",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(prepChecked)"
+                  }
+                },
+                {
+                  "label": "PrEP Duration in Months",
+                  "type": "obs",
+                  "id": "prepDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "d11d4ad1-4aa2-4f90-8f2c-83f52155f0fc",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(prepChecked)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Hep-B prior ART set",
+              "type": "obsGroup",
+              "id": "hepBSet",
+              "questionOptions": {
+                "concept": "17a0c852-ae9c-42c4-b18d-7aac96d5cb3d",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Hep-B",
+                  "type": "obs",
+                  "id": "hepBChecked",
+                  "questionOptions": {
+                    "concept": "4937ae55-afed-48b0-abb5-aad1152d9d4c",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Hep-B"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "Hep-B Start Date",
+                  "type": "obs",
+                  "id": "hepBStartDate",
+                  "questionOptions": {
+                    "concept": "ce1d514c-142b-4b93-aea2-6d24b7cc9614",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(hepBChecked)"
+                  }
+                },
+                {
+                  "label": "Hep-B Duration in Months",
+                  "type": "obs",
+                  "id": "hepBDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "33a2a6fb-c02c-4015-810d-71d0761c8dd5",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(hepBChecked)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "PMTCT set",
+              "type": "obsGroup",
+              "id": "pmtctSet",
+              "questionOptions": {
+                "concept": "8512daeb-4fce-495e-8efb-a4d923262259",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "PTMCT",
+                  "type": "obs",
+                  "id": "pmtctChecked",
+                  "questionOptions": {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "PMTCT"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "PMTCT Start Date",
+                  "type": "obs",
+                  "id": "pmtctStartDate",
+                  "questionOptions": {
+                    "concept": "3f125b4f-7c60-4a08-9f8d-c9936e0bb422",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pmtctChecked)"
+                  }
+                },
+                {
+                  "label": "PMTCT Duration in Months",
+                  "type": "obs",
+                  "id": "pmtcDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "0f7e7d9d-d8d1-4ef8-9d61-ae5d17da4d1e",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pmtctChecked)"
+                  }
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
+            },
+            {
+              "label": "ART (not transfer in) set",
+              "type": "obsGroup",
+              "id": "artNotTransferInSet",
+              "questionOptions": {
+                "concept": "c26525eb-6fdb-43ef-bee4-cb5d839756ee",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "ART (not transfer in)",
+                  "type": "obs",
+                  "id": "artNotTransferInChecked",
+                  "questionOptions": {
+                    "concept": "240edc6a-5c70-46ce-86cf-1732bc21e95c",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "ART (not transfer in)"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "ART (not transfer in) Start Date",
+                  "type": "obs",
+                  "id": "artNotTransferInDate",
+                  "questionOptions": {
+                    "concept": "5e0d5edc-486c-41f1-8429-fbbad5416629",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(artNotTransferInChecked)"
+                  }
+                },
+                {
+                  "label": "ART (not transfer in) Duration in Months",
+                  "type": "obs",
+                  "id": "artNotTransferInDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "666afa00-2cbf-4ca0-9576-2c89a19fe466",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(artNotTransferInChecked)"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }
