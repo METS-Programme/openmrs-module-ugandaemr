@@ -18,6 +18,28 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Visit Date",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Client number",
+              "type": "obs",
+              "required": "true",
+              "id": "clientNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
               "label": "Site Type",
               "type": "obs",
               "id": "siteType",
@@ -44,7 +66,7 @@
               }
             },
             {
-              "label": "Site Name",
+              "label": "Outreach/Camp site name",
               "type": "obs",
               "id": "siteName",
               "questionOptions": {
@@ -64,6 +86,43 @@
           "label": "Client Information",
           "isExpanded": "true",
           "questions": [
+            {
+              "label": "Religion",
+              "type": "obs",
+              "id": "religion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5b3e3260-a7e2-11ed-afa1-0242ac120002",
+                "answers": [
+                  {
+                    "concept": "5b3e2ca2-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Protestant"
+                  },
+                  {
+                    "concept": "5b3e2b6c-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Catholic"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Religion",
+              "type": "obs",
+              "id": "otherReligion",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5b3e2ef0-a7e2-11ed-afa1-0242ac120002"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(religion) || religion !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
             {
               "label": "How did you know about SMC?",
               "type": "obs",
@@ -98,8 +157,8 @@
                     "label": "Megaphones/Community radio"
                   },
                   {
-                    "concept": "b5032439-7181-4496-bde2-e21aade1f0df",
-                    "label": "HCW Referral"
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Truckers"
                   },
                   {
                     "concept": "08a5cf93-a866-49f3-b5a6-f63c5e904757",
@@ -190,7 +249,7 @@
               "validators": []
             },
             {
-              "label": "Client tested for HIV in the past 4 weeks?",
+              "label": "Client tested for HIV in the past 4 weeks",
               "type": "obs",
               "required": "false",
               "id": "clientTestedForHivInThePast4Weeks",
@@ -331,7 +390,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "patientInCare !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "hivTestResults !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
@@ -369,7 +428,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivTestResults !== 'dc85aa72-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Partner HIV Status",
@@ -468,10 +530,10 @@
               "validators": []
             },
             {
-              "label": "Genital Ulsers",
+              "label": "Genital Ulcers",
               "type": "obs",
               "required": "false",
-              "id": "genitalUlsers",
+              "id": "genitalUlcers",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "ab684ea7-9ad5-4efa-9210-f324e0dd1fa6",
@@ -862,10 +924,10 @@
               "validators": []
             },
             {
-              "label": "Anatomical abnormality",
+              "label": "Anatomical abnormalities",
               "type": "obs",
               "required": "false",
-              "id": "anatomicalAbnormality",
+              "id": "anatomicalAbnormalities",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "d332d404-e6fd-4a5f-ac39-2c1b2ea0dfab",
@@ -1476,6 +1538,48 @@
                 "concept": "0eb6201b-ade7-4f1b-9bdd-26be384c9f42"
               },
               "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Consent/Assent",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Client First Name",
+              "type": "obs",
+              "id": "clientFirstName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce10512-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Client Last Name",
+              "type": "obs",
+              "id": "clientLastName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce10100-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Parent/Guardian Name",
+              "type": "obs",
+              "id": "parentGuardianName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e96d0880-e80e-4088-9787-bb2623fd46af",
+                "conceptMappings": [],
+                "answers": [],
+                "hide": {
+                  "hideWhenExpression": "age < '12' || age > '17'"
+                }
+              }
             }
           ]
         }
