@@ -2227,6 +2227,13 @@
               "privileges": ["View Clinical Room Menu"]
             }
           },
+          "dispensing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Dispensing Menu"
+              ]
+            }
+          },
           "patient-lists-dashboard-link": {
             "Display conditions": {
               "privileges": ["Manage Patient Lists"]
@@ -2257,6 +2264,7 @@
               "privileges": ["Manage Laboratory"]
             }
           },
+
           "home-widget-db-link": {
             "Display conditions": {
               "privileges": ["Manage Home Link"]
