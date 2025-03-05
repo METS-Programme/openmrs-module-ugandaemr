@@ -89,6 +89,10 @@
                   {
                     "concept": "bf155da2-8f4e-42c9-8828-eb913a66ae7a",
                     "label": "Had 1 meal a day"
+                  },
+                  {
+                    "concept": "8595afed-96a0-4f3e-b88d-acc4ca81d03e",
+                    "label": "Malnourished"
                   }
                 ]
               },
@@ -134,6 +138,10 @@
                   {
                     "concept": "9ea56d9a-818b-4700-944a-5110c7248379",
                     "label": "Missed Appointment in the last 3 months"
+                  },
+                  {
+                    "concept": "bafa7b0a-aaa5-4a23-843f-f40ab68ecc43",
+                    "label": "Not Screened"
                   }
                 ]
               },
@@ -153,23 +161,38 @@
                 "answers": [
                   {
                     "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not yet Assessed"
+                    "label": "Not yet Assessed",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening != 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "513d3a81-68d2-44f4-88a3-8dc74b5e1249",
-                    "label": "Assessed, Eligible not yet enrolled"
+                    "label": "Assessed, Eligible not yet enrolled",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "8578c43e-bb81-4adf-a4a5-389a9c716a49",
-                    "label": "Assessed and Not Eligible"
+                    "label": "Assessed and Not Eligible",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "52aed7c2-ef3d-4220-8302-78b841f6ff24",
-                    "label": "Enrolled"
+                    "label": "Enrolled",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   },
                   {
                     "concept": "9669522d-d96a-411d-a534-5b13a7d65fc3",
-                    "label": "Graduated"
+                    "label": "Graduated",
+                    "hide": {
+                      "hideWhenExpression": "ovcScreening == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+                    }
                   }
                 ]
               },
@@ -197,7 +220,7 @@
               "type": "obs",
               "id": "gbvVac",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "multiCheckbox",
                 "concept": "23a37400-f855-405b-9268-cb2d25b97f54",
                 "conceptMappings": [],
                 "answers": [
@@ -207,19 +230,31 @@
                   },
                   {
                     "concept": "c5160b00-0641-4742-8672-97081379a92d",
-                    "label": "Emotional or Psychological Harm"
+                    "label": "Emotional or Psychological Harm",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(gbvVac, '6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce')"
+                    }
                   },
                   {
                     "concept": "1490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Physical Harm"
+                    "label": "Physical Harm",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(gbvVac, '6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce')"
+                    }
                   },
                   {
                     "concept": "e52d273e-48a8-4a20-a5a9-4679e752e841",
-                    "label": "Inappropriately touched/fondled"
+                    "label": "Inappropriately touched/fondled",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(gbvVac, '6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce')"
+                    }
                   },
                   {
                     "concept": "6686c0f0-cf27-4b9b-8495-8cf80a7357ae",
-                    "label": "Forced Sexual Intercourse"
+                    "label": "Forced Sexual Intercourse",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(gbvVac, '6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce')"
+                    }
                   }
                 ]
               },
@@ -235,7 +270,7 @@
               },
               "questions": [
                 {
-                  "label": "Disclosed",
+                  "label": "Disclosed/Disclsed To",
                   "type": "obs",
                   "id": "disclosureStatus",
                   "questionOptions": {
@@ -253,18 +288,9 @@
                       }
                     ]
                   },
-                  "validators": []
-                },
-                {
-                  "label": "Disclosed to",
-                  "type": "obs",
-                  "id": "disclosedTo",
-                  "questionOptions": {
-                    "rendering": "text",
-                    "concept": "2435d630-14a9-47ad-939b-dc5b9d3052d3"
-                  },
+                  "validators": [],
                   "hide": {
-                    "hideWhenExpression": "isEmpty(disclosureStatus) || disclosureStatus !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "age < 10"
                   }
                 },
                 {
@@ -272,7 +298,7 @@
                   "type": "obs",
                   "id": "relationship",
                   "questionOptions": {
-                    "rendering": "select",
+                    "rendering": "multiCheckbox",
                     "concept": "dce138f8-30ab-102d-86b0-7a5022ba4115",
                     "answers": [
                       {
@@ -299,7 +325,7 @@
                   },
                   "validators": [],
                   "hide": {
-                    "hideWhenExpression": "isEmpty(disclosedTo)"
+                    "hideWhenExpression": "isEmpty(disclosureStatus) || age < 10"
                   }
                 },
                 {
@@ -689,7 +715,7 @@
               "type": "obs",
               "id": "interventionApproaches",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "multiCheckbox",
                 "concept": "eb7c1c34-59e5-46d5-beba-626694badd54",
                 "conceptMappings": [],
                 "answers": [
@@ -730,7 +756,7 @@
               "type": "obs",
               "id": "linkagesAndReferrals",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "multiCheckbox",
                 "concept": "325e4270-8b1f-447e-a591-b3daf13acea3",
                 "conceptMappings": [],
                 "answers": [
