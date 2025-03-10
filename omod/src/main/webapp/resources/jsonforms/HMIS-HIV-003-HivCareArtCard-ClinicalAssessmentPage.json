@@ -491,7 +491,7 @@
               "id": "lnmp",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
+                "concept": "8ed491d6-6790-4035-b729-c33ed5cb3473",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -1593,7 +1593,7 @@
               "id": "otherTreatmentStopReason",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "a7465d9a-3a01-4bae-9f33-846b119fafd5"
               },
               "validators": [],
               "hide": {
