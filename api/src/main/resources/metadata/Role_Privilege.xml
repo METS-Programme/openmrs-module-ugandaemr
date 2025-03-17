@@ -851,6 +851,8 @@
     <role_privilege  role="Organizational: Clinician"  privilege="Manage Order Basket"/>
     <role_privilege  role="Organizational: Clinician"  privilege="Manage Clinical Forms"/>
     <role_privilege  role="Organizational: Clinician"  privilege="Manage Visit Note"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Manage HIV Prevention Services"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Manage HIV Care and Treatment"/>
 
 
     <!--* COUNSELOR ROLE *-->
@@ -1015,6 +1017,7 @@
     <role_privilege  role="MCH Clinic"  privilege="Task: coreapps.markPatientDead"/>
     <role_privilege  role="MCH Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
     <role_privilege  role="MCH Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
+    <role_privilege  role="MCH Clinic"  privilege="Manage EID Program"/>
     <!--* TB Clinic *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="TB Clinic"/>
@@ -1076,6 +1079,7 @@
     <role_privilege  role="TB Clinic"  privilege="View Clinician Queuelist"/>
     <role_privilege  role="TB Clinic"  privilege="View completedQueue"/>
     <role_privilege  role="TB Clinic"  privilege="View Patient Summary"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage TB Program"/>
 
     <!--***** REPORTING ROLES *****-->
     <!--* Base reporting *-->
