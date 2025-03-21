@@ -69,7 +69,7 @@
 		<openMRSVersion>2.6.3</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webservices.restModuleVersion>2.40.0</webservices.restModuleVersion>
+		<webservices.restModuleVersion>2.47.0</webservices.restModuleVersion>
 		<initializerVersion>2.5.2</initializerVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
@@ -93,7 +93,7 @@
 		<emrapiVersion>1.35.0</emrapiVersion>
 		<eventVersion>2.10.0</eventVersion>
 		<openmrsAtomfeedVersion>2.6.1</openmrsAtomfeedVersion>
-		<fhir2Version>2.0.0</fhir2Version>
+		<fhir2Version>2.3.0</fhir2Version>
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.3.0</formfilterVersion>
 		<htmlformentryuiVersion>2.3.0</htmlformentryuiVersion>
@@ -124,11 +124,11 @@
 		<uilibraryVersion>2.0.7</uilibraryVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 		<patientqueueingVersion>1.3.2</patientqueueingVersion>
-		<ugandaemrSyncVersion>1.2.0</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>1.2.1-SNAPSHOT</ugandaemrSyncVersion>
 		<openmrsOwaVersion>1.14.0</openmrsOwaVersion>
 		<ugandaemrfingerprintVersion>1.1.0</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>3.4.0</cohortModuleVersion>
-		<stockmanagementVersion>1.4.2</stockmanagementVersion>
+		<stockmanagementVersion>1.4.4</stockmanagementVersion>
 		<spaModuleVersion>2.0.0</spaModuleVersion>
 		<o3formsVersion>2.3.0</o3formsVersion>
 		<orderTemplatesVersion>1.0.3</orderTemplatesVersion>

@@ -11,7 +11,7 @@
   "referencedForms": [],
   "pages": [
     {
-      "label": "HIV CARE/ART CARD - CLINICIAL ASSESSMENT",
+      "label": "HIV CARE/ART CARD - CLINICAL ASSESSMENT",
       "sections": [
         {
           "label": "NCDs (Non-communicable Diseases) Status",
@@ -79,31 +79,31 @@
                   },
                   {
                     "concept": "fd36c202-06ad-4e9b-95e7-d3e02d34c936",
-                    "label": "Normal blood sugar"
+                    "label": "Normal blood sugar (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl)"
                   },
                   {
                     "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed on lifestyle modification"
+                    "label": "Newly Diagnosed (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl) on lifestyle modification"
                   },
                   {
-                    "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed on medication and lifestyle modification"
+                    "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
+                    "label": "Newly Diagnosed (FBS>7.0mmol/126mg/dl or RBS>11mmol/200mg/dl) on medication and lifestyle modification"
                   },
                   {
                     "concept": "844dec77-9c0c-4bb1-ab23-ccc083c9c97a",
-                    "label": "Known Diabetic and not controlled on lifestyle modification"
+                    "label": "Known Diabetic and not controlled (FBS>7.0mmol/126mg/dl or RBS>11 mmol/200mg/dl) on lifestyle modification"
                   },
                   {
                     "concept": "c1ede22a-fe95-402e-b2f2-18b1709f0414",
-                    "label": "Known Diabetic and not controlled on medication and lifestyle modification"
+                    "label": "Known Diabetic and not controlled (FBS>7.0mmol/126mg/dl or RBS>11 mmol/200mg/dl) on medication and lifestyle modification"
                   },
                   {
                     "concept": "973a7e7c-2e1d-4431-813f-ce03d5afda62",
-                    "label": "Known Diabetic and controlled on lifestyle modification"
+                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl)  on lifestyle modification"
                   },
                   {
                     "concept": "7307349d-c333-4dee-a271-3a11cc656815",
-                    "label": "Known Diabetic and controlled on medication and lifestyle modification"
+                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl) on medication and lifestyle modification"
                   },
                   {
                     "concept": "8473a4cb-5431-4775-83b2-6f0c8086ecbe",
@@ -133,19 +133,19 @@
                 "answers": [
                   {
                     "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
-                    "label": "No signs and symptoms"
+                    "label": "No signs and symptoms (SRQ-20 < 6)"
                   },
                   {
                     "concept": "9a3ecb59-6cfd-4c9a-b63b-1f4bda0a3a47",
-                    "label": "Has signs and symptoms with low/moderate suicide Risk on Psychotherapy"
+                    "label": "Has signs and symptoms with low/moderate suicide Risk (SRQ-20 ≥ 6, SAD PERSONs Score ≤7) on Psychotherapy"
                   },
                   {
                     "concept": "2e3760ca-aea9-4958-a2c6-6ad32dc79445",
-                    "label": "Has signs and symptoms with high suicide Risk on Medication only"
+                    "label": "Has signs and symptoms with high suicide Risk (SRQ-20 ≥ 6, SAD PERSONs Score >7) on Medication only"
                   },
                   {
                     "concept": "8faa9bb9-9065-44bc-b426-ef0336ff4c94",
-                    "label": "Has signs and symptoms with high suicide Risk on Psychotherapy and Medication"
+                    "label": "Has signs and symptoms with high suicide Risk (SRQ-20 ≥ 6, SAD PERSONs Score >7) on Psychotherapy and Medication"
                   },
                   {
                     "concept": "0888ffe4-47d1-4f72-8d98-df2ff30a6f79",
@@ -189,23 +189,23 @@
                 "answers": [
                   {
                     "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
-                    "label": "No signs and symptoms"
+                    "label": "No signs and symptoms (Audit - C < 3)"
                   },
                   {
                     "concept": "3a67585e-e401-4320-a31e-0d7c97818e61",
-                    "label": "Has Signs and Symptoms on Brief Intervention"
+                    "label": "Has Signs and Symptoms (Audit - C (≥ 3, ≤ 5) on Brief Intervention"
                   },
                   {
                     "concept": "9b0fdd9e-0607-441b-80cd-de7ef710376c",
-                    "label": "Has Signs and Symptoms on Brief Intervention/clinical management"
+                    "label": "Has Signs and Symptoms  (Audit - C ( > 5) on Brief Intervention/clinical management"
                   },
                   {
                     "concept": "f8c953db-113d-4b11-b4e6-83ad7516869d",
-                    "label": "Known Alcohol or Substance use disorder on Brief Intervention and/or clinical management"
+                    "label": "Known Alcohol or Substance use disorder (Audit - C (>3) on Brief Intervention and/or clinical management"
                   },
                   {
                     "concept": "fb681708-d19a-4a92-91c4-df29a50cbb35",
-                    "label": "Known Alcohol or Substance use disorder NEITHER on Brief Intervention NOR clinical management"
+                    "label": "Known Alcohol or Substance use disorder (Audit - C (>3) NEITHER on Brief Intervention NOR clinical management"
                   },
                   {
                     "concept": "21641587-3417-4f0a-b77a-bb7c07126b5b",
@@ -282,19 +282,25 @@
                 "answers": [
                   {
                     "concept": "598dba00-b878-474c-9a10-9998f1748228",
-                    "label": "Therapeutic Feeding"
+                    "label": "Therapeutic Feeding (F75, F100, RUTF)"
                   },
                   {
                     "concept": "3dfda4f7-5dbe-416a-9a26-ca015e2194e0",
-                    "label": "Supplementary Feeding"
+                    "label": "Supplementary Feeding (Flour, oil, sugar, etc)"
                   },
                   {
                     "concept": "cfbed699-fbf4-4346-a4a3-1b5c57d2902e",
-                    "label": "Infant and Young Child Feeding Counselling"
+                    "label": "Infant and Young Child Feeding Counselling",
+                    "hide": {
+                      "hideWhenExpression": "age > 2"
+                    }
                   },
                   {
                     "concept": "7cb048f9-550b-4be2-9eb9-cc8e19c87041",
-                    "label": "Nutrition Counselling only"
+                    "label": "Nutrition Counselling only",
+                    "hide": {
+                      "hideWhenExpression": "age < 2"
+                    }
                   },
                   {
                     "concept": "a3a0b699-6cc1-4a82-95ce-6cd061f6b713",
@@ -485,7 +491,7 @@
               "id": "lnmp",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
+                "concept": "8ed491d6-6790-4035-b729-c33ed5cb3473",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -1587,7 +1593,7 @@
               "id": "otherTreatmentStopReason",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "a7465d9a-3a01-4bae-9f33-846b119fafd5"
               },
               "validators": [],
               "hide": {
