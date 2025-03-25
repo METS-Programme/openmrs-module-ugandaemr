@@ -36,7 +36,7 @@
               "label": "Current Regimen",
               "type": "obs",
               "id": "currentRegimen",
-              "readonly": "true",
+              "readonly": "false",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "107bef04-bf05-4f41-9260-b167c1108f7e",
@@ -225,7 +225,7 @@
               "label": "Current Regimen Line",
               "type": "obs",
               "id": "currentRegimenLine",
-              "readonly": "true",
+              "readonly": "false",
               "questionOptions": {
                 "concept": "80148344-ce80-42f7-9d4a-8c1935efe76e",
                 "rendering": "select",
