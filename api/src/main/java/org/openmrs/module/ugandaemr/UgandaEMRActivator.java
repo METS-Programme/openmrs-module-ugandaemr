@@ -232,10 +232,6 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("import to Concept Modifications Table  Successful");
 
         log.info("import  of  Drugs  Starting");
-        dataImporter.importData("metadata/concepts_and_drugs/Drug.xml");
-        log.info("import of Drugs  Successful");
-
-        log.info("import  of  Drugs  Starting");
         dataImporter.importData("metadata/appointment.xml");
         log.info("import of Drugs  Successful");
 
@@ -286,6 +282,10 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("import  to Concept_Set Table  Starting");
         dataImporter.importData("metadata/concepts_and_drugs/tools-2024/Concept_Set.xml");
         log.info("import to Concept_Set Table  Successful");
+
+        log.info("import  of  Drugs  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Drug.xml");
+        log.info("import of Drugs  Successful");
 
         log.info("import  to Concept_Reference Table  Starting");
         dataImporter.importData("metadata/concepts_and_drugs/tools-2024/Concept_Reference.xml");
