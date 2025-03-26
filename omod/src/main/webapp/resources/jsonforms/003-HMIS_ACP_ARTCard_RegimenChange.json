@@ -234,15 +234,15 @@
                 },
                 "answers": [
                   {
-                    "value": "ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2",
+                    "value": "dce145c0-30ab-102d-86b0-7a5022ba4115",
                     "label": "First Line ARV Regimen"
                   },
                   {
-                    "value": "9a42a3ad-d8a4-4f2e-9fa0-04d5f2e6436e",
+                    "value": "dd277db4-30ab-102d-86b0-7a5022ba4115",
                     "label": "Second Line ARV Regimen"
                   },
                   {
-                    "value": "5d2d0e7e-69a6-408a-b5ce-8d93fb72bc21",
+                    "value": "c2742c79-8c24-4fd6-9750-ecfdc7501080",
                     "label": "Third Line ARV Regimen"
                   }
                 ]
@@ -484,20 +484,17 @@
               "questionOptions": {
                 "concept": "164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "select",
-                "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
-                },
                 "answers": [
                   {
-                    "value": "ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2",
+                    "value": "dce145c0-30ab-102d-86b0-7a5022ba4115",
                     "label": "First Line ARV Regimen"
                   },
                   {
-                    "value": "9a42a3ad-d8a4-4f2e-9fa0-04d5f2e6436e",
+                    "value": "dd277db4-30ab-102d-86b0-7a5022ba4115",
                     "label": "Second Line ARV Regimen"
                   },
                   {
-                    "value": "5d2d0e7e-69a6-408a-b5ce-8d93fb72bc21",
+                    "value": "c2742c79-8c24-4fd6-9750-ecfdc7501080",
                     "label": "Third Line ARV Regimen"
                   }
                 ]
