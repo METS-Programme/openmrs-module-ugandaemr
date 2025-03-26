@@ -134,6 +134,7 @@
 		<orderTemplatesVersion>1.0.3</orderTemplatesVersion>
 		<attachmentsVersion>3.0.0</attachmentsVersion>
 		<orderexpansionVersion>1.0.0</orderexpansionVersion>
+		<billingVersion>1.3.0-SNAPSHOT</billingVersion>
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.1.3</ugandaemrReportsVersion>
 	</properties>
@@ -538,6 +539,13 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>orderexpansion</artifactId>
 				<version>${orderexpansionVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>billing</artifactId>
+				<version>${billingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 
