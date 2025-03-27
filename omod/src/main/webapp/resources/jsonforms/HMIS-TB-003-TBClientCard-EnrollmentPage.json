@@ -770,7 +770,7 @@
               "id": "hivStatus",
               "required": "false",
               "questionOptions": {
-                "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
+                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
                 "rendering": "select",
                 "answers": [
                   {
