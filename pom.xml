@@ -103,6 +103,7 @@
 		<idgenVersion>4.10.0</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
+		<labmanagementVersion>1.0.0-SNAPSHOT</labmanagementVersion>
 		<legacyuiVersion>1.16.0</legacyuiVersion>
 		<metadatadeployVersion>1.13.0</metadatadeployVersion>
 		<metadatamappingVersion>1.6.0</metadatamappingVersion>
@@ -547,6 +548,13 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>orderexpansion</artifactId>
 				<version>${orderexpansionVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>labmanagement</artifactId>
+				<version>${labmanagementVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
