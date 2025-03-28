@@ -2,518 +2,400 @@
   "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Followup Section",
   "version": "4.0.0",
   "description": "This form captures return visits/followup data of the DR TB Treatment program",
-  "encounterType": "41f8609d-e13b-4dff-8379-47ac5876512e",
   "encounter": "DR TB Encounter (Followup)",
-  "uuid": "5f69626e-fbe2-11ea-adc1-0242ac120002",
+  "encounterType": "41f8609d-e13b-4dff-8379-47ac5876512e",
+  "uuid": "f2755f27-6ae9-4da8-b80a-9bac2a4e0d17",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
   "pages": [
     {
-      "label": "Adverse Events",
+      "label": "DR TB Followup Page",
       "sections": [
         {
-          "label": "Adverse Events",
+          "label": "Client Information",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Adverse Event",
+              "label": "DR TB Reg No.",
+              "type": "obs",
+              "id": "drTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2c64410a-9f08-4b4f-9d00-23105e8730d4",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Unit TB No.",
+              "type": "obs",
+              "id": "unitTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "conceptMappings": [],
+                "answers": []
+              }
+            }
+          ]
+        },
+        {
+          "label": "Follow Up Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Followup Visit",
+              "type": "obs",
+              "id": "followupVisit",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Visit 1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Visit 2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Visit 3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Visit 4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Visit 5",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Visit 6",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Visit Date",
+              "type": "encounterDatetime",
+              "id": "encDate",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "label": "DR TB Contacts",
               "type": "obsGroup",
-              "id": "adverse-event",
+              "id": "drTbContact",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "31805aa5-4697-4313-a142-405e0aa3483b",
+                "concept": "",
                 "conceptMappings": [],
                 "answers": []
               },
               "questions": [
                 {
-                  "label": "Event Date",
-                  "type": "encounterDatetime",
-                  "id": "eventDate",
+                  "label": "No. of Contacts listed",
+                  "type": "obs",
+                  "id": "listedContactsNumber",
                   "questionOptions": {
-                    "rendering": "date",
-                    "concept": "f773b48e-92b0-4102-b6d6-ff3481711ca5",
+                    "rendering": "number",
+                    "concept": "",
                     "conceptMappings": [],
                     "answers": []
-                  },
-                  "validators": []
+                  }
                 },
                 {
-                  "label": "Event",
+                  "label": "No. of Contacts Screened on visit",
                   "type": "obs",
-                  "id": "event",
+                  "id": "screendContactsNumber",
                   "questionOptions": {
-                    "rendering": "select",
-                    "concept": "12403bda-4c4b-41db-8346-10c7880d9f74",
+                    "rendering": "number",
+                    "concept": "",
                     "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "119270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Cardiovascular Disease"
-                      },
-                      {
-                        "concept": "dccf6a36-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Vision Changes"
-                      },
-                      {
-                        "concept": "6e09e708-b94d-4796-88d4-07045549dc5c",
-                        "label": "Renal toxicity"
-                      },
-                      {
-                        "concept": "dc88f3d9-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Neuropathy"
-                      },
-                      {
-                        "concept": "159347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Musculoskeletal pain"
-                      },
-                      {
-                        "concept": "134337AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Psychiatric disorder,"
-                      },
-                      {
-                        "concept": "159098AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Hepatotoxicity"
-                      },
-                      {
-                        "concept": "119242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Gastrointestinal Disorder"
-                      },
-                      {
-                        "concept": "155AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "New Onset Seizure"
-                      },
-                      {
-                        "concept": "119204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Electrolyte Abnormality"
-                      },
-                      {
-                        "concept": "2efdeb85-f193-4e3d-b8ab-c834b691b446",
-                        "label": "Dysglycemia"
-                      },
-                      {
-                        "concept": "160179AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Dermatologic"
-                      }
-                    ]
-                  },
-                  "validators": []
+                    "answers": []
+                  }
                 },
                 {
-                  "label": "Event Grade",
+                  "label": "No. of Contacts Diagnosed on visit",
                   "type": "obs",
-                  "id": "eventGrade",
+                  "id": "diagnosedContactsNumber",
                   "questionOptions": {
-                    "rendering": "select",
-                    "concept": "421d1c00-c9bb-4aaf-bfce-58c2a4a635cb",
+                    "rendering": "number",
+                    "concept": "",
                     "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "dcde4a81-30ab-102d-86b0-7a5022ba4115",
-                        "label": "No side effects"
-                      },
-                      {
-                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Grade 1 (mild)"
-                      },
-                      {
-                        "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Grade 2 (moderate)"
-                      },
-                      {
-                        "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Grade 3 (severe)"
-                      },
-                      {
-                        "concept": "dca2882a-30ab-102d-86b0-7a5022ba4115",
-                        "label": "Grade 4  (life threatening)"
-                      }
-                    ]
-                  },
-                  "validators": []
+                    "answers": []
+                  }
                 }
               ],
-              "validators": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Drug Side Effects",
-      "sections": [
-        {
-          "label": "Side Effects",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "type": "obsGroup",
-              "label": "Drug Side Effects",
-              "id": "drugSideEffects",
-              "questionOptions": {
-                "concept": "a202ecd2-3ae8-4b67-8c4f-779a6ce9d7ff",
-                "rendering": "repeating"
-              },
-              "questions": [
-                {
-                  "label": "Drug",
-                  "type": "obs",
-                  "id": "drug",
-                  "questionOptions": {
-                    "rendering": "select",
-                    "concept": "1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "78280AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "ISONIAZID"
-                      },
-                      {
-                        "concept": "dc87f047-30ab-102d-86b0-7a5022ba4115",
-                        "label": "RIFAMPICIN"
-                      },
-                      {
-                        "concept": "75948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "ETHAMBUTOL"
-                      },
-                      {
-                        "concept": "82900AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "PYRAZINAMIDE"
-                      },
-                      {
-                        "concept": "84360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "STREPTOMYCIN"
-                      },
-                      {
-                        "concept": "72794AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "CAPREOMYCIN"
-                      },
-                      {
-                        "concept": "78385AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "KANAMYCIN"
-                      },
-                      {
-                        "concept": "71060AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "AMIKACIN"
-                      },
-                      {
-                        "concept": "73449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "CIPROFLOXACIN"
-                      },
-                      {
-                        "concept": "81022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "OFLOXACIN"
-                      },
-                      {
-                        "concept": "78788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "LEVOFLOXACIN"
-                      },
-                      {
-                        "concept": "dcddab4c-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FATIGUE"
-                      },
-                      {
-                        "concept": "80133AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "MOXIFLOXACIN"
-                      },
-                      {
-                        "concept": "75976AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "ETHIONAMIDE"
-                      },
-                      {
-                        "concept": "74123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "CYCLOSERINE"
-                      },
-                      {
-                        "concept": "81457AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "P-AMINOSALICYLIC ACID"
-                      },
-                      {
-                        "concept": "82772AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "PROTHIONAMIDE"
-                      },
-                      {
-                        "concept": "dcde2606-30ab-102d-86b0-7a5022ba4115",
-                        "label": "INSOMNIA"
-                      },
-                      {
-                        "concept": "160019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "THIOACETAZONE"
-                      },
-                      {
-                        "concept": "dc7912c7-30ab-102d-86b0-7a5022ba4115",
-                        "label": "AMOXICILLIN AND CLAVULANIC ACID"
-                      },
-                      {
-                        "concept": "73498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "CLARITHROMYCIN"
-                      },
-                      {
-                        "concept": "83352AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "RIFABUTIN"
-                      },
-                      {
-                        "concept": "73581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "CLOFAZIMINE"
-                      },
-                      {
-                        "concept": "84836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "TERIZIDONE"
-                      },
-                      {
-                        "concept": "160020AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "Viomycin"
-                      },
-                      {
-                        "concept": "82912AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "PYRIDOXINE"
-                      },
-                      {
-                        "concept": "76835AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "GATIFLOXACIN"
-                      }
-                    ]
-                  },
-                  "validators": []
-                },
-                {
-                  "label": "Side Effects",
-                  "type": "obs",
-                  "id": "drugSideEffects",
-                  "questionOptions": {
-                    "rendering": "select",
-                    "concept": "dce05b7f-30ab-102d-86b0-7a5022ba4115",
-                    "conceptMappings": [],
-                    "answers": [
-                      {
-                        "concept": "dcddca93-30ab-102d-86b0-7a5022ba4115",
-                        "label": "ABDOMINAL PAIN"
-                      },
-                      {
-                        "concept": "dcddc673-30ab-102d-86b0-7a5022ba4115",
-                        "label": "ANEMIA"
-                      },
-                      {
-                        "concept": "dcde3d87-30ab-102d-86b0-7a5022ba4115",
-                        "label": "ANXIETY"
-                      },
-                      {
-                        "concept": "dcddd3a5-30ab-102d-86b0-7a5022ba4115",
-                        "label": "BLUE NAILS"
-                      },
-                      {
-                        "concept": "dcddb5cf-30ab-102d-86b0-7a5022ba4115",
-                        "label": "BURNING"
-                      },
-                      {
-                        "concept": "dcdde239-30ab-102d-86b0-7a5022ba4115",
-                        "label": "CONFUSION"
-                      },
-                      {
-                        "concept": "dcde1dd4-30ab-102d-86b0-7a5022ba4115",
-                        "label": "COUGHING"
-                      },
-                      {
-                        "concept": "dcde4653-30ab-102d-86b0-7a5022ba4115",
-                        "label": "DEPRESSION"
-                      },
-                      {
-                        "concept": "dcdda6ec-30ab-102d-86b0-7a5022ba4115",
-                        "label": "DIARRHOEA"
-                      },
-                      {
-                        "concept": "dcde21ee-30ab-102d-86b0-7a5022ba4115",
-                        "label": "DIFFICULTY BREATHING"
-                      },
-                      {
-                        "concept": "dcde3234-30ab-102d-86b0-7a5022ba4115",
-                        "label": "DIZZINESS"
-                      },
-                      {
-                        "concept": "dcddab4c-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FATIGUE"
-                      },
-                      {
-                        "concept": "dcde2e19-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FAT DISTRIBUTION CHANGES"
-                      },
-                      {
-                        "concept": "dcddd7bf-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FEVER"
-                      },
-                      {
-                        "concept": "dcdddbe2-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FLANK PAIN"
-                      },
-                      {
-                        "concept": "dcde15bb-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FOOT PAIN"
-                      },
-                      {
-                        "concept": "dcddaf94-30ab-102d-86b0-7a5022ba4115",
-                        "label": "HEADACHE"
-                      },
-                      {
-                        "concept": "dcde2606-30ab-102d-86b0-7a5022ba4115",
-                        "label": "INSOMNIA"
-                      },
-                      {
-                        "concept": "dcde2a26-30ab-102d-86b0-7a5022ba4115",
-                        "label": "JAUNDICE"
-                      },
-                      {
-                        "concept": "dcde19b4-30ab-102d-86b0-7a5022ba4115",
-                        "label": "LEG PAIN"
-                      },
-                      {
-                        "concept": "dcde06e9-30ab-102d-86b0-7a5022ba4115",
-                        "label": "MUSCLE INFLAMMATION"
-                      },
-                      {
-                        "concept": "dcde02c1-30ab-102d-86b0-7a5022ba4115",
-                        "label": "MUSCLE TENDERNESS"
-                      },
-                      {
-                        "concept": "dcdd99e5-30ab-102d-86b0-7a5022ba4115",
-                        "label": "NAUSEA"
-                      },
-                      {
-                        "concept": "dcde41ed-30ab-102d-86b0-7a5022ba4115",
-                        "label": "NIGHTMARES"
-                      },
-                      {
-                        "concept": "dcddba10-30ab-102d-86b0-7a5022ba4115",
-                        "label": "NUMBNESS"
-                      },
-                      {
-                        "concept": "dcde119b-30ab-102d-86b0-7a5022ba4115",
-                        "label": "PALLOR"
-                      },
-                      {
-                        "concept": "dcddcf8d-30ab-102d-86b0-7a5022ba4115",
-                        "label": "PSYCHOSIS"
-                      },
-                      {
-                        "concept": "dcddc259-30ab-102d-86b0-7a5022ba4115",
-                        "label": "RASH"
-                      },
-                      {
-                        "concept": "dc662180-30ab-102d-86b0-7a5022ba4115",
-                        "label": "RESPIRATORY TRACT INFECTION, UPPER"
-                      },
-                      {
-                        "concept": "dcde0d21-30ab-102d-86b0-7a5022ba4115",
-                        "label": "SOMNOLENCE"
-                      },
-                      {
-                        "concept": "dcddbe36-30ab-102d-86b0-7a5022ba4115",
-                        "label": "TINGLING"
-                      },
-                      {
-                        "concept": "122983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "label": "VOMITING"
-                      },
-                      {
-                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                        "label": "OTHER SPECIFY"
-                      }
-                    ]
-                  },
-                  "validators": []
-                }
-              ],
-              "validators": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Clinical Review/Outcome",
-      "sections": [
-        {
-          "label": "Drug Adherence",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Total Doses for DR TB Missed",
-              "type": "obs",
-              "id": "totalDosesForDRTBMissed",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "c79a1434-2ef5-4353-a746-298c12940afb",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Percentage Doses MDR-TB Drugs Missed",
-              "type": "obs",
-              "id": "percentageDosesMDRTBDrugsMissed",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "b50e0e43-79b9-4461-b7f8-5c0863d63682",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Percentage Doses ARVs Missed",
-              "type": "obs",
-              "id": "percentageDosesARVsMissed",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "dc9df4c6-5284-45ef-b811-779e0c2d478d",
-                "conceptMappings": [],
-                "answers": []
-              },
               "validators": []
             }
           ]
         },
         {
-          "label": "Treatment Outcome",
+          "label": "TB/HIV Activties",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Outcome",
+              "label": "HIV Status",
               "type": "obs",
-              "id": "Outcome",
+              "id": "hivStatus",
+              "required": "false",
               "questionOptions": {
+                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
                 "rendering": "select",
-                "concept": "e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6",
-                "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Cured"
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "KPos - Known HIV positive at TB diagnosis"
                   },
                   {
-                    "concept": "031d9b15-62d5-4f73-a374-5503f0421427",
-                    "label": "Treatment completed"
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Neg - Negative"
                   },
                   {
-                    "concept": "159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Treatment failure"
+                    "concept": "f72917e2-0bfb-4d73-b87b-643d7180f338",
+                    "label": "NPos - Newly tested HIV positive at TB diagnosis"
                   },
                   {
-                    "concept": "dcb23465-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Lost to follow up"
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unk - Unknown"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HIV Test Date",
+              "type": "obs",
+              "id": "hivTestDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "d2f31713-aada-4d0d-9340-014b2371bdd8"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(hivStatus) || hivStatus == 'dcd6865a-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "WHO Clinical Stage",
+              "type": "obs",
+              "id": "currentWHOClinicStage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 1",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not evaluated"
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 2",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Died"
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T4",
+                    "conceptMappings": []
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "id": "cd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "Date CD4 Sample Collected",
+              "type": "obs",
+              "required": "false",
+              "id": "dateStarted",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c')).then(obs => obs?.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "Viral Load",
+              "type": "obs",
+              "id": "viralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "HIV Viral Load Date",
+              "type": "obs",
+              "required": "false",
+              "id": "vlDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "CPT/Dapson",
+              "type": "obs",
+              "id": "cptStatus",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "bb77f9f0-9743-4c60-8e70-b20b5e800a50",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "Date Started CPT",
+              "type": "obs",
+              "id": "cptStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "481c5fdb-4719-4be3-84c0-a64172a426c7"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(cptStatus) || cptStatus !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "type": "patientIdentifier",
+              "label": "ART Number",
+              "questionInfo": "",
+              "id": "artNumber",
+              "default": "",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              },
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            },
+            {
+              "label": "ART Start Date",
+              "type": "obs",
+              "id": "artStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient?.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs?.valueDateTime)"
+                }
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
             }
           ]
         }
