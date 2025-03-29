@@ -784,6 +784,9 @@
       "useMuacColors": true,
       "showPrintButton": true,
       "useFormEngine": false
+    },
+    "concepts": {
+      "vitalSignsConceptSetUuid": "dc98127e-30ab-102d-86b0-7a5022ba4115"
     }
   },
   "@openmrs/esm-patient-orders-app": {
