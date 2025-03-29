@@ -1,13 +1,20 @@
 {
-  "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Followup Section",
+  "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Followup Section (REVISED)",
   "version": "4.0.0",
   "description": "This form captures return visits/followup data of the DR TB Treatment program",
   "encounter": "DR TB Encounter (Followup)",
   "encounterType": "41f8609d-e13b-4dff-8379-47ac5876512e",
-  "uuid": "5f69626e-fbe2-11ea-adc1-0242ac120002",
+  "uuid": "f2755f27-6ae9-4da8-b80a-9bac2a4e0d17",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
   "pages": [
     {
       "label": "DR TB Followup Page",
@@ -100,7 +107,7 @@
               "type": "obsGroup",
               "id": "drTbContact",
               "questionOptions": {
-                "rendering": "repeating",
+                "rendering": "group",
                 "concept": "",
                 "conceptMappings": [],
                 "answers": []
@@ -115,6 +122,9 @@
                     "concept": "",
                     "conceptMappings": [],
                     "answers": []
+                  },
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(followupVisit)"
                   }
                 },
                 {
@@ -125,7 +135,10 @@
                     "rendering": "number",
                     "concept": "",
                     "conceptMappings": [],
-                    "answers": []
+                    "answers": [],
+                    "hide": {
+                      "hideWhenExpression": "isEmpty(followupVisit)"
+                    }
                   }
                 },
                 {
@@ -136,7 +149,10 @@
                     "rendering": "number",
                     "concept": "",
                     "conceptMappings": [],
-                    "answers": []
+                    "answers": [],
+                    "hide": {
+                      "hideWhenExpression": "isEmpty(followupVisit)"
+                    }
                   }
                 }
               ],
@@ -396,6 +412,241 @@
               "hide": {
                 "hideWhenExpression": "hivStatus !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed' && hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
               }
+            }
+          ]
+        },
+        {
+          "label": "Monitoring ADR",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Adverse Drug Reactions",
+              "type": "obsGroup",
+              "id": "adverseDrugReactions",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "31805aa5-4697-4313-a142-405e0aa3483b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "questions": [
+                {
+                  "label": "Event Date",
+                  "type": "encounterDatetime",
+                  "id": "eventDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "f773b48e-92b0-4102-b6d6-ff3481711ca5",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Adverse Drug Reaction",
+                  "type": "obs",
+                  "id": "adverseDrugReaction",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "12403bda-4c4b-41db-8346-10c7880d9f74",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "concept": "119270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Cardiovascular Disease"
+                      },
+                      {
+                        "concept": "dccf6a36-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Vision Changes"
+                      },
+                      {
+                        "concept": "6e09e708-b94d-4796-88d4-07045549dc5c",
+                        "label": "Renal toxicity"
+                      },
+                      {
+                        "concept": "dc88f3d9-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Neuropathy"
+                      },
+                      {
+                        "concept": "159347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Musculoskeletal pain"
+                      },
+                      {
+                        "concept": "134337AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Psychiatric disorder,"
+                      },
+                      {
+                        "concept": "159098AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Hepatotoxicity"
+                      },
+                      {
+                        "concept": "119242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Gastrointestinal Disorder"
+                      },
+                      {
+                        "concept": "155AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "New Onset Seizure"
+                      },
+                      {
+                        "concept": "119204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Electrolyte Abnormality"
+                      },
+                      {
+                        "concept": "2efdeb85-f193-4e3d-b8ab-c834b691b446",
+                        "label": "Dysglycemia"
+                      },
+                      {
+                        "concept": "160179AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Dermatologic"
+                      },
+                      {
+                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Other Specify"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Other Adverse Drug Reaction",
+                  "type": "obs",
+                  "id": "otherEvent",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(adverseDrugReaction) || adverseDrugReaction !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                  }
+                }
+              ],
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Transfer Out Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Health Facility Name",
+              "type": "obs",
+              "id": "hfName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "District",
+              "type": "obs",
+              "id": "district",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ef8aed6d-a64c-4a17-9745-c305f99c658b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Telephone",
+              "type": "obs",
+              "id": "telephone",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5b3f4e16-a7e2-11ed-afa1-0242ac120002",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of transfer",
+              "type": "obs",
+              "id": "transferOutDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Final Treatment Outcome Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Treatment Outcome",
+              "type": "obs",
+              "id": "treatmentOutcome",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cured"
+                  },
+                  {
+                    "concept": "031d9b15-62d5-4f73-a374-5503f0421427",
+                    "label": "Completed"
+                  },
+                  {
+                    "concept": "159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Failure"
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died"
+                  },
+                  {
+                    "concept": "dcb23465-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Lost to follow up"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Returned to 1st line"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Treatment Outcome Date",
+              "type": "obs",
+              "id": "treatmentOutcomeDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dfbf41ad-44de-48db-b653-54273789c0c6",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Clinic Notes",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Remarks",
+              "type": "obs",
+              "id": "clinicalNotes",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
             }
           ]
         }

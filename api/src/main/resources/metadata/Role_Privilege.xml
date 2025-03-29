@@ -541,6 +541,7 @@
     <privilege  privilege="View attachments"  description="Access to the checkin work space"  uuid="97405adc-31d4-11ee-be56-0242ac120002"/>
     <privilege  privilege="App: patientQueue.triage.dashboard"  description="Access to the triage dashboard"  uuid="504d7087-3f39-4b95-8f1f-cd5db4c6b7ae"/>
     <privilege  privilege="App: patientQueue.clinician.dashboard"  description="Access to the clinician dashboard"  uuid="71377b46-a026-4d14-8330-4907973c300d"/>
+    <privilege  privilege="Task: dispensing.create.dispense.allowSubstitutions"  description="Allow modification of drug quantity"  uuid="0b004630-4794-499d-a3aa-f9e35c90b228"/>
 
     <!-- Administration privilege -->
     <privilege  privilege="Update Facility Code"  description="Access to the checkin work space"  uuid="4bf067e2-55fc-11ee-8c99-0242ac120002"/>
@@ -891,6 +892,7 @@
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense.ifCreator" />
     <role_privilege role="Organizational:Pharmacy" privilege="View Dispensing Menu"/>
+    <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.create.dispense.allowSubstitutions"/>
 
 
     <!--* DATA MANAGER ROLE *-->
