@@ -143,6 +143,30 @@
       ]
     }
   },
+  "@openmrs/esm-patient-tests-app": {
+    "resultsViewerConcepts": [
+      {
+        "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+        "defaultOpen": true
+      },
+      {
+        "conceptUuid": "dc824b7b-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": true
+      },
+      {
+        "conceptUuid": "dc926649-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": true
+      },
+      {
+        "conceptUuid": "a9a5af0f-cb4e-4657-8ec0-a21772a02345"
+      }
+    ],
+    "orders": {
+      "labOrderableConcepts": [
+        "dca07f4a-30ab-102d-86b0-7a5022ba4115"
+      ]
+    }
+  },
   "@openmrs/esm-offline-tools-app": {
     "Display conditions": {
       "privileges": [
