@@ -3409,9 +3409,11 @@
                                                              answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
                                                              class="long-value-select" required="required"/>
                                                     </div>
-                                                    <div class="hidden" id="dsdm_approach">
-                                                        <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
-                                                    </div>
+                                                    <ifMode mode="EDIT" include="false">
+                                                        <div class="hidden" id="dsdm_approach">
+                                                            <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                                        </div>
+                                                    </ifMode>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-1">
@@ -4922,9 +4924,11 @@
                                                  answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
                                                  labelText="Approach" class="horizontal long-value-select"/>
                                         </div>
-                                        <div class="hidden" id="dsdm_approach">
-                                            <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
-                                        </div>
+                                        <ifMode mode="EDIT" include="false">
+                                            <div class="hidden" id="dsdm_approach">
+                                                <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                            </div>
+                                        </ifMode>
                                     </div>
                                     <div class="col-md-4">
                                         <obs id="duration-on-art" conceptId="99024"

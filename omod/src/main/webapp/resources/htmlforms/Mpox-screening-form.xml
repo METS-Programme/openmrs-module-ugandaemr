@@ -15,8 +15,8 @@
 		if (jQuery) {
 		jq(document).ready(function () {
 
-		var vlQualitative ='<lookup expression="fn.latestObs('1305').valueCoded.name"/>';
-		var vlrecent ='<lookup expression="fn.latestObs('856').valueCoded.name"/>';
+		var vlQualitative ='<lookup expression="fn.latestObs('1305').valueCoded"/>';
+		var vlrecent ='<lookup expression="fn.latestObs('856').valueNumeric"/>';
 
 		//Block Multiple encounter entry on same date
 		blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
@@ -125,14 +125,21 @@
 			}
 			});
 
-			if(vlQualitative != '') {
-			jq("#recentVL").find("select").attr("style", "display: none;");
-			jq("#recentVL").append("<span><p><b>"+vlQualitative+"</b></p></span>");
+			if(vlQualitative == 'Concept #1306') {
+			jq("#recentVL").find("select").val("1306");
 			}
 
-			if(vlrecent != '') {
-			jq("#recentHIVVL").find("numeric").attr("style", "display: none;");
-			jq("#recentHIVVL").append("<span><p><b>"+vlrecent+"</b></p></span>");
+			if(vlQualitative == 'Concept #1301') {
+			jq("#recentVL").find("select").val("1301");
+			}
+
+			if(vlQualitative == 'Concept #1304') {
+			jq("#recentVL").find("select").val("1304");
+			}
+
+			if (vlrecent !== '') {
+			vlrecent = Math.floor(vlrecent);
+			jq("#recentHIVVL input").val(vlrecent);
 			}
 
 		</ifMode>
@@ -313,7 +320,7 @@
 													<td>
 														<label>ART No.</label>
 														<patient field="identifier"
-																 identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" id="artNo"/>
+																 identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" id="artNo" required="false"/>
 													</td>
 												</tr>
 												<tr>

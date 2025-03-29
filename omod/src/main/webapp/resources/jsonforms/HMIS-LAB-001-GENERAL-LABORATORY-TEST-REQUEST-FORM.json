@@ -585,7 +585,7 @@
                 "rendering": "date",
                 "concept": "ab505422-26d9-41f1-a079-c3d222000440",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs.valueDateTime)"
                 }
               },
               "validators": [],
@@ -597,12 +597,12 @@
               "label": "Current WHO Stage",
               "type": "obs",
               "required": true,
-              "id": "currentWHOstage",
+              "id": "currentWHOStage",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -653,7 +653,7 @@
                 "rendering": "date",
                 "concept": "ab505422-26d9-41f1-a079-c3d222000440",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs.valueDateTime)"
                 }
               },
               "validators": [],
@@ -667,10 +667,10 @@
               "required": true,
               "id": "preg",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -694,11 +694,21 @@
               "required": true,
               "id": "breastFeeding",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab'))?.valueCodeableConcept?.coding[0]?.display"
-                }
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  }
+                ]
               },
               "validators": [],
               "hide": {
@@ -714,7 +724,7 @@
                 "rendering": "select",
                 "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -777,7 +787,7 @@
                 "rendering": "select",
                 "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce03b2f-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce03b2f-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {

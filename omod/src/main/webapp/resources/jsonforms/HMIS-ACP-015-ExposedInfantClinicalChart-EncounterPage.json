@@ -99,7 +99,6 @@
               "label": "HIV Test",
               "type": "obs",
               "id": "hiv_test",
-              "required": "true",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "ddcd8aad-9085-4a88-a411-f19521be4785",

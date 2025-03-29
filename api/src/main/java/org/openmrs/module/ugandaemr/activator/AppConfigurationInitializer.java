@@ -29,7 +29,7 @@ public class AppConfigurationInitializer implements Initializer {
 			TaskDefinition autoCloseVisitsTask = (TaskDefinition) schedulerService.getTaskByName("Auto Close Visits Task");
 			autoCloseVisitsTask.setStartOnStartup(true);
 			schedulerService.saveTaskDefinition(autoCloseVisitsTask);
-			
+
 			// check the Database Backup Task
 			TaskDefinition backupDatabase = (TaskDefinition) schedulerService.getTaskByName("Database Backup Task");
 			 if (backupDatabase != null) {
