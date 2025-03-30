@@ -708,7 +708,7 @@
           "clinical-appointments-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "Manage Patient Appointments"
+                "Manage appointments dashboard"
               ]
             }
           },
@@ -739,18 +739,8 @@
                 "Manage Home Link"
               ]
             }
-          },
-          "clinical-appointments-dashboard-slot": {
-            "configure": {
-              "clinical-appointments-dashboard": {
-                "Display conditions": {
-                  "privileges": [
-                    "Manage appointments dashboard"
-                  ]
-                }
-              }
-            }
           }
+          
         }
       }
     },
