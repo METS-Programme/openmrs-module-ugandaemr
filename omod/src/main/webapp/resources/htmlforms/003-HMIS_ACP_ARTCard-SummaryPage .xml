@@ -854,11 +854,6 @@
         }
 
     </style>
-    <ifMode mode="ENTER">
-        <div class="hidden" id="dsdm_approach">
-            <workflowState  workflowId="5" labelText="Approach" stateId="17"  type="hidden" />
-        </div>
-    </ifMode>
 
     <!-- Beging of HTML Form -->
     <div class="poc-page-frame">
@@ -948,6 +943,7 @@
                                                         <i class=" icon-calendar small right-inner-addon-row"></i>
                                                         <encounterDate default="today"
                                                                        disallowMultipleEncountersOnDate="block"/>
+                                                        <enrollInProgram programId="1" stateIds="4eae684a-ee1f-4f62-87f3-e3e58c91f417,ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2"/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -1812,7 +1808,6 @@
                         </div>
                     </div>
                 </div>
-                <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.ARTEnrollmentSubmissionAction"/>
             </div>
         </div>
     </div>

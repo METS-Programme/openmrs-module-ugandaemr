@@ -105,6 +105,8 @@ public class UgandaEMRConstants {
     public static final int MEDICATION_DISPENSE_SET = 163711;
     public static final int MEDICATION_DISPENSE_QUANTITY = 1443;
     public static final int MEDICATION_DISPENSE_RECEIVED_AT_VIST = 1276;
+    public static final int MEDICATION_DISPENSE_RECEIVED_AT_VIST_YES = 1065;
+    public static final int MEDICATION_DISPENSE_RECEIVED_AT_VIST_NO = 1066;
 
     public static final int CONCEPT_ID_NEXT_APPOINTMENT = 5096;
     public static final int CONCEPT_ID_TRANSFERED_OUT = 90306;

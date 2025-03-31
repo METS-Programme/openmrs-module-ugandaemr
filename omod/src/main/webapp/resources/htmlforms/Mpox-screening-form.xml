@@ -1,0 +1,417 @@
+<htmlform formName="Mpox Screening Form"
+		  formDescription="Monkey Pox Screening Form"
+		  formEncounterType="09478ad9-ccc1-4cbe-9e55-473447984158"
+		  formUuid="ba45cff9-b9d5-41d9-beae-0ab78e747eef"
+		  formVersion="4.0.0"
+		  formAddMetadata="yes"
+		  formUILocation="patientDashboard.visitActions"
+		  formOrder="12"
+		  formIcon="icon-medkit"
+		  formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='7c231e1a-1db5-11ea-978f-2e728ce88125')"
+		  formDisplayStyle="Standard"
+		  formLabel="Mpox Screening Form">
+
+	<script type="text/javascript">
+		if (jQuery) {
+		jq(document).ready(function () {
+
+		var vlQualitative ='<lookup expression="fn.latestObs('1305').valueCoded"/>';
+		var vlrecent ='<lookup expression="fn.latestObs('856').valueNumeric"/>';
+
+		//Block Multiple encounter entry on same date
+		blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+
+		disable_fields('other-comorbidities');
+		disable_fields('recent-vl');
+		disable_fields('refferal-facility');
+		disable_fields('ambulance-used');
+
+
+
+		<ifMode mode="ENTER">
+
+			jq('#enable-other-comorbidities').click(function () {
+			if(jq(this).find(':checkbox').prop('checked')) {
+			enable_fields('other-comorbidities');
+			} else {
+			disable_fields('other-comorbidities');
+			}
+			});
+
+			jq('#hiv-status').click(function () {
+			if(jq(this).find(':checkbox').prop('checked')) {
+			enable_fields('recent-vl');
+			} else {
+			disable_fields('recent-vl');
+			}
+			});
+
+			jq('#reffered').click(function () {
+			if(jq(this).find(':checkbox').prop('checked')) {
+			enable_fields('refferal-facility');
+			enable_fields('ambulance-used');
+			} else {
+			disable_fields('refferal-facility');
+			disable_fields('ambulance-used');
+			}
+			});
+
+			jq('#other-comb').click(function () {
+			if(jq(this).find(':checkbox').prop('checked')) {
+			enable_fields('other-comorbidities');
+			} else {
+			disable_fields('other-comorbidities');
+			}
+			});
+
+
+			jq('#has_skin_rash').click(function () {
+			jq(this).find("input[type$='radio']:checked").each(function () {
+			if ($(this).val() == 1065){
+			jq("#criteria-a").removeClass("hidden");
+			}
+			else
+			jq("#criteria-a").addClass("hidden");
+			})
+			});
+
+			jq('#has_skin_rash').click(function () {
+			jq(this).find("input[type$='radio']:checked").each(function () {
+			if ($(this).val() == 1066){
+			jq("#criteria-b").removeClass("hidden");
+			}
+			else
+			jq("#criteria-b").addClass("hidden");
+			})
+			});
+
+
+			jq('#on-art').click(function () { //enable latest vl field
+			jq(this).find("input[type$='radio']:checked").each(function () {
+			if ($(this).val() == 1065){
+			enable_fields('latest-vl');
+			}
+			else
+			enable_fields('latest-vl');
+			})
+			});
+
+			function checkSecondaryScreeningTab() {
+			const riskExpossureYes = jq('#riskExpossure input[type="radio"]:checked').val() == '90003';
+			const multipleSexualPartsYes = jq('#multipleSexualParts input[type="radio"]:checked').val() == '90003';
+			const travelDetailsYes = jq('#travelDetails input[type="radio"]:checked').val() == '90003';
+			const rashYes = jq('#has_skin_rash input[type="radio"]:checked').val() == '1065';
+
+			if (riskExpossureYes || multipleSexualPartsYes || travelDetailsYes || rashYes) {
+			jq("#secondary-screening-tab").removeClass("disabled");
+			} else {
+			jq("#secondary-screening-tab").addClass("disabled");
+			}
+			}
+
+			jq('#riskExpossure input[type="radio"]').on('change', checkSecondaryScreeningTab);
+			jq('#multipleSexualParts input[type="radio"]').on('change', checkSecondaryScreeningTab);
+			jq('#travelDetails input[type="radio"]').on('change', checkSecondaryScreeningTab);
+			jq('#has_skin_rash input[type="radio"]').on('change', checkSecondaryScreeningTab);
+
+			jq('#final-patient-disposition input[type="radio"]').on('change', function () {
+			if (jq(this).val() == '168758') {
+			enable_fields('refferal-facility');
+			enable_fields('ambulance-used');
+			} else {
+			disable_fields('refferal-facility');
+			disable_fields('ambulance-used');
+			}
+			});
+
+			if(vlQualitative == 'Concept #1306') {
+			jq("#recentVL").find("select").val("1306");
+			}
+
+			if(vlQualitative == 'Concept #1301') {
+			jq("#recentVL").find("select").val("1301");
+			}
+
+			if(vlQualitative == 'Concept #1304') {
+			jq("#recentVL").find("select").val("1304");
+			}
+
+			if (vlrecent !== '') {
+			vlrecent = Math.floor(vlrecent);
+			jq("#recentHIVVL input").val(vlrecent);
+			}
+
+		</ifMode>
+
+		<ifMode mode="EDIT">
+
+		</ifMode>
+
+
+		});
+		}
+	</script>
+	<div>
+		<div class="row">
+			<div class="col-md-6">
+				<h1>MPOX SCREENING FORM</h1>
+			</div>
+			<div class="col-md-5"></div>
+			<div class="col-md-1">
+				<submit class="confirm" submitLabel="Save" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<ul class="nav nav-tabs card-header-tabs">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#primary-screening">
+									Primary Screening
+								</a>
+							</li>
+							<li class="nav-item">
+								<a id="secondary-screening-tab" class="nav-link disabled" data-toggle="tab" href="#secondary-screening">
+									Secondary Screening
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="card-body">
+						<div class="tab-content">
+							<div class="tab-pane active" id="primary-screening">
+								<section>
+									<div class="card">
+										<div class="card-header">
+											Screening details
+										</div>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-4" id="visit-date">
+													<label>Screening Date</label>
+													<encounterDate default="today"
+																   disallowMultipleEncountersOnDate="block"/>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Patient has a skin rash?</label>
+													<obs conceptId="512" answerConceptIds="1065,1066"
+														 answerLabels="Yes (Criteria A), No (Criteria B)"
+														 id="has_skin_rash" style="radio" class="horizontal" required="true"/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<span id="criteria-a" class="hidden">
+										<div id="risk-factors-a" class="card primary-screening">
+											<div class="card-header">
+												CRITERIA A: PATIENTS WITH RASH
+											</div>
+											<div class="card-body">
+												<div class="row">
+													<obs conceptId="90251" answerConceptId="90131" answerLabel="Acute onset of fever (Temp >38.5°C)" style="checkbox" class="col-md-12" />
+													<obs conceptId="90251" answerConceptId="90094" answerLabel="Headache" style="checkbox" class="col-md-12" />
+													<obs conceptId="90251" answerConceptId="6034" answerLabel="Muscle pain/body aches" style="checkbox" class="col-md-12" />
+													<obs conceptId="90251" answerConceptId="5226" answerLabel="Profound weakness, or fatigue" style="checkbox"  class="col-md-11" />
+													<obs conceptId="90251" answerConceptId="117" answerLabel="Conjunctivitis (eye symptoms)" style="checkbox" class="col-md-12" />
+													<obs conceptId="90251" answerConceptId="871" answerLabel="Chills or sweats" style="checkbox" class="col-md-12" />
+
+												</div>
+
+												<div class="row">
+													<div class="col-md-6">
+														<label>History of exposure to a probable or confirmed case of MPOX in the 21 days before symptom onset?</label>
+														<obs conceptId="198951" answerConceptIds="90003,90004"
+															 answerLabels="Yes, No"
+															 id="riskExpossure" style="radio" class="horizontal"/>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-md-6">
+														<label>Has had multiple and/or casual sexual partners in the 21 days before symptom onset?</label>
+														<obs conceptId="198960" answerConceptIds="90003,90004"
+															 answerLabels="Yes, No"
+															 id="multipleSexualParts" style="radio" class="horizontal"/>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-md-8">
+														<label>History of international travel/cross-border movement within the last 21 days before the onset of symptoms?</label>
+														<obs conceptId="168763" answerConceptIds="90003,90004"
+															 answerLabels="Yes, No"
+															 id="travelDetails" style="radio" class="horizontal"/>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</span>
+									<span id="criteria-b" class="hidden">
+										<div id="risk-factors-b" class="card secondary-screening">
+											<div class="card-header">
+												CRITERIA B: PATIENTS WITH NO RASH
+											</div>
+											<div class="card-body">
+
+												<div class="row">
+													<div class="col-md-6">
+														<label>History of exposure to a probable or confirmed case of MPOX in the 21 days before symptom onset?</label>
+														<obs conceptId="198951" answerConceptIds="90003,90004"
+															 answerLabels="Yes, No"
+															 id="riskExpossure" style="radio" class="horizontal"/>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-md-6">
+														<label>Has had multiple and/or casual sexual partners in the 21 days before symptom onset?</label>
+														<obs conceptId="198960" answerConceptIds="90003,90004"
+															 answerLabels="Yes, No"
+															 id="multipleSexualParts" style="radio" class="horizontal"/>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-md-8">
+														<label>History of international travel/cross-border movement within the last 21 days before the onset of symptoms?</label>
+														<obs conceptId="168763" answerConceptIds="90003,90004"
+															 answerLabels="Yes, No"
+															 id="travelDetails" style="radio" class="horizontal"/>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</span>
+
+								</section>
+
+							</div>
+
+							<div class="tab-pane" id="secondary-screening">
+								<div class="card">
+									<div class="card-header">
+										Cardinal MPOX signs: any one of the following
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<obs conceptId="198954" answerConceptId="198952" answerLabel="Lesions in one stage of development" style="checkbox" class="col-md-12" />
+											<obs conceptId="198954" answerConceptId="198953" answerLabel="Lesions more dense on face" style="checkbox" class="col-md-12" />
+											<obs conceptId="198954" answerConceptId="161" answerLabel="LYMPHADENOPATHY" style="checkbox" class="col-md-12" />
+
+										</div>
+
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header">
+										Co-morbid Conditions
+									</div>
+									<div class="card-body">
+										<table>
+											<tbody>
+												<tr>
+													<td>
+														<label>ART No.</label>
+														<patient field="identifier"
+																 identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" id="artNo" required="false"/>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<label>Most recent Viral Load Qualitative</label>
+														<obs id="recentVL" class="long-value-select" conceptId="1305"
+															 answerConceptIds="1306,1301,1304"
+															 answerLabels="Target Not Detected,DETECTED,POOR SAMPLE QUALITY"/>
+													</td>
+												</tr>
+
+												<tr>
+													<td>
+														<label>Most recent Viral Load</label>
+														<obs id="recentHIVVL" class="text" conceptId="856"/>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header">
+										Other co-morbidities
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<obs conceptId="166319" answerConceptId="116030" answerLabel="Cancer" style="checkbox" class="col-md-12" />
+											<obs conceptId="166319" answerConceptId="117399" answerLabel="Hypertension" style="checkbox" class="col-md-12" />
+											<obs conceptId="166319" answerConceptId="58" answerLabel="TUBERCULOSIS" style="checkbox" class="col-md-12" />
+											<obs conceptId="166319" answerConceptId="166318" answerLabel="diabetes" style="checkbox" class="col-md-12" />
+											<obs conceptId="198958" answerConceptId="90002" id="other-comb" style="checkbox" answerLabel="OTHER SPECIFY" class="col-md-12" />
+
+											<div class="col-md-4">
+												<obs id="other-comorbidities" conceptId="166297" />
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="card">
+									<div class="card-header">
+										STI SYMPTOMS
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<obs conceptId="198958" answerConceptId="5993" answerLabel="Genital Discharge" style="checkbox" class="col-md-12" />
+											<obs conceptId="198958" answerConceptId="99634" answerLabel="Genital ulcers/rash/blisters" style="checkbox" class="col-md-12" />
+											<obs conceptId="198958" answerConceptId="198956" answerLabel="Anogenital blisters/sores" style="checkbox" class="col-md-12" />
+											<obs conceptId="198958" answerConceptId="198957" answerLabel="Anogenital Bleeding" style="checkbox" class="col-md-12" />
+										</div>
+									</div>
+								</div>
+
+
+								<div class="card">
+									<div class="card-header">
+										Final Patient Disposition
+									</div>
+									<div class="card-body" >
+										<div class="row">
+
+											<obs conceptId="198959" answerConceptIds="166313,168758"
+												 answerLabels="Transferred to Isolation Unit in the same Facility, Referred to Isolation Unit in another Facility"
+												 id="final-patient-disposition" style="radio" class="horizontal"/>
+
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<label>Referral Facility</label>
+												<obs conceptId="167723" id="refferal-facility"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<label>Ambulance Used?</label>
+												<obs conceptId="198961" answerConceptIds="90003,90004"
+													 answerLabels="Yes, No"
+													 id="ambulance-used" style="radio" class="horizontal"/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</htmlform>

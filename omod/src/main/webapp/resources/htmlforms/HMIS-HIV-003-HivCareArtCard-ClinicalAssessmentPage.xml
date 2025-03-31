@@ -2692,6 +2692,51 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-header">NCDs (Non-communicable Diseases) Status</div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>HTN Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198894"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Diabetes Mellitus Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198900"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>MH-A/D Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198879"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>MH-A/S Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198884"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="card ">
                                             <div class="card-header">Side effects of ART</div>
                                             <div class="card-body">
@@ -3364,9 +3409,11 @@
                                                              answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
                                                              class="long-value-select" required="required"/>
                                                     </div>
-                                                    <div class="hidden" id="dsdm_approach">
-                                                        <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
-                                                    </div>
+                                                    <ifMode mode="EDIT" include="false">
+                                                        <div class="hidden" id="dsdm_approach">
+                                                            <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                                        </div>
+                                                    </ifMode>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-1">
@@ -3800,6 +3847,55 @@
                                                                 </div>
                                                             </div>
                                                            </obsgroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header">NCDs (Non-communicable Diseases) Status</div>
+                                                        <div class="card-body">
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>HTN Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198894"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>Diabetes Mellitus Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198900"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>MH-A/D Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198879"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>MH-A/S Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198884"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4828,9 +4924,11 @@
                                                  answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
                                                  labelText="Approach" class="horizontal long-value-select"/>
                                         </div>
-                                        <div class="hidden" id="dsdm_approach">
-                                            <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
-                                        </div>
+                                        <ifMode mode="EDIT" include="false">
+                                            <div class="hidden" id="dsdm_approach">
+                                                <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                            </div>
+                                        </ifMode>
                                     </div>
                                     <div class="col-md-4">
                                         <obs id="duration-on-art" conceptId="99024"

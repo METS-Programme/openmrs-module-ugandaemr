@@ -22,7 +22,7 @@
               "type": "testOrder",
               "questionOptions": {
                 "rendering": "repeating",
-                "orderSettingUuid": "INPATIENT",
+                "orderSettingUuid": "OUTPATIENT",
                 "orderType": "testorder",
                 "concept": "dca07f4a-30ab-102d-86b0-7a5022ba4115",
                 "selectableOrders": [
@@ -44,6 +44,11 @@
                   {
                     "concept": "5faffe89-397e-470c-a32b-e07d962d01b3",
                     "label": "Microscopy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+                    "label": "VL",
                     "conceptMappings": []
                   },
                   {
@@ -517,6 +522,291 @@
                     "conceptMappings": []
                   }
                 ]
+              }
+            },
+            {
+              "label": "Indication for viral load testing",
+              "type": "obs",
+              "id": "indicationVlTesting",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "59f36196-3ebe-4fea-be92-6fc9551c3a11",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "67fab588-d3b0-4aa5-a165-ebd3b00b285b",
+                    "label": "12 months after ART initiation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "224c94e0-2b8b-4deb-892c-04151ee0e885",
+                    "label": "6 months after ART initiation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f3cdf0b6-321a-493d-a7e8-9a2b2a077f72",
+                    "label": "Suspected treatment failure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bab153f4-7679-4040-9716-6879dffef905",
+                    "label": "Special Considerations",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "20ab2ec5-5390-4461-b85f-69bf650ce992",
+                    "label": "Repeat (after IAC)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "68b58a80-af4e-43a5-a70d-113747a6cbb7",
+                    "label": "Routine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "588ac57f-a4d0-47c2-9852-92502194ec4a",
+                    "label": "1st ANC visit",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
+              }
+            },
+            {
+              "label": "Date of Treat Initiation(ART start date)",
+              "type": "obs",
+              "required": true,
+              "id": "treatInitiation",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs.valueDateTime)"
+                }
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
+              }
+            },
+            {
+              "label": "Current WHO Stage",
+              "type": "obs",
+              "required": true,
+              "id": "currentWHOStage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE 1"
+                  },
+                  {
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE 2"
+                  },
+                  {
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE 3"
+                  },
+                  {
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE 4"
+                  },
+                  {
+                    "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE T1"
+                  },
+                  {
+                    "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE T2"
+                  },
+                  {
+                    "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE T3"
+                  },
+                  {
+                    "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV WHO CLINICAL STAGE T4"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
+              }
+            },
+            {
+              "label": "Start Date of current regimen",
+              "type": "obs",
+              "required": true,
+              "id": "regimenStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs.valueDateTime)"
+                }
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
+              }
+            },
+            {
+              "label": "Is Mother Pregnant",
+              "type": "obs",
+              "required": true,
+              "id": "preg",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "(isEmpty(testsOrdered) || testsOrdered !== '1eb05918-f50c-4cad-a827-3c78f296a10a') || api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115') !== null || sex !== 'F'"
+              }
+            },
+            {
+              "label": "Is mother breast feeding?",
+              "type": "obs",
+              "required": true,
+              "id": "breastFeeding",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "(isEmpty(testsOrdered) || testsOrdered !== '1eb05918-f50c-4cad-a827-3c78f296a10a') || sex !== 'F'"
+              }
+            },
+            {
+              "label": "TB Status",
+              "type": "obs",
+              "required": true,
+              "id": "activeTB",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "dcdaccc1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No signs or symptoms of TB"
+                  },
+                  {
+                    "concept": "2c8ddc0b-d92d-45fa-9c6f-23e640fb4d24",
+                    "label": "Confirmed TB not on Treatment"
+                  },
+                  {
+                    "concept": "dcdaa6b4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Currently on TB treatment"
+                  },
+                  {
+                    "concept": "dcdaaae4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CURRENTLY ON INH PROPHYLAXIS FOR TB"
+                  },
+                  {
+                    "concept": "dcdac38b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Diagnosed with TB"
+                  },
+                  {
+                    "concept": "dcdaaf0f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Suspect TB - referred or sputum sent"
+                  },
+                  {
+                    "concept": "e2fd439a-619e-4067-a2f1-8e2454120a58",
+                    "label": "TB Diagnosed - Chest Xray"
+                  },
+                  {
+                    "concept": "1435dcb2-9470-4b69-8d05-199e5f13044c",
+                    "label": "TB Diagnosed - Clinically diagnosed"
+                  },
+                  {
+                    "concept": "36cd82a6-370d-4188-bf69-ad8ebbc86d37",
+                    "label": "TB Diagnosed - Gene Xpert"
+                  },
+                  {
+                    "concept": "d941bfbc-7546-464b-90ff-b8e28d247d47",
+                    "label": "TB Diagnosed - TB LAM"
+                  },
+                  {
+                    "concept": "d5a86db5-3e7f-4344-85d7-572c8bb6b966",
+                    "label": "TB Diagnosed - TB Microscopy"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
+              }
+            },
+            {
+              "label": "ARV Adherence",
+              "type": "obs",
+              "required": true,
+              "id": "arvAdherence",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce03b2f-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",
+                    "label": "FAIR ADHERENCE"
+                  },
+                  {
+                    "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
+                    "label": "GOOD ADHERENCE"
+                  },
+                  {
+                    "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "POOR ADHERENCE"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
               }
             }
           ]

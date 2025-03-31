@@ -318,32 +318,7 @@
 			<column name="uuid" value="1434dd72-1ff7-11ea-978f-2e728ce88125" />
 		</insert>
 	</changeSet>
-
-    <changeSet id="ugandaemr-08022021-4" author="slubwama">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*) FROM scheduler_task_config
-                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.MigrateARTPatientTransfersTask'
-            </sqlCheck>
-        </preConditions>
-		<sql>DELETE FROM scheduler_task_config where uuid='8b5caeea-2c3b-11e8-b467-0ed5f89f718b'</sql>
-		<comment>Inserting ART Summary Patient Transfer Migration into 'schedule_task_config' table</comment>
-        <insert tableName="scheduler_task_config">
-            <column name="name" value="ART Summary Patient Transfer Migration" />
-            <column name="description" value="Migrates Patients Transfer Data and Created a new Transfer out encounter" />
-            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.MigrateARTPatientTransfersTask" />
-            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-            <column name="start_time" valueDate="2018-03-20T12:59:59" />
-            <column name="repeat_interval" value="86400" />
-            <column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-            <column name="created_by" value="1" />
-            <column name="start_on_startup" value="0"/>
-            <column name="started" value="1"/>
-            <column name="uuid" value="8b5caeea-2c3b-11e8-b467-0ed5f89f718b" />
-        </insert>
-    </changeSet>
-
-
+	
 	<changeSet id="ugandaemr-08-08-2020-1155" author="mmwanje">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
@@ -913,7 +888,27 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20240530-1455" author="slubwama">
+	<changeSet id="ugandaemr-20240724-1455-01" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*)  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*)  from concept_name where date_created="2023-11-08 13:34:24";
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*) from concept_name where concept_id=169007;
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*)  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept.date_created="2023-11-07 12:59:26";
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept.date_created="2023-11-08 09:19:30";
+			</sqlCheck>
+		</preConditions>
 		<comment>Delete previous cause of death concepts</comment>
 		<sql>
 			delete  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
@@ -921,7 +916,7 @@ VALUES
 			delete from concept_name where concept_id=169007;
 			delete  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
 			delete from concept where concept.date_created="2023-11-07 12:59:26";
-			delete from concept where concept.date_created="2023-11-08 09:19:30" ;
+			delete from concept where concept.date_created="2023-11-08 09:19:30";
 		</sql>
 	</changeSet>
 
@@ -1045,6 +1040,198 @@ VALUES
 			update concept_name set concept_name.uuid="209ebadb-d3df-489a-bd10-7171e21c4869", concept_name.concept_name_id=198845, concept_name.concept_id=186352  where concept_id in (select concept.concept_id from  concept where concept.uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00");
 			update concept set concept_id=186352 where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
 		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241015-1111" author="mmwanje">
+		<preConditions onFail="CONTINUE">
+			<tableExists tableName="bed"/>
+			<tableExists tableName="bed_location_map"/>
+			<tableExists tableName="bed_patient_assignment_map"/>
+			<tableExists tableName="bed_tag"/>
+			<tableExists tableName="bed_tag_map"/>
+			<tableExists tableName="bed_type"/>
+		</preConditions>
+
+		<comment>Dropping bed management module related tables</comment>
+
+		<sql>SET FOREIGN_KEY_CHECKS=0;</sql>
+		<dropTable tableName="bed"/>
+		<dropTable tableName="bed_location_map"/>
+		<dropTable tableName="bed_patient_assignment_map"/>
+		<dropTable tableName="bed_tag"/>
+		<dropTable tableName="bed_tag_map"/>
+		<dropTable tableName="bed_type"/>
+		<sql>SET FOREIGN_KEY_CHECKS=1;</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241029-2256" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(property) from global_property where property="webservices.rest.maxResultsAbsolute";
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(property) from global_property where property="webservices.rest.maxResultsDefault";
+			</sqlCheck>
+		</preConditions>
+		<comment>UPDATE GLOBAL PROPERTY OF webservices.rest to UgandaEMR Defaults.</comment>
+		<sql>
+			UPDATE global_property set property_value=500 where property="webservices.rest.maxResultsAbsolute";
+			UPDATE global_property set property_value=100 where property="webservices.rest.maxResultsDefault";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241031-1130" author="dsemujju">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from scheduler_task_config where uuid = "8c17b376-1a2b-11e1-a51a-00248140a5eb";
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete the following redundant sync task -  Auto close visits task
+		</comment>
+		<sql>
+			delete from scheduler_task_config where uuid ="8c17b376-1a2b-11e1-a51a-00248140a5eb";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241031-1131" author="dsemujju">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from scheduler_task_config where uuid = "1428cdc3-b340-4c86-8553-7886b88dc4c2";
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete the following redundant sync task -  Intialize logic rule providers
+		</comment>
+		<sql>
+			delete from scheduler_task_config where uuid = "1428cdc3-b340-4c86-8553-7886b88dc4c2";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241031-1132" author="dsemujju">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from scheduler_task_config where uuid = "eb9e447d-5ef9-4771-9e88-21916340b69c";
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete redundant sync task - Process HL7 task
+		</comment>
+		<sql>
+			delete from scheduler_task_config where uuid = "eb9e447d-5ef9-4771-9e88-21916340b69c";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241031-1133" author="dsemujju">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from scheduler_task_config where uuid = "8b5caeea-2c3b-11e8-b467-0ed5f89f718b";
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete redundant sync task - Art summary patient transfer migration
+		</comment>
+		<sql>
+			delete from scheduler_task_config where uuid = "8b5caeea-2c3b-11e8-b467-0ed5f89f718b";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241031-1134" author="dsemujju">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete redundant sync task - Sync FHIR records a given server
+		</comment>
+		<sql>
+			delete from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20241101-1134" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="6">
+				select count(*) from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete concept set of DSDM.
+		</comment>
+		<sql>
+			delete from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
+		</sql>
+	</changeSet>
+
+
+	<changeSet id="ugandaemr-2025-03-29-1032" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.DownloadFormsAndConceptsTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Download Forms and Concepts into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Download Forms and Concepts" />
+			<column name="description" value="Download Forms and Concepts" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.DownloadFormsAndConceptsTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2025-03-28T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="0"/>
+			<column name="uuid" value="7579cac4-0c74-11f0-9e19-da924fd23489" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="ugandaemr-2025-03-30-1032" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.initializeFormsAndMetaDataTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Initialize Forms And MetaData Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Initialize Forms And MetaData" />
+			<column name="description" value="Initialize Forms And MetaData" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.initializeFormsAndMetaDataTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2025-03-29T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="0"/>
+			<column name="uuid" value="cd156b1e-0d1c-11f0-9e19-da924fd23489" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="ugandaemr-2025-03-30-5032" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpdateFrontendTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Update Frontend" />
+			<column name="description" value="This updates the Frontend" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpdateFrontendTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2025-03-29T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="0"/>
+			<column name="uuid" value="b71c4d78-0d7b-11f0-9e19-da924fd23489" />
+		</insert>
 	</changeSet>
 </databaseChangeLog>
 

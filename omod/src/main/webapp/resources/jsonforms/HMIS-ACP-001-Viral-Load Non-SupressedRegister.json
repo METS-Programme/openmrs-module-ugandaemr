@@ -1,10 +1,10 @@
 {
   "name": "HMIS ACP 001 - Viral Load Non Suppressed Form",
   "version": "4.0.0",
-  "description": "All Viral Loads that are non suppressed",
-  "encounter": "",
+  "description": "Viral Load Non Suppressed Follow up",
+  "encounter": "Viral Load Non Suppressed Encounter",
   "encounterType": "38cb2232-30fc-4b1f-8df1-47c795771ee9",
-  "uuid": "79cab593-632b-4193-b686-6de2efa4cc7c",
+  "uuid": "32f56e18-8dbf-4f17-8d09-d1fa3fb84843",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -13,11 +13,49 @@
       "label": "HMIS ACP 001 - Viral Load Non Suppressed Form",
       "sections": [
         {
+          "label": "Client Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Serial Number",
+              "type": "obs",
+              "required": "true",
+              "id": "serialNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of Registration",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "registrationDate"
+            },
+            {
+              "type": "patientIdentifier",
+              "label": "Client Clinic ID",
+              "questionInfo": "",
+              "id": "artNumber",
+              "default": "",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              }
+            }
+          ]
+        },
+        {
           "label": "Non Suppressed VLResults",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "EMTCT",
+              "label": "eMTCT",
               "type": "obs",
               "id": "emtct",
               "questionOptions": {
@@ -25,12 +63,12 @@
                 "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
                 "answers": [
                   {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "YES"
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
                   },
                   {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NO"
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
                   }
                 ]
               },
@@ -40,11 +78,11 @@
               }
             },
             {
-              "label": "Pregnancy",
+              "label": "Pregnant Status",
               "type": "obs",
               "id": "pregnant",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "multiCheckbox",
                 "concept": "cd48b900-dd21-45ce-ae6b-b38ad2a3a695",
                 "conceptMappings": [],
                 "answers": [
@@ -57,15 +95,253 @@
                     "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
                     "label": "BF - Breast Feeding",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "cbbbe73a-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Not pregnant nor breast feeding",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable",
+                    "conceptMappings": []
                   }
                 ]
               },
               "hide": {
-                "hideWhenExpression": "sex !== 'F'"
+                "hideWhenExpression": "isEmpty(emtct) || emtct !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
-              "label": "Date of the sample collection",
+              "label": "Regimen at VL test set",
+              "type": "obsGroup",
+              "id": "vlRegimenSet",
+              "questionOptions": {
+                "concept": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Regimen At VL test",
+                  "type": "obs",
+                  "required": "true",
+                  "id": "regmimenAtVLtest",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "107bef04-bf05-4f41-9260-b167c1108f7e",
+                    "calculate": {
+                      "calculateExpression": "resolve(api.getLatestObs(patient?.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueCodeableConcept?.coding[0]?.code)"
+                    },
+                    "answers": [
+                      {
+                        "concept": "25186d70-ed8f-486c-83e5-fc31cbe95630",
+                        "label": "ABC-3TC-ATV/r"
+                      },
+                      {
+                        "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                        "label": "ABC-3TC-EFV"
+                      },
+                      {
+                        "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                        "label": "ABC-3TC-LPV/r"
+                      },
+                      {
+                        "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                        "label": "ABC-3TC-NVP"
+                      },
+                      {
+                        "concept": "faf13d3c-7ca8-4995-ab29-749f3960b83d",
+                        "label": "ABC-DDI-ATV/r"
+                      },
+                      {
+                        "concept": "dd2b9181-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI-LPV/R"
+                      },
+                      {
+                        "concept": "dd2b97d3-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI-NFV"
+                      },
+                      {
+                        "concept": "dd2b9e11-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI-SQV/R"
+                      },
+                      {
+                        "concept": "dd2b452c-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI(250)-LPV/R"
+                      },
+                      {
+                        "concept": "dd2b53d6-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI(250)-SQV/R"
+                      },
+                      {
+                        "concept": "dd2b4d82-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI(400)-LPV/R"
+                      },
+                      {
+                        "concept": "dd2b5a01-30ab-102d-86b0-7a5022ba4115",
+                        "label": "ABC-DDI(400)-SQV/R"
+                      },
+                      {
+                        "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                        "label": "ABC/3TC/DTG"
+                      },
+                      {
+                        "concept": "d4393bd0-3a9e-4716-8968-1057c58c32bc",
+                        "label": "AZT-3TC-ATV/r"
+                      },
+                      {
+                        "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                        "label": "AZT-3TC-EFV"
+                      },
+                      {
+                        "concept": "f30e9dae-cc6a-4669-98d5-ad25b8a3ce9c",
+                        "label": "AZT-3TC-LPV/r"
+                      },
+                      {
+                        "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                        "label": "AZT-3TC-NVP"
+                      },
+                      {
+                        "concept": "f00e5ff7-73bb-4385-8ee1-ea7aa772ec3e",
+                        "label": "AZT-ABC-LPV/r"
+                      },
+                      {
+                        "concept": "4a608d68-516f-44d2-9e0b-1783dc0d870e",
+                        "label": "AZT-DDI-LPV/r"
+                      },
+                      {
+                        "concept": "942e427c-7a3b-49b6-97f3-5cdbfeb8d0e3",
+                        "label": "AZT-DDI(250)-LPV/r"
+                      },
+                      {
+                        "concept": "29439504-5f5d-49ac-b8e4-258adc08c67a",
+                        "label": "AZT-DDI(400)-LPV/r"
+                      },
+                      {
+                        "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                        "label": "AZT/3TC/DTG"
+                      },
+                      {
+                        "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                        "label": "D4T-3TC-EFV"
+                      },
+                      {
+                        "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                        "label": "D4T-3TC-NVP"
+                      },
+                      {
+                        "concept": "dd2b29b1-30ab-102d-86b0-7a5022ba4115",
+                        "label": "D4T(30)-3TC-EFV"
+                      },
+                      {
+                        "concept": "dd2b1d43-30ab-102d-86b0-7a5022ba4115",
+                        "label": "D4T(30)-3TC-NVP"
+                      },
+                      {
+                        "concept": "dd2b2fec-30ab-102d-86b0-7a5022ba4115",
+                        "label": "D4T(40)-3TC-EFV"
+                      },
+                      {
+                        "concept": "dd2b2384-30ab-102d-86b0-7a5022ba4115",
+                        "label": "D4T(40)-3TC-NVP"
+                      },
+                      {
+                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Other Specify"
+                      },
+                      {
+                        "concept": "fe78521e-eb7a-440f-912d-0eb9bf2d4b2c",
+                        "label": "TDF-3TC-ATV/r"
+                      },
+                      {
+                        "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                        "label": "TDF-3TC-EFV"
+                      },
+                      {
+                        "concept": "4b9c639e-3d06-4f2a-9c34-dd07e44f4fa6",
+                        "label": "TDF-3TC-LPV/r"
+                      },
+                      {
+                        "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                        "label": "TDF-3TC-NVP"
+                      },
+                      {
+                        "concept": "d239c3d5-d296-4458-b49d-8501258886e5",
+                        "label": "TDF-DDI-LPV/R"
+                      },
+                      {
+                        "concept": "e391909f-6682-4132-a08e-c481127cdeda",
+                        "label": "TDF-DDI-SQV/R"
+                      },
+                      {
+                        "concept": "dd2b603c-30ab-102d-86b0-7a5022ba4115",
+                        "label": "TDF-DDI(250)-LPV/R"
+                      },
+                      {
+                        "concept": "dd2b7604-30ab-102d-86b0-7a5022ba4115",
+                        "label": "TDF-DDI(250)-SQV/R"
+                      },
+                      {
+                        "concept": "dd2b6f61-30ab-102d-86b0-7a5022ba4115",
+                        "label": "TDF-DDI(400)-LPV/R"
+                      },
+                      {
+                        "concept": "dd2b7c12-30ab-102d-86b0-7a5022ba4115",
+                        "label": "TDF-DDI(400)-SQV/R"
+                      },
+                      {
+                        "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                        "label": "TDF-FTC-EFV"
+                      },
+                      {
+                        "concept": "b06bdb63-dd08-4b80-af5a-d17f6b3062a5",
+                        "label": "TDF-FTC-LPV/r"
+                      },
+                      {
+                        "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                        "label": "TDF-FTC-NVP"
+                      },
+                      {
+                        "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                        "label": "TDF/3TC/DTG"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Other Current Regimen",
+                  "type": "obs",
+                  "id": "otherCurrentRegimen",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(regmimenAtVLtest) || regmimenAtVLtest !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                  }
+                },
+                {
+                  "label": "Current Regimen Start Date",
+                  "type": "obs",
+                  "id": "current RegimenStartDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "163172AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "conceptMappings": []
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Date of VL sample collection",
               "type": "obs",
               "required": "true",
               "id": "sampleCollectionDate",
@@ -76,7 +352,29 @@
               "validators": [
                 {
                   "type": "date",
-                  "allowFutureDates": "true"
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "IAC initiation set",
+              "type": "obsGroup",
+              "id": "iacInitiationSet",
+              "questionOptions": {
+                "concept": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "VL Results at Initiation of IAC (copies/ml)",
+                  "type": "obs",
+                  "required": "true",
+                  "id": "vlResultsAtInitiation",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                    "answers": []
+                  }
                 }
               ]
             },
@@ -88,33 +386,6 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "false"
-                }
-              ]
-            },
-            {
-              "label": "VL Results at Initiation of IAC (copies/ml)",
-              "type": "obs",
-              "required": "true",
-              "id": "vlResultsAtInitiation",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
-                "answers": []
-              }
-            },
-            {
-              "label": "Date Results given to Client",
-              "type": "obs",
-              "required": "true",
-              "id": "dateResultsGiven",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "163156AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "validators": [
                 {
@@ -144,223 +415,11 @@
               "id": "cd4TestResult",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115"
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                "min": "0",
+                "max": "4000"
               },
               "validators": []
-            },
-            {
-              "label": "Regimen At VL test",
-              "type": "obs",
-              "required": "true",
-              "id": "regmimenAtVLtest",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
-                "answers": [
-                  {
-                    "concept": "25186d70-ed8f-486c-83e5-fc31cbe95630",
-                    "label": "ABC-3TC-ATV/r"
-                  },
-                  {
-                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
-                    "label": "ABC-3TC-EFV"
-                  },
-                  {
-                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
-                    "label": "ABC-3TC-LPV/r"
-                  },
-                  {
-                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
-                    "label": "ABC-3TC-NVP"
-                  },
-                  {
-                    "concept": "faf13d3c-7ca8-4995-ab29-749f3960b83d",
-                    "label": "ABC-DDI-ATV/r"
-                  },
-                  {
-                    "concept": "dd2b9181-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI-LPV/R"
-                  },
-                  {
-                    "concept": "dd2b97d3-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI-NFV"
-                  },
-                  {
-                    "concept": "dd2b9e11-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI-SQV/R"
-                  },
-                  {
-                    "concept": "dd2b452c-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI(250)-LPV/R"
-                  },
-                  {
-                    "concept": "dd2b53d6-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI(250)-SQV/R"
-                  },
-                  {
-                    "concept": "dd2b4d82-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI(400)-LPV/R"
-                  },
-                  {
-                    "concept": "dd2b5a01-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ABC-DDI(400)-SQV/R"
-                  },
-                  {
-                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
-                    "label": "ABC/3TC/DTG"
-                  },
-                  {
-                    "concept": "d4393bd0-3a9e-4716-8968-1057c58c32bc",
-                    "label": "AZT-3TC-ATV/r"
-                  },
-                  {
-                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
-                    "label": "AZT-3TC-EFV"
-                  },
-                  {
-                    "concept": "f30e9dae-cc6a-4669-98d5-ad25b8a3ce9c",
-                    "label": "AZT-3TC-LPV/r"
-                  },
-                  {
-                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
-                    "label": "AZT-3TC-NVP"
-                  },
-                  {
-                    "concept": "f00e5ff7-73bb-4385-8ee1-ea7aa772ec3e",
-                    "label": "AZT-ABC-LPV/r"
-                  },
-                  {
-                    "concept": "4a608d68-516f-44d2-9e0b-1783dc0d870e",
-                    "label": "AZT-DDI-LPV/r"
-                  },
-                  {
-                    "concept": "942e427c-7a3b-49b6-97f3-5cdbfeb8d0e3",
-                    "label": "AZT-DDI(250)-LPV/r"
-                  },
-                  {
-                    "concept": "29439504-5f5d-49ac-b8e4-258adc08c67a",
-                    "label": "AZT-DDI(400)-LPV/r"
-                  },
-                  {
-                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
-                    "label": "AZT/3TC/DTG"
-                  },
-                  {
-                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
-                    "label": "D4T-3TC-EFV"
-                  },
-                  {
-                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
-                    "label": "D4T-3TC-NVP"
-                  },
-                  {
-                    "concept": "dd2b29b1-30ab-102d-86b0-7a5022ba4115",
-                    "label": "D4T(30)-3TC-EFV"
-                  },
-                  {
-                    "concept": "dd2b1d43-30ab-102d-86b0-7a5022ba4115",
-                    "label": "D4T(30)-3TC-NVP"
-                  },
-                  {
-                    "concept": "dd2b2fec-30ab-102d-86b0-7a5022ba4115",
-                    "label": "D4T(40)-3TC-EFV"
-                  },
-                  {
-                    "concept": "dd2b2384-30ab-102d-86b0-7a5022ba4115",
-                    "label": "D4T(40)-3TC-NVP"
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
-                  },
-                  {
-                    "concept": "fe78521e-eb7a-440f-912d-0eb9bf2d4b2c",
-                    "label": "TDF-3TC-ATV/r"
-                  },
-                  {
-                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
-                    "label": "TDF-3TC-EFV"
-                  },
-                  {
-                    "concept": "4b9c639e-3d06-4f2a-9c34-dd07e44f4fa6",
-                    "label": "TDF-3TC-LPV/r"
-                  },
-                  {
-                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
-                    "label": "TDF-3TC-NVP"
-                  },
-                  {
-                    "concept": "d239c3d5-d296-4458-b49d-8501258886e5",
-                    "label": "TDF-DDI-LPV/R"
-                  },
-                  {
-                    "concept": "e391909f-6682-4132-a08e-c481127cdeda",
-                    "label": "TDF-DDI-SQV/R"
-                  },
-                  {
-                    "concept": "dd2b603c-30ab-102d-86b0-7a5022ba4115",
-                    "label": "TDF-DDI(250)-LPV/R"
-                  },
-                  {
-                    "concept": "dd2b7604-30ab-102d-86b0-7a5022ba4115",
-                    "label": "TDF-DDI(250)-SQV/R"
-                  },
-                  {
-                    "concept": "dd2b6f61-30ab-102d-86b0-7a5022ba4115",
-                    "label": "TDF-DDI(400)-LPV/R"
-                  },
-                  {
-                    "concept": "dd2b7c12-30ab-102d-86b0-7a5022ba4115",
-                    "label": "TDF-DDI(400)-SQV/R"
-                  },
-                  {
-                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
-                    "label": "TDF-FTC-EFV"
-                  },
-                  {
-                    "concept": "b06bdb63-dd08-4b80-af5a-d17f6b3062a5",
-                    "label": "TDF-FTC-LPV/r"
-                  },
-                  {
-                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
-                    "label": "TDF-FTC-NVP"
-                  },
-                  {
-                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
-                    "label": "TDF/3TC/DTG"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Other Specify",
-              "type": "obs",
-              "id": "otherSpecify",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "isEmpty(regmimenAtVLtest) || regmimenAtVLtest !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "Regimen Start Date",
-              "type": "obs",
-              "required": "true",
-              "id": "regimenStartDate",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "163172AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "false"
-                }
-              ]
             },
             {
               "label": "Serum Crag Screening",
@@ -383,17 +442,70 @@
               "validators": []
             },
             {
-              "label": "Serum Crag Screening Result",
+              "label": "Serum CrAg Screening Result",
               "type": "obs",
               "id": "serumCragScreeningResult",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "164986AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "rendering": "radio",
+                "concept": "164986AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  }
+                ]
               },
               "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(serumCragScreening) || serumCragScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
+            },
+            {
+              "label": "Diagnosed with Cryptococcal Meningitis (CCM)",
+              "type": "obs",
+              "id": "ccmDiagnosis",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1f7dfe47-26a8-480d-a3db-5571cd6af3b9",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(serumCragScreeningResult) || serumCragScreeningResult !== 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Treated for CCM",
+              "type": "obs",
+              "id": "ccmTreatment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "bbf8b6ec-d0dc-4f8d-a597-b4547ee06d15",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
             },
             {
               "label": "Treated with Fluconazole",
@@ -413,18 +525,21 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(serumCragScreeningResult) || serumCragScreeningResult !== 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
-              "label": "TB LAM Test",
+              "label": "TB LAM Screening",
               "type": "obs",
-              "id": "tbTest",
+              "id": "tbLamScreening",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "8f1ac242-b497-41eb-b140-36ba6ab2d4d4",
                 "answers": [
                   {
@@ -434,6 +549,13 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable",
+                    "hide": {
+                      "hideWhenExpression": "cd4TestResult < 200"
+                    }
                   }
                 ]
               },
@@ -444,30 +566,22 @@
               "type": "obs",
               "id": "tbResult",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "066b84a0-e18f-4cdd-a0d7-189454f4c7a4",
                 "answers": [
                   {
-                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NEGATIVE"
-                  },
-                  {
                     "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
-                    "label": "POSITIVE"
+                    "label": "Positive"
                   },
                   {
-                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
-                  },
-                  {
-                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT DONE"
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
                   }
                 ]
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(tbTest) || tbTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(tbLamScreening) || tbLamScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
@@ -475,73 +589,32 @@
               "type": "obs",
               "id": "tbTreatment",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
                 "answers": [
                   {
-                    "concept": "2c8ddc0b-d92d-45fa-9c6f-23e640fb4d24",
-                    "label": "Confirmed TB not on Treatment"
-                  },
-                  {
-                    "concept": "dcdaaae4-30ab-102d-86b0-7a5022ba4115",
-                    "label": "CURRENTLY ON INH PROPHYLAXIS FOR TB"
-                  },
-                  {
                     "concept": "dcdaa6b4-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Currently on TB treatment"
+                    "label": "Yes"
                   },
                   {
-                    "concept": "dcdac38b-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Diagnosed with TB"
-                  },
-                  {
-                    "concept": "dcdaccc1-30ab-102d-86b0-7a5022ba4115",
-                    "label": "No signs or symptoms of TB"
-                  },
-                  {
-                    "concept": "dcdaaf0f-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Suspect TB - referred or sputum sent"
-                  },
-                  {
-                    "concept": "e2fd439a-619e-4067-a2f1-8e2454120a58",
-                    "label": "TB Diagnosed - Chest Xray"
-                  },
-                  {
-                    "concept": "1435dcb2-9470-4b69-8d05-199e5f13044c",
-                    "label": "TB Diagnosed - Clinically diagnosed"
-                  },
-                  {
-                    "concept": "36cd82a6-370d-4188-bf69-ad8ebbc86d37",
-                    "label": "TB Diagnosed - Gene Xpert"
-                  },
-                  {
-                    "concept": "ff246b26-f2d1-45f6-9e33-385eb8d19d3f",
-                    "label": "TB Diagnosed - Others"
-                  },
-                  {
-                    "concept": "d941bfbc-7546-464b-90ff-b8e28d247d47",
-                    "label": "TB Diagnosed - TB LAM"
-                  },
-                  {
-                    "concept": "d5a86db5-3e7f-4344-85d7-572c8bb6b966",
-                    "label": "TB Diagnosed - TB Microscopy"
-                  },
-                  {
-                    "concept": "031d9b15-62d5-4f73-a374-5503f0421427",
-                    "label": "TB Treatment Completed"
+                    "concept": "2c8ddc0b-d92d-45fa-9c6f-23e640fb4d24",
+                    "label": "No"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(tbResult) || tbResult !== 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
-              "label": "Restart IAC",
+              "label": "Histoplasmosis Screening",
               "type": "obs",
-              "required": "true",
-              "id": "restartIAC",
+              "required": "false",
+              "id": "histoplasmosisScreening",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "164988AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "29924e7f-39c0-493b-8f0a-cb8c08e7a924",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -554,18 +627,103 @@
                 ]
               },
               "validators": []
+            },
+            {
+              "label": "Histoplasmosis Results",
+              "type": "obs",
+              "id": "histoplasmosisResults",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "aae2c3c1-5697-4ad0-9abb-99864a167d26",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "histoplasmosisScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Aspergillosis Screening",
+              "type": "obs",
+              "id": "aspergillosisScreening",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "93e9b081-96df-4248-a13a-f138d29821b1",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Aspergillosis Results",
+              "type": "obs",
+              "id": "aspergillosisResults",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "aspergillosisScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Restart IAC",
+              "type": "obs",
+              "required": "false",
+              "id": "restartIAC",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "164988AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes (Client completed 6 IAC sessions but is not yet eligible for a VL re- test)"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No (Client just starting IAC)"
+                  }
+                ]
+              },
+              "validators": []
             }
           ]
         },
         {
-          "label": "IAC Sessions",
+          "label": " Intensive Adherence Counselling (IAC) Sessions",
           "isExpanded": "true",
           "questions": [
             {
               "label": "IAC Sessions",
               "type": "obsGroup",
               "questionOptions": {
-                "concept": "163153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "repeating"
               },
               "questions": [
@@ -580,22 +738,25 @@
                   "validators": [
                     {
                       "type": "date",
-                      "allowFutureDates": "false"
+                      "allowFutureDates": "true"
                     }
                   ]
                 },
                 {
-                  "label": "Adherence assessment score",
+                  "label": "Adherence Assessment Score (%)",
                   "type": "obs",
                   "id": "adherenceAssessmentScore",
                   "questionOptions": {
-                    "rendering": "text",
-                    "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "rendering": "number",
+                    "concept": "1134AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "min": "0",
+                    "max": "100",
+                    "allowDecimals": "true"
                   },
                   "validators": []
                 },
                 {
-                  "label": "Adherence Codes",
+                  "label": "Adherence Code",
                   "type": "obs",
                   "id": "adherenceCodes",
                   "questionOptions": {
@@ -603,16 +764,16 @@
                     "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
                     "answers": [
                       {
-                        "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",
-                        "label": "FAIR ADHERENCE"
+                        "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
+                        "label": "G- Good"
                       },
                       {
-                        "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
-                        "label": "GOOD ADHERENCE"
+                        "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",
+                        "label": "F- Fair"
                       },
                       {
                         "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
-                        "label": "POOR ADHERENCE"
+                        "label": "P- Poor"
                       }
                     ]
                   },
@@ -634,26 +795,124 @@
           ]
         },
         {
-          "label": "VL and HIVDR After IAC Session",
+          "label": "Repeat VL/HIVDR",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date of VL repeat",
+              "label": "After IAC set",
+              "type": "obsGroup",
+              "id": "afterIacSet",
+              "questionOptions": {
+                "concept": "163157AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "VL Sample Collected",
+                  "type": "obs",
+                  "id": "vlSampleCollection",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "8068ded4-5e85-4f3d-9962-a70957b8c3c6",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "HIVDR Sample Collected",
+                  "type": "obs",
+                  "id": "hivdrSampleCollection",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Date of VL repeat/HIVDR sample collection",
+                  "type": "obs",
+                  "id": "vlRepeatDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88"
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "VL Results After IAC",
+                  "type": "obs",
+                  "id": "iacResults",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
+                    "answers": [
+                      {
+                        "concept": "dca10c94-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Detect"
+                      },
+                      {
+                        "concept": "dca1269d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Beyond Detectable Limit"
+                      },
+                      {
+                        "concept": "dca11907-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Poor Sample Quality"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Copies/ml",
+                  "type": "obs",
+                  "id": "copies",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115"
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(iacResults) || iacResults !== 'dca10c94-30ab-102d-86b0-7a5022ba4115'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Date VL Results Received at facility",
               "type": "obs",
-              "id": "vlRepeatDate",
+              "id": "dateVLReceived",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88"
+                "concept": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "validators": []
             },
             {
-              "label": "HIVDR Sample Collected",
+              "label": "HIVDR Results received at facility",
               "type": "obs",
-              "id": "hivdrSampleCollection",
+              "id": "hivdrResultsReceived",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -668,53 +927,6 @@
               "validators": []
             },
             {
-              "label": "VL Results After IAC",
-              "type": "obs",
-              "id": "iacResults",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
-                "answers": [
-                  {
-                    "concept": "dca10c94-30ab-102d-86b0-7a5022ba4115",
-                    "label": "DETECTED"
-                  },
-                  {
-                    "concept": "dca1269d-30ab-102d-86b0-7a5022ba4115",
-                    "label": "BEYOND DETECTABLE LIMIT"
-                  },
-                  {
-                    "concept": "dca11907-30ab-102d-86b0-7a5022ba4115",
-                    "label": "POOR SAMPLE QUALITY"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Copies/ml",
-              "type": "obs",
-              "id": "copies",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "isEmpty(iacResults) || iacResults !== 'dca10c94-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "Date VL Results Received",
-              "type": "obs",
-              "id": "dateVLReceived",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "validators": []
-            },
-            {
               "label": "HIVDR Results",
               "type": "obs",
               "id": "hivdrResults",
@@ -722,7 +934,10 @@
                 "rendering": "text",
                 "concept": "1c654215-fcc4-439f-a975-ced21995ed15"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivdrResultsReceived !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "Date HIVDR results Recieved at facility",
@@ -737,38 +952,70 @@
                   "type": "date",
                   "allowFutureDates": "false"
                 }
-              ]
+              ],
+              "hide": {
+                "hideWhenExpression": "hivdrResultsReceived !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
         },
         {
-          "label": "Decision And Outcomes",
+          "label": "Clinical Decision/Outcomes",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Decision date",
+              "label": "Clinical decision",
               "type": "obs",
-              "id": "decisionDate",
+              "id": "clinicalDecision",
               "questionOptions": {
-                "rendering": "date",
-                "concept": "163167AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "rendering": "select",
+                "concept": "164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "163160AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Suppressed and maintained within 1st line regimen"
+                  },
+                  {
+                    "concept": "163161AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Suppressed and maintained within 2nd line regimen"
+                  },
+                  {
+                    "concept": "",
+                    "label": " Non-suppressed and substituted within the same regimen"
+                  },
+                  {
+                    "concept": "163162AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Non-suppressed and switched to 2nd line regimen"
+                  },
+                  {
+                    "concept": "43e682eb-02bb-4d9c-87a8-fbb1e3bc122d",
+                    "label": "Non-suppressed and switched to 3rd line regimen"
+                  },
+                  {
+                    "concept": "163163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Non - suppressed and referred for HIV resistance testing"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
+                  }
+                ]
               },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "true"
-                }
-              ]
+              "validators": []
             },
             {
-              "label": "Clinic decision Other Clinic Decision",
+              "label": "Other Clinical Decision",
               "type": "obs",
-              "id": "clinicDecision",
+              "id": "otherClinicalDecision",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "163168AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(clinicalDecision) || clinicalDecision !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "New Regimen",
@@ -955,27 +1202,19 @@
               "validators": []
             },
             {
-              "label": "Other Specify",
+              "label": "Date of Decision",
               "type": "obs",
-              "id": "otherSpecifyNewRegmine",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "isEmpty(newRegimen) || newRegimen !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "Date of Initiation",
-              "type": "obs",
-              "id": "dateOfInitiation",
+              "id": "decisionDate",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "163172AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "163167AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "validators": []
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
             },
             {
               "label": "Outcome",
@@ -987,11 +1226,15 @@
                 "answers": [
                   {
                     "concept": "163158AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Suppressed"
+                    "label": "Suppressed & Maintained"
                   },
                   {
                     "concept": "163159AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Non suppressed"
+                    "label": "Non-suppressed & Substituted"
+                  },
+                  {
+                    "concept": "91113782-2a82-4825-b54e-684398a4516b",
+                    "label": "Non-suppressed & Switched"
                   },
                   {
                     "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
@@ -1010,8 +1253,8 @@
                     "label": "Died"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other"
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
                   }
                 ]
               },
@@ -1031,12 +1274,12 @@
               }
             },
             {
-              "label": "Clinical Notes",
+              "label": "Comments",
               "type": "obs",
               "id": "clinicalNotes",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "163173AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "validators": []
             }

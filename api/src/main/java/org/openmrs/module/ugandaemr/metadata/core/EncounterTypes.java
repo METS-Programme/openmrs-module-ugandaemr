@@ -594,4 +594,20 @@ public class EncounterTypes {
             return "08478ad9-ccc1-4cbe-9e55-473447984158";
         }
     };
+
+    public static EncounterTypeDescriptor MONKEY_POX_SCREENING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Monkey Pox Screening";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter type for screening MPOX patient";
+        }
+
+        public String uuid() {
+            return "09478ad9-ccc1-4cbe-9e55-473447984158";
+        }
+    };
 }

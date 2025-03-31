@@ -539,6 +539,10 @@
     <privilege  privilege="View forms"  description="Access to the checkin work space" uuid="974055e6-31d4-11ee-be56-0242ac120002"/>
     <privilege  privilege="View verticalMenu"  description="Access to the checkin work space" uuid="97405938-31d4-11ee-be56-0242ac120002"/>
     <privilege  privilege="View attachments"  description="Access to the checkin work space"  uuid="97405adc-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="App: patientQueue.triage.dashboard"  description="Access to the triage dashboard"  uuid="504d7087-3f39-4b95-8f1f-cd5db4c6b7ae"/>
+    <privilege  privilege="App: patientQueue.clinician.dashboard"  description="Access to the clinician dashboard"  uuid="71377b46-a026-4d14-8330-4907973c300d"/>
+    <privilege  privilege="Task: dispensing.create.dispense.allowSubstitutions"  description="Allow modification of drug quantity"  uuid="0b004630-4794-499d-a3aa-f9e35c90b228"/>
+    <privilege privilege="View Clinical Views Divider" description="Access to the clinical views divider" uuid="706ab6c1-4297-45aa-b96c-261f4d1ade15"/>
 
     <!-- Administration privilege -->
     <privilege  privilege="Update Facility Code"  description="Access to the checkin work space"  uuid="4bf067e2-55fc-11ee-8c99-0242ac120002"/>
@@ -594,11 +598,19 @@
     <privilege  privilege="View Reception Menu"  description="access to menu reception menu item"  uuid="b2307411-3d14-4e63-b665-dcbbe4fb7d9c"/>
     <privilege  privilege="View Triage Menu"  description="access to menu triage menu item"  uuid="5bae9fd5-d8a5-4f1a-b00c-48ab84d12fc6"/>
     <privilege  privilege="View Clinical Room Menu"  description="access to menu clinician room menu item"  uuid="7dd31456f-fad9-4f0f-adcf-4588f00ea21d"/>
+    <privilege  privilege="View Dispensing Menu"  description="access to menu clinician room menu item"  uuid="0ad580fa-4491-45fd-b97d-3089c22f7f37"/>
 
     <privilege  privilege="Manage AI Button"  description="Manage AI Button"  uuid="a333c427-54c5-4c34-82ec-2c6e31c32ac1"/>
     <privilege  privilege="Manage Clinical Forms"  description="Manage Clinical Forms"  uuid="da09a036-6d51-4f3c-a4f0-0758555f0f50"/>
     <privilege  privilege="Manage Order Basket"  description="Manage Order Basket"  uuid="c7393a69-9d41-4f7d-b005-c8d71c851eef"/>
     <privilege  privilege="Manage Visit Note"  description="Manage Visit Note"  uuid="fb828c68-d3bd-4cef-8a3c-e51568e42842"/>
+
+    <privilege  privilege="View Upcoming Appointment"  description="View Upcoming Appointment"  uuid="52a0ae93-c937-4d9a-9a65-ee6f54c9543a"/>
+    <privilege  privilege="Manage HIV Prevention Services"  description="Manage HIV Prevention Services"  uuid="23a95fcf-49b8-4c2e-bca1-55fe0700d1cd"/>
+    <privilege  privilege="Manage HIV Care and Treatment"  description="Manage HIV Care and Treatment"  uuid="99d983ee-d18f-4eb7-9b64-0e48108c1149"/>
+    <privilege  privilege="Manage TB Program"  description="Manage TB Program"  uuid="f9119a4f-db09-47c9-9371-2fc7e0e75ba4"/>
+    <privilege  privilege="Manage EID Program"  description="Manage EID Program"  uuid="7494bc5c-44e8-4f45-bfa7-9b6e3f662fd0"/>
+
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -778,6 +790,8 @@
     <role_privilege role="Reception" privilege="View Reception Metrics"/>
     <role_privilege role="Reception" privilege="Add Patient Button"/>
     <role_privilege  role="Reception"  privilege="View Reception Menu"/>
+    <role_privilege role="Reception"  privilege="Edit Patient Details Button" />
+    <role_privilege  role="Reception"  privilege="View Upcoming Appointment"/>
 
 
 
@@ -800,6 +814,7 @@
     <role_privilege role="Triage" privilege="View Triage Queuelist"/>
     <role_privilege role="Triage" privilege="View Triage Menu"/>
     <role_privilege role="Triage"  privilege="Next Service Point" />
+    <role_privilege role="Triage"  privilege="App: patientQueue.triage.dashboard" />
 
 
     <!--* CLINICIAN ROLE *-->
@@ -841,6 +856,10 @@
     <role_privilege  role="Organizational: Clinician"  privilege="Manage Order Basket"/>
     <role_privilege  role="Organizational: Clinician"  privilege="Manage Clinical Forms"/>
     <role_privilege  role="Organizational: Clinician"  privilege="Manage Visit Note"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Manage HIV Prevention Services"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Manage HIV Care and Treatment"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="App: patientQueue.clinician.dashboard"/>
+    <role_privilege role="Organizational: Clinician" privilege="View Clinical Views Divider"/>
 
 
     <!--* COUNSELOR ROLE *-->
@@ -860,6 +879,7 @@
     <!-- role privilege -->
     <role_privilege  role="Organizational: Laboratory"  privilege="App: ugandaemrpoc.laboratory"/>
     <role_privilege  role="Organizational: Laboratory"  privilege="Delete Orders"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="Manage Laboratory"/>
 
 
     <!--* PHARMACY ROLE *-->
@@ -873,6 +893,8 @@
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.edit.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense.ifCreator" />
+    <role_privilege role="Organizational:Pharmacy" privilege="View Dispensing Menu"/>
+    <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.create.dispense.allowSubstitutions"/>
 
 
     <!--* DATA MANAGER ROLE *-->
@@ -1003,6 +1025,7 @@
     <role_privilege  role="MCH Clinic"  privilege="Task: coreapps.markPatientDead"/>
     <role_privilege  role="MCH Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
     <role_privilege  role="MCH Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
+    <role_privilege  role="MCH Clinic"  privilege="Manage EID Program"/>
     <!--* TB Clinic *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="TB Clinic"/>
@@ -1064,6 +1087,7 @@
     <role_privilege  role="TB Clinic"  privilege="View Clinician Queuelist"/>
     <role_privilege  role="TB Clinic"  privilege="View completedQueue"/>
     <role_privilege  role="TB Clinic"  privilege="View Patient Summary"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage TB Program"/>
 
     <!--***** REPORTING ROLES *****-->
     <!--* Base reporting *-->
@@ -1301,7 +1325,6 @@
 
     <role_privilege  role="Organizational: Clinician"  privilege="View OrderTemplates"/>
 </dataset>
-
 
 
 

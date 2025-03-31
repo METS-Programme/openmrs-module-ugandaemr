@@ -44,7 +44,7 @@
 
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
-        jq.each(pharmacyQueueList.patientPharmacyQueueList[position].orderMapper, function (index, element) {
+        jq.each(pharmacyQueueList[position].orderMapper, function (index, element) {
                 orderedTestsRows.push(element);
         });
         return orderedTestsRows;
@@ -56,9 +56,10 @@
             queue_id: queue_id,
             async: false
         }, function (response) {
-            if (response!==null || response!=="") {
-                if(response.patientPharmacyQueueList.length>0) {
-                    var editPrescriptionParameterOptions = getDrugOrderData(response, encounterId, 0);
+            if (response!==null && response!=="" && response.hasOwnProperty("patientPharmacyQueueList")) {
+                var patientPharmacyQueueList = JSON.parse(response.patientPharmacyQueueList)
+                if(patientPharmacyQueueList.length>0) {
+                    var editPrescriptionParameterOptions = getDrugOrderData(patientPharmacyQueueList, encounterId, 0);
                     jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
                         editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
                     });

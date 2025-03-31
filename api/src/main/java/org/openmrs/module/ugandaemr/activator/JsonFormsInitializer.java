@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class JsonFormsInitializer implements Initializer {
 
@@ -37,9 +35,11 @@ public class JsonFormsInitializer implements Initializer {
 
     public static final String AMPATH_FORMS_UUID = "794c4598-ab82-47ca-8d18-483a8abe6f4f";
     protected String providerName;
+    private String formFilePath;
 
-    public JsonFormsInitializer(String newProviderName) {
+    public JsonFormsInitializer(String newProviderName, String newFormFilePath) {
         this.providerName = newProviderName;
+        this.formFilePath = newFormFilePath;
     }
 
 
@@ -52,20 +52,28 @@ public class JsonFormsInitializer implements Initializer {
         final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(getProviderName());
 
         // Scanning the forms resources folder
-        final List<String> formPaths = new ArrayList<String>();
-        final File formsDir = resourceProvider.getResource(formsPath); // The ResourceFactory can't return File instances, hence the ResourceProvider need
-        if (formsDir == null || formsDir.isDirectory() == false) {
-            log.error("No HTML forms could be retrieved from the provided folder: " + getProviderName() + ":" + formsPath);
+        String fileFormPathLocal=formsPath;
+
+        // Scanning the forms resources folder
+        List<String> formPaths = new ArrayList<String>();
+        if(!formFilePath.equals("")){
+            fileFormPathLocal=this.formFilePath;
+        }
+        File formsDir = new File(fileFormPathLocal);
+
+        if (formsDir == null || !formsDir.isDirectory()) {
+            log.error("No HTML forms could be retrieved from the provided folder: " + getProviderName() + ":" + fileFormPathLocal);
             return;
         }
+
         for (File file : formsDir.listFiles())
-            formPaths.add(formsPath + file.getName());
+            formPaths.add(fileFormPathLocal + file.getName());
 
         for (File file : formsDir.listFiles()) {
             try {
                 load(file);
             } catch (Exception e) {
-                log.error(e);
+                log.error("error loading form"+file.getName(),e);
             }
         }
 
