@@ -680,11 +680,11 @@
                 "concept": "7148f054-fa36-4746-8791-63ea32c06e1c",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
                     "label": "Yes"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
                     "label": "No"
                   }
                 ]
@@ -700,11 +700,11 @@
                 "concept": "958de62d-c1ae-4262-bf19-14671b3094a2",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
                     "label": "Yes"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
                     "label": "No"
                   }
                 ]
