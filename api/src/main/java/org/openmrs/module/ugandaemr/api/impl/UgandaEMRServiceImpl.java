@@ -2130,11 +2130,10 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     public Map initializeMetaData(){
 
-        Map results=new HashMap<>();
+        Map results = new HashMap<>();
         AdministrationService administrationService = Context.getAdministrationService();
 
         try {
-            String initialiseMetaDataOnStart=administrationService.getGlobalProperty("ugandaemr.initialiseMetadataOnStart");
             log.info("Start import of Concepts,privillages,personAttribute provider attribute type etc...");
             importMetaDataFromXMLFiles();
             log.info("completed import of Concepts,privillages,personAttribute provider attribute type etc...");
@@ -2143,45 +2142,77 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 initializer.started();
             }
 
-            results.put("status","success");
-            results.put("message","completed initialising metadata");
+            results.put("status", "success");
+            results.put("message", "completed initialising metadata");
 
             return results;
 
         } catch (Exception e) {
-            results.put("status","failed");
-            results.put("message",e.getMessage());
+            results.put("status", "failed");
+            results.put("message", e.getMessage());
             return results;
         }
     }
 
     private String getMetadataPath(String type) {
-        String appDataDir = OpenmrsUtil.getApplicationDataDirectory();
-        String relativePath = "";
+        String appDataDir = "";
 
-        if ("jsonforms".equals(type)) {
-            relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.jsonFormPath");
-        } else if ("htmlforms".equals(type)) {
-            relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.htmlFormPath");
-        } else if ("metadata".equals(type)) {
-            relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.path");
-        } else if ("configuration".equals(type)) {
-            relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.configuration");
-        }else if ("frontend".equals(type)) {
-            relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.frontend");
+
+        // Check if metadata initialization is enabled
+        boolean initialiseMetadataOnStart = Boolean.parseBoolean(
+                Context.getAdministrationService().getGlobalProperty("ugandaemr.initialiseMetadataOnStart")
+        );
+
+        if (initialiseMetadataOnStart && !type.equals("metadata")) {
+            final ResourceFactory resourceFactory = ResourceFactory.getInstance();
+            final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(MODULE_ID);
+            appDataDir = resourceProvider.getResource(type).getPath();
+        } else {
+            appDataDir = OpenmrsUtil.getApplicationDataDirectory();
         }
 
-        // Ensure the relative path is not null to avoid null concatenation
+        // Default paths when initializing metadata on start
+        Map<String, String> defaultPaths = new HashMap<>();
+        defaultPaths.put("jsonforms", "jsonforms/");
+        defaultPaths.put("htmlforms", "htmlforms/");
+        defaultPaths.put("metadata", "metadata/");
+
+        String relativePath;
+
+        if (initialiseMetadataOnStart) {
+            // Get path from default paths
+            relativePath = defaultPaths.get(type);
+        } else {
+            // Get path from global properties
+            switch (type) {
+                case "jsonforms":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.jsonFormPath");
+                    break;
+                case "htmlforms":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.htmlFormPath");
+                    break;
+                case "metadata":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.path");
+                    break;
+                case "configuration":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.configuration");
+                    break;
+                case "frontend":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.frontend");
+                    break;
+                default:
+                    relativePath = null;
+            }
+        }
+
+        // Validate path
         if (relativePath == null || relativePath.isEmpty()) {
             throw new IllegalArgumentException("No valid path found for type: " + type);
         }
 
-        // Construct the full path
-        Path fullPath = Paths.get(appDataDir, relativePath);
-        return fullPath.toString();
+        // Return the appropriate path
+        return Paths.get(appDataDir, relativePath).toString();
     }
-
-
 
     public void importMetaDataFromXMLFiles(){
         DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
@@ -2421,17 +2452,21 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
     public List<Initializer> initialiseForms() {
-        String jsonFormsPath=getMetadataPath("jsonforms")+"/";
-        String htmlFormsPath=getMetadataPath("htmlforms");
-        String initialiseExternalHTMLForm=Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.externalhtmlforms.initialize");
+        String jsonFormsPath = getMetadataPath("jsonforms") + "/";
+        String htmlFormsPath = getMetadataPath("htmlforms");
+        String initialiseExternalHTMLForm = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.externalhtmlforms.initialize");
+        String initialiseMetaDataOnStart = Context.getAdministrationService().getGlobalProperty("ugandaemr.initialiseMetadataOnStart");
 
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
-        l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID,jsonFormsPath));
 
-        if(Boolean.parseBoolean(initialiseExternalHTMLForm)) {
-            l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID,htmlFormsPath));
-        }else{
+        if (Boolean.parseBoolean(initialiseMetaDataOnStart)) {
+            l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID, ""));
+        } else {
+            l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID, jsonFormsPath));
+        }
+
+        if (Boolean.parseBoolean(initialiseExternalHTMLForm) && !Boolean.parseBoolean(initialiseMetaDataOnStart)) {
             l.add(new HtmlFormsInitializer(UgandaEMRConstants.MODULE_ID));
         }
         return l;
@@ -2579,8 +2614,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         return todayVisit;
     }
-
-
 
     public void copyFilesToApplicationDataDirectory(String source, String destination) {
         final ResourceFactory resourceFactory = ResourceFactory.getInstance();

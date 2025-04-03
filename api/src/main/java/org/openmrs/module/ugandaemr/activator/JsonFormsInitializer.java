@@ -43,7 +43,6 @@ public class JsonFormsInitializer implements Initializer {
     }
 
 
-
     @Override
     public void started() {
         log.info("Setting HFE forms for " + getProviderName());
@@ -56,10 +55,15 @@ public class JsonFormsInitializer implements Initializer {
 
         // Scanning the forms resources folder
         List<String> formPaths = new ArrayList<String>();
-        if(!formFilePath.equals("")){
-            fileFormPathLocal=this.formFilePath;
+
+        File formsDir;
+
+        if (!formFilePath.equals("")) {
+            fileFormPathLocal = this.formFilePath;
+            formsDir = new File(fileFormPathLocal);
+        } else {
+            formsDir = resourceProvider.getResource(fileFormPathLocal);
         }
-        File formsDir = new File(fileFormPathLocal);
 
         if (formsDir == null || !formsDir.isDirectory()) {
             log.error("No HTML forms could be retrieved from the provided folder: " + getProviderName() + ":" + fileFormPathLocal);
@@ -73,11 +77,11 @@ public class JsonFormsInitializer implements Initializer {
             try {
                 load(file);
             } catch (Exception e) {
-                log.error("error loading form"+file.getName(),e);
+                log.error("error loading form" + file.getName(), e);
             }
         }
 
-        }
+    }
 
 
     @Override
@@ -88,9 +92,9 @@ public class JsonFormsInitializer implements Initializer {
     protected void load(File file) throws Exception {
 
 
-      DatatypeService datatypeService = Context.getDatatypeService();
-      FormService formService = Context.getFormService();
-      EncounterService encounterService=Context.getEncounterService();
+        DatatypeService datatypeService = Context.getDatatypeService();
+        FormService formService = Context.getFormService();
+        EncounterService encounterService = Context.getEncounterService();
 
         String jsonString = FileUtils.readFileToString(file, StandardCharsets.UTF_8.toString());
         Map<String, Object> jsonFile = new ObjectMapper().readValue(jsonString, Map.class);
@@ -167,13 +171,13 @@ public class JsonFormsInitializer implements Initializer {
                 needToSaveForm = true;
             }
 
-            if (formResource != null){
+            if (formResource != null) {
                 ClobDatatypeStorage clobData = datatypeService.getClobDatatypeStorageByUuid(formResource.getValueReference());
 
-                if(clobData!=null) {
+                if (clobData != null) {
                     clobData.setValue(jsonString);
-                }else{
-                    clobData=new ClobDatatypeStorage();
+                } else {
+                    clobData = new ClobDatatypeStorage();
                     clobData.setValue(jsonString);
                     clobData.setUuid(UUID.randomUUID().toString());
                     formResource.setValueReferenceInternal(clobData.getUuid());
@@ -182,14 +186,14 @@ public class JsonFormsInitializer implements Initializer {
 
                 datatypeService.saveClobDatatypeStorage(clobData);
 
-            }else  {
+            } else {
                 createFormResource(form, UUID.randomUUID().toString(), jsonString);
             }
 
             if (needToSaveForm) {
                 formService.saveForm(form);
             }
-        }else {
+        } else {
             createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
                     jsonString);
         }
