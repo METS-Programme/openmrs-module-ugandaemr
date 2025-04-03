@@ -194,7 +194,7 @@
               "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "8ecc35ef-05ba-4700-88d1-e6ade7dc2774"
               },
               "validators": [],
               "hide": {
@@ -535,8 +535,8 @@
               "type": "obs",
               "id": "emtctMotherRegistrationStatus",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "",
+                "rendering": "radio",
+                "concept": "fd000b04-847d-47b1-b0df-cb79f552bb24",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1226,7 +1226,7 @@
               "type": "obsGroup",
               "id": "rapidMonthTestGroup",
               "questionOptions": {
-                "concept": "",
+                "concept": "d7c6fe1d-aa9c-4b1e-b4a6-5e846ea59d6b",
                 "rendering": "group"
               },
               "questions": [
@@ -1624,7 +1624,7 @@
                     "label": "Positive initiated on ART"
                   },
                   {
-                    "concept": "",
+                    "concept": "89501167-4329-4ec1-84d2-176127244e0e",
                     "label": "Positive not initiated on ART"
                   },
                   {
