@@ -232,7 +232,7 @@
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "73cd1cda-e82a-43d8-938c-fbaf97b7642b",
                     "label": "2RHZE/6EH"
                   },
                   {
@@ -327,7 +327,7 @@
                     }
                   },
                   {
-                    "concept": "",
+                    "concept": "5d1fb434-61d4-4f79-be4f-3575e589ade7",
                     "label": "Diabetic Patient",
                     "disable": {
                       "disableWhenExpression": "arrayContains(riskGroup, 'dcd68a88-30ab-102d-86b0-7a5022ba4115') || arrayContains(pregnant, 'dc9b0596-30ab-102d-86b0-7a5022ba4115') "
@@ -355,7 +355,7 @@
                     }
                   },
                   {
-                    "concept": "",
+                    "concept": "cd4651cb-f81e-4aea-ba44-8fd4ada3b76e",
                     "label": "Smoker",
                     "disable": {
                       "disableWhenExpression": "arrayContains(riskGroup, 'dcd68a88-30ab-102d-86b0-7a5022ba4115') || arrayContains(pregnant, 'dc9b0596-30ab-102d-86b0-7a5022ba4115') "
@@ -369,14 +369,14 @@
                     }
                   },
                   {
-                    "concept": "",
+                    "concept": "db93c47e-593b-4aa4-8122-690ab5a36421",
                     "label": "Slum Dwellers",
                     "disable": {
                       "disableWhenExpression": "arrayContains(riskGroup, 'dcd68a88-30ab-102d-86b0-7a5022ba4115') || arrayContains(pregnant, 'dc9b0596-30ab-102d-86b0-7a5022ba4115') "
                     }
                   },
                   {
-                    "concept": "",
+                    "concept": "123815AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Under nourished",
                     "disable": {
                       "disableWhenExpression": "arrayContains(riskGroup, 'dcd68a88-30ab-102d-86b0-7a5022ba4115') || arrayContains(pregnant, 'dc9b0596-30ab-102d-86b0-7a5022ba4115') "
@@ -659,7 +659,7 @@
               "id": "onHTNTreatment",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "5140d752-b2c0-11ed-afa1-0242ac120002",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
