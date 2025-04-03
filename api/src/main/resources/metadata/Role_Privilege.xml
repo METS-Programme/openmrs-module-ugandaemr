@@ -397,6 +397,8 @@
     <privilege  privilege="View Visit Types"  description="Able to view visit types"  uuid="f82294e8-57d5-4f05-9b3e-05671ad5da20"/>
     <privilege  privilege="View XForms Menu"  description="View XForms Menu in admin panel"  uuid="caa6efae-e6fc-47a0-b965-691b3a936ffe"/>
 
+    <privilege  privilege="Manage Procedures"  description="Allows the user to manage procedure orders"  uuid="ce981491-76d8-4925-b8d8-089352538a34"/>
+    <privilege  privilege="Manage Billing"  description="Allows the cashier to manage billing requests"  uuid="bfe2218c-86db-49d0-93c7-6012c4953fee"/>
     <!--Dispensing -->
     <privilege privilege="Task: dispensing.create.dispense" description="Allows user to Dispense Medication" uuid="2a3045a7-8ba0-417a-96be-24ddb79f6904"/>
     <privilege privilege="Task: dispensing.create.dispense.andModifyDetails" description="Allows user to modify the Quantity, Drug, Formulation and Dose Instructions (from the values specified in the Order / Medication Request) when Dispensing" uuid="f7bdafc8-6e13-4fa7-8d62-0421ab5a404e"/>
