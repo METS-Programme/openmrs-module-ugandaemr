@@ -558,34 +558,71 @@
             "configure": {
               "Display conditions": {
                 "privileges": [
-                  "Manage Patient appointments B"
+                  "Manage Patient appointments"
                 ]
               }
             }
           },
           "patient-orders-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient orders"
+              ]
+            }
           },
           "allergies-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage allergies"
+              ]
+            }
           },
           "conditions-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage conditions"
+              ]
+            }
           },
           "patient-appointments-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient appointments"
+              ]
+            }
           },
           "clincial-patient-link": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage clinical dashboard"
+              ]
+            }
           },
           "encounters-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage encounters"
+              ]
+            }
+          },
+          "clinical-views-divider": {
+            "Display conditions": {
+              "privileges": [
+                "Manage clinical views divider"
+              ]
+            }
           },
           "hiv-care-and-treatment": {
             "Display conditions": {
@@ -671,7 +708,7 @@
           "clinical-appointments-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "Manage Patient Appointments"
+                "Manage appointments dashboard"
               ]
             }
           },
@@ -702,18 +739,8 @@
                 "Manage Home Link"
               ]
             }
-          },
-          "clinical-appointments-dashboard-slot": {
-            "configure": {
-              "clinical-appointments-dashboard": {
-                "Display conditions": {
-                  "privileges": [
-                    "Manage appointments dashboard"
-                  ]
-                }
-              }
-            }
           }
+          
         }
       }
     },
