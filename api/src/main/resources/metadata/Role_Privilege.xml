@@ -611,6 +611,8 @@
     <privilege  privilege="Manage TB Program"  description="Manage TB Program"  uuid="f9119a4f-db09-47c9-9371-2fc7e0e75ba4"/>
     <privilege  privilege="Manage EID Program"  description="Manage EID Program"  uuid="7494bc5c-44e8-4f45-bfa7-9b6e3f662fd0"/>
 
+    <privilege  privilege="Manage Procedures"  description="Allows the user to manage procedure orders"  uuid="ce981491-76d8-4925-b8d8-089352538a34"/>
+    <privilege  privilege="Manage Billing"  description="Allows the cashier to manage billing requests"  uuid="bfe2218c-86db-49d0-93c7-6012c4953fee"/>
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
