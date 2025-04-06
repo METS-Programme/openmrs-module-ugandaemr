@@ -418,10 +418,18 @@
     }
   },
   "@openmrs/esm-home-app": {
-    "Display conditions": {
-      "privileges": [
-        "Access home app"
-      ]
+    "extensionSlots": {
+      "clinical-appointments-dashboard-slot": {
+        "configure": {
+          "clinical-appointments-dashboard": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          }
+        }
+      }
     }
   },
   "@ugandaemr/esm-login-app": {
@@ -513,7 +521,7 @@
               ]
             }
           },
-          "program-summary-dashboard": {
+          "programs-summary-dashboard": {
             "layoutMode": "anchored",
             "order": 2,
             "hideDashboardTitle": true,
@@ -587,6 +595,15 @@
             "Display conditions": {
               "privileges": [
                 "Manage conditions"
+              ]
+            }
+          },
+          "attachments-results-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient attachments"
               ]
             }
           },
@@ -708,7 +725,7 @@
           "clinical-appointments-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "Manage appointments dashboard"
+                "Manage Patient Appointments Link"
               ]
             }
           },
@@ -740,7 +757,6 @@
               ]
             }
           }
-          
         }
       }
     },
