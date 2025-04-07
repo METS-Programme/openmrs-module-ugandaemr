@@ -611,6 +611,14 @@
     <privilege  privilege="Manage TB Program"  description="Manage TB Program"  uuid="f9119a4f-db09-47c9-9371-2fc7e0e75ba4"/>
     <privilege  privilege="Manage EID Program"  description="Manage EID Program"  uuid="7494bc5c-44e8-4f45-bfa7-9b6e3f662fd0"/>
 
+    <!-- PATIENT CHART SIDE NAV PRIVILEGE -->
+    <privilege  privilege="Manage Patient Appointments Link"  description="View Appointments on the left side nav menu"  uuid="f496184f-3f6d-4b7a-a8f6-1fb8b31b6667"/>
+    <privilege  privilege="Manage patient orders"  description="View Orders on the left side nav menu"  uuid="0fd80bfe-4cc0-44f6-b730-71434df275ca"/>
+    <privilege  privilege="Manage encounters"  description="View Visits on the left side nav menu"  uuid="5e444498-8e3c-4693-9081-fa60630dd7c8"/>
+    <privilege  privilege="Manage allergies"  description="View Allergies on the left side nav menu"  uuid="b84c38ff-6b6d-4417-bd38-0ee1ece28100"/>
+    <privilege  privilege="Manage conditions"  description="View Conditions on the left side nav menu"  uuid="b93c891d-9d35-4460-95ca-aec7e7d725c9"/>
+    <privilege  privilege="Manage patient attachments"  description="View Attachments on the left side nav menu"  uuid="c76f6404-a929-43ca-b181-bea65663b344"/>
+
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -815,6 +823,7 @@
     <role_privilege role="Triage" privilege="View Triage Menu"/>
     <role_privilege role="Triage"  privilege="Next Service Point" />
     <role_privilege role="Triage"  privilege="App: patientQueue.triage.dashboard" />
+    <role_privilege role="Triage"  privilege="Manage Patient Appointments Link" />
 
 
     <!--* CLINICIAN ROLE *-->
@@ -860,6 +869,16 @@
     <role_privilege  role="Organizational: Clinician"  privilege="Manage HIV Care and Treatment"/>
     <role_privilege  role="Organizational: Clinician"  privilege="App: patientQueue.clinician.dashboard"/>
     <role_privilege role="Organizational: Clinician" privilege="View Clinical Views Divider"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage patient orders"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage Patient Test Summary"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage encounters"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage allergies"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage conditions"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage patient attachments"/>
+    <role_privilege role="Organizational: Clinician" privilege="Manage Patient Appointments Link"/>
+    <role_privilege role="Organizational: Clinician" privilege="Stop Visit Button"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Manage EID Program"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Manage TB Program"/>
 
 
     <!--* COUNSELOR ROLE *-->
