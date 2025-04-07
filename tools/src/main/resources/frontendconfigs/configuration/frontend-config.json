@@ -637,7 +637,7 @@
           "clinical-views-divider": {
             "Display conditions": {
               "privileges": [
-                "Manage clinical views divider"
+                "View Clinical Views Divider"
               ]
             }
           },
