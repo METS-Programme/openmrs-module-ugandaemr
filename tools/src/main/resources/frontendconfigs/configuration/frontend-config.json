@@ -508,7 +508,7 @@
             "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": [
-                "Manage Patient Investigation"
+                "Manage Patient Investigation Results"
               ]
             }
           },
