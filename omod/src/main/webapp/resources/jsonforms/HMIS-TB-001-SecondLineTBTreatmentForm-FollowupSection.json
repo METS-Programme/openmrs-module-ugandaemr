@@ -1,5 +1,5 @@
 {
-  "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Followup Section (REVISED)",
+  "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Followup Section",
   "version": "4.0.0",
   "description": "This form captures return visits/followup data of the DR TB Treatment program",
   "encounter": "DR TB Encounter (Followup)",
@@ -58,35 +58,35 @@
               "id": "followupVisit",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "5356c00a-b20e-436c-a0dd-6bfab6174296",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "560b0058-eb8a-4afc-94c3-4c27e94e2b9e",
                     "label": "Visit 1",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "14c0f4ed-5d97-49bd-8842-21f32c59b6c2",
                     "label": "Visit 2",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "fd7af77c-e7c4-4fc9-8e66-d0b16ae7d04b",
                     "label": "Visit 3",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "b56c620a-4205-4e54-b97a-1dc2bc66cded",
                     "label": "Visit 4",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "87e1a42a-f239-4396-98af-d022a302231c",
                     "label": "Visit 5",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "40087a4b-84af-4acb-be9c-690359016ded",
                     "label": "Visit 6",
                     "conceptMappings": []
                   }
@@ -108,7 +108,7 @@
               "id": "drTbContact",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "",
+                "concept": "51be4adf-ba36-4e14-a305-55bc5c2967a9",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -119,7 +119,7 @@
                   "id": "listedContactsNumber",
                   "questionOptions": {
                     "rendering": "number",
-                    "concept": "",
+                    "concept": "73a52d1b-e6d1-46b1-be97-55fdfee2bf75",
                     "conceptMappings": [],
                     "answers": []
                   },
@@ -133,7 +133,7 @@
                   "id": "screendContactsNumber",
                   "questionOptions": {
                     "rendering": "number",
-                    "concept": "",
+                    "concept": "3fcca96c-1a2d-46df-80b7-52b3ea23e713",
                     "conceptMappings": [],
                     "answers": [],
                     "hide": {
@@ -147,7 +147,7 @@
                   "id": "diagnosedContactsNumber",
                   "questionOptions": {
                     "rendering": "number",
-                    "concept": "",
+                    "concept": "e9085395-c9a9-4939-b9d8-0f4dbb4fa572",
                     "conceptMappings": [],
                     "answers": [],
                     "hide": {
@@ -500,7 +500,7 @@
                         "label": "Dermatologic"
                       },
                       {
-                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label": "Other Specify"
                       }
                     ]
@@ -513,11 +513,11 @@
                   "id": "otherEvent",
                   "questionOptions": {
                     "rendering": "text",
-                    "concept": ""
+                    "concept": "337b9e55-9018-4056-af08-c9c778aa2f98"
                   },
                   "validators": [],
                   "hide": {
-                    "hideWhenExpression": "isEmpty(adverseDrugReaction) || adverseDrugReaction !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                    "hideWhenExpression": "isEmpty(adverseDrugReaction) || adverseDrugReaction !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -613,7 +613,7 @@
                     "label": "Lost to follow up"
                   },
                   {
-                    "concept": "",
+                    "concept": "850c43ad-75c7-46a7-9389-ddb61077e182",
                     "label": "Returned to 1st line"
                   }
                 ]
