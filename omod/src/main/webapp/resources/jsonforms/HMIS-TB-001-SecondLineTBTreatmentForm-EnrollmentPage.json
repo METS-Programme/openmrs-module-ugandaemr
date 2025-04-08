@@ -109,7 +109,7 @@
               "id": "treatmentHistoryAtRegistration",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "2ad8c861-8b67-4b96-9f5b-99e91bd50c96",
+                "concept": "6b62ecbf-1f91-4fd3-8cda-56d4fdcf8b13",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -117,11 +117,11 @@
                     "label": "New"
                   },
                   {
-                    "concept": "b0bfda5d-2e51-412c-ab8a-3bc38284e8f5",
+                    "concept": "22a71d2e-bdd0-4437-bf1b-d0a6d9a68975",
                     "label": "Previously treated using First Line Drugs"
                   },
                   {
-                    "concept": "2fae04f2-0847-4626-8ce9-1861942b2b27",
+                    "concept": "7b7ca264-027c-4338-9305-e1e8b8131f66",
                     "label": "Previously treated using Second Line Drugs"
                   }
                 ]
@@ -233,7 +233,7 @@
               "id": "genexpertResults",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "22ad5695-7404-4c54-9710-99592e5a06f6",
+                "concept": "35adf460-19b8-4247-b575-1bad5562d5e9",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -249,7 +249,7 @@
                     "label": "MTB detected - Rifampicin resistance indeterminate"
                   },
                   {
-                    "concept": "5e1bdc8c-8261-4ed9-b306-a8827191f849",
+                    "concept": "e8a9bbb0-88a9-4a49-875d-5066f403d2dd",
                     "label": "MTB Trace detected - RR indeterminate"
                   },
                   {
@@ -257,7 +257,7 @@
                     "label": "MTB not detected"
                   },
                   {
-                    "concept": "088ae31c-1163-40b1-8200-3342137f71c0",
+                    "concept": "1806bfcf-096f-4d56-9aca-7b5b661d923e",
                     "label": "Invalid/No Result/Error"
                   }
                 ]
@@ -292,14 +292,14 @@
             {
               "label": "Current Category after DST",
               "type": "obs",
-              "id": "reasonForEnteringSecondLineTb",
+              "id": "currentCategoryAfterDst",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "4913e842-4d9b-44ee-acfa-73474d7e8f1f",
+                "concept": "06a3befb-3237-4b05-8f6e-5a898c927112",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "141266c0-e191-45a4-b884-8ddbd4213df2",
+                    "concept": "61325258-242b-473e-b984-87b4256097d3",
                     "label": "RR Mono Resistance"
                   },
                   {
@@ -307,7 +307,7 @@
                     "label": "Poly Resistance"
                   },
                   {
-                    "concept": "91e279c3-a1e7-4af9-a92e-aee3a9bde17d",
+                    "concept": "eb670a1e-b620-4498-ad18-0adfd374e772",
                     "label": "Confirmed MDR/XDR-TB"
                   },
                   {
@@ -393,7 +393,7 @@
               "id": "otherCaseType",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "604846ba-c6c7-4d6d-8f8f-fcf1694e6b87"
+                "concept": "93c1670b-4f05-4292-84cd-02d02969f6b5"
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(patientType) || patientType !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
@@ -537,19 +537,19 @@
               "id": "tbRegimenType",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "4b46811f-2665-443f-9e47-0d8f7cc3972d",
+                "concept": "fcb90c43-aeb9-4bc1-9fa4-d779397d9be2",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "966eb7c2-dbb6-4d08-b874-0443e29e53c2",
+                    "concept": "ebac27f2-3562-4c7b-b204-6f282c171c7e",
                     "label": "BPaL/BPaLM"
                   },
                   {
-                    "concept": "ade2ce98-f19d-4af5-965f-2e3c5cd0a1cf",
+                    "concept": "29c344a7-0efb-4cb7-aae5-6f032aad1e6b",
                     "label": "mSTR 9 months all oral"
                   },
                   {
-                    "concept": "70a64908-6dd0-43fd-865f-dd95b1f2735f",
+                    "concept": "45ca1b91-792d-4ef6-90e0-3086f59595e1",
                     "label": "Longer IND"
                   }
                 ]
