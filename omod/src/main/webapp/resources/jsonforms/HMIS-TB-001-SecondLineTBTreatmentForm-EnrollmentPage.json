@@ -109,7 +109,7 @@
               "id": "treatmentHistoryAtRegistration",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "2ad8c861-8b67-4b96-9f5b-99e91bd50c96",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -117,11 +117,11 @@
                     "label": "New"
                   },
                   {
-                    "concept": "",
+                    "concept": "b0bfda5d-2e51-412c-ab8a-3bc38284e8f5",
                     "label": "Previously treated using First Line Drugs"
                   },
                   {
-                    "concept": "",
+                    "concept": "2fae04f2-0847-4626-8ce9-1861942b2b27",
                     "label": "Previously treated using Second Line Drugs"
                   }
                 ]
@@ -174,7 +174,7 @@
                     "label": "Tobacco Smoker"
                   },
                   {
-                    "concept": "",
+                    "concept": "123815AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Undernourished"
                   },
                   {
@@ -233,31 +233,31 @@
               "id": "genexpertResults",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "22ad5695-7404-4c54-9710-99592e5a06f6",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "162204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "MTB detected - Rifampicin resistance not detected"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "162203AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "MTB detected - Rifampicin resistance detected"
                   },
                   {
-                    "concept": "",
+                    "concept": "164104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "MTB detected - Rifampicin resistance indeterminate"
                   },
                   {
-                    "concept": "",
+                    "concept": "5e1bdc8c-8261-4ed9-b306-a8827191f849",
                     "label": "MTB Trace detected - RR indeterminate"
                   },
                   {
-                    "concept": "",
+                    "concept": "977d7e40-c832-4d53-a6fa-ed2b8cfaaeea",
                     "label": "MTB not detected"
                   },
                   {
-                    "concept": "163611AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "088ae31c-1163-40b1-8200-3342137f71c0",
                     "label": "Invalid/No Result/Error"
                   }
                 ]
@@ -295,23 +295,23 @@
               "id": "reasonForEnteringSecondLineTb",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "4913e842-4d9b-44ee-acfa-73474d7e8f1f",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "141266c0-e191-45a4-b884-8ddbd4213df2",
                     "label": "RR Mono Resistance"
                   },
                   {
-                    "concept": "",
+                    "concept": "164367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Poly Resistance"
                   },
                   {
-                    "concept": "",
+                    "concept": "91e279c3-a1e7-4af9-a92e-aee3a9bde17d",
                     "label": "Confirmed MDR/XDR-TB"
                   },
                   {
-                    "concept": "",
+                    "concept": "159346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "XDR"
                   },
                   {
@@ -393,7 +393,7 @@
               "id": "otherCaseType",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "604846ba-c6c7-4d6d-8f8f-fcf1694e6b87"
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(patientType) || patientType !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
@@ -537,19 +537,19 @@
               "id": "tbRegimenType",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "4b46811f-2665-443f-9e47-0d8f7cc3972d",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "966eb7c2-dbb6-4d08-b874-0443e29e53c2",
                     "label": "BPaL/BPaLM"
                   },
                   {
-                    "concept": "",
+                    "concept": "ade2ce98-f19d-4af5-965f-2e3c5cd0a1cf",
                     "label": "mSTR 9 months all oral"
                   },
                   {
-                    "concept": "",
+                    "concept": "70a64908-6dd0-43fd-865f-dd95b1f2735f",
                     "label": "Longer IND"
                   }
                 ]
