@@ -802,6 +802,7 @@
     <role_privilege  role="Reception"  privilege="View Reception Menu"/>
     <role_privilege role="Reception"  privilege="Edit Patient Details Button" />
     <role_privilege  role="Reception"  privilege="View Upcoming Appointment"/>
+    <role_privilege role="Reception"  privilege="Stop Visit Button"/>
 
 
 
@@ -878,6 +879,8 @@
     <!--* CLINICIAN ROLE *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="Organizational: Clinician"/>
+    <role_role  parent_role="Base Clinical Role"  child_role="Organizational: Clinician"/>
+
 
     <!-- role privilege -->
     <role_privilege  role="Organizational: Clinician"  privilege="App: patientqueueing.providerDashboard"/>
@@ -918,6 +921,7 @@
     <role_privilege role="Organizational: Clinician" privilege="Manage patient attachments"/>
     <role_privilege role="Organizational: Clinician" privilege="Manage Patient Appointments Link"/>
     <role_privilege role="Organizational: Clinician" privilege="Stop Visit Button"/>
+
 
 
     <!--* COUNSELOR ROLE *-->
