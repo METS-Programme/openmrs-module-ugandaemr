@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 015:Exposed Infant Card Summary Form",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Captures demographic details for infants born to HIV positive mothers",
   "encounter": "EID Card - Summary",
   "encounterType": "9fcfcc91-ad60-4d84-9710-11cc25258719",
@@ -536,7 +536,7 @@
               "id": "emtctMotherRegistrationStatus",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "fd000b04-847d-47b1-b0df-cb79f552bb24",
+                "concept": "3b5d6a54-4fa3-40b0-b2d8-bb67b4dbc900",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1226,7 +1226,7 @@
               "type": "obsGroup",
               "id": "rapidMonthTestGroup",
               "questionOptions": {
-                "concept": "d7c6fe1d-aa9c-4b1e-b4a6-5e846ea59d6b",
+                "concept": "30210c9f-2942-4a6d-b8b8-fe97952137cd",
                 "rendering": "group"
               },
               "questions": [
@@ -1624,7 +1624,7 @@
                     "label": "Positive initiated on ART"
                   },
                   {
-                    "concept": "89501167-4329-4ec1-84d2-176127244e0e",
+                    "concept": "1edf1f90-e44d-4eb5-bb00-5a092845349d",
                     "label": "Positive not initiated on ART"
                   },
                   {
