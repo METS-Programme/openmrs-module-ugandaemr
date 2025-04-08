@@ -17,7 +17,9 @@ import org.openmrs.*;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.htmlformentry.FormEntrySession;
+import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.activator.Initializer;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
@@ -448,7 +450,36 @@ public interface UgandaEMRService extends OpenmrsService {
      */
     public TestOrder accessionLabTest(String orderUuid, String accessionNumber, String specimenSourceUuid, String instructions);
 
+    public Map initializeMetaData();
+
+
+    public void importMetaDataFromXMLFiles();
+
+    public void installCommonMetadata(MetadataDeployService deployService);
+
+    public void removeOldChangeLocksForDataIntegrityModule();
+
+    public void generateOpenMRSIdentifierForPatientsWithout();
+
+    public void initializePrimaryIdentifierTypeMapping();
+
+    public void setHealthFacilityLocation();
+
+    public void setFlagStatus();
+
+    public List<Initializer> initialiseForms();
+
+    public void disableEnableAPPS();
 
     public CheckInPatient checkInPatient(Patient patient, Location currentLocation, Location locationTo, Location queueRoom, Provider provider, String visitComment, String patientStatus, String visitTypeUuid);
+
+    public void copyFilesToApplicationDataDirectory(String source, String destination);
+
+    public void downloadFormsAndMetaDataFromGitHub();
+
+    public void downloadFrontendFromGitHub();
+
+
+
 
 }
