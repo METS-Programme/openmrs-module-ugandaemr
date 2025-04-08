@@ -5,6 +5,9 @@
   "referencedForms": [],
   "uuid": "9bc7f745-b61f-4553-ad77-7208238a7068",
   "version": "4.0.0",
+  "description": "Cervical Cancer Treatment Form",
+  "published": true,
+  "retired": false,
   "pages": [
     {
       "label": "HMIS ACP: Cervical Cancer Pre-Treatment Form",
@@ -660,5 +663,5 @@
       ]
     }
   ],
-  "description": "Cervical Cancer Treatment Form"
+  "referencedForms": []
 }

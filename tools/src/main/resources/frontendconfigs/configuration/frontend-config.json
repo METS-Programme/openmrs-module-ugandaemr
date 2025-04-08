@@ -16,7 +16,8 @@
   "@openmrs/esm-appointments-app": {
     "Display conditions": {
       "privileges": [
-        "Manage Appointments"
+        "Manage Appointments",
+        "Manage Appointment Services"
       ]
     }
   },
@@ -81,7 +82,7 @@
   "@openmrs/esm-patient-appointments-app": {
     "Display conditions": {
       "privileges": [
-        "Manage Patient Appointments"
+        "Manage Patient Appointment"
       ]
     }
   },
@@ -109,7 +110,7 @@
   "@openmrs/esm-patient-conditions-app": {
     "Display conditions": {
       "privileges": [
-        "Add Conditions"
+        "Manage conditions"
       ]
     }
   },
@@ -143,6 +144,13 @@
       ]
     }
   },
+  "@openmrs/esm-patient-notes-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Patient Notes"
+      ]
+    }
+  },
   "@openmrs/esm-patient-tests-app": {
     "resultsViewerConcepts": [
       {
@@ -164,6 +172,11 @@
     "orders": {
       "labOrderableConcepts": [
         "dca07f4a-30ab-102d-86b0-7a5022ba4115"
+      ]
+    },
+    "Display conditions": {
+      "privileges": [
+        "View Test Results"
       ]
     }
   },
@@ -418,10 +431,18 @@
     }
   },
   "@openmrs/esm-home-app": {
-    "Display conditions": {
-      "privileges": [
-        "Access home app"
-      ]
+    "extensionSlots": {
+      "clinical-appointments-dashboard-slot": {
+        "configure": {
+          "clinical-appointments-dashboard": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          }
+        }
+      }
     }
   },
   "@ugandaemr/esm-login-app": {
@@ -513,7 +534,7 @@
               ]
             }
           },
-          "program-summary-dashboard": {
+          "programs-summary-dashboard": {
             "layoutMode": "anchored",
             "order": 2,
             "hideDashboardTitle": true,
@@ -558,34 +579,80 @@
             "configure": {
               "Display conditions": {
                 "privileges": [
-                  "Manage Patient appointments B"
+                  "Manage Patient appointments"
                 ]
               }
             }
           },
           "patient-orders-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient orders"
+              ]
+            }
           },
           "allergies-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage allergies"
+              ]
+            }
           },
           "conditions-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage conditions"
+              ]
+            }
+          },
+          "attachments-results-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient attachments"
+              ]
+            }
           },
           "patient-appointments-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient appointments"
+              ]
+            }
           },
           "clincial-patient-link": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage clinical dashboard"
+              ]
+            }
           },
           "encounters-summary-dashboard": {
             "layoutMode": "anchored",
-            "hideDashboardTitle": true
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage encounters"
+              ]
+            }
+          },
+          "clinical-views-divider": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Views Divider"
+              ]
+            }
           },
           "hiv-care-and-treatment": {
             "Display conditions": {
@@ -671,7 +738,7 @@
           "clinical-appointments-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "Manage Patient Appointments"
+                "Manage Patient Appointments Link"
               ]
             }
           },
@@ -701,17 +768,6 @@
               "privileges": [
                 "Manage Home Link"
               ]
-            }
-          },
-          "clinical-appointments-dashboard-slot": {
-            "configure": {
-              "clinical-appointments-dashboard": {
-                "Display conditions": {
-                  "privileges": [
-                    "Manage appointments dashboard"
-                  ]
-                }
-              }
             }
           }
         }
@@ -784,10 +840,18 @@
       "useMuacColors": true,
       "showPrintButton": true,
       "useFormEngine": false
+    },
+    "concepts": {
+      "vitalSignsConceptSetUuid": "dc98127e-30ab-102d-86b0-7a5022ba4115"
     }
   },
   "@openmrs/esm-patient-orders-app": {
-    "orderEncounterType": "dbe038cd-cad5-439d-a761-a6d6d680219c"
+    "orderEncounterType": "dbe038cd-cad5-439d-a761-a6d6d680219c",
+    "Display conditions": {
+      "privileges": [
+        "Manage Order Basket"
+      ]
+    }
   },
   "@openmrs/esm-dispensing-app": {
     "locationBehavior": {

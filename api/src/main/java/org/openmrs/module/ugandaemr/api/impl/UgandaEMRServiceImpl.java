@@ -28,24 +28,35 @@ import org.openmrs.TestOrder;
 import org.openmrs.Visit;
 import org.openmrs.VisitType;
 import org.openmrs.User;
+import org.openmrs.api.*;
 import org.openmrs.api.context.Context;
-import org.openmrs.api.AdministrationService;
-import org.openmrs.api.EncounterService;
-import org.openmrs.api.VisitService;
-import org.openmrs.api.PersonService;
-import org.openmrs.api.PatientService;
-import org.openmrs.api.ConceptService;
-import org.openmrs.api.OrderService;
-import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.Module;
+import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.appframework.service.AppFrameworkService;
+import org.openmrs.module.dataexchange.DataImporter;
+import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.adt.AdtService;
+import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.htmlformentry.FormEntrySession;
+import org.openmrs.module.idgen.IdentifierSource;
+import org.openmrs.module.idgen.service.IdentifierSourceService;
+import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
+import org.openmrs.module.metadatamapping.MetadataTermMapping;
+import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.mapper.PatientQueueMapper;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.stockmanagement.api.dto.DispenseRequest;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
+import org.openmrs.module.ugandaemr.activator.AppConfigurationInitializer;
+import org.openmrs.module.ugandaemr.activator.HtmlFormsInitializer;
+import org.openmrs.module.ugandaemr.activator.Initializer;
+import org.openmrs.module.ugandaemr.activator.JsonFormsInitializer;
+import org.openmrs.module.ugandaemr.api.deploy.bundle.CommonMetadataBundle;
+import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaAddressMetadataBundle;
+import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaEMRPatientFlagMetadataBundle;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.Identifier;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
@@ -62,19 +73,29 @@ import org.openmrs.module.ugandaemr.pharmacy.DispensingModelWrapper;
 import org.openmrs.module.ugandaemr.pharmacy.mapper.DrugOrderMapper;
 import org.openmrs.module.ugandaemr.pharmacy.mapper.PharmacyMapper;
 import org.openmrs.notification.Alert;
+import org.openmrs.notification.AlertService;
 import org.openmrs.order.OrderUtil;
 import org.openmrs.parameter.EncounterSearchCriteria;
 import org.openmrs.parameter.EncounterSearchCriteriaBuilder;
 import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.ui.framework.resource.ResourceFactory;
+import org.openmrs.ui.framework.resource.ResourceProvider;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.module.stockmanagement.api.StockManagementService;
 
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import static org.openmrs.OrderType.TEST_ORDER_TYPE_UUID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
@@ -2106,6 +2127,415 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         }
     }
 
+
+    public Map initializeMetaData(){
+
+        Map results = new HashMap<>();
+        AdministrationService administrationService = Context.getAdministrationService();
+
+        try {
+            log.info("Start import of Concepts,privillages,personAttribute provider attribute type etc...");
+            importMetaDataFromXMLFiles();
+            log.info("completed import of Concepts,privillages,personAttribute provider attribute type etc...");
+            // run the initialization of forms
+            for (Initializer initializer : initialiseForms()) {
+                initializer.started();
+            }
+
+            results.put("status", "success");
+            results.put("message", "completed initialising metadata");
+
+            return results;
+
+        } catch (Exception e) {
+            results.put("status", "failed");
+            results.put("message", e.getMessage());
+            return results;
+        }
+    }
+
+    private String getMetadataPath(String type) {
+        String appDataDir = "";
+
+
+        // Check if metadata initialization is enabled
+        boolean initialiseMetadataOnStart = Boolean.parseBoolean(
+                Context.getAdministrationService().getGlobalProperty("ugandaemr.initialiseMetadataOnStart")
+        );
+
+        if (initialiseMetadataOnStart && !type.equals("metadata")) {
+            final ResourceFactory resourceFactory = ResourceFactory.getInstance();
+            final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(MODULE_ID);
+            appDataDir = resourceProvider.getResource(type).getPath();
+        } else {
+            appDataDir = OpenmrsUtil.getApplicationDataDirectory();
+        }
+
+        // Default paths when initializing metadata on start
+        Map<String, String> defaultPaths = new HashMap<>();
+        defaultPaths.put("jsonforms", "jsonforms/");
+        defaultPaths.put("htmlforms", "htmlforms/");
+        defaultPaths.put("metadata", "metadata/");
+
+        String relativePath;
+
+        if (initialiseMetadataOnStart) {
+            // Get path from default paths
+            relativePath = defaultPaths.get(type);
+        } else {
+            // Get path from global properties
+            switch (type) {
+                case "jsonforms":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.jsonFormPath");
+                    break;
+                case "htmlforms":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.htmlFormPath");
+                    break;
+                case "metadata":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.path");
+                    break;
+                case "configuration":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.configuration");
+                    break;
+                case "frontend":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.frontend");
+                    break;
+                default:
+                    relativePath = null;
+            }
+        }
+
+        // Validate path
+        if (relativePath == null || relativePath.isEmpty()) {
+            throw new IllegalArgumentException("No valid path found for type: " + type);
+        }
+
+        // Return the appropriate path
+        return Paths.get(appDataDir, relativePath).toString();
+    }
+
+    public void importMetaDataFromXMLFiles(){
+        DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
+        String metaDataFilePath=getMetadataPath("metadata")+"/";
+        log.info("import  to Concept Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept.xml");
+        log.info("import to Concept Table  Successful");
+
+        log.info("import  to Concept Name Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Name.xml");
+        log.info("import to Concept Name Table  Successful");
+
+        log.info("import  to Concept_Description Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Description.xml");
+        log.info("import to Concept_Description Table  Successful");
+
+        log.info("import  to Concept_Numeric Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Numeric.xml");
+        log.info("import to Concept_Numeric Table  Successful");
+
+        log.info("import  to Concept_Answer Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Answer.xml");
+        log.info("import to Concept_Answer Table  Successful");
+
+        log.info("import  to Concept_Set Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Set.xml");
+        log.info("import to Concept_Set Table  Successful");
+
+        log.info("import  to Concept_Reference Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Reference.xml");
+        log.info("import to Concept_Reference Table  Successful");
+
+        log.info("import  of  Concept Modifications Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Modifications.xml");
+        log.info("import to Concept Modifications Table  Successful");
+
+        log.info("import  of  Drugs  Starting");
+        dataImporter.importData(metaDataFilePath+"appointment.xml");
+        log.info("import of Drugs  Successful");
+
+        log.info("import  of  ICD 11 concepts  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept.xml");
+        log.info("import of ICD 11 concepts  Successful");
+
+        log.info("import  of  ICD 11 concept_name Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept_name.xml");
+        log.info("import of ICD 11 concept_name  Successful");
+
+        log.info("import  of  ICD 11 concept_reference Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept_reference.xml");
+        log.info("import of ICD 11 concept_reference  Successful");
+
+        log.info("import  of  ICD 11 concept_map Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept_map.xml");
+        log.info("import of ICD 11 concept_map  Successful");
+
+        log.info("import  of  ICD 11 cause_of_death_set Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/cause_of_death_set.xml");
+        log.info("import of ICD 11 cause_of_death_set  Successful");
+
+        log.info("Move Non ICD Coded Diagnosis");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/move_non_icd11-10-to-msc.xml");
+        log.info("Move non coded ICD 11 Diagnosis");
+
+        log.info("import  to Concept Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept.xml");
+        log.info("import to Concept Table  Successful");
+
+        log.info("import  to Concept Name Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Name.xml");
+        log.info("import to Concept Name Table  Successful");
+
+        log.info("import  to Concept_Description Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Description.xml");
+        log.info("import to Concept_Description Table  Successful");
+
+        log.info("import  to Concept_Numeric Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Numeric.xml");
+        log.info("import to Concept_Numeric Table  Successful");
+
+        log.info("import  to Concept_Answer Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Answer.xml");
+        log.info("import to Concept_Answer Table  Successful");
+
+        log.info("import  to Concept_Set Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Set.xml");
+        log.info("import to Concept_Set Table  Successful");
+
+        log.info("import  to Concept_Reference Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Reference.xml");
+        log.info("import to Concept_Reference Table  Successful");
+
+        log.info("Retire Meta data");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/retire_meta_data.xml");
+        log.info("Retiring of meta data is Successful");
+
+        log.info("Start import of person attributes");
+        dataImporter.importData(metaDataFilePath+"Person_Attribute_Types.xml");
+        log.info("Person Attributes imported");
+
+        log.info("Start import of UgandaEMR Privileges");
+        dataImporter.importData(metaDataFilePath+"Role_Privilege.xml");
+        log.info("UgandaEMR Privileges Imported");
+
+        log.info("Start import of UgandaEMR Visits");
+        dataImporter.importData(metaDataFilePath+"VisitTypes.xml");
+        log.info("UgandaEMR Visits Imported");
+
+        log.info("Start import of UgandaEMR Relationship Types");
+        dataImporter.importData(metaDataFilePath+"RelationshipTypes.xml");
+        log.info("UgandaEMR Relationship Types Imported");
+
+        log.info("Start import of Program related objects");
+        dataImporter.importData(metaDataFilePath+"Programs.xml");
+        log.info(" Program related objects Imported");
+
+        log.info("import  of  Drugs  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Drug.xml");
+        log.info("import of Drugs  Successful");
+
+        log.info("Start import of stock item objects");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item.xml");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_packaging_uom.xml");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_uom.xml");
+        log.info("stock item  objects Imported");
+    }
+
+    /**
+     * Generate patientIdentifier for old OpenMRS Migration to the new
+     */
+
+    protected PatientIdentifier generatePatientIdentifier() {
+        IdentifierSourceService iss = Context.getService(IdentifierSourceService.class);
+        IdentifierSource idSource = iss.getIdentifierSource(1); // this is the default OpenMRS identifier source
+        PatientService patientService = Context.getPatientService();
+
+        UUID uuid = UUID.randomUUID();
+
+        PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByUuid("05a29f94-c0ed-11e2-94be-8c13b969e334");
+
+        PatientIdentifier pid = new PatientIdentifier();
+        pid.setIdentifierType(patientIdentifierType);
+        String identifier = iss.generateIdentifier(idSource, "New OpenMRS ID with CheckDigit");
+        pid.setIdentifier(identifier);
+        pid.setPreferred(true);
+        pid.setUuid(String.valueOf(uuid));
+
+        return pid;
+
+    }
+
+    /**
+     * Generate an OpenMRS ID for patients who do not have one due to a migration from an old OpenMRS ID to a new one which contains a check-digit
+     **/
+    public void generateOpenMRSIdentifierForPatientsWithout() {
+        PatientService patientService = Context.getPatientService();
+        AdministrationService as = Context.getAdministrationService();
+        AlertService alertService = Context.getAlertService();
+
+        List<List<Object>> patientIds = as.executeSQL("SELECT patient_id FROM patient_identifier WHERE patient_id NOT IN (SELECT patient_id FROM patient_identifier p INNER JOIN patient_identifier_type pt ON (p.identifier_type = pt.patient_identifier_type_id AND pt.uuid = '05a29f94-c0ed-11e2-94be-8c13b969e334'))", true);
+
+        if (patientIds.size() == 0) {
+            // no patients to process
+            return;
+        }
+        // get the identifier source copied from RegistrationCoreServiceImpl
+
+        for (List<Object> row : patientIds) {
+            Patient p = patientService.getPatient((Integer) row.get(0));
+            // Create new Patient Identifier
+            PatientIdentifier pid = generatePatientIdentifier();
+            pid.setPatient(p);
+            try {
+                log.info("Adding OpenMRS ID " + pid.getIdentifier() + " to patient with id " + p.getPatientId());
+                // Save the patient Identifier
+                patientService.savePatientIdentifier(pid);
+            } catch (Exception e) {
+                // log the error to the alert service but do not rethrow the exception since the module has to start
+                log.error("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
+            }
+        }
+        log.info("All patients updated with new OpenMRS ID");
+    }
+
+    /**
+     * Configure the global properties for the expected functionality
+     *
+     * @return
+     */
+    public void initializePrimaryIdentifierTypeMapping() {
+        // The primary identifier type now uses metadata mapping instead of a global property
+        MetadataMappingService metadataMappingService = Context.getService(MetadataMappingService.class);
+        MetadataTermMapping primaryIdentifierTypeMapping = metadataMappingService.getMetadataTermMapping(
+                EmrApiConstants.EMR_METADATA_SOURCE_NAME,
+                EmrApiConstants.PRIMARY_IDENTIFIER_TYPE
+        );
+        PatientIdentifierType openmrsIdType = Context.getPatientService()
+                .getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
+
+        // Overwrite if not set yet
+        if (!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())) {
+            primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
+            metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
+        }
+    }
+
+
+    public void installCommonMetadata(MetadataDeployService deployService) {
+        try {
+            log.info("Installing standard metadata using the packages.xml file");
+            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+            log.info("Standard metadata installed");
+
+            log.info("Installing metadata");
+            log.info("Installing commonly used metadata");
+            deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
+            log.info("Finished installing commonly used metadata");
+            log.info("Installing address hierarchy");
+            deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
+            log.info("Finished installing addresshierarchy");
+
+            // install concepts
+            log.info("Installing patient flags");
+            deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
+            log.info("Finished installing patient flags");
+
+        } catch (Exception e) {
+            Module mod = ModuleFactory.getModuleById("ugandaemr");
+            ModuleFactory.stopModule(mod);
+            throw new RuntimeException("failed to install the common metadata ", e);
+        }
+    }
+
+    public void removeOldChangeLocksForDataIntegrityModule() {
+        String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
+        // remove data integrity locks for an version below 4
+        // some gymnastics to get the major version number from semver like 2.5.3
+        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4) {
+            AdministrationService as = Context.getAdministrationService();
+            log.warn("Removing liquibase change log locks for previously installed data integrity instance");
+            as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);
+        }
+    }
+
+    public List<Initializer> initialiseForms() {
+        String jsonFormsPath = getMetadataPath("jsonforms") + "/";
+        String htmlFormsPath = getMetadataPath("htmlforms");
+        String initialiseExternalHTMLForm = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.externalhtmlforms.initialize");
+        String initialiseMetaDataOnStart = Context.getAdministrationService().getGlobalProperty("ugandaemr.initialiseMetadataOnStart");
+
+        List<Initializer> l = new ArrayList<Initializer>();
+        l.add(new AppConfigurationInitializer());
+
+        if (Boolean.parseBoolean(initialiseMetaDataOnStart)) {
+            l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID, ""));
+        } else {
+            l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID, jsonFormsPath));
+        }
+
+        if (Boolean.parseBoolean(initialiseExternalHTMLForm) && !Boolean.parseBoolean(initialiseMetaDataOnStart)) {
+            l.add(new HtmlFormsInitializer(UgandaEMRConstants.MODULE_ID));
+        }
+        return l;
+    }
+
+
+    public void setHealthFacilityLocation(){
+        LocationService locationService=Context.getLocationService();
+        AdministrationService administrationService=Context.getAdministrationService();
+        Location healthCenter = locationService.getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117");
+        healthCenter.setName(administrationService.getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
+        locationService.saveLocation(healthCenter);
+    }
+
+    public  void  setFlagStatus(){
+        AdministrationService administrationService=Context.getAdministrationService();
+        String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
+
+        if (flagstatus != null) {
+            flagstatus = ("'" + flagstatus.trim().replace(",", "','") + "'").replace(",''", "").replace("' ", "'");
+            administrationService.executeSQL("update patientflags_flag set enabled=0 where name in (" + flagstatus.trim() + ")", false);
+        }
+    }
+
+    public void disableEnableAPPS(){
+        AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
+        // disable the reference app registration page
+        appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
+        // disable the start visit app since all data is retrospective
+        appFrameworkService.disableExtension("org.openmrs.module.coreapps.createVisit");
+        // the extension to the edit person details
+        appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
+
+        // disable apps on the Clinican facing dashboard added through coreapps 1.12.0
+        appFrameworkService.disableApp("coreapps.mostRecentVitals");
+        appFrameworkService.disableApp("coreapps.diagnoses");
+        appFrameworkService.disableApp("coreapps.latestObsForConceptList");
+        appFrameworkService.disableApp("coreapps.obsAcrossEncounters");
+        appFrameworkService.disableApp("coreapps.obsGraph");
+        appFrameworkService.enableApp("coreapps.visitByEncounterType");
+        appFrameworkService.disableApp("coreapps.dataIntegrityViolations");
+        appFrameworkService.disableApp("fingerprint.findPatient");
+        appFrameworkService.enableApp("ugandaemr.findPatient");
+        appFrameworkService.disableApp("ugandaemr.registrationapp.registerPatient");
+
+        // enable the relationships dashboard widget
+        appFrameworkService.enableApp("coreapps.relationships");
+
+        // Remove the BIRT reports app since it is no longer supported
+        appFrameworkService.disableApp("ugandaemr.referenceapplication.birtReports");
+
+        // Home page apps clean up
+        appFrameworkService.disableApp("referenceapplication.vitals"); // Capture Vitals
+        appFrameworkService.disableApp("coreapps.activeVisits"); // Active Visits
+
+        // form entry app on the home page
+        appFrameworkService.disableApp("xforms.formentry");
+        // disable the default find patient app to provide one which allows searching for patients at the footer of the search for patients page
+        appFrameworkService.disableApp("coreapps.findPatient");
+        // form entry extension in active visits
+        appFrameworkService.disableExtension("xforms.formentry.cfpd");
+    }
+
     public CheckInPatient checkInPatient(Patient patient, Location currentLocation, Location locationTo, Location queueRoom, Provider provider, String visitComment, String patientStatus, String visitTypeUuid) {
         PatientQueue patientQueue = new PatientQueue();
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
@@ -2190,4 +2620,171 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         return todayVisit;
     }
+
+    public void copyFilesToApplicationDataDirectory(String source, String destination) {
+        final ResourceFactory resourceFactory = ResourceFactory.getInstance();
+        final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(UgandaEMRConstants.MODULE_ID);
+
+        // Scanning the forms resources folder
+        final File formsDir = resourceProvider.getResource(source);
+        if (formsDir == null || !formsDir.isDirectory()) {
+            log.error("No files could be retrieved from the provided folder: " + UgandaEMRConstants.MODULE_ID + ":" + source);
+            return;
+        }
+
+        copyDirectoryRecursively(formsDir, Paths.get(getMetadataPath(destination)));
+    }
+
+    private void copyDirectoryRecursively(File sourceDir, Path destinationDir) {
+        try {
+            Files.createDirectories(destinationDir); // Ensure destination directory exists
+
+            for (File file : sourceDir.listFiles()) {
+                Path targetPath = destinationDir.resolve(file.getName()); // Maintain directory structure
+
+                if (file.isDirectory()) {
+                    // Recursively copy subdirectories
+                    copyDirectoryRecursively(file, targetPath);
+                } else {
+                    // Copy files
+                    try (InputStream inputStream = new FileInputStream(file)) {
+                        Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                        log.info("File copied successfully to " + targetPath);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            log.error("Error copying directory: " + e.getMessage());
+        }
+    }
+        public  void downloadFormsAndMetaDataFromGitHub() {
+            String repoOwner = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.organization");
+            String repoName = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.reponame");
+            String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch");
+            String folderToCopy = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.directory");
+            String destinationRoot = getMetadataPath("configuration");
+
+            try {
+                downloadAndExtractFolder(repoOwner, repoName, branch, folderToCopy, destinationRoot);
+                System.out.println("Folder copied successfully with directory structure preserved!");
+                initializeMetaData();
+            } catch (IOException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+    public  void downloadFrontendFromGitHub() {
+        String repoOwner = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.organization");
+        String repoName = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.reponame");
+        String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch");
+        String folderToCopy = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.frontend.directory");
+        String destinationRoot = getMetadataPath("frontend");
+
+        try {
+            downloadAndExtractFolder(repoOwner, repoName, branch, folderToCopy, destinationRoot);
+            System.out.println("Folder copied successfully with directory structure preserved!");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private void downloadAndExtractFolder(String owner, String repo, String branch, String folder, String destination) throws IOException {
+        String zipUrl = "https://github.com/" + owner + "/" + repo + "/archive/refs/heads/" + branch + ".zip";
+        String zipPath = destination + "/repo.zip";
+        String extractPath = destination + "/extracted/";
+
+        // Download ZIP
+        System.out.println("⬇️ Downloading ZIP from: " + zipUrl);
+        try (InputStream in = new URL(zipUrl).openStream()) {
+            Files.copy(in, Paths.get(zipPath), StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        // Extract ZIP
+        unzip(zipPath, extractPath);
+
+        // Move the required folder
+        String extractedFolder = extractPath + repo + "-" + branch + "/" + folder;
+        Path sourcePath = Paths.get(extractedFolder);
+        Path destinationPath = Paths.get(destination, folder);
+
+        // 🗑️ Ensure the destination is deleted first
+        if (Files.exists(destinationPath)) {
+            System.out.println("🗑️ Deleting existing folder: " + destinationPath);
+            deleteDirectory(destinationPath);
+        }
+
+        Files.createDirectories(destinationPath);
+
+        // Copy files, handling both directories and files properly
+        Files.walk(sourcePath).forEach(source -> {
+            Path dest = destinationPath.resolve(sourcePath.relativize(source));
+            try {
+                if (Files.isDirectory(source)) {
+                    Files.createDirectories(dest); // Ensure directories are created first
+                } else {
+                    Files.copy(source, dest, StandardCopyOption.REPLACE_EXISTING);
+                }
+            } catch (IOException e) {
+                System.err.println("❌ Error copying file: " + source + " -> " + dest + ": " + e.getMessage());
+            }
+        });
+
+        System.out.println("✅ Folder copied to: " + destinationPath);
+
+        // Cleanup temporary files
+        Files.deleteIfExists(Paths.get(zipPath));
+        deleteDirectory(Paths.get(extractPath));
+    }
+
+    private void unzip(String zipFilePath, String destDirectory) throws IOException {
+        File destDir = new File(destDirectory);
+        if (!destDir.exists()) destDir.mkdirs();
+        System.out.println("📂 Extracting ZIP to: " + destDirectory);
+
+        try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
+            ZipEntry entry = zipIn.getNextEntry();
+            while (entry != null) {
+                File file = new File(destDirectory, entry.getName());
+
+                if (entry.isDirectory()) {
+                    file.mkdirs();
+                } else {
+                    // Ensure parent directories exist
+                    file.getParentFile().mkdirs();
+
+                    // Overwrite if file already exists
+                    if (file.exists()) {
+                        file.delete(); // Delete existing file before writing new one
+                    }
+
+                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))) {
+                        byte[] bytes = new byte[4096];
+                        int read;
+                        while ((read = zipIn.read(bytes)) != -1) {
+                            bos.write(bytes, 0, read);
+                        }
+                    }
+                }
+
+                zipIn.closeEntry();
+                entry = zipIn.getNextEntry();
+            }
+        }
+    }
+
+
+    private  void deleteDirectory(Path path) throws IOException {
+            if (Files.exists(path)) {
+                Files.walk(path)
+                        .sorted((p1, p2) -> p2.compareTo(p1)) // Delete children first
+                        .forEach(p -> {
+                            try {
+                                Files.delete(p);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+            }
+        }
+
 }
