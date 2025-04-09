@@ -1,6 +1,6 @@
 {
   "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Followup Section",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "This form captures return visits/followup data of the DR TB Treatment program",
   "encounter": "DR TB Encounter (Followup)",
   "encounterType": "41f8609d-e13b-4dff-8379-47ac5876512e",
