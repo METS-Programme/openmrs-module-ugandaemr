@@ -25,11 +25,6 @@ public class AppConfigurationInitializer implements Initializer {
 		SchedulerService schedulerService = Context.getSchedulerService();
 
 		try {
-			// set the AutoClose visits tasks to start automatically
-			TaskDefinition autoCloseVisitsTask = (TaskDefinition) schedulerService.getTaskByName("Auto Close Visits Task");
-			autoCloseVisitsTask.setStartOnStartup(true);
-			schedulerService.saveTaskDefinition(autoCloseVisitsTask);
-
 			// check the Database Backup Task
 			TaskDefinition backupDatabase = (TaskDefinition) schedulerService.getTaskByName("Database Backup Task");
 			 if (backupDatabase != null) {
