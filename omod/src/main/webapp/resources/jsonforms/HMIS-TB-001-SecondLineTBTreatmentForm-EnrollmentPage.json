@@ -1,6 +1,6 @@
 {
   "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Enrollment Page",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "This is enrollment page of the DR TB Treatment program",
   "encounter": "DR TB Summary (Enrollment)",
   "encounterType": "0271ee3d-f274-49d1-b376-c842f075413f",
