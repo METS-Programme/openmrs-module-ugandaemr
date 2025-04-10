@@ -610,4 +610,20 @@ public class EncounterTypes {
             return "09478ad9-ccc1-4cbe-9e55-473447984158";
         }
     };
+
+    public static EncounterTypeDescriptor PROCEDURE_RESULTS_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Procedure Results";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter type for processing procedure results";
+        }
+
+        public String uuid() {
+            return "a4870f6d-ea06-4bbe-b775-bcbfb0816dbf";
+        }
+    };
 }

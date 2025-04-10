@@ -521,7 +521,7 @@
             "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": [
-                "Manage Patient Investigation"
+                "Manage Patient Investigation Results"
               ]
             }
           },
@@ -611,7 +611,7 @@
               ]
             }
           },
-          "attachments-results-summary-dashboard":{
+          "attachments-results-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true,
             "Display conditions": {
@@ -883,18 +883,63 @@
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
+    "validateBatch": false,
     "medicationRequestExpirationPeriodInDays": 1
   },
   "@openmrs/esm-patient-search-app": {
     "extensionSlots": {
       "patient-actions-slot": {
-        "remove": [
-          "add-past-visit-button",
-          "cancel-visit-button",
-          "start-visit-button",
-          "mark-alive-button",
-          "mark-patient-deceased-button"
-        ]
+        "configure": {
+          "start-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Start Visit Button"
+              ]
+            }
+          },
+          "stop-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Stop Visit Button"
+              ]
+            }
+          },
+          "cancel-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Cancel Visit Button"
+              ]
+            }
+          },
+          "mark-patient-deceased-button": {
+            "Display conditions": {
+              "privileges": [
+                "Mark Dead Button"
+              ]
+            }
+          },
+          "edit-patient-details-button": {
+            "Display conditions": {
+              "privileges": [
+                "Edit Patient Details Button"
+              ]
+            }
+          },
+          "add-patient-to-patient-list-button": {
+            "Display conditions": {
+              "privileges": [
+                "Add Patient To List Button"
+              ]
+            }
+          },
+          "patient-move-to-next-service-point": {
+            "Display conditions": {
+              "privileges": [
+                "Next Service Point"
+              ]
+            }
+          }
+        }
       },
       "start-visit-button-slot": {
         "remove": [
