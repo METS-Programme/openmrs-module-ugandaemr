@@ -2250,10 +2250,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("import to Concept Modifications Table  Successful");
 
         log.info("import  of  Drugs  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Drug.xml");
-        log.info("import of Drugs  Successful");
-
-        log.info("import  of  Drugs  Starting");
         dataImporter.importData(metaDataFilePath+"appointment.xml");
         log.info("import of Drugs  Successful");
 
@@ -2332,6 +2328,20 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("Start import of Program related objects");
         dataImporter.importData(metaDataFilePath+"Programs.xml");
         log.info(" Program related objects Imported");
+
+        log.info("import  of  Drugs  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Drug.xml");
+        log.info("import of Drugs  Successful");
+
+        log.info("Start import of orderFrequencies related objects");
+        dataImporter.importData(metaDataFilePath + "order_frequency.xml");
+        log.info(" orderFrequencies related objects Imported");
+
+        log.info("Start import of stock item objects");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item.xml");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_packaging_uom.xml");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_uom.xml");
+        log.info("stock item  objects Imported");
     }
 
     /**

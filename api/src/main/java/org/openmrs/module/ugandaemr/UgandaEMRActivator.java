@@ -237,5 +237,15 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("Start import of Program related objects");
         dataImporter.importData(metaDataFilePath + "Programs.xml");
         log.info(" Program related objects Imported");
+
+        log.info("Start import of orderFrequencies related objects");
+        dataImporter.importData(metaDataFilePath + "order_frequency.xml");
+        log.info(" orderFrequencies related objects Imported");
+
+        log.info("Start import of stock item objects");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item.xml");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_packaging_uom.xml");
+        dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_uom.xml");
+        log.info("stock item  objects Imported");
     }
 }
