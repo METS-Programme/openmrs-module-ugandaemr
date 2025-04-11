@@ -2333,6 +2333,10 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Drug.xml");
         log.info("import of Drugs  Successful");
 
+        log.info("Start import of orderFrequencies related objects");
+        dataImporter.importData(metaDataFilePath + "order_frequency.xml");
+        log.info(" orderFrequencies related objects Imported");
+
         log.info("Start import of stock item objects");
         dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item.xml");
         dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_packaging_uom.xml");

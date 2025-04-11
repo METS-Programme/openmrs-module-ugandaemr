@@ -658,6 +658,63 @@
               "hide": {
                 "hideWhenExpression": "dsdmModels != 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5' || dsdmApproach !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
+            },
+            {
+              "label": "Pharmacy",
+              "type": "obs",
+              "required": false,
+              "id": "pharmacyDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "e50fa0af-df36-4a26-853f-feb05244e5ca"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmModels) || dsdmModels != '9d1a4797-766e-495f-9387-b92462926fad' || dsdmApproach != '566e7e03-4024-4299-b12e-ecaa2820698d'"
+              }
+            },
+            {
+              "label": "General CDDP Group Name",
+              "type": "obs",
+              "required": false,
+              "id": "generalCDDPDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "da964ff0-648e-440b-a219-d2aeba3670d0"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmModels) || dsdmModels != 'c6563d48-5e16-45e5-ab6f-a64214656801' || dsdmApproach != '73313c96-c321-11e8-a355-529269fb1459'"
+              }
+            },
+            {
+              "label": "CLDDP Group",
+              "type": "obs",
+              "required": false,
+              "id": "clddpDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "5b7136fa-d207-4229-94a8-da6661ae00bf"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmModels) || dsdmModels != 'b69dc787-8a34-443a-a054-e2a895a10a58' || dsdmApproach != '0e8c2722-61a5-4658-ab58-4014c991f92a'"
+              }
             }
           ]
         },
