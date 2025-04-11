@@ -8,13 +8,6 @@
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
-  "meta": {
-    "programs": {
-      "uuid": "9dc21a72-0971-11e7-8037-507b9dc4c741",
-      "isEnrollment": true,
-      "discontinuationDateQuestionId": ""
-    }
-  },
   "pages": [
     {
       "label": "DR TB Followup Page",
