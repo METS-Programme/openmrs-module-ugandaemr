@@ -174,7 +174,7 @@
                     "label": "Tobacco Smoker"
                   },
                   {
-                    "concept": "123815AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "41ffa03e-5e2e-4bc6-b802-ae68db3e6d74",
                     "label": "Undernourished"
                   },
                   {
@@ -182,7 +182,7 @@
                     "label": "HIV"
                   },
                   {
-                    "concept": "c14695ca-6f11-4f1c-9af5-8f3bd5ddb3a3",
+                    "concept": "118855AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Alcohol and Substance Abuse"
                   },
                   {
@@ -590,27 +590,27 @@
               "id": "dotModel",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "a0e4e03a-4475-4f41-a23f-82909cf97ee7",
                 "conceptMappings": [],
                 "answers": [
                   {
                     "concept": "f9cdc841-1901-407e-b3ca-65dd3762051d",
-                    "label": "Facility DOTS (fDOTS)",
+                    "label": "Health facility-based DOTS (fDOT)",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
-                    "label": "Community DOTS (cDOTS)",
+                    "concept": "ad6416c2-ca66-45e7-bfa0-9c03df0ab761",
+                    "label": "Community based DOTS (cDOT)",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
-                    "label": "Digital-Video (vDOTS)",
+                    "concept": "65d83274-a63d-4758-8bb8-64e7d09cd307",
+                    "label": "Digital-Video (vDOT)",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
-                    "label": "Digital-Pill box (pDOTS)",
+                    "concept": "f73d7805-284b-4e74-85fa-9e82c242a583",
+                    "label": "Digital-Pill box (pDOT)",
                     "conceptMappings": []
                   },
                   {
