@@ -883,6 +883,7 @@
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
+    "validateBatch": false,
     "medicationRequestExpirationPeriodInDays": 1
   },
   "@openmrs/esm-patient-search-app": {
