@@ -457,7 +457,10 @@
     "loginBanner": {
       "src": "/openmrs/spa/banner.svg",
       "alt": "UgandaEMR+ logo"
-    }
+    },
+    "showCenteredLogin": true,
+    "supportEmail": "epcare@gmail.com",
+    "footerOpenMRSLogo": "omrs-logo-partial-mono"
   },
   "@openmrs/esm-primary-navigation-app": {
     "extensionSlots": {
