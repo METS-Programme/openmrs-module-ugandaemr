@@ -616,7 +616,7 @@
               "id": "onDmTreatment",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "840c0ac7-5300-422d-97ae-74ec310019c6",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -996,7 +996,7 @@
               "id": "otherDotModel",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "162283a3-00b4-42dc-83c6-c21220f5d1b1"
               },
               "validators": [],
               "hide": {
