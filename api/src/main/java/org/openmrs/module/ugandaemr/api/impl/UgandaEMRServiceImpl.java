@@ -2044,7 +2044,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         List<PatientQueue> fromLabQueue = new ArrayList<>();
 
 
-
         for (PatientQueue potentialQueueFromLab : patientQueueList) {
             Encounter labEncounter = potentialQueueFromLab.getEncounter();
             PatientQueue.Status labStatus = potentialQueueFromLab.getStatus();
@@ -2333,6 +2332,10 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("import  of  Drugs  Starting");
         dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Drug.xml");
         log.info("import of Drugs  Successful");
+
+        log.info("Start import of orderFrequencies related objects");
+        dataImporter.importData(metaDataFilePath + "order_frequency.xml");
+        log.info(" orderFrequencies related objects Imported");
 
         log.info("Start import of stock item objects");
         dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item.xml");
