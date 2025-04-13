@@ -16,7 +16,8 @@
   "@openmrs/esm-appointments-app": {
     "Display conditions": {
       "privileges": [
-        "Manage Appointments"
+        "Manage Appointments",
+        "Manage Appointment Services"
       ]
     }
   },
@@ -81,7 +82,7 @@
   "@openmrs/esm-patient-appointments-app": {
     "Display conditions": {
       "privileges": [
-        "Manage Patient Appointments"
+        "Manage Patient Appointment"
       ]
     }
   },
@@ -109,7 +110,7 @@
   "@openmrs/esm-patient-conditions-app": {
     "Display conditions": {
       "privileges": [
-        "Add Conditions"
+        "Manage conditions"
       ]
     }
   },
@@ -143,6 +144,13 @@
       ]
     }
   },
+  "@openmrs/esm-patient-notes-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Patient Notes"
+      ]
+    }
+  },
   "@openmrs/esm-patient-tests-app": {
     "resultsViewerConcepts": [
       {
@@ -164,6 +172,11 @@
     "orders": {
       "labOrderableConcepts": [
         "dca07f4a-30ab-102d-86b0-7a5022ba4115"
+      ]
+    },
+    "Display conditions": {
+      "privileges": [
+        "View Test Results"
       ]
     }
   },
@@ -418,10 +431,18 @@
     }
   },
   "@openmrs/esm-home-app": {
-    "Display conditions": {
-      "privileges": [
-        "Access home app"
-      ]
+    "extensionSlots": {
+      "clinical-appointments-dashboard-slot": {
+        "configure": {
+          "clinical-appointments-dashboard": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          }
+        }
+      }
     }
   },
   "@ugandaemr/esm-login-app": {
@@ -503,7 +524,7 @@
             "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": [
-                "Manage Patient Investigation"
+                "Manage Patient Investigation Results"
               ]
             }
           },
@@ -516,7 +537,7 @@
               ]
             }
           },
-          "program-summary-dashboard": {
+          "programs-summary-dashboard": {
             "layoutMode": "anchored",
             "order": 2,
             "hideDashboardTitle": true,
@@ -593,6 +614,15 @@
               ]
             }
           },
+          "attachments-results-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient attachments"
+              ]
+            }
+          },
           "patient-appointments-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true,
@@ -623,7 +653,7 @@
           "clinical-views-divider": {
             "Display conditions": {
               "privileges": [
-                "Manage clinical views divider"
+                "View Clinical Views Divider"
               ]
             }
           },
@@ -711,7 +741,7 @@
           "clinical-appointments-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "Manage appointments dashboard"
+                "Manage Patient Appointments Link"
               ]
             }
           },
@@ -840,7 +870,12 @@
     }
   },
   "@openmrs/esm-patient-orders-app": {
-    "orderEncounterType": "dbe038cd-cad5-439d-a761-a6d6d680219c"
+    "orderEncounterType": "dbe038cd-cad5-439d-a761-a6d6d680219c",
+    "Display conditions": {
+      "privileges": [
+        "Manage Order Basket"
+      ]
+    }
   },
   "@openmrs/esm-dispensing-app": {
     "locationBehavior": {
@@ -872,18 +907,63 @@
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
+    "validateBatch": false,
     "medicationRequestExpirationPeriodInDays": 1
   },
   "@openmrs/esm-patient-search-app": {
     "extensionSlots": {
       "patient-actions-slot": {
-        "remove": [
-          "add-past-visit-button",
-          "cancel-visit-button",
-          "start-visit-button",
-          "mark-alive-button",
-          "mark-patient-deceased-button"
-        ]
+        "configure": {
+          "start-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Start Visit Button"
+              ]
+            }
+          },
+          "stop-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Stop Visit Button"
+              ]
+            }
+          },
+          "cancel-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Cancel Visit Button"
+              ]
+            }
+          },
+          "mark-patient-deceased-button": {
+            "Display conditions": {
+              "privileges": [
+                "Mark Dead Button"
+              ]
+            }
+          },
+          "edit-patient-details-button": {
+            "Display conditions": {
+              "privileges": [
+                "Edit Patient Details Button"
+              ]
+            }
+          },
+          "add-patient-to-patient-list-button": {
+            "Display conditions": {
+              "privileges": [
+                "Add Patient To List Button"
+              ]
+            }
+          },
+          "patient-move-to-next-service-point": {
+            "Display conditions": {
+              "privileges": [
+                "Next Service Point"
+              ]
+            }
+          }
+        }
       },
       "start-visit-button-slot": {
         "remove": [
