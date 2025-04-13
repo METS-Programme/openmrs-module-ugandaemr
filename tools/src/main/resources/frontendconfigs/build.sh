@@ -20,12 +20,10 @@ npx --legacy-peer-deps openmrs@latest build \
   --support-offline false
 # Copy required files
 echo "Copying required files ..."
-cp "${CWD}/assets/logo.svg" "${CWD}/frontend"
+cp -r "${CWD}/assets/" "${CWD}/frontend"
 # cp "${CWD}/assets/favicon.ico" "${CWD}/frontend"
 cp "${CWD}/configuration/frontend-config.json" "${CWD}/frontend"
 mv "${CWD}/frontend/frontend-config.json" "${CWD}/frontend/config.json"
-cp -r assets/* frontend/.
-zip -r frontend.zip frontend/*
-
+# zip -r frontend.zip frontend/*
 # Exit with success status
 exit 0
