@@ -131,7 +131,7 @@
 		<spaModuleVersion>2.0.0</spaModuleVersion>
 		<o3formsVersion>2.3.0</o3formsVersion>
 		<orderTemplatesVersion>1.0.3</orderTemplatesVersion>
-		<attachmentsVersion>3.0.0</attachmentsVersion>
+		<attachmentsVersion>3.6.0</attachmentsVersion>
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.1.3</ugandaemrReportsVersion>
