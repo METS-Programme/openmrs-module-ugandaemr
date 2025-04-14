@@ -61,9 +61,9 @@
     }
   },
   "@openmrs/esm-styleguide": {
-    "Brand color #1": " #009384",
-    "Brand color #2": " #009384",
-    "Brand color #3": " #009384"
+    "Brand color #1": "#1a3054",
+    "Brand color #2": "#1a3054",
+    "Brand color #3": "#0078a6"
   },
   "@openmrs/esm-patient-biometrics-app": {
     "Display conditions": {
@@ -460,7 +460,7 @@
     },
     "showCenteredLogin": true,
     "supportEmail": "epcare@gmail.com",
-    "footerOpenMRSLogo": "omrs-logo-partial-mono"
+    "footerOpenMRSLogo": "omrs-logo-white"
   },
   "@openmrs/esm-primary-navigation-app": {
     "extensionSlots": {
@@ -772,6 +772,27 @@
                 "Manage Home Link"
               ]
             }
+          },
+          "imaging-orders-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Radiology"
+              ]
+            }
+          },
+          "procedure-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Procedures"
+              ]
+            }
+          },
+          "billing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Billing"
+              ]
+            }
           }
         }
       }
@@ -950,5 +971,19 @@
         ]
       }
     }
+  },
+  "@ugandaemr/esm-billing-app": {
+    "serviceTypes": "609afe4f-d539-4dfe-896d-0b9897d0ee4a",
+    "defaultCurrency": "UGX",
+    "showEditBillButton": true
+  },
+  "@ugandaemr/esm-procedure-orders-app": {
+    "procedureConceptSetUuid": "83bdfa6a-0c51-428a-a08d-3922db216858",
+    "procedureResultEncounterType": "a4870f6d-ea06-4bbe-b775-bcbfb0816dbf",
+    "procedureComplicationGroupingConceptUuid": "941d42f3-1901-47d7-826f-403736388a62",
+    "procedureComplicationConceptUuid": "941d42f3-1901-47d7-826f-403736388a62"
+  },
+  "@ugandaemr/esm-imaging-orders-app": {
+    "radiologyConceptSetUuid": "4557f916-4f42-410a-96ad-39c59ad82553"
   }
 }
