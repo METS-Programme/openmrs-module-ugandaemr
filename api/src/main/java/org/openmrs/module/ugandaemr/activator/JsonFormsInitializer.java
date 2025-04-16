@@ -140,6 +140,11 @@ public class JsonFormsInitializer implements Initializer {
             boolean needToSaveForm = false;
             FormResource formResource = formService.getFormResource(form, "JSON schema");
 
+            // Name
+            if (!OpenmrsUtil.nullSafeEquals(form.getName(), formName)) {
+                form.setDescription(formName);
+                needToSaveForm = true;
+            }
             // Description
             if (!OpenmrsUtil.nullSafeEquals(form.getDescription(), formDescription)) {
                 form.setDescription(formDescription);
