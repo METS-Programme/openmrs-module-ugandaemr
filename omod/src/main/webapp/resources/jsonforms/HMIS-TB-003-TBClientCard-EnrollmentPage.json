@@ -1,6 +1,6 @@
 {
   "name": "DS TB: HMIS TB 003 - TB Client Card Enrollment Page",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "This is a summary of the TB Treatment program",
   "encounterType": "334bf97e-28e2-4a27-8727-a5ce31c7cd66",
   "encounter": "TB Summary (Enrollment)",

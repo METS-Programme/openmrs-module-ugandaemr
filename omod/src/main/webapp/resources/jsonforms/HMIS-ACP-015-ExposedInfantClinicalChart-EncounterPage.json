@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 015 - Exposed Infant Card Encounter Form",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Captures encounter details for infants born to HIV positive mothers",
   "encounter": "EID Card - Encounter",
   "encounterType": "4345dacb-909d-429c-99aa-045f2db77e2b",
