@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 018:HTS Client Card",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "HIV Testing Services",
   "encounterType": "264daIZd-f80e-48fe-nba9-P37f2W1905Pv",
   "encounter": "HTC - Encounter",

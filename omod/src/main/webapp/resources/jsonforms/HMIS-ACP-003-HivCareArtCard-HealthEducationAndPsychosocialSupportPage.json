@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Captures health eduction and counseling encounters",
   "encounter": "ART Card - Health Education Encounter",
   "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",

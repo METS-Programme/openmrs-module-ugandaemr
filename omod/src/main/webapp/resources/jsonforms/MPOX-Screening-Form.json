@@ -1,6 +1,6 @@
 {
   "name": "MPOX Screening Form",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "MPOX Screening Form",
   "encounterType": "09478ad9-ccc1-4cbe-9e55-473447984158",
   "encounter": "Monkey Pox Screening",

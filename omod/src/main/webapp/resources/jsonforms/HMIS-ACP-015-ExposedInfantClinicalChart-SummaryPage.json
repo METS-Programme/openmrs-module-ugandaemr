@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 015:Exposed Infant Card Summary Form",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Captures demographic details for infants born to HIV positive mothers",
   "encounter": "EID Card - Summary",
   "encounterType": "9fcfcc91-ad60-4d84-9710-11cc25258719",
