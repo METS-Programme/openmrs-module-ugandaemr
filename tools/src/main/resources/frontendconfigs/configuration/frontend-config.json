@@ -155,18 +155,411 @@
     "resultsViewerConcepts": [
       {
         "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
-        "defaultOpen": true
+        "defaultOpen": false
       },
       {
         "conceptUuid": "dc824b7b-30ab-102d-86b0-7a5022ba4115",
-        "defaultOpen": true
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc9223b2-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
       },
       {
         "conceptUuid": "dc926649-30ab-102d-86b0-7a5022ba4115",
-        "defaultOpen": true
+        "defaultOpen": false
       },
       {
-        "conceptUuid": "a9a5af0f-cb4e-4657-8ec0-a21772a02345"
+        "conceptUuid": "dc9292fc-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc96505b-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc9686e0-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dcbc4a1c-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dcbc52c0-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "264e34a1-3ae3-4b59-9763-48c961a8a56a",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "14924d56-8841-4d96-a9bb-8daaeaacea17",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "8733234b-7391-45aa-8cb2-9fabfafbc3d1",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "159645AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "159981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161199AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161426AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161437AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161458AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161463AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161464AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161468AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161478AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161486AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161487AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161493AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161501AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161508AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161510AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161518AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161520AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "162630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163602AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163610AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163625AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163679AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163697AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163700AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163701AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163702AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163708AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "2cf5644d-73a7-42f2-b18c-f773f40b648c",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5faffe89-397e-470c-a32b-e07d962d01b3",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5827cc4c-8b35-483e-a460-9b76885cf9de",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "daebb483-4eef-42b5-9380-7dbfec2ef6ce",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "a9a5af0f-cb4e-4657-8ec0-a21772a02345",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1c654215-fcc4-439f-a975-ced21995ed15",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "2772e8c9-c019-46db-9242-dcf81f975f50",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5f02429c-f83d-48e3-b6f7-bc288aa20ca0",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "e56b2640-271a-4e63-933b-7e1c2a8e0e50",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "f274dcaa-e515-440e-bcd7-140a691587aa",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "7f420159-b843-44a7-b53c-c6ca52a53ec5",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "167178AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "167441AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5b40edac-a7e2-11ed-afa1-0242ac120002",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "df09f8d4-fb7a-45a9-b309-240e700e37d3",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+        "defaultOpen": false
       }
     ],
     "orders": {
@@ -883,7 +1276,6 @@
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
-    "validateBatch": false,
     "medicationRequestExpirationPeriodInDays": 1
   },
   "@openmrs/esm-patient-search-app": {

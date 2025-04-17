@@ -1,6 +1,6 @@
 {
   "name": "HMIS LAB 001:General Laboratory Test Request Form",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "A request for Lab test to Lab",
   "encounterType": "cbf01392-ca29-11e9-a32f-2a2ae2dbcce4",
   "encounter": "LAB Encounter",
