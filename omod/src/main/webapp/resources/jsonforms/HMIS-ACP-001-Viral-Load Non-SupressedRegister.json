@@ -651,7 +651,7 @@
               }
             },
             {
-              "label": "Histoplasmosis Treatment",
+              "label": "Treated for Histoplasmosis",
               "type": "obs",
               "required": "false",
               "id": "histoplasmosisTreatment",
@@ -717,7 +717,7 @@
               }
             },
             {
-              "label": "Aspergillosis Treatment",
+              "label": "Treated for Aspergillosis",
               "type": "obs",
               "required": "false",
               "id": "aspergillosisTreatment",
