@@ -1,5 +1,5 @@
 {
-  "name": "HMIS ACP HIV 003: HIV CARE/ART CARD - Summary Form",
+  "name": "HMIS ACP HIV 003: HIV CARE ART CARD - Summary Form",
   "version": "4.0.1",
   "description": "Summary entry form for patients enrolled for ART",
   "encounter": "ART Card - Summary",
