@@ -353,13 +353,31 @@
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.metadata.github.branch</property>
+        <property>ugandaemr.metadata.github.branch.metadata</property>
         <defaultValue>main</defaultValue>
         <description>The metadata GitHub branch name</description>
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.metadata.github.directory</property>
+        <property>ugandaemr.metadata.github.branch.modules</property>
+        <defaultValue>modules</defaultValue>
+        <description>The modules GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.branch.frontend</property>
+        <defaultValue>frontend</defaultValue>
+        <description>The modules GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.frontend.modules</property>
+        <defaultValue>frontend</defaultValue>
+        <description>The modules GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.metadata.directory</property>
         <defaultValue>configuration</defaultValue>
         <description>The metadata GitHub directory name</description>
     </globalProperty>
@@ -368,6 +386,12 @@
         <property>ugandaemr.metadata.github.frontend.directory</property>
         <defaultValue>frontend</defaultValue>
         <description>The frontend GitHub directory name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.modules.directory</property>
+        <defaultValue>modules</defaultValue>
+        <description>The modules GitHub directory name</description>
     </globalProperty>
 
     <globalProperty>
@@ -386,6 +410,12 @@
         <property>ugandaemr.frontend</property>
         <defaultValue>/</defaultValue>
         <description>The frontend path of UgandaEMR</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.modules</property>
+        <defaultValue>/</defaultValue>
+        <description>The modules path of UgandaEMR</description>
     </globalProperty>
 
     <globalProperty>

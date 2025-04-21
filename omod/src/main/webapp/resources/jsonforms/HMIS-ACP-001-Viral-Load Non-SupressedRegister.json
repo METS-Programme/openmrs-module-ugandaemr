@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 001 - Viral Load Non Suppressed Form",
-  "version": "4.0.1",
+  "version": "4.1.1",
   "description": "Viral Load Non Suppressed Follow up",
   "encounter": "Viral Load Non Suppressed Encounter",
   "encounterType": "38cb2232-30fc-4b1f-8df1-47c795771ee9",
@@ -651,6 +651,30 @@
               }
             },
             {
+              "label": "Treated for Histoplasmosis",
+              "type": "obs",
+              "required": "false",
+              "id": "histoplasmosisTreatment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d3aed5aa-c333-451c-a546-319e68ec60b8",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "histoplasmosisResults !== 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
               "label": "Aspergillosis Screening",
               "type": "obs",
               "id": "aspergillosisScreening",
@@ -690,6 +714,30 @@
               },
               "hide": {
                 "hideWhenExpression": "aspergillosisScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Treated for Aspergillosis",
+              "type": "obs",
+              "required": "false",
+              "id": "aspergillosisTreatment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "a48b301e-340e-46a1-aa53-3f888396eaf0",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "aspergillosisResults !== 'dc866728-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -886,7 +934,7 @@
                   "type": "obs",
                   "id": "copies",
                   "questionOptions": {
-                    "rendering": "text",
+                    "rendering": "number",
                     "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115"
                   },
                   "validators": [],
@@ -969,7 +1017,7 @@
               "id": "clinicalDecision",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "163166AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
                   {
                     "concept": "163160AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",

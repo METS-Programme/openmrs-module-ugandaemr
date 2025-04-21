@@ -78,6 +78,9 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
                 administrationService.saveGlobalProperty(initialiseMetaDataOnStart);
             }
 
+            // install common metadata
+            ugandaEMRService.installCommonMetadata();
+
             // initialise primary Identifier
             ugandaEMRService.initializePrimaryIdentifierTypeMapping();
 
@@ -100,8 +103,6 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         }
 
     }
-
-
 
 
     /**

@@ -1,6 +1,6 @@
 {
   "name": "HMIS 003 HIV Care ART Card - Clinical Assessment",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "A visit for a client for clinical assessment",
   "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
   "encounter": "ART Card - Encounter",
@@ -314,7 +314,7 @@
               "type": "obs",
               "id": "oedema",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": [
@@ -1518,7 +1518,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(artAdherence) || artAdherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(arvAdherence) || arvAdherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {

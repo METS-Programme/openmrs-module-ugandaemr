@@ -1233,6 +1233,52 @@ VALUES
 			<column name="uuid" value="b71c4d78-0d7b-11f0-9e19-da924fd23489" />
 		</insert>
 	</changeSet>
+
+	<changeSet id="ugandaemr-2025-04-14-5032" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpdateModulesTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Update Backend Modules" />
+			<column name="description" value="This updates the backend modules in EMR. Remember to restart after task has run successfuly" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpdateModulesTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2025-04-14T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="0"/>
+			<column name="uuid" value="0bc33774-1939-11f0-9e19-da924fd23489" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="ugandaemr-2025-04-14-5035" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpgradeEnireEMRTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Upgrade All EMR Components" />
+			<column name="description" value="This tasks Upgrades frontend module, core omod  and metadata of EMR" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpgradeEnireEMRTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2025-04-14T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="0"/>
+			<column name="uuid" value="0ea91bba-193a-11f0-9e19-da924fd23489" />
+		</insert>
+	</changeSet>
 </databaseChangeLog>
 
 

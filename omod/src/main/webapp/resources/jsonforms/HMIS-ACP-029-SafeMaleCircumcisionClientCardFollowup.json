@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 029: Safe Male Circumcision Client Card Follow up",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Captures clients undergoing safe male circumcision follow up",
   "encounterType": "d0f9e0b7-f336-43bd-bf50-0a7243857fa6",
   "encounter": "SMC Follow up Encounter",

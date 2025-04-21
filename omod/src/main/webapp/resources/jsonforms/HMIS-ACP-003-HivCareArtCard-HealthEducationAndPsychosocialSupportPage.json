@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Captures health eduction and counseling encounters",
   "encounter": "ART Card - Health Education Encounter",
   "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",
@@ -662,8 +662,7 @@
             {
               "label": "Pharmacy",
               "type": "obs",
-              "required": false,
-              "id": "pharmacyDatasource",
+              "id": "crpddpDatasource",
               "questionOptions": {
                 "rendering": "ui-select-extended",
                 "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
@@ -675,17 +674,16 @@
                 }
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmModels) || dsdmModels != '9d1a4797-766e-495f-9387-b92462926fad' || dsdmApproach != '566e7e03-4024-4299-b12e-ecaa2820698d'"
+                "hideWhenExpression": "dsdmModels != '9d1a4797-766e-495f-9387-b92462926fad' || dsdmApproach != '566e7e03-4024-4299-b12e-ecaa2820698d'"
               }
             },
             {
               "label": "General CDDP Group Name",
               "type": "obs",
-              "required": false,
               "id": "generalCDDPDatasource",
               "questionOptions": {
                 "rendering": "ui-select-extended",
-                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "concept": "f9764a92-d2fa-4866-a7bf-b9a6fc98067a",
                 "datasource": {
                   "name": "dsdm_categorization_datasource",
                   "config": {
@@ -694,17 +692,34 @@
                 }
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmModels) || dsdmModels != 'c6563d48-5e16-45e5-ab6f-a64214656801' || dsdmApproach != '73313c96-c321-11e8-a355-529269fb1459'"
+                "hideWhenExpression": "dsdmModels != 'c6563d48-5e16-45e5-ab6f-a64214656801' || dsdmApproach != '73313728-c321-11e8-a355-529269fb1459'"
               }
             },
             {
-              "label": "CLDDP Group",
+              "label": "CLDDP Group Name",
               "type": "obs",
-              "required": false,
               "id": "clddpDatasource",
               "questionOptions": {
                 "rendering": "ui-select-extended",
                 "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "aa536e57-a3c3-453c-9413-cf70b5d2ad5d"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "dsdmModels != 'b69dc787-8a34-443a-a054-e2a895a10a58' || dsdmApproach != '0e8c2722-61a5-4658-ab58-4014c991f92a'"
+              }
+            },
+            {
+              "label": "CCLAD Group Name",
+              "type": "obs",
+              "id": "ccladDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "733139e4-c321-11e8-a355-529269fb1459",
                 "datasource": {
                   "name": "dsdm_categorization_datasource",
                   "config": {
@@ -713,7 +728,7 @@
                 }
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmModels) || dsdmModels != 'b69dc787-8a34-443a-a054-e2a895a10a58' || dsdmApproach != '0e8c2722-61a5-4658-ab58-4014c991f92a'"
+                "hideWhenExpression": "dsdmModels != 'b69dc787-8a34-443a-a054-e2a895a10a58' || dsdmApproach != '733139e4-c321-11e8-a355-529269fb1459'"
               }
             }
           ]

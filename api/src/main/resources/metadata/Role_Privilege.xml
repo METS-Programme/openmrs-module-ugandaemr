@@ -950,6 +950,7 @@
     <role_privilege  role="Organizational: Laboratory"  privilege="App: ugandaemrpoc.laboratory"/>
     <role_privilege  role="Organizational: Laboratory"  privilege="Delete Orders"/>
     <role_privilege  role="Organizational: Laboratory"  privilege="Manage Laboratory"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="Edit Diagnoses"/>
 
 
     <!--* PHARMACY ROLE *-->

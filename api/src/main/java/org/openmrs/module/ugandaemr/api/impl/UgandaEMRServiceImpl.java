@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONArray;
 import org.openmrs.CareSetting;
 import org.openmrs.Concept;
 import org.openmrs.ConceptNumeric;
@@ -90,12 +91,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.DirectoryStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.nio.charset.StandardCharsets;
 
 import static org.openmrs.OrderType.TEST_ORDER_TYPE_UUID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
@@ -2200,6 +2203,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 case "frontend":
                     relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.frontend");
                     break;
+                case "modules":
+                    relativePath = Context.getAdministrationService().getGlobalProperty("ugandaemr.modules");
+                    break;
                 default:
                     relativePath = null;
             }
@@ -2424,7 +2430,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
 
-    public void installCommonMetadata(MetadataDeployService deployService) {
+    public void installCommonMetadata() {
+        MetadataDeployService deployService=Context.getService(MetadataDeployService.class);
         try {
             log.info("Installing standard metadata using the packages.xml file");
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
@@ -2540,14 +2547,15 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         appFrameworkService.disableExtension("xforms.formentry.cfpd");
     }
 
-    public CheckInPatient checkInPatient(Patient patient, Location currentLocation, Location locationTo, Location queueRoom, Provider provider, String visitComment, String patientStatus, String visitTypeUuid) {
+    public CheckInPatient checkInPatient(Patient patient, Location currentLocation, Location locationTo, Location queueRoom, Provider provider, String visitComment, String patientStatus, String visitTypeUuid, Integer priority) {
         PatientQueue patientQueue = new PatientQueue();
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
 
         if (patientStatus != null && patientStatus.equals("emergency")) {
-            patientQueue.setPriority(0);
+            patientQueue.setPriority(priority == null ? 0 : priority);
             patientQueue.setPriorityComment(patientStatus);
         }
+
 
         if (visitComment != null) {
             patientQueue.setComment(visitComment);
@@ -2661,89 +2669,154 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             log.error("Error copying directory: " + e.getMessage());
         }
     }
-        public  void downloadFormsAndMetaDataFromGitHub() {
-            String repoOwner = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.organization");
-            String repoName = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.reponame");
-            String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch");
-            String folderToCopy = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.directory");
-            String destinationRoot = getMetadataPath("configuration");
 
-            try {
-                downloadAndExtractFolder(repoOwner, repoName, branch, folderToCopy, destinationRoot);
-                System.out.println("Folder copied successfully with directory structure preserved!");
-                initializeMetaData();
-            } catch (IOException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-        }
-
-    public  void downloadFrontendFromGitHub() {
+    public void downloadFormsAndMetaDataFromGitHub() {
         String repoOwner = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.organization");
         String repoName = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.reponame");
-        String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch");
+        String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch.metadata");
+        String folderToCopy = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.metadata.directory");
+        String destinationRoot = getMetadataPath("configuration");
+
+        try {
+            downloadAndExtractFolder(repoOwner, repoName, branch, folderToCopy, destinationRoot);
+            log.info("Folder copied successfully with directory structure preserved!");
+            initializeMetaData();
+        } catch (IOException e) {
+            log.info("Error: " + e.getMessage());
+        }
+    }
+
+    public void downloadFrontendFromGitHub() {
+        String repoOwner = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.organization");
+        String repoName = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.reponame");
+        String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch.frontend");
         String folderToCopy = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.frontend.directory");
         String destinationRoot = getMetadataPath("frontend");
 
         try {
             downloadAndExtractFolder(repoOwner, repoName, branch, folderToCopy, destinationRoot);
-            System.out.println("Folder copied successfully with directory structure preserved!");
+            log.info("Folder copied successfully with directory structure preserved!");
         } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+            log.info("Error: " + e.getMessage());
         }
     }
 
-    private void downloadAndExtractFolder(String owner, String repo, String branch, String folder, String destination) throws IOException {
+    public void downloadOmodsFromGitHub() {
+        String repoOwner = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.organization");
+        String repoName = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.reponame");
+        String branch = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.branch.modules");
+        String folderToCopy = Context.getAdministrationService().getGlobalProperty("ugandaemr.metadata.github.modules.directory");
+        String destinationRoot = getMetadataPath("modules");
+
+        try {
+            downloadAndExtractFolder(repoOwner, repoName, branch, folderToCopy, destinationRoot);
+            log.info("Folder copied successfully with directory structure preserved!");
+        } catch (IOException e) {
+            log.info("Error: " + e.getMessage());
+        }
+    }
+
+    public void downloadAndExtractFolder(String owner, String repo, String branch, String folder, String destination) throws IOException {
         String zipUrl = "https://github.com/" + owner + "/" + repo + "/archive/refs/heads/" + branch + ".zip";
         String zipPath = destination + "/repo.zip";
         String extractPath = destination + "/extracted/";
+        String extractedFolder = extractPath + repo + "-" + branch + "/" + folder;
 
-        // Download ZIP
-        System.out.println("⬇️ Downloading ZIP from: " + zipUrl);
+        // Step 1: Download ZIP
+        downloadZipFile(zipUrl, zipPath);
+
+        // Step 2: Extract ZIP
+        extractZipFile(zipPath, extractPath);
+
+        // Step 3: Load omod prefixes from JSON
+        Path sourcePath = Paths.get(extractedFolder);
+        List<String> omodPrefixes = loadOmodPrefixesFromJson(sourcePath.resolve("omod-prefixes.json"));
+
+        // Step 4: Delete 'modules' folder if applicable
+        Path destinationPath = Paths.get(destination, folder);
+        if (shouldDeleteFolder(folder, destinationPath)) {
+            deleteDirectory(destinationPath);
+        }
+        Files.createDirectories(destinationPath);
+
+        // Step 5: Copy and replace files
+        copyFilesWithReplacement(sourcePath, destinationPath, omodPrefixes);
+
+        // Step 6: Cleanup
+        cleanupTemporaryFiles(zipPath, extractPath);
+    }
+
+    private void downloadZipFile(String zipUrl, String zipPath) throws IOException {
+        log.info("⬇️ Downloading ZIP from: " + zipUrl);
         try (InputStream in = new URL(zipUrl).openStream()) {
             Files.copy(in, Paths.get(zipPath), StandardCopyOption.REPLACE_EXISTING);
         }
+    }
 
-        // Extract ZIP
+    private void extractZipFile(String zipPath, String extractPath) throws IOException {
         unzip(zipPath, extractPath);
+    }
 
-        // Move the required folder
-        String extractedFolder = extractPath + repo + "-" + branch + "/" + folder;
-        Path sourcePath = Paths.get(extractedFolder);
-        Path destinationPath = Paths.get(destination, folder);
-
-        // 🗑️ Ensure the destination is deleted first
-        if (Files.exists(destinationPath)) {
-            System.out.println("🗑️ Deleting existing folder: " + destinationPath);
-            deleteDirectory(destinationPath);
+    private List<String> loadOmodPrefixesFromJson(Path jsonPath) throws IOException {
+        if (Files.exists(jsonPath)) {
+            log.info(String.format("📄 Reading prefix list from: %s",jsonPath));
+            ObjectMapper mapper = new ObjectMapper();
+            return Arrays.asList(mapper.readValue(jsonPath.toFile(), String[].class));
+        } else {
+            log.info(String.format("⚠️ Prefix list not found at: %s",jsonPath));
+            return new ArrayList<>();
         }
+    }
 
-        Files.createDirectories(destinationPath);
+    private boolean shouldDeleteFolder(String folder, Path destinationPath) throws IOException {
+        return !"modules".equalsIgnoreCase(folder) && Files.exists(destinationPath);
+    }
 
-        // Copy files, handling both directories and files properly
+    private void copyFilesWithReplacement(Path sourcePath, Path destinationPath, List<String> omodPrefixes) throws IOException {
         Files.walk(sourcePath).forEach(source -> {
-            Path dest = destinationPath.resolve(sourcePath.relativize(source));
+            Path relativePath = sourcePath.relativize(source);
+            Path dest = destinationPath.resolve(relativePath);
             try {
                 if (Files.isDirectory(source)) {
-                    Files.createDirectories(dest); // Ensure directories are created first
+                    Files.createDirectories(dest);
                 } else {
+                    String fileName = source.getFileName().toString();
+                    if (fileName.endsWith(".omod")) {
+                        for (String prefix : omodPrefixes) {
+                            if (fileName.startsWith(prefix)) {
+                                try (DirectoryStream<Path> stream = Files.newDirectoryStream(destinationPath.getParent())) {
+                                    for (Path existingFile : stream) {
+                                        String existingName = existingFile.getFileName().toString();
+                                        if (existingName.startsWith(prefix) && existingName.endsWith(".omod")) {
+                                            log.info("🗑️ Deleting old OMOD: " + existingFile);
+                                            Files.deleteIfExists(existingFile);
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
                     Files.copy(source, dest, StandardCopyOption.REPLACE_EXISTING);
+                    log.info("📄 Copied: " + dest);
                 }
             } catch (IOException e) {
-                System.err.println("❌ Error copying file: " + source + " -> " + dest + ": " + e.getMessage());
+                log.info("❌ Error copying file: " + source + " -> " + dest + ": " + e.getMessage());
             }
         });
+    }
 
-        System.out.println("✅ Folder copied to: " + destinationPath);
-
-        // Cleanup temporary files
+    private void cleanupTemporaryFiles(String zipPath, String extractPath) throws IOException {
         Files.deleteIfExists(Paths.get(zipPath));
         deleteDirectory(Paths.get(extractPath));
     }
 
+
+
     private void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) destDir.mkdirs();
-        System.out.println("📂 Extracting ZIP to: " + destDirectory);
+        log.info("📂 Extracting ZIP to: " + destDirectory);
 
         try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
             ZipEntry entry = zipIn.getNextEntry();
@@ -2777,18 +2850,18 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
 
-    private  void deleteDirectory(Path path) throws IOException {
-            if (Files.exists(path)) {
-                Files.walk(path)
-                        .sorted((p1, p2) -> p2.compareTo(p1)) // Delete children first
-                        .forEach(p -> {
-                            try {
-                                Files.delete(p);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        });
-            }
+    private void deleteDirectory(Path path) throws IOException {
+        if (Files.exists(path)) {
+            Files.walk(path)
+                    .sorted((p1, p2) -> p2.compareTo(p1)) // Delete children first
+                    .forEach(p -> {
+                        try {
+                            Files.delete(p);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
         }
+    }
 
 }

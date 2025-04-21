@@ -44,31 +44,60 @@ public class CheckInPatientResource extends DelegatingCrudResource<CheckInPatien
 
     @Override
     public Object create(SimpleObject propertiesToCreate, RequestContext context) throws ResponseException {
+        // Retrieve required services once
         PatientService patientService = Context.getPatientService();
         LocationService locationService = Context.getLocationService();
         ProviderService providerService = Context.getProviderService();
-
-        Patient patient = patientService.getPatientByUuid(propertiesToCreate.get("patient"));
-        Location currentLocation = locationService.getLocationByUuid(propertiesToCreate.get("currentLocation"));
-        Location locationTo = locationService.getLocationByUuid(propertiesToCreate.get("locationTo"));
-        Location queueRoom = locationService.getLocationByUuid(propertiesToCreate.get("queueRoom"));
-        Provider provider = providerService.getProviderByUuid(propertiesToCreate.get("provider"));
-        String visitComment = propertiesToCreate.get("visitComment");
-        String patientStatus = propertiesToCreate.get("patientStatus");
-        String visitType = propertiesToCreate.get("visitType");
-
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
-        CheckInPatient delegate = ugandaEMRService.checkInPatient(patient, currentLocation,locationTo, queueRoom, provider, visitComment, patientStatus, visitType);
+        // Extract required properties
+        String patientUuid = getRequiredProperty(propertiesToCreate, "patient");
+        String currentLocationUuid = getRequiredProperty(propertiesToCreate, "currentLocation");
+        String locationToUuid = getRequiredProperty(propertiesToCreate, "locationTo");
+        String queueRoomUuid = getRequiredProperty(propertiesToCreate, "queueRoom");
+        String providerUuid = getRequiredProperty(propertiesToCreate, "provider");
+        String patientStatus = getRequiredProperty(propertiesToCreate, "patientStatus");
+        String visitType = getRequiredProperty(propertiesToCreate, "visitType");
+        String visitComment = propertiesToCreate.get("visitComment");
+        Integer priority = null;
 
-        ValidateUtil.validate(delegate);
-        SimpleObject ret = (SimpleObject) ConversionUtil.convertToRepresentation(delegate, context.getRepresentation());
+        // Retrieve entities from UUIDs
+        Patient patient = patientService.getPatientByUuid(patientUuid);
+        Location currentLocation = locationService.getLocationByUuid(currentLocationUuid);
+        Location locationTo = locationService.getLocationByUuid(locationToUuid);
+        Location queueRoom = locationService.getLocationByUuid(queueRoomUuid);
+        Provider provider = providerService.getProviderByUuid(providerUuid);
 
-        if (hasTypesDefined()) {
-            ret.add(RestConstants.PROPERTY_FOR_TYPE, getTypeName(delegate));
+        if (propertiesToCreate.get("priority") != null) {
+            try {
+                priority = Integer.parseInt(propertiesToCreate.get("priority").toString());
+            } catch (Exception exception) {
+                log.error("Unparsable value from field priority",exception);
+            }
         }
 
-        return ret;
+        // Validate entity existence
+        validateNotNull(patient, "Patient not found for UUID: " + patientUuid);
+        validateNotNull(currentLocation, "Current Location not found for UUID: " + currentLocationUuid);
+        validateNotNull(locationTo, "LocationTo not found for UUID: " + locationToUuid);
+        validateNotNull(queueRoom, "Queue Room not found for UUID: " + queueRoomUuid);
+        validateNotNull(provider, "Provider not found for UUID: " + providerUuid);
+
+        // Perform check-in
+        CheckInPatient delegate = ugandaEMRService.checkInPatient(patient, currentLocation, locationTo, queueRoom, provider, visitComment, patientStatus, visitType,priority);
+
+        // Validate result
+        ValidateUtil.validate(delegate);
+
+        // Convert result to the required representation
+        SimpleObject response = (SimpleObject) ConversionUtil.convertToRepresentation(delegate, context.getRepresentation());
+
+        // Add type if necessary
+        if (hasTypesDefined()) {
+            response.add(RestConstants.PROPERTY_FOR_TYPE, getTypeName(delegate));
+        }
+
+        return response;
     }
 
     @Override
@@ -136,5 +165,25 @@ public class CheckInPatientResource extends DelegatingCrudResource<CheckInPatien
     @Override
     protected PageableResult doSearch(RequestContext context) {
         throw new ResourceDoesNotSupportOperationException("Operation not supported");
+    }
+
+    /**
+     * Helper method to retrieve a required property.
+     */
+    private String getRequiredProperty(SimpleObject properties, String key) {
+        String value = properties.get(key);
+        if (value == null) {
+            throw new IllegalArgumentException(key + " cannot be null");
+        }
+        return value;
+    }
+
+    /**
+     * Helper method to validate that an object is not null.
+     */
+    private void validateNotNull(Object obj, String errorMessage) {
+        if (obj == null) {
+            throw new IllegalArgumentException(errorMessage);
+        }
     }
 }
