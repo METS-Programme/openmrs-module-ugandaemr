@@ -415,10 +415,4 @@
     <concept_answer  concept_answer_id="7375725"  concept_id="199417"  answer_concept="1066"   creator="1"  date_created="2025-04-16 11:14:21"  sort_weight="2"  uuid="996defb8-041a-40a1-9f93-55673dd6dc58"/>
     <concept_answer  concept_answer_id="7375726"  concept_id="199418"  answer_concept="1065"   creator="1"  date_created="2025-04-16 11:14:57"  sort_weight="1"  uuid="75dea2b2-1c94-4402-aec2-e689e4403ae5"/>
     <concept_answer  concept_answer_id="7375727"  concept_id="199418"  answer_concept="1066"   creator="1"  date_created="2025-04-16 11:14:57"  sort_weight="2"  uuid="80b3c66f-fab1-4ed6-bf5b-8472c773969a"/>
-
-    <concept_answer  concept_answer_id="7375727"  concept_id="199419"  answer_concept="199418" creator="1"  date_created="2025-04-27 15:49:53"  sort_weight="4"  uuid="9006a1af-d665-41fd-b272-acefddd55e7b"/>
-    <concept_answer  concept_answer_id="7375726"  concept_id="199419"  answer_concept="166865" creator="1"  date_created="2025-04-27 15:49:53"  sort_weight="1"  uuid="a6a126b3-0c10-45b6-9e15-19c3951cbded"/>
-    <concept_answer  concept_answer_id="7375725"  concept_id="199419"  answer_concept="199417" creator="1"  date_created="2025-04-27 15:49:53"  sort_weight="3"  uuid="22bb9a7f-4bcb-43e1-9d1c-5cf5cd220a80"/>
-    <concept_answer  concept_answer_id="7375724"  concept_id="199419"  answer_concept="199416" creator="1"  date_created="2025-04-27 15:49:53"  sort_weight="2"  uuid="71405d02-f1ce-4950-bb43-67266be4d440"/>
-
 </dataset>
