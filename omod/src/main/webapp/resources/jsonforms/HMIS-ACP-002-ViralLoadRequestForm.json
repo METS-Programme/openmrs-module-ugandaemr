@@ -372,7 +372,7 @@
               "label": "Mother Pregnant",
               "type": "obs",
               "required": "true",
-              "id": "prgenantMother",
+              "id": "pregnantMother",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
@@ -404,14 +404,14 @@
                 "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(prgenantMother) || prgenantMother != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(pregnantMother) || pregnantMother != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Mother Breastfeeding",
               "type": "obs",
               "required": "true",
-              "id": "prgenantMother",
+              "id": "breastfeedingMother",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
