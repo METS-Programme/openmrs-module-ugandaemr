@@ -488,4 +488,11 @@
     <concept_name  concept_name_id="199430"  concept_id="199416"  name="TB Visit Date at Pharmacy"   locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-16 11:12:52"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="30a0cfa2-ffd8-41ee-9c26-2699f48c5357"/>
     <concept_name  concept_name_id="199431"  concept_id="199417"  name="Treated for Histoplasmosis"  locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-16 11:14:21"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="7ca74509-60bf-4389-8e77-1385ada05278"/>
     <concept_name  concept_name_id="199432"  concept_id="199418"  name="Treated for Aspergillosis"   locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-16 11:14:57"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="56b72cc2-87e5-44e9-8ce0-0f522243bddb"/>
+
+    <concept_name  concept_name_id="199434"  concept_id="199419"  name="Current Regimen Duration"  locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-27 15:49:53"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="6ea1c5f2-7cab-4e81-a598-3cef0cfae712"/>
+    <concept_name  concept_name_id="199433"  concept_id="199418"  name="Greater than 5years"  locale="en"  locale_preferred="0"  creator="1"  date_created="2025-04-27 15:48:26"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="2d83df7c-7675-4736-ae19-328615cac964"/>
+    <concept_name  concept_name_id="199432"  concept_id="199418"  name="&gt; 5yrs"  locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-27 15:48:26"  concept_name_type="null"  voided="0" uuid="c6ef5347-5bba-4091-8154-ef19bf99241f"/>
+    <concept_name  concept_name_id="199431"  concept_id="199417"  name="2 - &lt;5yrs"  locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-27 15:46:55"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0c7e32ec-deee-45e4-8a4d-631b74890c5b"/>
+    <concept_name  concept_name_id="199430"  concept_id="199416"  name="1 – 2yrs"  locale="en"  locale_preferred="1"  creator="1"  date_created="2025-04-27 15:46:24"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="27f543e8-cc56-4eac-9c5a-239126c3707a"/>
+
 </dataset>
