@@ -105,38 +105,6 @@
               "validators": []
             },
             {
-              "label": "Current Regimen Duration",
-              "type": "obs",
-              "required": "true",
-              "id": "currentRegimenDuration",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "",
-                "answers": [
-                  {
-                    "concept": "22ddaed0-f0b1-4845-993d-74b8b8713fe9",
-                    "label": "6 months - < 1yr",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "",
-                    "label": "1 – 2yrs",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "",
-                    "label": "2 - <5yrs",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "",
-                    "label": "> 5yrs",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
               "label": "Current Regimen Line",
               "type": "obs",
               "required": "true",
@@ -396,13 +364,25 @@
             {
               "label": "ANC NO.",
               "id": "ancNumber",
-              "required": "true",
               "type": "obs",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
                 "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329"
               },
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnantMother) || pregnantMother != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "PNC No.",
+              "type": "obs",
+              "id": "pncNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"
+              },
+              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(pregnantMother) || pregnantMother != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
@@ -426,19 +406,6 @@
                     "label": "No"
                   }
                 ]
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "sex !== 'F'"
-              }
-            },
-            {
-              "label": "PNC No.",
-              "type": "obs",
-              "id": "pncNumber",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"
               },
               "validators": [],
               "hide": {
@@ -552,90 +519,6 @@
                 ]
               },
               "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Sample Details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date collected",
-              "type": "obs",
-              "required": "true",
-              "id": "hivVlDate",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "false"
-                }
-              ]
-            },
-            {
-              "label": "Specimen ID/Accession Number",
-              "type": "obs",
-              "required": "true",
-              "id": "specimenId",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Specimen Source",
-              "type": "obs",
-              "required": "true",
-              "id": "specimenSource",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "159959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
-                  {
-                    "concept": "1002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Plasma",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Whole Blood Sample",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "a9ecc403-25b5-48c8-974f-815acc074328",
-                    "label": "Dried Blood Spot",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "162403AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Ascitic fluid",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "159995AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Cerebrospinal fluid",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Serum",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "b123b9db-4d5e-4e64-8821-071b77dae457",
-                    "label": "Swab Samples",
-                    "conceptMappings": []
-                  }
-                ]
-              }
             },
             {
               "label": "Indication for viral load testing",
