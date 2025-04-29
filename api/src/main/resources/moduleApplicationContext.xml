@@ -19,7 +19,7 @@
 
 	<!-- Add here beans related to the API context -->
 	<context:component-scan base-package="${project.parent.groupId}.${project.parent.artifactId}"/>
-
+	<context:component-scan base-package="org.openmrs.module.ugandaemr.tasks" />
 	<!-- Services accessible via Context.getService() -->
 	<bean parent="serviceContext">
 		<property name="moduleService">
@@ -51,6 +51,8 @@
 			</list>
 		</property>
 	</bean>
-
+	<bean id="org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask"
+		  class="org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask"
+		  scope="prototype"/>
 
 </beans>
