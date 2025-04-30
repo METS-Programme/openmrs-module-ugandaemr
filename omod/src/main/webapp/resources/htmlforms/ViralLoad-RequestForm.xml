@@ -87,10 +87,10 @@
                 var patientuuid = '<lookup expression="patient.uuid"/>';
                 var artInitiationDate = '<lookup expression="fn.latestObs('99161').valueDatetime"/>';
                 var who_stage='<lookup expression="fn.latestObs('90203').valueCoded.name"/>';
-                var treatment_line= '<lookup expression="fn.latestObs('164515').valueCoded.name" />';
+                var treatment_line= '<lookup expression="fn.currentProgramWorkflowStatus(3).state.concept.name" />';
                 var current_regimen= '<lookup expression="fn.latestObs('90315').valueCoded.name"/>';
                 var pregnant = '<lookup expression="fn.latestObs('90041').valueCoded.name"/>';
-                var anc = '<lookup class="results_style" expression="fn.latestObs('99727').valueNumeric"/>';
+                var anc = '<lookup expression="patient.getPatientIdentifier('b0cc255e-ef57-4266-839e-0df7f5099eb9')"/>';
                 var pnc= '<lookup expression="patient.getPatientIdentifier('758ef6e4-9ceb-4137-bc8d-9246dc7b41fe')"/>';
                 var tb_status ='<lookup expression="fn.latestObs('90216').valueCoded.name"/>';
                 var tb_start_date ='<lookup expression="fn.latestObs('90217').valueDatetime"/>';
@@ -125,12 +125,6 @@
                     jq("#pregnancy-status").append("<span><p><b>"+pregnant+"</b></p></span>");
                 }
 
-                if(anc != '') {
-                jq("#anc-number").find("select").attr("style", "display: none;");
-
-                jq("#anc-number").append("<span><p><b>"+anc+"</b></p></span>");
-                }
-
                 if(tb_status != '') {
                     jq("#tb-status").find("select").attr("style", "display: none;");
                     jq("#tb-status").append("<span><p><b>"+tb_status+"</b></p></span>");
@@ -148,11 +142,6 @@
 
                 jq("#order-viral-load-test input").prop("checked", true);
 
-                if (jq("#pregnancy-status").find("input[type='radio']:checked").val() == "1065") {
-                    enable_fields("anc-number");
-                } else {
-                    disable_fields("anc-number");
-                }
 
                 });
 
@@ -190,12 +179,12 @@
                                      answerLabels="1,2,3,4,T1,T2,T3,T4"/>
                         </td>
                         <td>
-                            <label>Treatment Line</label>
-                                <obs id="treatment-line" conceptId="164350" answerConceptIds="90271,90305,162916"
-                                     answerLabels="First Line ARV Regimen, Second Line ARV Regimen, Third Line ARV Regimen" required="required" class="horizontal long-value-select"/>
+                            <div  id="treatment-line">
+                                <workflowState  workflowId="3" labelText="Treatment line" stateIds="11,12,13" stateLabels="FIRST LINE ARV REGIMEN,SECOND LINE ARV REGIMEN,THIRD LINE ARV REGIMEN" style="dropdown" />
+                            </div>
                         </td>
                         <td>
-                             <obs id="art-regimen" conceptId="90315" labelText="Current Regimen" required="required"
+                             <obs id="art-regimen" conceptId="90315" labelText="Regimen:" required="required"
                                      answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
                         </td>
@@ -210,25 +199,17 @@
                     <td>
                         <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
                             <label>Pregnancy Status</label>
-                                    <obs conceptId="90041" id="pregnancy-status" answerConceptIds="1065,1066" required="required"
-                                         answerLabels="Yes,No"/>
-                            <obs id="anc-number" conceptId="99727" labelText="ANC No." required="required" />
+                            <span class="pregnancy" id="pregnancy-status">
+                                    <obs conceptId="90041" answerConceptIds="1065,99601,1066,1175" required="required"
+                                         answerLabels="P - Pregnant,BF - Breast Feeding,NPB - Not pregnant or not breast feeding,NA - Not Applicable"/>
+                                </span>
                             </excludeIf>
                     </td>
                     <td>
-                        <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
-                            <label>Breastfeeding Status</label>
-                            <obs conceptId="90041" id="breastfeeding-status" answerConceptIds="1065,1066" required="required"
-                                 answerLabels="Yes,No"/>
-                            <obs id="pnc-number" conceptId="164956" labelText="PNC No." required="required" />
-                        </excludeIf>
-                    </td>
-                    <td>
-                            <label>Active Tb</label><br/>
-                            <obs id="tb-status" class="horizontal" conceptId="165982" required="required"
-                                 style="radio"
-                                 answerConceptIds="1065,1066"
-                                 answerLabels="Yes,No"/>
+                            <label>Tb Status</label><br/>
+                            <obs id="tb-status" class="long-value-select" conceptId="90216" required="required"
+                                 answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071,99421"
+                                 answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx - Currently on TB treatment, 5 - Completed TB Treatment"/>
 
                     </td>
                     <td>
@@ -236,15 +217,14 @@
                                     <obs id="art-adherence" conceptId="90221" answerConceptIds="90156,90157,90158"
                                          answerLabels="Good, Fair, Poor" required="required" class="horizontal long-value-select"/>
                     </td>
-                </tr>
-                <tr>
-
                     <td>
                         <obs id="165143" conceptId="165143"
                              answerConceptIds="165138,165140,165139,165142,165141"
                              answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
                              labelText="Approach" class="horizontal long-value-select"/>
                     </td>
+                </tr>
+                <tr>
 
                     <td>
                         <obs id="order-viral-load-test" conceptId="1271" class="hidden"
@@ -264,15 +244,13 @@
                         <obs id="viral-load-specimen-source" conceptId="159959"
                              answerConceptSetIds="162476" required="true"/>
                     </td>
-                </tr>
-
-                <tr>
-
-
                     <td>
                         <label>Indication for viral load testing</label>
                         <obs id="indication-for-viral-load-testing" conceptId="168689" style="checkbox" required="true"/>
                     </td>
+                </tr>
+
+                <tr>
 
                     <td>
                         <label><span class="required">*</span>Counselor</label>

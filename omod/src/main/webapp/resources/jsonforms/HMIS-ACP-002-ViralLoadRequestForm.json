@@ -329,7 +329,10 @@
               "id": "otherCurrentRegimen",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
+                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '97c48198-3cf7-4892-a3e6-d61fb1125882')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                }
               },
               "validators": [],
               "hide": {
@@ -344,6 +347,9 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -368,7 +374,10 @@
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
-                "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329"
+                "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c7231d96-34d8-4bf7-a509-c810f75e3329')).then(obs => obs.valueQuantity?.value)"
+                }
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(pregnantMother) || pregnantMother != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
@@ -380,7 +389,11 @@
               "id": "pncNumber",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"
+                "step": 1,
+                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ef1f4c7a-2b90-4412-83bb-87ae8094ce4c')).then(obs => obs.valueString)"
+                }
               },
               "validators": [],
               "hide": {
@@ -395,6 +408,9 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -415,11 +431,14 @@
             {
               "label": "Active TB",
               "type": "obs",
-              "id": "activeTb",
               "required": "true",
+              "id": "hasActiveTb",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "8c54d11f-e3f7-4146-b1e2-1667034c61b4",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '8c54d11f-e3f7-4146-b1e2-1667034c61b4')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -437,11 +456,14 @@
             {
               "label": "TB Treatment Phase",
               "type": "obs",
-              "required": "true",
+              "required": "false",
               "id": "tbTreatmentPhase",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "159792AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '159792AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -521,6 +543,25 @@
               "validators": []
             },
             {
+              "label": "Order VL Test",
+              "type": "testOrder",
+              "id": "vlTestOrder",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "select",
+                "orderSettingUuid": "OUTPATIENT",
+                "orderType": "testorder",
+                "answers": [
+                  {
+                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+                    "label": "VL",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
               "label": "Indication for viral load testing",
               "type": "obs",
               "id": "indicationVlTesting",
@@ -528,6 +569,9 @@
               "questionOptions": {
                 "rendering": "select",
                 "concept": "59f36196-3ebe-4fea-be92-6fc9551c3a11",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '59f36196-3ebe-4fea-be92-6fc9551c3a11')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -566,6 +610,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(vlTestOrder)"
               }
             }
           ]
