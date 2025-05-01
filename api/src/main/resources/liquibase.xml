@@ -295,7 +295,7 @@
 
 	</changeSet>
 
-	<changeSet id="ugandaemr-08022021-7" author="slubwama">
+	<changeSet id="ugandaemr-02052025-00-14-00" author="slubwama">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM scheduler_task_config
