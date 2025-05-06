@@ -1,6 +1,6 @@
 {
   "name": "HMIS ACP HIV 003: HIV CARE ART CARD - Summary Form",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Summary entry form for patients enrolled for ART",
   "encounter": "ART Card - Summary",
   "encounterType": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f",
@@ -133,7 +133,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < '5' || age > '19'"
+              }
             },
             {
               "label": "Care Entry Point",
@@ -201,6 +204,18 @@
               "hide": {
                 "hideWhenExpression": "isEmpty(careEntryPoint) || careEntryPoint !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
+            },
+            {
+              "label": "Directions to Residence",
+              "type": "obs",
+              "id": "residenceDirections",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "dce122f3-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
             }
           ]
         },
@@ -211,7 +226,7 @@
             {
               "label": "Treatment supporter Name/Medicine pick-up if ill",
               "type": "obs",
-              "id": "treatment supporter",
+              "id": "treatmentSupporter",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "23e28311-3c17-4137-8eee-69860621b80b",
