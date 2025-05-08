@@ -1,0 +1,875 @@
+{
+  "name": "HMIS MCH 006: Integrated Maternity Register",
+  "version": "4.1.0",
+  "description": "Admission into a clinic for a pregnant woman to give birth",
+  "encounterType": "a9f11592-22e7-45fc-904d-dfe24cb1fc67",
+  "encounter": "Maternity - Encounter",
+  "uuid": "0b946c41-957c-4aeb-9b1a-da3983c0d163",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "allowUnspecifiedAll": true,
+  "pages": [
+    {
+      "label": "Integrated Maternity Register",
+      "sections": [
+        {
+          "label": "Admission Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of Admission",
+              "id": "admissionDate",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "datetime",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "label": "Admission No.",
+              "id": "admissionNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a73edeb2-8a34-43a4-916d-1d8954870d92"
+              }
+            },
+            {
+              "label": "ANC NO.",
+              "id": "ancNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329"
+              }
+            },
+            {
+              "label": "Referral Type",
+              "type": "obs",
+              "id": "referralType",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "67ea4375-0f4f-4e67-b8b0-403942753a4d",
+                "answers": [
+                  {
+                    "concept": "865811ad-796f-48c2-b575-1f530122c408",
+                    "label": "Health Facility",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1ca0db4a-c5c6-48ed-9e17-84905f4487eb",
+                    "label": "Community",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Ref In No.",
+              "id": "refInNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9bf35577-f802-437d-8ca3-84ab15191d6e"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(referralType) || referralType !== '865811ad-796f-48c2-b575-1f530122c408'"
+              }
+            },
+            {
+              "label": "C/Ref In No.",
+              "id": "crefInNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(referralType) || referralType !== '1ca0db4a-c5c6-48ed-9e17-84905f4487eb'"
+              }
+            },
+            {
+              "label": "IPD NO.",
+              "id": "ipdNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            },
+            {
+              "label": "Gravida",
+              "id": "gravida",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "dcc39097-30ab-102d-86b0-7a5022ba4115"
+              }
+            },
+            {
+              "label": "Parity",
+              "id": "parity",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            },
+            {
+              "label": "Gestation Age (Weeks Of Amenorrhea)",
+              "id": "gestationAge",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "0b995cb8-7d0d-46c0-bd1a-bd322387c870"
+              }
+            },
+            {
+              "label": "Delivery",
+              "type": "obs",
+              "id": "delivery",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Term",
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "gestationAge < 37"
+                    }
+                  },
+                  {
+                    "concept": "129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Pre-term",
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "gestationAge >= 37"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Reason for Admission",
+              "type": "obs",
+              "id": "admissionReason",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "03967f0d-70a7-4c65-b2d8-4b3ad6b2a3d8",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "WHO Clinical Stage / CD4 / Viral Load",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV Status",
+              "type": "obs",
+              "id": "hivStatus",
+              "required": "false",
+              "questionOptions": {
+                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "id": "cd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Date CD4 Sample Collected",
+              "type": "obs",
+              "required": "false",
+              "id": "dateStarted",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c')).then(obs => obs?.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Viral Load",
+              "type": "obs",
+              "id": "viralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HIV Viral Load Date",
+              "type": "obs",
+              "required": "false",
+              "id": "vlDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "eMTCT",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Woman eMTCT",
+              "type": "obs",
+              "id": "womanEmtct",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4c94afa1-5cd4-4803-bd06-cff11fa2eee2",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "1st Time: Client counselled and tested for the first time during this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "eb2a4be8-73fd-4f78-a528-db6c2d07d216",
+                    "label": "Known POS: Clients with a known HIV positive status who did not attend Antenantal from any health facility",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Woman TFV",
+              "type": "obs",
+              "id": "womanTfv",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "27ed8c9d-3101-4d07-9cfe-01ea082af0f5",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner eMTCT",
+              "type": "obs",
+              "id": "PartnerEmtct",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "62a37075-fc2a-4729-8950-b9fae9b22cfb",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "1st Time: Client counselled and tested for the first time during this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "eb2a4be8-73fd-4f78-a528-db6c2d07d216",
+                    "label": "Known POS: Clients with a known HIV positive status who did not attend Antenantal from any health facility",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner TFV",
+              "type": "obs",
+              "id": "partnerTfv",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "03aad24f-b80f-4f17-af88-90b83592d044",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "ART Status Code",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ART Codes",
+              "type": "obs",
+              "id": "artCodes",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a615f932-26ee-449c-8e20-e50a15232763",
+                "answers": [
+                  {
+                    "concept": "026e31b7-4a26-44d0-8398-9a41c40ff7d3",
+                    "label": "New - Client Initiated on ART for eMTCT on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2aa7d442-6cbb-4609-9dd3-bc2ad6f05016",
+                    "label": "Known ART - Client already on HAART prior to ANC first visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bbc63761-0741-4583-9396-a34d3a18601c",
+                    "label": "Refill - Revisiting HIV Positive client already on ART",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "type": "patientIdentifier",
+              "label": "ART Number",
+              "questionInfo": "",
+              "id": "artNumber",
+              "default": "",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              }
+            },
+            {
+              "label": "CTX",
+              "type": "obs",
+              "id": "ctx",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "791cc131-8f5f-4795-a1bc-196241a007b7",
+                "answers": [
+                  {
+                    "concept": "82e45aa0-225c-4654-9277-ccd233b15516",
+                    "label": "CTX - Mother initiated/prescribed CTX on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3ea38a22-33c7-4790-ba76-340b50122a14",
+                    "label": "CTX √ - Mother initiated on and given a refill on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable - Mother HIV Negative",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Syphilis and Hep B Test Results",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Woman's Screening Results for Syphilis",
+              "type": "obs",
+              "id": "womanSyphilisTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "275a6f72-b8a4-4038-977a-727552f69cb8",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Rx-1: Tested Positive for syphilis within the past 1 year and completed treatment but not eligible for a test this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Rx-2: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment, not eligible for a test this pregnancy but initiated on treatment at this contact",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f544bf93-327a-4483-b1ff-cf9d95d13a43",
+                    "label": "RX-3: Tested Positive for syphilis and initiated on syphilis treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "+Ve-K: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment at this contact but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e378c65a-945a-4d2e-95bb-cc4b87e2d0b2",
+                    "label": "+Ve: Tested Positive for syphilis but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ecdcedbb-c19b-4269-9854-b2c00114d2b8",
+                    "label": "-Ve: Tested for syphilis and the results are negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ee5ba4a0-e03d-421a-bbbd-e391884477a4",
+                    "label": "NR: Client not tested for syphilis at this visit",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Woman's Hep-B Eligibility for ARVs",
+              "type": "obs",
+              "id": "womanArvEligibility",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "P: Eligible for prophylaxis and initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "LT-Rx: Eligible for life long treatment and treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "LTN: Eligible for life long treatment but not treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner's Screening Results for Syphilis",
+              "type": "obs",
+              "id": "partnerSyphilisTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3f84a63b-1aed-42a1-b59e-49f75626a60e",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Rx-1: Tested Positive for syphilis within the past 1 year and completed treatment but not eligible for a test this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Rx-2: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment, not eligible for a test this pregnancy but initiated on treatment at this contact",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f544bf93-327a-4483-b1ff-cf9d95d13a43",
+                    "label": "RX-3: Tested Positive for syphilis and initiated on syphilis treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "+Ve-K: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment at this contact but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e378c65a-945a-4d2e-95bb-cc4b87e2d0b2",
+                    "label": "+Ve: Tested Positive for syphilis but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ecdcedbb-c19b-4269-9854-b2c00114d2b8",
+                    "label": "-Ve: Tested for syphilis and the results are negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ee5ba4a0-e03d-421a-bbbd-e391884477a4",
+                    "label": "NR: Client not tested for syphilis at this visit",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner's Hep-B Eligibility for ARVs",
+              "type": "obs",
+              "id": "partnerArvEligibility",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "P: Eligible for prophylaxis and initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "LT-Rx: Eligible for life long treatment and treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "LTN: Eligible for life long treatment but not treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Delivery Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mode of Delivery",
+              "type": "obs",
+              "id": "modeOfDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcc3ac63-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc9aee12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Spontaneous Vaginal delivery",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "510c9c4b-9f8c-4f90-aeb0-3d83cb899fa2",
+                    "label": "Vacuum Extraction",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9af278-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Caesarean section",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9af8cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Breech",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Mode of Delivery",
+              "type": "obs",
+              "id": "otherModeOfDelivery",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4af9f205-38e1-44cc-aa8a-ccf75d225ac7",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(modeOfDelivery) || modeOfDelivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Date and Time of Delivery",
+              "type": "obs",
+              "id": "dateOfDelivery",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "f9573837-6a9b-4f2f-9298-aecf27b15fb3"
+              }
+            },
+            {
+              "label": "Live Births",
+              "type": "obs",
+              "id": "liveBirths",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Active Management of 3rd Stage of Labour",
+              "type": "obs",
+              "id": "activeManagementOfThirdStageLabour",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "425458af-d1f7-40e4-a672-7d9e38aedb3c",
+                "answers": [
+                  {
+                    "concept": "eca9da28-31d3-4e6f-828d-441e9237b7a5",
+                    "label": "Oxytocin",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1c4323a3-6cc6-44d0-81ee-839014bca19c",
+                    "label": "Misoprostol",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e123d685-812a-43c3-bc05-db4e14d8c05c",
+                    "label": "Ergometrine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Tranexamic",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Uterotonics used for PPH Management",
+              "type": "obs",
+              "id": "uterotonicsUsedforPphMgt",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "eca9da28-31d3-4e6f-828d-441e9237b7a5",
+                    "label": "Oxytocin",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1c4323a3-6cc6-44d0-81ee-839014bca19c",
+                    "label": "Misoprostol",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e123d685-812a-43c3-bc05-db4e14d8c05c",
+                    "label": "Ergometrine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Tranexamic",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Management Procedures",
+              "type": "obs",
+              "id": "otherManagementProcedureForComplication",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0643aa57-4772-4a7a-84f5-23cce7061397",
+                "answers": [
+                  {
+                    "concept": "1637AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Dilation and Curettage (D & C)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0031cf08-4508-40dd-92ca-d4f48ac6509c",
+                    "label": "Manual Vaccum Aspiration (MVA)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e1c4f528-aab8-4818-b040-36dbdeb46858",
+                    "label": "Laparatomy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdd95c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Hysterectomy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Specify Other Management Procedure for Complications",
+              "type": "obs",
+              "id": "otherManagementProcedure",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "946f69f8-aa5a-49b2-afd0-4afb6f5fcf7d"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(otherManagementProcedureForComplication) || otherManagementProcedureForComplication !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Other Treatment Given",
+              "type": "obs",
+              "id": "otherTreatmentGiven",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0aea6828-2328-4038-9cd9-680dbdf29790"
+              }
+            },
+            {
+              "label": "Delivered By",
+              "type": "encounterProvider",
+              "id": "deliveredBy",
+              "questionOptions": {
+                "rendering": "select"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Transfer Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Transferred By",
+              "type": "encounterProvider",
+              "id": "transferredBy",
+              "questionOptions": {
+                "rendering": "select"
+              }
+            },
+            {
+              "label": "Transferred To",
+              "type": "obs",
+              "id": "transferredTo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(transferredBy)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
