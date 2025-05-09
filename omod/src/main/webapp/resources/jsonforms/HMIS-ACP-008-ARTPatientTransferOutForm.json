@@ -1,13 +1,13 @@
 {
-  "name": "HMIS ACP 008: Comprehensive HIV Care/ART Patient Transfer Out Form",
-  "version": "4.0.0",
-  "description": "Patient Transfer Out Form",
+  "name": "HMIS ACP 008: HIV Care ART Patient Transfer Out Form",
+  "version": "4.1.0",
+  "processor": "EncounterFormProcessor",
+  "uuid": "37be0b17-c62c-4033-90ef-3cbedb7fe0a0",
+  "referencedForms": [],
   "encounterType": "e305d98a-d6a2-45ba-ba2a-682b497ce27c",
   "encounter": "Transfer Out",
-  "uuid": "37be0b17-c62c-4033-90ef-3cbedb7fe0a0",
-  "processor": "EncounterFormProcessor",
-  "referencedForms": [],
   "allowUnspecifiedAll": true,
+  "description": "Patient Transfer Out Form",
   "published": true,
   "retired": false,
   "pages": [
@@ -43,12 +43,6 @@
                 "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967",
                 "conceptMappings": []
               },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "false"
-                }
-              ],
               "id": "transferOutDate"
             },
             {
@@ -76,7 +70,7 @@
                 "rendering": "select",
                 "concept": "c3332e8d-2548-4ad6-931d-6855692694a3",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c3332e8d-2548-4ad6-931d-6855692694a3'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c3332e8d-2548-4ad6-931d-6855692694a3')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "conceptMappings": [],
                 "answers": [
@@ -150,7 +144,7 @@
                 "rendering": "date",
                 "concept": "ab505422-26d9-41f1-a079-c3d222000440",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -172,7 +166,7 @@
                 "rendering": "number",
                 "concept": "33096391-d101-4e89-bbe8-8d1d4861e855",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '33096391-d101-4e89-bbe8-8d1d4861e8555'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '33096391-d101-4e89-bbe8-8d1d4861e8555')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -186,7 +180,7 @@
                 "rendering": "number",
                 "concept": "3814409a-0caa-4816-895e-67e843ad2a2d",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '3814409a-0caa-4816-895e-67e843ad2a2d'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '3814409a-0caa-4816-895e-67e843ad2a2d')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -200,7 +194,7 @@
                 "rendering": "number",
                 "concept": "c17bd9df-23e6-4e65-ba42-eb6d9250ca3f",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c17bd9df-23e6-4e65-ba42-eb6d9250ca3f'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c17bd9df-23e6-4e65-ba42-eb6d9250ca3f')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -214,7 +208,7 @@
                 "rendering": "number",
                 "concept": "264e34a1-3ae3-4b59-9763-48c961a8a56a",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '264e34a1-3ae3-4b59-9763-48c961a8a56a'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '264e34a1-3ae3-4b59-9763-48c961a8a56a')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -228,7 +222,7 @@
                 "rendering": "text",
                 "concept": "3bd96dc6-cb19-4e8b-9e3e-ba351d2f13c5",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '3bd96dc6-cb19-4e8b-9e3e-ba351d2f13c5'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '3bd96dc6-cb19-4e8b-9e3e-ba351d2f13c5')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -248,7 +242,7 @@
                 "rendering": "number",
                 "concept": "900b8fd9-2039-4efc-897b-9b8ce37396f5",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '900b8fd9-2039-4efc-897b-9b8ce37396f5'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '900b8fd9-2039-4efc-897b-9b8ce37396f5')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -262,7 +256,7 @@
                 "rendering": "number",
                 "concept": "7f7e9c9a-2fda-4de8-98a7-aad538b8a2b4",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '7f7e9c9a-2fda-4de8-98a7-aad538b8a2b4'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '7f7e9c9a-2fda-4de8-98a7-aad538b8a2b4')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -276,7 +270,7 @@
                 "rendering": "select",
                 "concept": "39243cef-b375-44b1-9e79-cbf21bd10878",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '39243cef-b375-44b1-9e79-cbf21bd10878'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '39243cef-b375-44b1-9e79-cbf21bd10878')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -309,7 +303,7 @@
                 "rendering": "select",
                 "concept": "a2554d4b-00ca-4f55-93df-65a8a6d8f9a2",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'a2554d4b-00ca-4f55-93df-65a8a6d8f9a2'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'a2554d4b-00ca-4f55-93df-65a8a6d8f9a2')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -343,7 +337,7 @@
                 "rendering": "select",
                 "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "conceptMappings": [],
                 "answers": [
@@ -533,7 +527,7 @@
                 "rendering": "date",
                 "concept": "ab505422-26d9-41f1-a079-c3d222000440",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440')).then(obs => obs.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -555,7 +549,7 @@
                 "rendering": "number",
                 "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -569,7 +563,7 @@
                 "rendering": "select",
                 "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dca12261-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dca12261-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -597,7 +591,7 @@
                 "rendering": "number",
                 "concept": "dc548e89-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc548e89-30ab-102d-86b0-7a5022ba4115'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc548e89-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -611,7 +605,7 @@
                 "rendering": "number",
                 "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -625,7 +619,7 @@
                 "rendering": "number",
                 "concept": "dc86e9fb-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc86e9fb-30ab-102d-86b0-7a5022ba4115'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc86e9fb-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -639,7 +633,7 @@
                 "rendering": "number",
                 "concept": "dc92757d-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc92757d-30ab-102d-86b0-7a5022ba4115'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc92757d-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -659,7 +653,7 @@
                 "rendering": "number",
                 "concept": "dce09e2f-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce09e2f-30ab-102d-86b0-7a5022ba4115'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce09e2f-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -673,7 +667,7 @@
                 "rendering": "number",
                 "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))?.valueQuantity?.value"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')).then(obs => obs.valueQuantity?.value)"
                 }
               },
               "validators": []
@@ -687,7 +681,7 @@
                 "rendering": "select",
                 "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -744,7 +738,7 @@
                 "rendering": "select",
                 "concept": "dce09a15-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce09a15-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce09a15-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -778,7 +772,7 @@
                 "rendering": "select",
                 "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -844,7 +838,7 @@
                 "rendering": "date",
                 "concept": "dce02eca-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02aa1-30ab-102d-86b0-7a5022ba4115'))?.effectiveDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02eca-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueDateTime)"
                 },
                 "answers": []
               },
@@ -865,7 +859,7 @@
                 "rendering": "select",
                 "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcda5179-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -912,7 +906,7 @@
                 "rendering": "date",
                 "concept": "dcc033e5-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcc033e5-30ab-102d-86b0-7a5022ba4115'))?.effectiveDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcc033e5-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueDateTime)"
                 },
                 "answers": []
               },
@@ -936,7 +930,7 @@
                 "rendering": "select",
                 "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce0e02a-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce0e02a-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -1100,7 +1094,7 @@
                 "rendering": "select",
                 "concept": "b498df96-0e4a-4eaf-9b42-dacf9e486cba",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'b498df96-0e4a-4eaf-9b42-dacf9e486cba'))?.valueCodeableConcept?.coding[0]?.display"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'b498df96-0e4a-4eaf-9b42-dacf9e486cba')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": []
               },
@@ -1121,7 +1115,7 @@
                 "rendering": "select",
                 "concept": "dc9b5b8f-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc9b5b8f-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc9b5b8f-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -1269,7 +1263,7 @@
                 "rendering": "select",
                 "concept": "b04eaf95-77c9-456a-99fb-f668f58a9386",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'b04eaf95-77c9-456a-99fb-f668f58a9386'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'b04eaf95-77c9-456a-99fb-f668f58a9386')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": []
               },
@@ -1284,7 +1278,7 @@
                 "rendering": "select",
                 "concept": "c674105-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c674105-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'c674105-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": []
               },

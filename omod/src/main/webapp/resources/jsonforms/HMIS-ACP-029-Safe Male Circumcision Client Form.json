@@ -1,0 +1,1615 @@
+{
+  "name": "HMIS ACP 029: Safe Male Circumcision Client Form",
+  "version": "4.1.0",
+  "description": "Safe Male Circumcision Client Form",
+  "encounterType": "244da86d-f80e-48fe-aba9-067f241905ee",
+  "encounter": "SMC - Encounter",
+  "uuid": "9d9193e7-b038-4c44-a7a3-830baa288565",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Safe Male Circumcision Client Form",
+      "sections": [
+        {
+          "label": "Facility Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Visit Date",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Client number",
+              "type": "obs",
+              "required": "true",
+              "id": "clientNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Site Type",
+              "type": "obs",
+              "id": "siteType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ac44b5f2-cf57-43ca-bea0-8b392fe21802",
+                "answers": [
+                  {
+                    "concept": "f2aa1852-fcfe-484b-a6ef-1613bd3a1a7f",
+                    "label": "Fixed/Static",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "03596df2-09bc-4d1f-94fd-484411ac9012",
+                    "label": "Outreach",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "63e5387f-74f6-4a92-a71f-7b5dd3ed8432",
+                    "label": "Camp",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Outreach/Camp site name",
+              "type": "obs",
+              "id": "siteName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e7f22f80-a83d-11ed-afa1-0242ac120002",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(siteType) || siteType == 'f2aa1852-fcfe-484b-a6ef-1613bd3a1a7f'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Client Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Religion",
+              "type": "obs",
+              "id": "religion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5b3e3260-a7e2-11ed-afa1-0242ac120002",
+                "answers": [
+                  {
+                    "concept": "5b3e2ca2-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Protestant"
+                  },
+                  {
+                    "concept": "5b3e2b6c-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Catholic"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Religion",
+              "type": "obs",
+              "id": "otherReligion",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5b3e2ef0-a7e2-11ed-afa1-0242ac120002"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(religion) || religion !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "How did you know about SMC?",
+              "type": "obs",
+              "required": "false",
+              "id": "smcInformationSource",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "41168494-d0a0-4654-a47d-a99adf415500",
+                "answers": [
+                  {
+                    "concept": "0ca657a0-e0d3-4586-8856-6edf0883e33b",
+                    "label": "Friend/Family"
+                  },
+                  {
+                    "concept": "fb5dd386-b187-4d61-a9a1-8138b6fb47a4",
+                    "label": "Radio"
+                  },
+                  {
+                    "concept": "ce14c66e-ce73-4427-9a58-9f147ac5790a",
+                    "label": "TV"
+                  },
+                  {
+                    "concept": "b5032439-7181-4496-bde2-e21aade1f0df",
+                    "label": "HCW Refferal"
+                  },
+                  {
+                    "concept": "7b7b492a-6167-4eaa-aabe-e54882a87d29",
+                    "label": "VHT"
+                  },
+                  {
+                    "concept": "58a0d1c1-77f8-4152-b0b0-2bddb232ce81",
+                    "label": "Megaphones/Community radio"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Truckers"
+                  },
+                  {
+                    "concept": "08a5cf93-a866-49f3-b5a6-f63c5e904757",
+                    "label": "Print Media"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other SMC Source of Information",
+              "type": "obs",
+              "id": "otherSmcInformationSource",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0485dbe5-6894-4916-a35b-895402e8f2ee"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(smcInformationSource) || smcInformationSource !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Care Entry Point SMC ",
+              "type": "obs",
+              "required": "false",
+              "id": "careEntryPointSmc",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2338fe8-25a8-405d-999e-59fffdfe61fe",
+                "answers": [
+                  {
+                    "concept": "f57c3a25-19de-4c3f-a0ce-b648f99cb95f",
+                    "label": "HTS"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other SMC Care Entry Point",
+              "type": "obs",
+              "id": "otherSmcEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "46d7bbf8-b114-434b-9a86-c4e3559295f7",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "careEntryPointSmc !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Knowledge of HIV Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Sexually Active",
+              "type": "obs",
+              "required": "false",
+              "id": "sexuallyActive",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dfcdca50-c0b3-40ef-83b5-4d26d143ee5f",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Client tested for HIV in the past 4 weeks",
+              "type": "obs",
+              "required": "false",
+              "id": "clientTestedForHivInThePast4Weeks",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3ba85e7c-d6a2-4b60-9552-4a7413eb221a",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HTS offered to the client?",
+              "type": "obs",
+              "required": "false",
+              "id": "htsOfferedToTheClient",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "cd8a8a72-4046-4595-94d0-52138534272a",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Client tested for HIV during this appointment?",
+              "type": "obs",
+              "required": "false",
+              "id": "clientTestedForHivDuringThisAppointment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "41dcf21d-7e2f-4867-9ede-ed491aca454a",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "HIV test results",
+              "type": "obs",
+              "required": "false",
+              "id": "hivTestResults",
+              "questionOptions": {
+                "concept": "29c47b5c-b27d-499c-b52c-7be676a0a78f",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "Known Positive"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "clientTestedForHivDuringThisAppointment !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Is patient in HIV Care",
+              "type": "obs",
+              "id": "patientInCare",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d697d1db-32ff-4efe-a9d9-563e7c5f0827",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivTestResults !== 'dc866728-30ab-102d-86b0-7a5022ba4115' && hivTestResults !== '6e46ac6b-944d-4a66-a994-b99ae90d4fed'"
+              }
+            },
+            {
+              "label": "Is patient referred",
+              "type": "obs",
+              "id": "patientReferred",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "6c68d396-aa0c-44b6-83c9-555201e877b5",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivTestResults !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Services referred for",
+              "type": "obs",
+              "required": "false",
+              "id": "servicesReferredFor",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
+                "answers": [
+                  {
+                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "None"
+                  },
+                  {
+                    "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                    "label": "PrEP"
+                  },
+                  {
+                    "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
+                    "label": "PEP"
+                  },
+                  {
+                    "concept": "164813AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Condom"
+                  },
+                  {
+                    "concept": "8f38d77a-6488-49ad-a22e-0f84ab91ed7c",
+                    "label": "Post GBV Care"
+                  },
+                  {
+                    "concept": "cc43847c-ee85-4cf7-8dd1-4a6d70f0fa0f",
+                    "label": "STI Screening & treatment"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivTestResults !== 'dc85aa72-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Partner HIV Status",
+              "type": "obs",
+              "required": "false",
+              "id": "partnerHivStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "99e59dd6-b125-4498-9b07-378f1af5fbb7",
+                "answers": [
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "Known Positive"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of TD1 (Tetanus Vaccination)",
+              "type": "obs",
+              "required": "false",
+              "id": "dateOfTd1",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ed8eebcb-0d31-4c85-ab37-402ba2b9f78d"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Date of TD2 (Tetanus Vaccination)",
+              "type": "obs",
+              "required": "false",
+              "id": "dateOfTd2",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5d50f724-6766-421b-bcb1-1133054b7621"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Medical History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Bleeding Disorder",
+              "type": "obs",
+              "required": "false",
+              "id": "bleedingDisorder",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ddbcb5df-dfed-4031-b43a-7808593b1a23",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Genital Ulcers",
+              "type": "obs",
+              "required": "false",
+              "id": "genitalUlcers",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ab684ea7-9ad5-4efa-9210-f324e0dd1fa6",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Urethral Discharge",
+              "type": "obs",
+              "required": "false",
+              "id": "urethralDischarge",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5d3a6f44-aba0-47f2-9eb6-07241243909e",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Penile warts",
+              "type": "obs",
+              "required": "false",
+              "id": "penileWarts",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3df66d01-13ab-4d48-8aff-44699fed3765",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Pain On Urination",
+              "type": "obs",
+              "required": "false",
+              "id": "painOnUrination",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c73c5f65-938b-4072-972f-5d057fb4213c",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Difficulty in Retracting ForeSkin",
+              "type": "obs",
+              "required": "false",
+              "id": "difficultyInRetractingForeskin",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "62b70a43-a4ce-4993-8dfb-4118f9cd9b2b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Swelling of scrotum",
+              "type": "obs",
+              "required": "false",
+              "id": "swellingOfSscrotum",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "36b0c35e-274a-4ae7-a2dd-0f0f7d3bd25c",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Erectile Dysfunction",
+              "type": "obs",
+              "required": "false",
+              "id": "erectileDysfunction",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "bc6b8019-5c3d-42ba-94b5-75e5da172a09",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Specify any Other Medical History",
+              "type": "obs",
+              "id": "otherMedicalHistory",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "b8b59408-c9c7-4522-9e22-0ac79ae103a7",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Client Undergoing Treatment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Hypertension",
+              "type": "obs",
+              "required": "false",
+              "id": "hypertension?",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "66438f31-c7a9-4f02-b0ba-10d8975c1d63",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Anaemia",
+              "type": "obs",
+              "required": "false",
+              "id": "anaemia",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "38890ed1-42c1-475e-af1a-2250a17b0a0d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Diabetes",
+              "type": "obs",
+              "required": "false",
+              "id": "diabetes",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f70a3dd1-8916-4516-90d9-e650d4e56ce4",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV/AIDS",
+              "type": "obs",
+              "required": "false",
+              "id": "hivAids",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ec944e0d-3da7-43e1-9c5b-e23dbb58066d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Specify any Other Treatment",
+              "type": "obs",
+              "id": "otherTreatment",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "59560ede-43e2-4e56-a47e-0f876779f0e1",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Allergies",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Local Anesthetics",
+              "type": "obs",
+              "required": "false",
+              "id": "localAnesthetics",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "db9f397b-0632-4e43-b022-585ce3a48656",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Antiseptics",
+              "type": "obs",
+              "required": "false",
+              "id": "antiseptics",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "941571fc-9264-4675-b200-1c1fdb78a1c7",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Specify any Other Allergies",
+              "type": "obs",
+              "id": "otherAllergies",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1d8d0ca2-8973-4838-8955-3d09340044a8",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Physical Exam",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Urethra Discharge",
+              "type": "obs",
+              "required": "false",
+              "id": "urethraDischarge",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "fbc289bc-6147-4708-984c-6c9526d74bef",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Adhesions",
+              "type": "obs",
+              "required": "false",
+              "id": "adhesions",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "eabf62db-c47c-440c-b46a-740c50c818a6",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Anatomical abnormalities",
+              "type": "obs",
+              "required": "false",
+              "id": "anatomicalAbnormalities",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d332d404-e6fd-4a5f-ac39-2c1b2ea0dfab",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Genital Ulcer Disease",
+              "type": "obs",
+              "required": "false",
+              "id": "genitalUlcerDisease",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "937ad385-91a8-4fa7-9b8e-ce9f60b5e6e5",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Balanitis",
+              "type": "obs",
+              "required": "false",
+              "id": "balanitis",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "a831821b-a208-492a-8bc7-956df55ff924",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Genital Warts",
+              "type": "obs",
+              "required": "false",
+              "id": "genitalWarts",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "08b6cd56-eff4-48e5-8476-7edfbe49878a",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Surgical disorders",
+              "type": "obs",
+              "required": "false",
+              "id": "surgicalDisorders",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "34ff79d5-9ad2-4700-877b-bc8a674e9e4d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other STI/ abnormalities",
+              "type": "obs",
+              "required": "false",
+              "id": "otherStiAbnormalities",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "255bc4c3-fa5b-487c-966f-33ea3c9f87bd",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Open wounds/recently healed scars",
+              "type": "obs",
+              "required": "false",
+              "id": "openWoundsRecentlyHealedScars",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e8c9cc10-58f7-4c60-9dda-087f1b646105",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Jiggers",
+              "type": "obs",
+              "required": "false",
+              "id": "jiggers",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "32ed2d3e-9f10-46a2-bb84-f5bc12e81d00",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Td given during this appointment",
+              "type": "obs",
+              "required": "false",
+              "id": "tdGivenDuringThisAppointment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "9fd50f5f-c440-4eaa-a5c8-a9aef344dc43",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Consent/Assent",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Client First Name",
+              "type": "obs",
+              "id": "clientFirstName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce10512-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Client Last Name",
+              "type": "obs",
+              "id": "clientLastName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce10100-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Parent/Guardian Name",
+              "type": "obs",
+              "id": "parentGuardianName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e96d0880-e80e-4088-9787-bb2623fd46af",
+                "conceptMappings": [],
+                "answers": [],
+                "hide": {
+                  "hideWhenExpression": "age < '12' || age > '17'"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "Eligibility For Circumcision",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Client Counseled about SMC",
+              "type": "obs",
+              "required": "false",
+              "id": "clientCouncelledAboutSMC",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "8e1b2249-dca4-400d-b465-6eab5b5a1c98",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Informed consent/assent for SMC given",
+              "type": "obs",
+              "required": "false",
+              "id": "informedConsent/AssentForSmcGiven",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c713628d-fc70-4f2f-8b6e-e3b57d5921c6",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Client eligible for circumcision after history/physical exam",
+              "type": "obs",
+              "required": "false",
+              "id": "clientEligibleForCircumcissionAfterHistoryPhysicalExam",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "6eec7388-f8b3-4fb5-8152-8dc9b72c5091",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Circumcision Procedure",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Circumcision Procedure",
+              "type": "obsGroup",
+              "id": "circumcisionProcedure",
+              "questionOptions": {
+                "concept": "8452e0ac-a83a-428e-bfda-21cb39eef79f",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Start Date of circumcision",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "startDateOfCircumcission",
+                  "datePickerFormat": "both",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "dd2717a6-30ab-102d-86b0-7a5022ba4115",
+                    "answers": []
+                  }
+                },
+                {
+                  "label": "End Date of circumcision",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "endDateOfCircumcission",
+                  "datePickerFormat": "both",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "dd274206-30ab-102d-86b0-7a5022ba4115",
+                    "answers": []
+                  }
+                },
+                {
+                  "label": "Type of Anesthesia",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "typeOfAnesthesia",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "c872a3d4-46fc-11ee-be56-0242ac120002",
+                    "answers": [
+                      {
+                        "concept": "4dd9a7f4-4714-11ee-be56-0242ac120002",
+                        "label": "General",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "4dd9ab46-4714-11ee-be56-0242ac120002",
+                        "label": "Regional (spinal)",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "4dd9b1f4-4714-11ee-be56-0242ac120002",
+                        "label": "Local",
+                        "conceptMappings": []
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Lignocaine (mls)",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "lignocaine",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "c4ad06bd-8302-4a32-b76d-f174a6df9ddf"
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(typeOfAnesthesia) || typeOfAnesthesia !== '4dd9b1f4-4714-11ee-be56-0242ac120002'"
+                  }
+                },
+                {
+                  "label": "Bupivicaine (mls)",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "bupivicaine",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "2ee74f84-3260-4c31-8ea6-4ca69df56380"
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(typeOfAnesthesia) || typeOfAnesthesia !== '4dd9b1f4-4714-11ee-be56-0242ac120002'"
+                  }
+                },
+                {
+                  "label": "EMLA Cream",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "emlaCream",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "f44c8bea-9667-4587-887d-10bd8088fae8",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No",
+                        "conceptMappings": []
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(typeOfAnesthesia) || typeOfAnesthesia !== '4dd9b1f4-4714-11ee-be56-0242ac120002'"
+                  }
+                },
+                {
+                  "label": "Specify any Other Local Anesthesia",
+                  "type": "obs",
+                  "id": "otherLocalAnethesia",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(typeOfAnesthesia) || typeOfAnesthesia !== '4dd9b1f4-4714-11ee-be56-0242ac120002'"
+                  }
+                },
+                {
+                  "label": "Type of circumcision procedure",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "typeOfCircumcisionProcedure",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "bd66b11f-04d9-46ed-a367-2c27c15d5c71",
+                    "answers": [
+                      {
+                        "concept": "e63ac8e3-5027-43c3-9421-ce995ea039cf",
+                        "label": "Dorsal slit"
+                      },
+                      {
+                        "concept": "0308bd0a-0e28-4c62-acbd-5ea969c296db",
+                        "label": "Forceps guided"
+                      },
+                      {
+                        "concept": "0ee1b2ae-2961-41d6-9fe0-7d9f876232ae",
+                        "label": "Sleeve"
+                      },
+                      {
+                        "concept": "12897216-1b3b-4fe8-9850-84922d609c51",
+                        "label": "PrePex"
+                      },
+                      {
+                        "concept": "",
+                        "label": "Morgan Clamp"
+                      },
+                      {
+                        "concept": "766713cb-b8f4-48b8-9688-a1ab094330f5",
+                        "label": "Shang Ring"
+                      },
+                      {
+                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Other Specify"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Shang Ring Size",
+                  "type": "obs",
+                  "id": "shangRingSize",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "0683ebca-ad82-4275-a4ea-141c0136de4e",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "typeOfCircumcisionProcedure !== '766713cb-b8f4-48b8-9688-a1ab094330f5'"
+                  }
+                },
+                {
+                  "label": "Other Circumcision Procedure",
+                  "type": "obs",
+                  "id": "otherCircumcisionProcedure",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "203624b1-8417-4b11-a20a-77662b2cb44b",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "typeOfCircumcisionProcedure !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                  }
+                },
+                {
+                  "label": "Instruments used",
+                  "type": "obs",
+                  "id": "instrumentsUsed",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "",
+                    "answers": [
+                      {
+                        "concept": "",
+                        "label": "Reusable",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "",
+                        "label": "Disposable",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Not Applicable",
+                        "conceptMappings": []
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Name of Circumciser",
+                  "type": "obs",
+                  "id": "circumciserName",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "ec491006-6fce-4259-bec8-cbdc2f11e66a",
+                    "conceptMappings": [],
+                    "answers": []
+                  }
+                },
+                {
+                  "label": "Adverse events during procedure",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "adverseEventsDuringProcedure",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "a18466c4-44dd-4cb5-93b3-abd87fb6bfb8",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No",
+                        "conceptMappings": []
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Type of Adervse Event (AE)",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "typeOfAe",
+                  "questionOptions": {
+                    "rendering": "multiCheckbox",
+                    "concept": "8d67cb48-b2c2-4dda-bae8-709287f9b088",
+                    "answers": [
+                      {
+                        "concept": "",
+                        "label": "Excessive Skin Removal"
+                      },
+                      {
+                        "concept": "58da0526-00d2-49f8-98e7-4ed0cb6bd672",
+                        "label": "Damage to penis"
+                      },
+                      {
+                        "concept": "d99b872e-8116-4697-941d-fc14e98d5612",
+                        "label": "Excessive bleeding"
+                      },
+                      {
+                        "concept": "574a15da-9aa3-4008-8349-bab16757c888",
+                        "label": "Anathetic related"
+                      },
+                      {
+                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Others Specify"
+                      }
+                    ],
+                    "hide": {
+                      "hideWhenExpression": "adverseEventsDuringProcedure !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  }
+                },
+                {
+                  "label": "Other Type of AE",
+                  "type": "obs",
+                  "id": "otherAeType",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "5334b1b8-62f5-4d78-8ba8-13caa1702c41",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "typeOfAe != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                  }
+                },
+                {
+                  "label": "Severity",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "severity",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "68d5f2c9-b46c-4e11-8d5c-acaa8f3ee6cf",
+                    "answers": [
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Treatment Given",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "treatmentGiven",
+                  "questionOptions": {
+                    "rendering": "textarea",
+                    "concept": "c4dbec6b-8024-40b2-a84c-e5210efb3de7"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "List Post-Operative medication given",
+              "type": "obs",
+              "required": "false",
+              "id": "postoperativeMedicationGiven",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0eb6201b-ade7-4f1b-9bdd-26be384c9f42"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

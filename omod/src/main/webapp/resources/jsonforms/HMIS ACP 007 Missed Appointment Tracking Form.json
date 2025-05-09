@@ -1,0 +1,638 @@
+{
+  "name": "HMIS ACP 007 Missed Appointment Tracking Form",
+  "version": "4.1.0",
+  "description": "Record all clients who missed their appointment",
+  "encounterType": "791faefd-36b8-482f-ab78-20c297b03851",
+  "encounter": "Missed Appointment Tracking",
+  "uuid": "59d9341a-f65e-4e86-a98b-415ea54dfa81",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "Missed Appointment Tracking Form",
+      "sections": [
+        {
+          "label": "Appointment Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Missed Appointment Date",
+              "type": "obs",
+              "required": "false",
+              "id": "missedAppointmentDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f6ff7aad-1801-409d-be8d-6f41057777ae"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Service Point",
+              "type": "obs",
+              "id": "servicePoint",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "164993AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "165047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ART Clinic"
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Clinic"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Service Point",
+              "type": "obs",
+              "id": "otherServicePoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "295467d1-289d-41da-95b0-b006873ef092"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(servicePoint) || servicePoint != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Medication Due for Refill",
+              "type": "obs",
+              "id": "medicationDueForRefill",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "3890b48d-cbbd-47ee-927b-1ac72542c04a",
+                "answers": [
+                  {
+                    "concept": "e06ac289-2920-4b85-80c9-805c69b6e5a9",
+                    "label": "ART"
+                  },
+                  {
+                    "concept": "dc9abc92-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TB Meds/TPT"
+                  },
+                  {
+                    "concept": "dc9ab2c0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Infant NVP/CTX"
+                  },
+                  {
+                    "concept": "dcb2e4e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Family Planning"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Specify",
+              "type": "obs",
+              "id": "otherMedication",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "d7bb22cc-f618-4204-ba72-5705b5daa3bf"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(medicationDueForRefill) || medicationDueForRefill != '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Mode of Care",
+              "type": "obs",
+              "id": "modeOfCare",
+              "questionOptions": {
+                "concept": "73312fee-c321-11e8-a355-529269fb1459",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "733144c0-c321-11e8-a355-529269fb1459",
+                    "label": "FBIM"
+                  },
+                  {
+                    "concept": "73313c96-c321-11e8-a355-529269fb1459",
+                    "label": "FBG"
+                  },
+                  {
+                    "concept": "73313f20-c321-11e8-a355-529269fb1459",
+                    "label": "FTDR"
+                  },
+                  {
+                    "concept": "733139e4-c321-11e8-a355-529269fb1459",
+                    "label": "CCLAD"
+                  },
+                  {
+                    "concept": "73313728-c321-11e8-a355-529269fb1459",
+                    "label": "CDDP"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Tracking Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Follow Up Attempt",
+              "type": "obs",
+              "id": "followUpAttempt",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce0a659-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "cf5b1b53-06d5-4bf4-ad13-14ddc5b66a15",
+                    "label": "Follow Up 1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "36b468e9-9b2e-4619-83ec-025c6866acdd",
+                    "label": "Follow Up 2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "71f16977-eb3e-41de-8bc0-9187828b97c9",
+                    "label": "Follow Up 3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1e977534-d731-45f4-9722-642eaf283e05",
+                    "label": "Follow Up 4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "08869efd-cbee-4c1d-b984-bf94c4c6d83a",
+                    "label": "Follow Up 5",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "25a49729-3bc4-4370-a906-0ce863a304ab",
+                    "label": "Follow Up 6",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Follow Up Date",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Follow Up Person:",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider"
+            },
+            {
+              "label": "Follow Up Action",
+              "type": "obs",
+              "id": "followUpAction",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "928c4617-436e-44b3-91c3-725cb1c910c0",
+                "answers": [
+                  {
+                    "concept": "3fa2fa67-0dd9-44b9-a171-af5ebbb0c00a",
+                    "label": "Phone call to client/caregiver/next of Kin"
+                  },
+                  {
+                    "concept": "cea04f6d-2fae-472e-ab57-3ce0f15113b5",
+                    "label": "Home/workplace visit by HCW"
+                  },
+                  {
+                    "concept": "cdfca3e8-4502-4cd9-b289-3171e5401c9b",
+                    "label": "Facility to facility phone call"
+                  },
+                  {
+                    "concept": "1ae3fe4f-d036-4a32-8c83-5924d674e434",
+                    "label": "Facility to facility visit"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Action"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Follow up actions",
+              "type": "obs",
+              "id": "otherFollowUpActions",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0b49c094-f46e-4a43-a9ec-6f0452c2ccf6"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(followUpAction) || followUpAction != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Follow Up Outcome",
+              "type": "obs",
+              "id": "followUpOutcome",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8f889d84-8e5c-4a66-970d-458d6d01e8a4",
+                "answers": [
+                  {
+                    "concept": "4f91e869-d4db-4849-a865-821f1fe02fc1",
+                    "label": "Returned to care"
+                  },
+                  {
+                    "concept": "f57b1500-7ff2-46b4-b183-fed5bce479a9",
+                    "label": "Self transferred"
+                  },
+                  {
+                    "concept": "dca26b47-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stopped/Refused"
+                  },
+                  {
+                    "concept": "e063241f-5a50-4fea-9bce-d1bf8332f081",
+                    "label": "Migrated/Relocated"
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died"
+                  },
+                  {
+                    "concept": "8b386488-9494-4bb6-9537-dcad6030fab0",
+                    "label": "Unable to be traced"
+                  },
+                  {
+                    "concept": "1a467610-b640-4d9b-bc13-d2631fa57a45",
+                    "label": "Tracing attempts initiated but incomplete"
+                  },
+                  {
+                    "concept": "b192a41c-f7e8-47a9-89c5-62e7a4bffddd",
+                    "label": "No attempt to trace"
+                  },
+                  {
+                    "concept": "e67c538f-70bf-44ad-84ef-3a5d4ed4f209",
+                    "label": "Misclassified as Missed Appointment"
+                  },
+                  {
+                    "concept": "7513c006-9e03-47f8-ba21-6b375bccb0f7",
+                    "label": "Promised to Return"
+                  },
+                  {
+                    "concept": "e063241f-5a50-4fea-9bce-d1bf8332f081",
+                    "label": "Patient migrated/relocated"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Outcome"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Specify",
+              "type": "obs",
+              "id": "otherOutcome",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(followUpOutcome) || followUpOutcome != '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "ART Clinic",
+              "type": "obs",
+              "id": "artClinic",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "ART No.",
+              "type": "obs",
+              "id": "artNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "105ef9de-ad90-4c08-bcd5-ab48f74f6287"
+              },
+              "validators": []
+            },
+            {
+              "label": "Reason For Missing Appointment",
+              "type": "obs",
+              "id": "reasonMissingAppointment",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e41ada4c-fbcf-40fb-86fc-b9d53b655c03",
+                "answers": [
+                  {
+                    "concept": "2a5cc366-6dc6-464e-a8bc-cdc4c05156ea",
+                    "label": "No Transport"
+                  },
+                  {
+                    "concept": "dcded6f0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Forgetfulness"
+                  },
+                  {
+                    "concept": "3fe4a41f-e1cb-482f-944a-4eb704a01f28",
+                    "label": "Wrong Date given"
+                  },
+                  {
+                    "concept": "e61e1601-1414-4b93-95a1-b884e67e56f8",
+                    "label": "Lost documents"
+                  },
+                  {
+                    "concept": "41ed8d78-5d04-400c-be6d-6b5e9c99f019",
+                    "label": "Still had medication"
+                  },
+                  {
+                    "concept": "e7f13d5a-a83d-11ed-afa1-0242ac120002",
+                    "label": "Work related issues"
+                  },
+                  {
+                    "concept": "b7a585fc-41c2-4051-a158-a5ed3669e0b1",
+                    "label": "Traveled"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Reason"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Specify",
+              "type": "obs",
+              "id": "otherReasonMissedAppointment",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ffdb1a4b-7020-4e59-8882-b872f6bc1407"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(reasonMissingAppointment) || reasonMissingAppointment != '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Outcome Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Outcome By End of Quarter",
+              "type": "obs",
+              "id": "outcomeByEndOfQuarter",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "04afa790-1600-4078-818d-4a71a014f073",
+                "answers": [
+                  {
+                    "concept": "4f91e869-d4db-4849-a865-821f1fe02fc1",
+                    "label": "Returned to care"
+                  },
+                  {
+                    "concept": "f57b1500-7ff2-46b4-b183-fed5bce479a9",
+                    "label": "Self transferred"
+                  },
+                  {
+                    "concept": "dca26b47-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stopped/Refused"
+                  },
+                  {
+                    "concept": "e063241f-5a50-4fea-9bce-d1bf8332f081",
+                    "label": "Migrated/Relocated"
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died"
+                  },
+                  {
+                    "concept": "8b386488-9494-4bb6-9537-dcad6030fab0",
+                    "label": "Unable to be traced"
+                  },
+                  {
+                    "concept": "1a467610-b640-4d9b-bc13-d2631fa57a45",
+                    "label": "Tracing attempts initiated but incomplete"
+                  },
+                  {
+                    "concept": "b192a41c-f7e8-47a9-89c5-62e7a4bffddd",
+                    "label": "No attempt to trace"
+                  },
+                  {
+                    "concept": "e67c538f-70bf-44ad-84ef-3a5d4ed4f209",
+                    "label": "Misclassified as Missed Appointment"
+                  },
+                  {
+                    "concept": "e063241f-5a50-4fea-9bce-d1bf8332f081",
+                    "label": "Patient migrated/relocated"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Outcome"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Outcome By End of Next Quarter",
+              "type": "obs",
+              "id": "outcomeByEndOfNextQuarter",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "04afa790-1600-4078-818d-4a71a014f073",
+                "answers": [
+                  {
+                    "concept": "4f91e869-d4db-4849-a865-821f1fe02fc1",
+                    "label": "Returned to care"
+                  },
+                  {
+                    "concept": "f57b1500-7ff2-46b4-b183-fed5bce479a9",
+                    "label": "Self transferred"
+                  },
+                  {
+                    "concept": "dca26b47-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stopped/Refused"
+                  },
+                  {
+                    "concept": "e063241f-5a50-4fea-9bce-d1bf8332f081",
+                    "label": "Migrated/Relocated"
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died"
+                  },
+                  {
+                    "concept": "8b386488-9494-4bb6-9537-dcad6030fab0",
+                    "label": "Unable to be traced"
+                  },
+                  {
+                    "concept": "1a467610-b640-4d9b-bc13-d2631fa57a45",
+                    "label": "Tracing attempts initiated but incomplete"
+                  },
+                  {
+                    "concept": "b192a41c-f7e8-47a9-89c5-62e7a4bffddd",
+                    "label": "No attempt to trace"
+                  },
+                  {
+                    "concept": "e67c538f-70bf-44ad-84ef-3a5d4ed4f209",
+                    "label": "Misclassified as Missed Appointment"
+                  },
+                  {
+                    "concept": "e063241f-5a50-4fea-9bce-d1bf8332f081",
+                    "label": "Patient migrated/relocated"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Outcome"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "outcomeByEndOfQuarter != '1a467610-b640-4d9b-bc13-d2631fa57a45' && outcomeByEndOfQuarter != 'b192a41c-f7e8-47a9-89c5-62e7a4bffddd'"
+              }
+            },
+            {
+              "label": "Other Specify",
+              "type": "obs",
+              "id": "otherOutcomeEndOfQuarter",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Date Returned to Care",
+              "type": "obs",
+              "required": "false",
+              "id": "dateReturnedToCare",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "d2d437fb-ff88-44c2-bf17-1d35bde6f586"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != '4f91e869-d4db-4849-a865-821f1fe02fc1'"
+              }
+            },
+            {
+              "label": "Date Self Transferred",
+              "type": "obs",
+              "required": "false",
+              "id": "dateSelfTransferred",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != '160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Cause of Death",
+              "type": "obs",
+              "id": "causeOfDeath",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dca2c3f2-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc6527eb-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TB"
+                  },
+                  {
+                    "concept": "116030AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cancer"
+                  },
+                  {
+                    "concept": "73d67c86-06df-4863-9819-ccb2a6bb98f8",
+                    "label": "Infectious disease other than TB"
+                  },
+                  {
+                    "concept": "13a7b84b-b661-48a5-8315-0bcc0174e5c8",
+                    "label": "HIV Non-infectious disease"
+                  },
+                  {
+                    "concept": "84899c95-d455-4293-be6f-7db600af058f",
+                    "label": "Natural causes"
+                  },
+                  {
+                    "concept": "ab115b14-8a9f-4185-9deb-79c214dc1063",
+                    "label": "Non natural causes"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != 'f57b1500-7ff2-46b4-b183-fed5bce479a9'"
+              }
+            },
+            {
+              "label": "Comment",
+              "type": "obs",
+              "id": "comment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

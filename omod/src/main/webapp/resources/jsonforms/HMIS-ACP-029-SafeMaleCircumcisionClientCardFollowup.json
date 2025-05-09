@@ -1,0 +1,394 @@
+{
+  "name": "HMIS ACP 029: Safe Male Circumcision Client Card Follow up",
+  "version": "4.1.0",
+  "description": "Captures clients undergoing safe male circumcision follow up",
+  "encounterType": "d0f9e0b7-f336-43bd-bf50-0a7243857fa6",
+  "encounter": "SMC Follow up Encounter",
+  "uuid": "0292be15-3234-4b65-b5da-15a667da695f",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Safe Male Circumcision Client Card Follow up",
+      "sections": [
+        {
+          "label": "Follow Up Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Wound Status",
+              "type": "obs",
+              "id": "woundStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f35c2da0-6d1b-41a5-9942-9edb83008c2a",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Type of Visit",
+              "type": "obs",
+              "id": "vistiType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ee34868b-7a02-4e91-b854-fc4542b2ae03",
+                "answers": [
+                  {
+                    "concept": "b8074ee5-c9f1-41b7-a6de-266451ad53c3",
+                    "label": "Routine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f1338391-ba92-4462-8da3-e925ca8c05ed",
+                    "label": "Client Initiated/Unscheduled",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "95602faf-be2f-4ed9-bad7-26297801e8e25",
+                    "label": "Recommended by physician",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Presence of AE",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Presence of AE",
+              "type": "obsGroup",
+              "id": "aePresence",
+              "questionOptions": {
+                "concept": "654e7039-4629-46bb-9fc9-0f6dd101ce6a",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Tetanus",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "tetanus",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "124957AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Other Infections",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "otherInfections",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "b498df96-0e4a-4eaf-9b42-dacf9e486cba",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Excessive Bleeding",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "excessiveBleeding",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "d99b872e-8116-4697-941d-fc14e98d5612",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Pus discharge",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "pusDischarge",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "68d5f2c9-b46c-4e11-8d5c-acaa8f3ee6cf",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Excessive swelling/Haematoma",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "excessiveSwelling",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "ff40414d-a295-42a1-b643-1d25396c0b7f",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Damage to penis",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "penisDamage",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "58da0526-00d2-49f8-98e7-4ed0cb6bd672",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Unbearable pain",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "unbearbalePain",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Device displacement",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "deviceDisplacement",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Failure to pass urine",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "urinePassFailure",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Early Ring Removal",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "earlyringRemoval",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "067c24d6-69fd-4dd6-9a2a-1ccc98da70b9",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Smell",
+                  "type": "obs",
+                  "required": "false",
+                  "id": "smell",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "71349440-c0e7-4fe0-bd4b-10e3e43a38f2",
+                    "answers": [
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild"
+                      },
+                      {
+                        "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                        "label": "Moderate"
+                      },
+                      {
+                        "concept": "44f95fcb-1054-466f-906d-45a41ef07297",
+                        "label": "Severe"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Other AE present",
+                  "type": "obs",
+                  "id": "otherAePresent",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "cd1ea4a0-812d-4f4f-86a7-c8725eda4328",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Intervention Given",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Intervention given",
+              "type": "obs",
+              "id": "interventionGiven",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c4dbec6b-8024-40b2-a84c-e5210efb3de7",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

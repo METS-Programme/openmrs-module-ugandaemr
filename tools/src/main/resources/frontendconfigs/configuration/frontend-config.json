@@ -1,0 +1,1259 @@
+{
+  "@openmrs/esm-laboratory-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Laboratory"
+      ]
+    }
+  },
+  "@ugandaemr/esm-data-visualizer-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Data Visualizer"
+      ]
+    }
+  },
+  "@openmrs/esm-appointments-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Appointments",
+        "Manage Appointment Services"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-chart-app": {
+    "Display conditions": {
+      "privileges": [
+        "View Patient Summary"
+      ]
+    },
+    "logo": {
+      "src": "/openmrs/spa/logo.svg",
+      "alt": "UgandaEMR+ logo"
+    },
+    "extensionSlots": {
+      "visit-header-right-slot": {
+        "remove": [
+          "start-visit-button"
+        ]
+      },
+      "patient-highlights-bar-slot": {
+        "remove": [
+          "patient-flag-tags"
+        ]
+      },
+      "patient-chart-summary-dashboard-slot": {
+        "add": [
+          "allergies-details-widget"
+        ]
+      },
+      "top-of-all-patient-dashboards-slot": {
+        "configure": {
+          "patient-flag": {
+            "Display conditions": {
+              "privileges": [
+                "o3: View Patient Flags"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "@openmrs/esm-styleguide": {
+    "Brand color #1": " #009384",
+    "Brand color #2": " #009384",
+    "Brand color #3": " #009384"
+  },
+  "@openmrs/esm-patient-biometrics-app": {
+    "Display conditions": {
+      "privileges": [
+        "Add Vitals and Biometrics"
+      ]
+    }
+  },
+  "@ugandaemr/esm-care-panel-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Care Panel"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-appointments-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Patient Appointment"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-immunizations-app": {
+    "Display conditions": {
+      "privileges": [
+        "Add Immunizations"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-allergies-app": {
+    "Display conditions": {
+      "privileges": [
+        "Add Allergies"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-attachments-app": {
+    "Display conditions": {
+      "privileges": [
+        "Add Attachments"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-conditions-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage conditions"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-forms-app": {
+    "Display conditions": {
+      "privileges": [
+        "Get Forms"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-medications-app": {
+    "Display conditions": {
+      "privileges": [
+        "Add Orders",
+        "View OrderTemplates"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-programs-app": {
+    "Display conditions": {
+      "privileges": [
+        "Add Patient Programs"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-test-results-app": {
+    "concepts": [],
+    "Display conditions": {
+      "privileges": [
+        "View Test Results"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-notes-app": {
+    "Display conditions": {
+      "privileges": [
+        "Manage Patient Notes"
+      ]
+    }
+  },
+  "@openmrs/esm-patient-tests-app": {
+    "resultsViewerConcepts": [
+      {
+        "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc824b7b-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc9223b2-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc926649-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc9292fc-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc96505b-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dc9686e0-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dcbc4a1c-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dcbc52c0-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "264e34a1-3ae3-4b59-9763-48c961a8a56a",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "14924d56-8841-4d96-a9bb-8daaeaacea17",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "8733234b-7391-45aa-8cb2-9fabfafbc3d1",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "159645AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "159981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161199AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161426AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161437AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161458AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161463AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161464AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161468AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161478AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161486AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161487AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161493AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161501AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161508AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161510AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161518AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161520AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "161533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "162630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163602AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163610AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163625AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163679AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163697AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163700AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163701AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163702AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163708AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "163722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "2cf5644d-73a7-42f2-b18c-f773f40b648c",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5faffe89-397e-470c-a32b-e07d962d01b3",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5827cc4c-8b35-483e-a460-9b76885cf9de",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "daebb483-4eef-42b5-9380-7dbfec2ef6ce",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "a9a5af0f-cb4e-4657-8ec0-a21772a02345",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1c654215-fcc4-439f-a975-ced21995ed15",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "2772e8c9-c019-46db-9242-dcf81f975f50",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5f02429c-f83d-48e3-b6f7-bc288aa20ca0",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "e56b2640-271a-4e63-933b-7e1c2a8e0e50",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "f274dcaa-e515-440e-bcd7-140a691587aa",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "7f420159-b843-44a7-b53c-c6ca52a53ec5",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "167178AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "167441AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "5b40edac-a7e2-11ed-afa1-0242ac120002",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "df09f8d4-fb7a-45a9-b309-240e700e37d3",
+        "defaultOpen": false
+      },
+      {
+        "conceptUuid": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+        "defaultOpen": false
+      }
+    ],
+    "orders": {
+      "labOrderableConcepts": [
+        "dca07f4a-30ab-102d-86b0-7a5022ba4115"
+      ]
+    },
+    "Display conditions": {
+      "privileges": [
+        "View Test Results"
+      ]
+    }
+  },
+  "@openmrs/esm-offline-tools-app": {
+    "Display conditions": {
+      "privileges": [
+        "Access Offline Tools"
+      ]
+    }
+  },
+  "@ugandaemr/esm-patient-registration-app": {
+    "defaultPatientIdentifierTypes": [
+      "f0c16a6d-dc5f-4118-a803-616d0075d282"
+    ],
+    "logo": {
+      "src": "/openmrs/spa/logo-white.svg",
+      "alt": "UgandaEMR+ logo"
+    },
+    "sections": [
+      "demographics",
+      "contact",
+      "custom",
+      "relationships",
+      "nextOfKin"
+    ],
+    "sectionDefinitions": [
+      {
+        "id": "custom",
+        "name": "Demographics",
+        "fields": [
+          "alternativePhone",
+          "maritalStatus",
+          "nationality",
+          "occupation",
+          "education",
+          "email"
+        ]
+      },
+      {
+        "id": "nextOfKin",
+        "name": "Next of Kin Details",
+        "fields": [
+          "nextOfKinName",
+          "nextOfkinPhone"
+        ]
+      }
+    ],
+    "fieldDefinitions": [
+      {
+        "id": "maritalStatus",
+        "type": "person attribute",
+        "uuid": "8d871f2a-c2cc-11de-8d13-0010c6dffd0f",
+        "answerConceptSetUuid" : "dce0c134-30ab-102d-86b0-7a5022ba4115",
+        "label": "Marital status",
+        "validation": {
+          "required": false
+        }
+      },
+      {
+        "id": "nationality",
+        "type": "person attribute",
+        "uuid": "dec484be-1c43-416a-9ad0-18bd9ef28929",
+        "answerConceptSetUuid" : "8143023b-e9d9-4c9f-91b8-7c82b5524412",
+        "validation": {
+          "required": true
+        }
+      },
+      {
+        "id": "occupation",
+        "type": "person attribute",
+        "uuid": "b0868a16-4f8e-43da-abfc-6338c9d8f56a",
+        "validation": {
+          "required": true
+        }
+      },
+      {
+        "id": "education",
+        "type": "person attribute",
+        "uuid": "ec6e8300-38e8-4c95-8e57-27c9cdfba104",
+        "answerConceptSetUuid":"14af2c6d-a47d-4e94-9b16-5284134def96",
+        "label": "Education Level",
+        "validation": {
+          "required": false
+        }
+      },
+      {
+        "id": "email",
+        "type": "person attribute",
+        "uuid": "5ecfd59d-5988-4aa3-84f8-8b43599fc67c",
+        "label": "Email address",
+        "validation": {
+          "matches": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+        }
+      },
+      {
+        "id": "phone",
+        "type": "person attribute",
+        "uuid": "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+        "label": "Phone Number",
+        "validation": {
+          "matches": "^0([0-9](?:(?:[0-9][0-9])|(?:0[0-8])|(4[0-1]))[0-9]{6})$"
+        }
+      },
+      {
+        "id": "alternativePhone",
+        "type": "person attribute",
+        "uuid": "8c44d411-285f-46c6-9f17-c2f919823b34",
+        "label": "Alternative Phone Number",
+        "validation": {
+          "matches": "^0([0-9](?:(?:[0-9][0-9])|(?:0[0-8])|(4[0-1]))[0-9]{6})$"
+        }
+      },
+      {
+        "id": "nextOfKinName",
+        "type": "person attribute",
+        "uuid": "e493f4ec-51f1-4a77-8d3c-5791f8cb02cd",
+        "label": "Name"
+      },
+      {
+        "id": "nextOfkinPhone",
+        "type": "person attribute",
+        "uuid": "553834ef-b3fe-4c79-826a-6d4b6978bcff",
+        "label": "Phone Number",
+        "validation": {
+          "matches": "^0([0-9](?:(?:[0-9][0-9])|(?:0[0-8])|(4[0-1]))[0-9]{6})$"
+        }
+      }
+    ],
+    "links": {
+      "submitButton": "/openmrs/spa/home/patient-queues"
+    },
+    "fieldConfigurations": {
+      "dateOfBirth": {
+        "useEstimatedDateOfBirth": {
+          "enabled": true,
+          "dayOfMonth": 15,
+          "month": 5
+        }
+      },
+      "gender": [
+        {
+          "id": "male",
+          "value": "Male",
+          "label": "Male"
+        },
+        {
+          "id": "female",
+          "value": "Female",
+          "label": "Female"
+        }
+      ],
+      "address": {
+        "useAddressHierarchy": {
+          "useAddressHierarchyLabel": {
+            "countyDistrict": "County",
+            "address4": "Ward",
+            "stateProvince": "Sub county"
+          },
+          "searchAddressByLevel": true
+        }
+      }
+    },
+    "registrationObs": {
+      "encounterTypeUuid": "1458b726-4a62-4444-be97-bb3e08c73745"
+    }
+  },
+  "@openmrs/esm-home-app": {
+    "extensionSlots": {
+      "clinical-appointments-dashboard-slot": {
+        "configure": {
+          "clinical-appointments-dashboard": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "@ugandaemr/esm-login-app": {
+    "logo": {
+      "src": "/openmrs/spa/logo.svg",
+      "alt": "UgandaEMR+ logo"
+    },
+    "loginBackground": {
+      "src": "/openmrs/spa/background.png",
+      "alt": "UgandaEMR+ logo"
+    },
+    "loginBanner": {
+      "src": "/openmrs/spa/banner.svg",
+      "alt": "UgandaEMR+ logo"
+    }
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "extensionSlots": {
+      "top-nav-actions-slot": {
+        "configure": {
+          "patient-search-icon": {
+            "Display conditions": {
+              "privileges": [
+                "Search Patient"
+              ]
+            }
+          },
+          "add-patient-action": {
+            "Display conditions": {
+              "privileges": [
+                "Add Patient Button"
+              ]
+            }
+          }
+        }
+      },
+      "notifications-menu-button-slot": {
+        "Display conditions": {
+          "privileges": [
+            "View Notification Menu"
+          ]
+        }
+      },
+      "top-nav-app-menu-slot": {
+        "remove": [
+          "app-menu-button"
+        ],
+        "Display conditions": {
+          "privileges": [
+            "View Notification Menu"
+          ]
+        }
+      },
+      "patient-chart-dashboard-slot": {
+        "configure": {
+          "charts-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Summary"
+              ]
+            }
+          },
+          "medications-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Medication"
+              ]
+            }
+          },
+          "laboratory-patient-chart-link": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Investigation Results"
+              ]
+            }
+          },
+          "results-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Vital"
+              ]
+            }
+          },
+          "programs-summary-dashboard": {
+            "layoutMode": "anchored",
+            "order": 2,
+            "hideDashboardTitle": true,
+            "meta": {
+              "fullWidth": true
+            },
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Program"
+              ]
+            }
+          },
+          "care-panel-patient-summary": {
+            "layoutMode": "anchored",
+            "order": 2,
+            "hideDashboardTitle": true,
+            "meta": {
+              "fullWidth": true
+            }
+          },
+          "test-results-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Test Summary"
+              ]
+            }
+          },
+          "immunization-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage Immunization Summary"
+              ]
+            }
+          },
+          "appointments-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "configure": {
+              "Display conditions": {
+                "privileges": [
+                  "Manage Patient appointments"
+                ]
+              }
+            }
+          },
+          "patient-orders-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient orders"
+              ]
+            }
+          },
+          "allergies-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage allergies"
+              ]
+            }
+          },
+          "conditions-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage conditions"
+              ]
+            }
+          },
+          "attachments-results-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient attachments"
+              ]
+            }
+          },
+          "patient-appointments-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage patient appointments"
+              ]
+            }
+          },
+          "clincial-patient-link": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage clinical dashboard"
+              ]
+            }
+          },
+          "encounters-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
+            "Display conditions": {
+              "privileges": [
+                "Manage encounters"
+              ]
+            }
+          },
+          "clinical-views-divider": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Views Divider"
+              ]
+            }
+          },
+          "hiv-care-and-treatment": {
+            "Display conditions": {
+              "privileges": [
+                "Manage HIV Care and Treatment"
+              ]
+            }
+          },
+          "hiv-prevention-services": {
+            "Display conditions": {
+              "privileges": [
+                "Manage HIV Prevention Services"
+              ]
+            }
+          },
+          "eid-program": {
+            "Display conditions": {
+              "privileges": [
+                "Manage EID Program"
+              ]
+            }
+          },
+          "tb-program": {
+            "Display conditions": {
+              "privileges": [
+                "Manage TB Program"
+              ]
+            }
+          }
+        }
+      },
+      "homepage-dashboard-slot": {
+        "configure": {
+          "patient-queues-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Queues"
+              ]
+            }
+          },
+          "queue-reception-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Reception Menu"
+              ]
+            }
+          },
+          "queue-triage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Triage Menu"
+              ]
+            }
+          },
+          "queue-clinical-room-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Room Menu"
+              ]
+            }
+          },
+          "dispensing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Dispensing Menu"
+              ]
+            }
+          },
+          "patient-lists-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Lists"
+              ]
+            }
+          },
+          "service-queues-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Service Queues"
+              ]
+            }
+          },
+          "clinical-appointments-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          },
+          "bed-admission-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Inpatient"
+              ]
+            }
+          },
+          "data-visualizer-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Data Visualizer"
+              ]
+            }
+          },
+          "laboratory-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Laboratory"
+              ]
+            }
+          },
+          "home-widget-db-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Home Link"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "logo": {
+      "src": "/openmrs/spa/logo-white.svg",
+      "alt": "UgandaEMR+ logo"
+    }
+  },
+  "@openmrs/esm-patient-banner-app": {
+    "extensionSlots": {
+      "patient-actions-slot": {
+        "remove": [
+          "start-visit-button"
+        ],
+        "configure": {
+          "stop-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Stop Visit Button"
+              ]
+            }
+          },
+          "cancel-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Cancel Visit Button"
+              ]
+            }
+          },
+          "mark-patient-deceased-button": {
+            "Display conditions": {
+              "privileges": [
+                "Mark Dead Button"
+              ]
+            }
+          },
+          "edit-patient-details-button": {
+            "Display conditions": {
+              "privileges": [
+                "Edit Patient Details Button"
+              ]
+            }
+          },
+          "add-patient-to-patient-list-button": {
+            "Display conditions": {
+              "privileges": [
+                "Add Patient To List Button"
+              ]
+            }
+          },
+          "patient-move-to-next-service-point": {
+            "Display conditions": {
+              "privileges": [
+                "Next Service Point"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "@openmrs/esm-patient-vitals-app": {
+    "vitals": {
+      "useMuacColors": true,
+      "showPrintButton": true,
+      "useFormEngine": false
+    },
+    "concepts": {
+      "vitalSignsConceptSetUuid": "dc98127e-30ab-102d-86b0-7a5022ba4115"
+    }
+  },
+  "@openmrs/esm-patient-orders-app": {
+    "orderEncounterType": "dbe038cd-cad5-439d-a761-a6d6d680219c",
+    "Display conditions": {
+      "privileges": [
+        "Manage Order Basket"
+      ]
+    }
+  },
+  "@openmrs/esm-dispensing-app": {
+    "locationBehavior": {
+      "locationColumn": {
+        "enabled": true
+      },
+      "locationFilter": {
+        "enabled": true,
+        "tag": "Login Location"
+      }
+    },
+    "appName": "Dispensing",
+    "valueSets": {
+      "substitutionReason": {
+        "uuid": "2de6e1be-f2dd-4ba0-9516-8a611aa2af9b"
+      },
+      "substitutionType": {
+        "uuid": "b9c5bca0-d026-4245-a4d2-e4c0a8999082"
+      },
+      "reasonForClose": {
+        "uuid": "2462a9d7-61fb-4bf5-9359-aedecb8d03cb"
+      },
+      "reasonForPause": {
+        "uuid": "2462a9d7-61fb-4bf5-9359-aedecb8d03cb"
+      }
+    },
+    "dispenseBehavior": {
+      "restrictTotalQuantityDispensed": false,
+      "allowModifyingPrescription": false
+    },
+    "enableStockDispense": true,
+    "validateBatch": false,
+    "medicationRequestExpirationPeriodInDays": 1
+  },
+  "@openmrs/esm-patient-search-app": {
+    "extensionSlots": {
+      "patient-actions-slot": {
+        "remove": [
+          "start-visit-button"
+        ],
+        "configure": {
+          "stop-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Stop Visit Button"
+              ]
+            }
+          },
+          "cancel-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Cancel Visit Button"
+              ]
+            }
+          },
+          "mark-patient-deceased-button": {
+            "Display conditions": {
+              "privileges": [
+                "Mark Dead Button"
+              ]
+            }
+          },
+          "edit-patient-details-button": {
+            "Display conditions": {
+              "privileges": [
+                "Edit Patient Details Button"
+              ]
+            }
+          },
+          "add-patient-to-patient-list-button": {
+            "Display conditions": {
+              "privileges": [
+                "Add Patient To List Button"
+              ]
+            }
+          },
+          "patient-move-to-next-service-point": {
+            "Display conditions": {
+              "privileges": [
+                "Next Service Point"
+              ]
+            }
+          }
+        }
+      },
+      "start-visit-button-slot": {
+        "remove": [
+          "start-visit-button-patient-search"
+        ]
+      }
+    }
+  },
+  "core": {
+    "Translation overrides": {
+      "en": {
+        "state": "County",
+        "address3": "Sub County",
+        "address4": "Parish",
+        "address5": "Village"
+      }
+    }
+  }
+}

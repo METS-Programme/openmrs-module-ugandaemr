@@ -354,7 +354,7 @@
     <concept_description  concept_description_id="18353"  concept_id="165238"  description="PSS Issues"  locale="en"  creator="1"  date_created="2019-09-05 11:24:13"    uuid="e38b6185-f90d-4114-96c9-e586b68fd1a4"/>
     <concept_description  concept_description_id="18354"  concept_id="165242"  description="Economic Challenges"  locale="en"  creator="1"  date_created="2019-09-05 11:30:18"    uuid="f9d83d41-eb86-4be8-9487-bf7ac2d917ed"/>
     <concept_description  concept_description_id="18355"  concept_id="165243"  description="PSS Issues Identified"  locale="en"  creator="1"  date_created="2019-09-05 11:33:39"    uuid="7b007058-747f-4f6a-b84a-0f91e098ff8c"/>
-    <concept_description  concept_description_id="18356"  concept_id="165244"  description="Psycho social Support Issues Identified"  locale="en"  creator="1"  date_created="2019-09-05 11:48:00"    uuid="f4a8f0d9-084e-4238-9b53-24de0444850c"/>
+    <concept_description  concept_description_id="18356"  concept_id="165244"  description="Social Issues Identified"  locale="en"  creator="1"  date_created="2019-09-05 11:48:00"    uuid="f4a8f0d9-084e-4238-9b53-24de0444850c"/>
     <concept_description  concept_description_id="18359"  concept_id="165260"  description="Psychological/ Emotional issues"  locale="en"  creator="1"  date_created="2019-09-16 17:01:22"    uuid="aa74cc96-125c-444e-8ee7-b5b02bfc4b82"/>
     <concept_description  concept_description_id="18361"  concept_id="165262"  description="Health Education and Psycho social support"  locale="en"  creator="1"  date_created="2019-09-16 17:08:42"    uuid="473d782d-bf58-4628-8df6-4348c62a8549"/>
     <concept_description  concept_description_id="18362"  concept_id="165264"  description="Health Education Linkages and Referrals"  locale="en"  creator="1"  date_created="2019-09-17 08:39:56"    uuid="588b0f17-526f-4820-b97f-fd389ce5b206"/>
@@ -659,5 +659,8 @@
 
     <concept_description  concept_description_id="18739"  concept_id="168695"  description="Entry point for cancer patients"    locale="en"  creator="1"  date_created="2023-04-04 16:57:28"   uuid="fc24eb63-d463-4bf1-a4c3-22e31e3bfbd2"/>
     <concept_description  concept_description_id="18740"  concept_id="168697"  description="Is patient Currently Menstruating"  locale="en"  creator="1"  date_created="2023-04-04 17:00:41"   uuid="13e56678-0ba8-4b60-86e6-a3dfa47c4489"/>
+    <concept_description  concept_description_id="18746"  concept_id="199029"  description="CACX Screening/Treatment"  locale="en"  creator="1"  date_created="2024-11-12 13:37:28"  uuid="26cc3d04-df2c-4d60-ad2a-f311ba56a24b"/>
+    <concept_description  concept_description_id="18747"  concept_id="199030"  description="Known Diabetic and controlled on lifestyle modification"  locale="en"  creator="1"  date_created="2024-11-13 11:16:57" uuid="c4a46bdf-6002-4995-bc84-8e88e1000203"/>
+    <concept_description  concept_description_id="18748"  concept_id="199031"  description="Known Diabetic and controlled on medication and lifestyle modification"  locale="en"  creator="1"  date_created="2024-11-13 11:18:29" uuid="ba4130bb-0567-43f8-8114-a6d0570e31d1"/>
 
 </dataset>

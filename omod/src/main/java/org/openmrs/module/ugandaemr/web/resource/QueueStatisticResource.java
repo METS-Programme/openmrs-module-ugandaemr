@@ -6,6 +6,7 @@ import io.swagger.models.properties.IntegerProperty;
 import io.swagger.models.properties.RefProperty;
 import org.openmrs.Location;
 import org.openmrs.LocationTag;
+import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
@@ -99,56 +100,50 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
     @Override
     protected PageableResult doSearch(RequestContext context) {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        LocationService locationService = Context.getLocationService();
+
+        // Extract and parse request parameters
         String locationParam = context.getParameter("parentLocation");
-        Date fromDate = null;
-        Date toDate = null;
-        Boolean onlyInQueueRooms = null;
-        if (context.getParameter("fromDate") != null) {
-            fromDate = OpenmrsUtil.firstSecondOfDay(getDateFromString( context.getParameter("fromDate"), "yyyy-MM-dd"));
-        }
+        Date fromDate = parseDateParam(context, "fromDate", true);
+        Date toDate = parseDateParam(context, "toDate", false);
+        boolean onlyInQueueRooms = Boolean.parseBoolean(context.getParameter("onlyInQueueRooms"));
 
-        if (context.getParameter("toDate") != null) {
-            toDate = OpenmrsUtil.getLastMomentOfDay(getDateFromString(context.getParameter("toDate"), "yyyy-MM-dd"));
-        }
-
-        if (context.getParameter("onlyInQueueRooms") != null) {
-            onlyInQueueRooms = Boolean.parseBoolean(context.getParameter("onlyInQueueRooms"));
-        }else {
-            onlyInQueueRooms=false;
-        }
-
-        Location location = Context.getLocationService().getLocationByUuid(locationParam);
-
+        // Resolve location
+        Location location = locationService.getLocationByUuid(locationParam);
         List<PatientQueueStatistic> statistics = new ArrayList<>();
-        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null,fromDate, toDate, onlyInQueueRooms);
 
-        for (LocationTag locationTag : getServiceAreaTags()) {
+        if (location != null) {
+            List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(
+                    location, null, fromDate, toDate, onlyInQueueRooms
+            );
 
-            PatientQueueStatistic patientQueueStatistic = new PatientQueueStatistic();
-            patientQueueStatistic.setLocationTag(locationTag);
-            patientQueueStatistic.setUuid(locationTag.getUuid());
-            patientQueueStatistic.setPending(0);
-            patientQueueStatistic.setServing(0);
-            patientQueueStatistic.setCompleted(0);
-            patientQueueStatistic.setLocationTag(locationTag);
-            if (patientQueues != null) {
-                patientQueues.forEach(queue -> {
-                    if (queue.getQueueRoom().getTags().contains(locationTag) || queue.getLocationTo().getTags().contains(locationTag)) {
-                        if (queue.getStatus().equals(PatientQueue.Status.PENDING)) {
-                            patientQueueStatistic.setPending(patientQueueStatistic.getPending() + 1);
-                        } else if (queue.getStatus().equals(PatientQueue.Status.PICKED)) {
-                            patientQueueStatistic.setServing(patientQueueStatistic.getServing() + 1);
-                        } else if (queue.getStatus().equals(PatientQueue.Status.COMPLETED)) {
-                            patientQueueStatistic.setCompleted(patientQueueStatistic.getCompleted() + 1);
+            for (LocationTag locationTag : getServiceAreaTags()) {
+                PatientQueueStatistic stat = new PatientQueueStatistic();
+                stat.setLocationTag(locationTag);
+                stat.setUuid(locationTag.getUuid());
+                stat.setPending(0);
+                stat.setServing(0);
+                stat.setCompleted(0);
+
+                if (patientQueues != null) {
+                    for (PatientQueue queue : patientQueues) {
+                        if (hasTag(queue.getQueueRoom(), locationTag) || hasTag(queue.getLocationTo(), locationTag)) {
+                            switch (queue.getStatus()) {
+                                case PENDING:   stat.setPending(stat.getPending() + 1); break;
+                                case PICKED:    stat.setServing(stat.getServing() + 1); break;
+                                case COMPLETED: stat.setCompleted(stat.getCompleted() + 1); break;
+                            }
                         }
                     }
-                });
+                }
+
+                statistics.add(stat);
             }
-            statistics.add(patientQueueStatistic);
         }
 
-        return new NeedsPaging<PatientQueueStatistic>(statistics, context);
+        return new NeedsPaging<>(statistics, context);
     }
+
 
     @Override
     public Model getGETModel(Representation rep) {
@@ -202,5 +197,17 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
             }
         });
         return locationTags;
+    }
+
+    private Date parseDateParam(RequestContext context, String param, boolean isStartOfDay) {
+        String value = context.getParameter(param);
+        if (value == null) return null;
+
+        Date parsed = getDateFromString(value, "yyyy-MM-dd");
+        return isStartOfDay ? OpenmrsUtil.firstSecondOfDay(parsed) : OpenmrsUtil.getLastMomentOfDay(parsed);
+    }
+
+    private boolean hasTag(Location location, LocationTag tag) {
+        return location != null && location.getTags() != null && location.getTags().contains(tag);
     }
 }

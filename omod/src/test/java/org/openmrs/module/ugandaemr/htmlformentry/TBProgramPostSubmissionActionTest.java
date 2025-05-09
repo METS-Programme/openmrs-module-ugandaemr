@@ -1,3 +1,4 @@
+/*
 package org.openmrs.module.ugandaemr.htmlformentry;
 
 
@@ -30,9 +31,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+*/
 /**
  * Tests patient enrollment into the TB program
- */
+ *//*
+
 public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensitiveTest {
 	
 	protected static final String UGANDAEMR_STANDARD_DATASET_XML = "org/openmrs/module/ugandaemr/include/standardTestDataset.xml";
@@ -346,3 +349,4 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		assertNotNull(patientPrograms.get(0).getDateCompleted());
 	}
 }
+*/

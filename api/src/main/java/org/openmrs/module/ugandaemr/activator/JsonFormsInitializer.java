@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class JsonFormsInitializer implements Initializer {
 
@@ -37,11 +35,12 @@ public class JsonFormsInitializer implements Initializer {
 
     public static final String AMPATH_FORMS_UUID = "794c4598-ab82-47ca-8d18-483a8abe6f4f";
     protected String providerName;
+    private String formFilePath;
 
-    public JsonFormsInitializer(String newProviderName) {
+    public JsonFormsInitializer(String newProviderName, String newFormFilePath) {
         this.providerName = newProviderName;
+        this.formFilePath = newFormFilePath;
     }
-
 
 
     @Override
@@ -52,24 +51,37 @@ public class JsonFormsInitializer implements Initializer {
         final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(getProviderName());
 
         // Scanning the forms resources folder
-        final List<String> formPaths = new ArrayList<String>();
-        final File formsDir = resourceProvider.getResource(formsPath); // The ResourceFactory can't return File instances, hence the ResourceProvider need
-        if (formsDir == null || formsDir.isDirectory() == false) {
-            log.error("No HTML forms could be retrieved from the provided folder: " + getProviderName() + ":" + formsPath);
+        String fileFormPathLocal=formsPath;
+
+        // Scanning the forms resources folder
+        List<String> formPaths = new ArrayList<String>();
+
+        File formsDir;
+
+        if (!formFilePath.equals("")) {
+            fileFormPathLocal = this.formFilePath;
+            formsDir = new File(fileFormPathLocal);
+        } else {
+            formsDir = resourceProvider.getResource(fileFormPathLocal);
+        }
+
+        if (formsDir == null || !formsDir.isDirectory()) {
+            log.error("No HTML forms could be retrieved from the provided folder: " + getProviderName() + ":" + fileFormPathLocal);
             return;
         }
+
         for (File file : formsDir.listFiles())
-            formPaths.add(formsPath + file.getName());
+            formPaths.add(fileFormPathLocal + file.getName());
 
         for (File file : formsDir.listFiles()) {
             try {
                 load(file);
             } catch (Exception e) {
-                log.error(e);
+                log.error("error loading form" + file.getName(), e);
             }
         }
 
-        }
+    }
 
 
     @Override
@@ -80,9 +92,9 @@ public class JsonFormsInitializer implements Initializer {
     protected void load(File file) throws Exception {
 
 
-      DatatypeService datatypeService = Context.getDatatypeService();
-      FormService formService = Context.getFormService();
-      EncounterService encounterService=Context.getEncounterService();
+        DatatypeService datatypeService = Context.getDatatypeService();
+        FormService formService = Context.getFormService();
+        EncounterService encounterService = Context.getEncounterService();
 
         String jsonString = FileUtils.readFileToString(file, StandardCharsets.UTF_8.toString());
         Map<String, Object> jsonFile = new ObjectMapper().readValue(jsonString, Map.class);
@@ -128,6 +140,12 @@ public class JsonFormsInitializer implements Initializer {
             boolean needToSaveForm = false;
             FormResource formResource = formService.getFormResource(form, "JSON schema");
 
+            // Name
+            if (!OpenmrsUtil.nullSafeEquals(form.getName(), formName)) {
+                form.setName(formName);
+                needToSaveForm = true;
+            }
+
             // Description
             if (!OpenmrsUtil.nullSafeEquals(form.getDescription(), formDescription)) {
                 form.setDescription(formDescription);
@@ -159,13 +177,13 @@ public class JsonFormsInitializer implements Initializer {
                 needToSaveForm = true;
             }
 
-            if (formResource != null){
+            if (formResource != null) {
                 ClobDatatypeStorage clobData = datatypeService.getClobDatatypeStorageByUuid(formResource.getValueReference());
 
-                if(clobData!=null) {
+                if (clobData != null) {
                     clobData.setValue(jsonString);
-                }else{
-                    clobData=new ClobDatatypeStorage();
+                } else {
+                    clobData = new ClobDatatypeStorage();
                     clobData.setValue(jsonString);
                     clobData.setUuid(UUID.randomUUID().toString());
                     formResource.setValueReferenceInternal(clobData.getUuid());
@@ -174,14 +192,14 @@ public class JsonFormsInitializer implements Initializer {
 
                 datatypeService.saveClobDatatypeStorage(clobData);
 
-            }else  {
+            } else {
                 createFormResource(form, UUID.randomUUID().toString(), jsonString);
             }
 
             if (needToSaveForm) {
                 formService.saveForm(form);
             }
-        }else {
+        } else {
             createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
                     jsonString);
         }

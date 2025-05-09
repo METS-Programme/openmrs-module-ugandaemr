@@ -102,59 +102,72 @@
 	</aware_of_modules>
 
 	<!-- Global Properties -->
-	<globalProperty>
-		<property>ugandaemr.healthCenterName</property>
-		<defaultValue>Health Center Name</defaultValue>
-		<description>
-			Allows one to set the name of the health center for this installation
-		</description>
+    <globalProperty>
+        <property>ugandaemr.SMSTemplate</property>
+        <defaultValue>Dear &lt;name&gt; this is to remind you of your appointment on &lt;date&gt;</defaultValue>
+        <description>Facility SMS Template</description>
     </globalProperty>
+
     <globalProperty>
-        <property>ugandaemr.nhpi</property>
-        <defaultValue>HFT2ZBPE8</defaultValue>
-        <description>
-            Allows one to set the National Health Provider Identifier
-        </description>
-    </globalProperty>
-    <globalProperty>
-		<property>ugandaemr.showARTPatientNumberIdentifier</property>
-		<defaultValue>false</defaultValue>
-		<description>
-			Whether or not to show the ART patient number identifier
-		</description>
-	</globalProperty>
-    <globalProperty>
-        <property>ugandaemr.showResearchPatientIdentifier</property>
+        <property>ugandaemr.allowDispensingMoreThanPrescribed</property>
         <defaultValue>false</defaultValue>
-        <description>
-            Whether or not to show the research identifier
-        </description>
+        <description>Allow dispensers to dispense more than prescribed</description>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
     </globalProperty>
-	<globalProperty>
-		<property>ugandaemr.showRefugeeIdentifier</property>
-		<defaultValue>false</defaultValue>
-		<description>
-			Whether or not to show the refugee identifier
-		</description>
-	</globalProperty>
+
     <globalProperty>
-        <property>ugandaemr.lostToFollowUpDaysTB</property>
-        <defaultValue>60</defaultValue>
-        <description>
-            Number of days when a TB patient is considered lost to follow up
-        </description>
+        <property>ugandaemr.autoCloseVisit.visitTypeUUID</property>
+        <description>The UUID of the visit type that will be closed</description>
+        <defaultValue>7b0f5697-27e3-40c4-8bae-f4049abfb4ed</defaultValue>
     </globalProperty>
+
     <globalProperty>
-        <property>ugandaemr.lostToFollowUpDaysMCH</property>
-        <defaultValue>315</defaultValue>
-        <description>
-            Number of days when an MCH mother is considered lost to follow up
-        </description>
+        <property>ugandaemr.clinicianLocationUUIDS</property>
+        <description>Comma-separated list of location UUIDs for clinician operation</description>
+        <defaultValue>86863db4-6101-4ecf-9a86-5e716d6504e4,11d5d2b8-0fdd-42e0-9f53-257c760bb9a3</defaultValue>
     </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.defaultDateFormat</property>
+        <defaultValue>dd/MM/yyyy</defaultValue>
+        <description>The date format without time</description>
+    </globalProperty>
+
     <globalProperty>
         <property>ugandaemr.dhis2.organizationuuid</property>
         <description>The organization code in DHIS2</description>
         <defaultValue></defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.displayDateFormat</property>
+        <defaultValue>dd/MM/yyyy HH:mm:ss</defaultValue>
+        <description>Date format for ugandaemr display and date pickers</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability</property>
+        <description>Allow overriding the system’s decision about DSDM Stability</description>
+        <defaultValue>false</defaultValue>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.conceptId</property>
+        <description>A Coded concept with all DSDM Concept</description>
+        <defaultValue>165143</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.currentRegimenDurationRequirementInMonths</property>
+        <description>Months on current regimen required to be categorized as stable</description>
+        <defaultValue>6</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired</property>
+        <description>Minimum months on TB treatment required</description>
+        <defaultValue>2</defaultValue>
     </globalProperty>
 
     <globalProperty>
@@ -164,9 +177,40 @@
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.dsdm.conceptId</property>
-        <description>A Coded concept with all DSDM Concept</description>
-        <defaultValue>165143</defaultValue>
+        <property>ugandaemr.dsdm.validPeriodInMothsForViralLoad</property>
+        <description>Months a viral load result is valid from sample collection</description>
+        <defaultValue>12</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.viralloadSuppressionCopies</property>
+        <description>Maximum suppression viral load for a patient</description>
+        <defaultValue>999</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.enableCDDPCategorization</property>
+        <defaultValue>false</defaultValue>
+        <description>Enable additional CDDP categories</description>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.enableMaximumPatientsPerDay</property>
+        <defaultValue>false</defaultValue>
+        <description>Enable or disable limiting the number of patients per day</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.enablePatientQueueSelection</property>
+        <defaultValue>false</defaultValue>
+        <description>Allow picking patients from queue</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.healthCenterName</property>
+        <defaultValue>Health Center Name</defaultValue>
+        <description>Allows one to set the name of the health center for this installation</description>
     </globalProperty>
 
     <globalProperty>
@@ -177,100 +221,68 @@
 
     <globalProperty>
         <property>ugandaemr.hts.recency.surveillance_report_coverage_months</property>
-        <description>The number of months for which the Recency Surveillance Report is generated from the current date. This is to improve the performance of this report for high volume HTS sites</description>
+        <description>The number of months for which the Recency Surveillance Report is generated</description>
         <defaultValue>36</defaultValue>
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.patientflags.disabledFlags</property>
-        <description>Separate Names of flags you want to disable with , example Transfered Out Patient,Un-supressed Viral Load</description>
+        <property>ugandaemr.initialiseMetadataOnStart</property>
+        <description>Initalises forms,concepts, priviialges and concepts on start of system</description>
+        <defaultValue>true</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.labWorkListBackLogDaysToDisplay</property>
+        <defaultValue>5</defaultValue>
+        <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.lostToFollowUpDaysMCH</property>
+        <defaultValue>315</defaultValue>
+        <description>Number of days when an MCH mother is considered lost to follow up</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.lostToFollowUpDaysTB</property>
+        <defaultValue>60</defaultValue>
+        <description>Number of days when a TB patient is considered lost to follow up</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.maximumPatientsPerDay</property>
+        <description>The maximum number of patients that can have appointments on a single day</description>
         <defaultValue></defaultValue>
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.autoCloseVisit.visitTypeUUID</property>
-        <description>The UUID of the visit type that will be closed</description>
-        <defaultValue>7b0f5697-27e3-40c4-8bae-f4049abfb4ed</defaultValue>
+        <property>ugandaemr.nhpi</property>
+        <defaultValue>HFT2ZBPE8</defaultValue>
+        <description>Allows one to set the National Health Provider Identifier</description>
     </globalProperty>
 
     <globalProperty>
-		<property>ugandaemr.maximumPatientsPerDay</property>
-        <description>The maxiumum number of patients that can have appointments on a single day</description>
-		<defaultValue></defaultValue>
-	</globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability</property>
-        <description>When set to true, this allows to override the decision made by the system about DSDM Stability </description>
-        <defaultValue>false</defaultValue>
-        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.dsdm.currentRegimenDurationRequirementInMonths</property>
-        <description>The number of months when on current regimen required for patient to be categorized as stable</description>
-        <defaultValue>6</defaultValue>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.dsdm.viralloadSuppressionCopies</property>
-        <description>The highest value for a suppression viral load for a patient</description>
-        <defaultValue>999</defaultValue>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired</property>
-        <description>The highest value for a suppression viral load for a patient</description>
-        <defaultValue>2</defaultValue>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.dsdm.validPeriodInMothsForViralLoad</property>
-        <description>The Number of months a viral load is valid from the date of sample collection</description>
-        <defaultValue>12</defaultValue>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.defaultDateFormat</property>
-        <defaultValue>dd/MM/yyyy</defaultValue>
-        <description>The date format without time</description>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.displayDateFormat</property>
-        <defaultValue>dd/MM/yyyy HH:mm:ss</defaultValue>
-        <description>Date format for ugandaemr display and date pickers</description>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.clinicianLocationUUIDS</property>
-        <defaultValue>86863db4-6101-4ecf-9a86-5e716d6504e4,11d5d2b8-0fdd-42e0-9f53-257c760bb9a3,e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b,8f96e239-8586-4ec6-9375-04c6e19628ae,8ab22b55-9a17-4121-bf08-6134a9a2439f,7c231e1a-1db5-11ea-978f-2e728ce88125</defaultValue>
-        <description>A comma separated list of location uuids for locations that clinicians operate from</description>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.enableMaximumPatientsPerDay</property>
-        <defaultValue>false</defaultValue>
-        <description>enable or disable the functionality to allow the limiting the number of patients per day</description>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.enablePatientQueueSelection</property>
-        <defaultValue>false</defaultValue>
-        <description>when value is "true", it allows picking of patients from queue</description>
+        <property>ugandaemr.patientflags.disabledFlags</property>
+        <description>Names of flags to disable, separated by commas</description>
+        <defaultValue></defaultValue>
     </globalProperty>
 
     <globalProperty>
         <property>ugandaemr.receptionLocationUUID</property>
         <defaultValue>4501e132-07a2-4201-9dc8-2f6769b6d412</defaultValue>
-        <description>The UUID of the Reception</description>
+        <description>UUID of the Reception</description>
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.enableCDDPCategorization</property>
+        <property>ugandaemr.showNationalIDPatientIdentifier</property>
+        <defaultValue>true</defaultValue>
+        <description>This enables or disables the use of the National ID to be used in the search widget </description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.showARTPatientNumberIdentifier</property>
         <defaultValue>false</defaultValue>
-        <description>This allows a health center to enable other categories of CDDP such as CRPDDP</description>
-        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+        <description>Whether or not to show the ART patient number identifier</description>
     </globalProperty>
 
     <globalProperty>
@@ -281,40 +293,20 @@
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.allowDispensingMoreThanPrescribed</property>
+        <property>ugandaemr.showRefugeeIdentifier</property>
         <defaultValue>false</defaultValue>
-        <description>When true, the dispensers will be able to dispense more than the prescription</description>
-        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+        <description>Whether or not to show the refugee identifier</description>
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.SMSTemplate</property>
-        <defaultValue>Dear &lt;name&gt; this is to remind you of your appointment on &lt;date&gt; </defaultValue>
-        <description>This is a facility SMS Template used by the SMS Program</description>
+        <property>fhir2.administeringEncounterRoleUuid</property>
+        <defaultValue>240b26f9-dd88-4172-823d-4a8bfeb7841f</defaultValue>
+        <description>The   encounter role uuid that supports immunization app</description>
     </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.labWorkListBackLogDaysToDisplay</property>
-        <defaultValue>5</defaultValue>
-        <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
-    </globalProperty>
-
 
     <globalProperty>
         <property>ugandaemr.labReferenceListBackLogDaysToDisplay</property>
         <defaultValue>1</defaultValue>
-        <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.showNationalIDPatientIdentifier</property>
-        <defaultValue>true</defaultValue>
-        <description>This enables or disables the use of the National ID to be used in the search widget </description>
-    </globalProperty>
-
-    <globalProperty>
-        <property>ugandaemr.labWorkListBackLogDaysToDisplay</property>
-        <defaultValue>5</defaultValue>
         <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
     </globalProperty>
 
@@ -325,18 +317,10 @@
     </globalProperty>
 
     <globalProperty>
-        <property>ugandaemr.labReferenceListBackLogDaysToDisplay</property>
-        <defaultValue>1</defaultValue>
-        <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
-    </globalProperty>
-
-
-    <globalProperty>
         <property>ugandaemr.patientqueue.averageWaitingTime</property>
         <defaultValue>30</defaultValue>
         <description>The average waiting time for a patient in a queue in minutes</description>
     </globalProperty>
-
 
     <globalProperty>
         <property>ugandaemrsync.searchableProfileList</property>
@@ -345,15 +329,111 @@
     </globalProperty>
 
     <globalProperty>
-        <property>fhir2.administeringEncounterRoleUuid</property>
-        <defaultValue>240b26f9-dd88-4172-823d-4a8bfeb7841f</defaultValue>
-        <description>The   encounter role uuid that supports immunization app</description>
+        <property>ugandaemr.showResearchPatientIdentifier</property>
+        <defaultValue>false</defaultValue>
+        <description>Whether or not to show the research identifier</description>
     </globalProperty>
 
     <globalProperty>
         <property>fhir2.immunizationsEncounterTypeUuid</property>
         <defaultValue>87a0d5b1-53dc-4269-bf39-ada0d5d16c0c</defaultValue>
         <description>The encounter type uuidthat supports immunization app</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.organization</property>
+        <defaultValue>METS-Programme</defaultValue>
+        <description>The metadata GitHub organization name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.reponame</property>
+        <defaultValue>ugandaemr-metadata</defaultValue>
+        <description>The metadata GitHub repo name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.branch.metadata</property>
+        <defaultValue>main</defaultValue>
+        <description>The metadata GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.branch.modules</property>
+        <defaultValue>modules</defaultValue>
+        <description>The modules GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.branch.frontend</property>
+        <defaultValue>frontend</defaultValue>
+        <description>The modules GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.frontend.modules</property>
+        <defaultValue>frontend</defaultValue>
+        <description>The modules GitHub branch name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.metadata.directory</property>
+        <defaultValue>configuration</defaultValue>
+        <description>The metadata GitHub directory name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.frontend.directory</property>
+        <defaultValue>frontend</defaultValue>
+        <description>The frontend GitHub directory name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.github.modules.directory</property>
+        <defaultValue>modules</defaultValue>
+        <description>The modules GitHub directory name</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.path</property>
+        <defaultValue>/configuration/metadata/</defaultValue>
+        <description>The metadata path of UgandaEMR</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.configuration</property>
+        <defaultValue>/</defaultValue>
+        <description>The configuration path of UgandaEMR</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.frontend</property>
+        <defaultValue>/</defaultValue>
+        <description>The frontend path of UgandaEMR</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.modules</property>
+        <defaultValue>/</defaultValue>
+        <description>The modules path of UgandaEMR</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.htmlFormPath</property>
+        <defaultValue>/configuration/forms/htmlforms/</defaultValue>
+        <description>The html forms path of UgandaEMR</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.externalhtmlforms.initialize</property>
+        <defaultValue>false</defaultValue>
+        <description>Allow external initialization of HTML Forms</description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.metadata.jsonFormPath</property>
+        <defaultValue>/configuration/forms/jsonforms/</defaultValue>
+        <description>The json forms path of UgandaEMR</description>
     </globalProperty>
 
     <privilege>
