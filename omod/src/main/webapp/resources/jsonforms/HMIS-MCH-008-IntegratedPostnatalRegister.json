@@ -1,85 +1,48 @@
 {
   "name": "HMIS MCH 008 - Integrated Postnatal Register",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Encounter form for patients enrolled for PNC services",
   "encounterType": "fa6f3ff5-b784-43fb-ab35-a08ab7dbf074",
   "encounter": "PNC - Encounter",
-  "uuid": "f98a99f5-e750-4e06-92da-1385dc608541",
+  "uuid": "a6c5a8c3-c414-449f-a077-c2f6acbdd8b1",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
   "pages": [
     {
-      "label": "Mother's/Father's Information",
+      "label": "Integrated Postnatal Register",
       "sections": [
         {
           "label": "Mother's Information",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Serial No",
+              "label": "Encounter Date",
+              "type": "encounterDatetime",
+              "id": "encDate",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "label": "Serial Number",
               "type": "obs",
-              "required": "true",
               "id": "serialNumber",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [],
-                "answers": []
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "validators": []
             },
             {
-              "label": "Client No",
+              "label": "Client Number",
               "type": "obs",
-              "required": "true",
-              "id": "clientNumber",
+              "id": "pncNumber",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "INR No",
-              "type": "obs",
-              "required": "fale",
-              "id": "inrNumber",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "b644c29c-9bb0-447e-9f73-2ae89496a709",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Father's Name",
-              "type": "obs",
-              "required": "false",
-              "id": "fathersName",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "e96d0880-e80e-4088-9787-bb2623fd46af",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Father's Contact",
-              "type": "obs",
-              "required": "false",
-              "id": "fathersContact",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dce17480-30ab-102d-86b0-7a5022ba4115",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
+                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"
+              }
             },
             {
               "label": "Timing of PNC Visit",
@@ -108,12 +71,12 @@
               }
             },
             {
-              "label": "Client counseled and linked to Family Planning Services",
+              "label": "Family Planning, Counseling & Linkage",
               "type": "obs",
               "id": "clientLinkedForFpServices",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "0815c786-5994-49e4-aa07-28b662b0e428",
+                "concept": "3d620422-0641-412e-ab31-5e45b98bc459",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -127,15 +90,9 @@
                   }
                 ]
               }
-            }
-          ]
-        },
-        {
-          "label": "Breast Examination",
-          "isExpanded": "true",
-          "questions": [
+            },
             {
-              "label": "Status of the breast",
+              "label": "Breast Examination",
               "type": "obs",
               "id": "breastStatus",
               "questionOptions": {
@@ -159,6 +116,78 @@
                   }
                 ]
               }
+            },
+            {
+              "label": "Nutrition Status",
+              "type": "obs",
+              "id": "nutritionStatus",
+              "questionOptions": {
+                "concept": "165050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dc9816bd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "N - Normal"
+                  },
+                  {
+                    "concept": "267a937a-f03c-487b-963c-1858f1382a5a",
+                    "label": "MU - Moderate Underweight"
+                  },
+                  {
+                    "concept": "a4543170-8155-41c7-b618-da6962b81f45",
+                    "label": "SU - Severe Underweight"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "INR No",
+              "type": "obs",
+              "required": "false",
+              "id": "inrNumber",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "b644c29c-9bb0-447e-9f73-2ae89496a709",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "nutritionStatus == 'dc9816bd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Father's Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Father's Name",
+              "type": "obs",
+              "required": "false",
+              "id": "fathersName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1594AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Father's Contact",
+              "type": "obs",
+              "required": "false",
+              "id": "fathersContact",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce17480-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
             }
           ]
         },
@@ -232,19 +261,13 @@
                   }
                 ]
               }
-            }
-          ]
-        },
-        {
-          "label": "Cervical Cancer Treatment",
-          "isExpanded": "true",
-          "questions": [
+            },
             {
               "label": "Cervical cancer treatment given",
               "type": "obs",
               "id": "cervicalCancerScreeningTreatment",
               "questionOptions": {
-                "rendering": "selecet",
+                "rendering": "select",
                 "concept": "6f1baf4c-1cdd-44a5-a48e-909391ed05f2",
                 "answers": [
                   {
@@ -266,12 +289,12 @@
               }
             },
             {
-              "label": "Cervical cancer treatment date",
+              "label": "Cervical cancer screening treatment date",
               "type": "obs",
               "id": "cervicalCancerScreeningTreatmentDate",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
+                "concept": "3ca531d9-2524-423e-a182-babb785b9d77",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -305,12 +328,12 @@
               }
             },
             {
-              "label": "TB Presumed",
+              "label": "Client has presumptive TB",
               "type": "obs",
-              "id": "tbPresumed",
+              "id": "clientHasPresumptiveTb",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "c872b356-46fc-11ee-be56-0242ac120002",
+                "concept": "b80f04a4-1559-42fd-8923-f8a6d2456a04",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -323,51 +346,61 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "screenedForTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
-              "label": "TB No",
+              "label": "Unit TB No.",
               "type": "obs",
-              "required": "true",
-              "id": "tbNumber",
+              "id": "unitTbNo",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '2e2ec250-f5d3-4de7-8c70-a458f42441e6')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "hide": {
+                "hideWhenExpression": "clientHasPresumptiveTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
         },
         {
-          "label": "HIV STK Kit Information",
+          "label": "Woman's HIV STK Kit Information",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "HIV Status",
+              "label": "Woman's Codes",
               "type": "obs",
-              "id": "hivStatus",
-              "required": "false",
+              "id": "womanHivStatus",
               "questionOptions": {
-                "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
                 "rendering": "select",
+                "concept": "d5b0394c-424f-41db-bc2f-37180dcdbe74",
                 "answers": [
                   {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive"
+                    "concept": "86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a",
+                    "label": "NEG: Counselled, tested, and given HIV Negative results",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative"
+                    "concept": "25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465",
+                    "label": "POS: Counselled, tested, and given HIV Positive results",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
-                    "label": "Inconclusive HIV Results"
+                    "label": "INC: Counselled, tested, and given HIV Inconclusive results",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Unknown"
+                    "label": "UKN: Not tested, and HIV status is Unknown",
+                    "conceptMappings": []
                   }
                 ]
               }
@@ -375,72 +408,64 @@
             {
               "label": "Timing",
               "type": "obs",
-              "id": "timing",
-              "required": "false",
+              "id": "womanTiming",
               "questionOptions": {
-                "concept": "",
                 "rendering": "select",
+                "concept": "",
                 "answers": [
                   {
                     "concept": "",
-                    "label": "1st Time"
+                    "label": "1st Time: Counselled and tested for the first time during this PNC Attendance",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "",
-                    "label": "Re-Attd"
+                    "label": "Re-Attd: Known HIV status from a previous PNC Attendance not eligible for a re-test in PNC",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "",
-                    "label": "Retest"
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
-                    "label": "Known Positive"
+                    "concept": "",
+                    "label": "Known POS: Known HIV positive status who did not attend Antenantal from any health facility",
+                    "conceptMappings": []
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(hivStatus) || hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "TFV",
               "type": "obs",
-              "id": "tfv",
-              "required": "false",
+              "id": "womanTfv",
               "questionOptions": {
-                "concept": "d0cd851a-0a11-4196-b0ac-459bf003594f",
                 "rendering": "select",
+                "concept": "27ed8c9d-3101-4d07-9cfe-01ea082af0f5",
                 "answers": [
                   {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive"
-                  },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
                     "label": "Negative"
                   },
                   {
-                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
-                    "label": "Inconclusive HIV Results"
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
                   },
                   {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Unknown"
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(hivStatus) || hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
-              "label": "Received HIV STK Kit",
+              "label": "Woman given HIV STK",
               "type": "obs",
-              "id": "receivedHivStkKit",
+              "id": "givenStk",
               "questionOptions": {
-                "concept": "609c9aee-92b3-4e17-828a-efc7933f2ecf",
                 "rendering": "radio",
+                "concept": "609c9aee-92b3-4e17-828a-efc7933f2ecf",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -453,56 +478,60 @@
                     "conceptMappings": []
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(hivStatus) || hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
         },
         {
-          "label": "HIV STK Result (Partner)",
+          "label": "Partner HIV STK Result",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Age",
+              "label": "Partner's Age",
               "type": "obs",
-              "id": "ageOfPartner",
+              "required": "false",
+              "id": "partnerAge",
               "questionOptions": {
-                "concept": "dc919a6d-30ab-102d-86b0-7a5022ba4115",
-                "rendering": "text"
-              }
+                "rendering": "number",
+                "step": 1,
+                "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c"
+              },
+              "validators": []
             },
             {
-              "label": "HIV Status",
+              "label": "Partner's Codes",
               "type": "obs",
               "id": "partnerHivStatus",
               "required": "false",
               "questionOptions": {
-                "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
+                "concept": "62a37075-fc2a-4729-8950-b9fae9b22cfb",
                 "rendering": "select",
                 "answers": [
                   {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive"
+                    "concept": "86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a",
+                    "label": "NEG: Counselled, tested, and given HIV Negative results",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative"
+                    "concept": "25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465",
+                    "label": "POS: Counselled, tested, and given HIV Positive results",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
-                    "label": "Inconclusive HIV Results"
+                    "label": "INC: Counselled, tested, and given HIV Inconclusive results",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Unknown"
+                    "label": "UKN: Not tested, and HIV status is Unknown",
+                    "conceptMappings": []
                   }
                 ]
               }
             },
             {
-              "label": "TFV",
+              "label": "Partner's TFV",
               "type": "obs",
               "id": "partnerTfv",
               "required": "false",
@@ -511,43 +540,47 @@
                 "rendering": "select",
                 "answers": [
                   {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive"
-                  },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
                     "label": "Negative"
                   },
                   {
-                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
-                    "label": "Inconclusive HIV Results"
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
                   },
                   {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Unknown"
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
                   }
                 ]
               }
             },
             {
-              "label": "STK Result",
+              "label": "Partner's STK Result",
               "type": "obs",
-              "id": "partnerStkresult",
+              "id": "partnerStkResult",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "select",
                 "concept": "e47d9ead-5b33-4315-9ea0-42669e4491b6",
                 "answers": [
-                  {
-                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Postive",
-                    "conceptMappings": []
-                  },
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
                     "label": "Negative",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(givenStk) || givenStk != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -563,22 +596,22 @@
               "id": "artCode",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "62a37075-fc2a-4729-8950-b9fae9b22cfb",
+                "concept": "a615f932-26ee-449c-8e20-e50a15232763",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "1f177240-85f6-4f10-964a-cfc7722408b3",
-                    "label": "New",
+                    "concept": "026e31b7-4a26-44d0-8398-9a41c40ff7d3",
+                    "label": "New: Initiated on ART for eMTCT on this visit",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
-                    "label": "Known ART",
+                    "concept": "2c000b41-f9d7-40c1-8de0-bce91dbae932",
+                    "label": "Known ART: Already on HAART for their own health prior to first ANC visit or before this pregnancy",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "60155e4d-1d49-4e97-9689-758315967e0f",
-                    "label": "Refill",
+                    "concept": "bbc63761-0741-4583-9396-a34d3a18601c",
+                    "label": "Refill: Revisiting HIV Positive client already on ART",
                     "conceptMappings": []
                   },
                   {
@@ -595,7 +628,7 @@
               }
             },
             {
-              "label": "Pre-ART No",
+              "label": "Pre-ART No.",
               "type": "obs",
               "required": "false",
               "id": "preArtNumber",
@@ -605,7 +638,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "artCode !== 'dc9b0596-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
@@ -625,17 +661,17 @@
                 "answers": [
                   {
                     "concept": "026e31b7-4a26-44d0-8398-9a41c40ff7d3",
-                    "label": "New",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
-                    "label": "Known ART",
+                    "label": "New: Initiated on ART for eMTCT on this visit",
                     "conceptMappings": []
                   },
                   {
                     "concept": "2c000b41-f9d7-40c1-8de0-bce91dbae932",
-                    "label": "Refill",
+                    "label": "Known ART: Already on HAART for their own health prior to first ANC visit or before this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bbc63761-0741-4583-9396-a34d3a18601c",
+                    "label": "Refill: Revisiting HIV Positive client already on ART",
                     "conceptMappings": []
                   },
                   {
@@ -662,12 +698,15 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "artCode !== 'dc9b0596-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
         {
-          "label": "PrEP Screening",
+          "label": "PrEP Screening / Eligibility",
           "isExpanded": "true",
           "questions": [
             {
@@ -722,29 +761,41 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "CD4 Results",
+              "label": "CD4",
               "type": "obs",
-              "id": "cd4TestResult",
+              "id": "cd4",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115"
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
             },
             {
-              "label": "Date CD4 Sample collected",
+              "label": "Date CD4 Sample Collected",
               "type": "obs",
-              "id": "cd4SampleCollectionDate",
+              "required": "false",
+              "id": "dateStarted",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c"
+                "concept": "1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c')).then(obs => obs?.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
               },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "false"
-                }
-              ]
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
             }
           ]
         },
@@ -755,32 +806,61 @@
             {
               "label": "WHO Clinical Stage",
               "type": "obs",
-              "required": "false",
-              "id": "whoClinicalStage",
+              "required": "true",
+              "id": "wHOClinicStage",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "39243cef-b375-44b1-9e79-cbf21bd10878",
-                "conceptMappings": [],
+                "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "answers": [
                   {
-                    "concept": "dc9b8cd1-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Stage 1"
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 1",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "dc9b9113-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Stage 2"
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 2",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "dc9b9549-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Stage 3"
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 3",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "dc9b999b-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Stage 4"
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T4",
+                    "conceptMappings": []
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
             }
           ]
         },
@@ -807,15 +887,22 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
               }
             },
             {
-              "label": "Date Viral Load Taken",
+              "label": "Date of Sample Collection",
               "type": "obs",
-              "id": "dateVlTaken",
+              "required": "false",
+              "id": "vlDate",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "34c917f0-356b-40d0-b3d1-cf609517b5fc",
+                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs.valueDateTime)"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -825,18 +912,37 @@
               }
             },
             {
-              "label": "Viral Load Results (copies/ml)",
+              "label": "Viral Load",
               "type": "obs",
-              "id": "vlresults",
+              "id": "viralLoad",
               "questionOptions": {
                 "rendering": "number",
+                "step": 1,
                 "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "eligibleForVl !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "womanInitialResult !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Diagnosis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Diagnosis",
+              "type": "obs",
+              "id": "diagnosis",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0de0b715-f3ef-4a91-a145-09509112b693"
               }
             }
           ]
@@ -893,25 +999,17 @@
               }
             },
             {
-              "label": "Other Treatment given",
+              "label": "Other Treatment(s) given",
               "type": "obs",
               "id": "otherTreatmentGiven",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "textarea",
                 "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
               },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "isEmpty(routineMedication) || routineMedication !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
+              "validators": []
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Infant Information",
-      "sections": [
+        },
         {
           "label": "Infant Information",
           "isExpanded": "true",
@@ -938,13 +1036,14 @@
               }
             },
             {
-              "label": "Age (Wks)",
+              "label": "Age (Weeks)",
               "type": "obs",
               "required": "false",
-              "id": "ageWks",
+              "id": "babyAgeWks",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "274d8abf-f41d-4dce-a496-8c949d362466",
+                "step": 1,
                 "conceptMappings": [],
                 "answers": []
               },
@@ -964,6 +1063,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "concept": "94e4aeea-84d0-4207-aacb-ce38fe8e109c",
+                "step": 1,
                 "conceptMappings": [],
                 "answers": []
               },
@@ -972,32 +1072,14 @@
             {
               "label": "Weight for Age (Z-Score)",
               "type": "obs",
-              "id": "zscores",
+              "required": "false",
+              "id": "weightForAge",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "01b61dfb-7be9-4de5-8880-b37fefc253ba",
-                "answers": [
-                  {
-                    "concept": "35a89dcf-d35c-4fc6-8d51-e958b666a0f3",
-                    "label": "Z-Score1 (< -3)"
-                  },
-                  {
-                    "concept": "3709d446-3017-4c19-a1af-2da64975928b",
-                    "label": "Z-Score2 (-3_<-1)"
-                  },
-                  {
-                    "concept": "11b62d4d-b879-4727-8e26-9bced62269db",
-                    "label": "Z-Score3 (-1_1)"
-                  },
-                  {
-                    "concept": "ab51899b-e5b9-4b20-965c-fa0d3d2ff6fb",
-                    "label": "Z-Score4 (>1_3)"
-                  },
-                  {
-                    "concept": "73b79d62-17d1-4958-93cb-0f22760db69e",
-                    "label": "Z-Score5 (>3)"
-                  }
-                ]
+                "rendering": "number",
+                "concept": "162584AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
               },
               "validators": []
             },
@@ -1035,18 +1117,36 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "nutritionStatus == 'dc9816bd-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
         {
-          "label": "Infant Feeding Options, IYCF, Maternal Nutrition Counseling",
+          "label": "Infant Diagnosis",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Infant Feeding Options",
+              "label": "Infant Diagnosis",
               "type": "obs",
-              "id": "infantFeedingOptions",
+              "id": "infantDiagnosis",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0de0b715-f3ef-4a91-a145-09509112b693"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Infant Feeding Options / IYCF / Maternal Nutrition Counseling",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Infant Feeding Method",
+              "type": "obs",
+              "id": "infantFeedingMethod",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "151283c0-8ef7-442f-8b03-3d7382a9d9cd",
@@ -1120,7 +1220,7 @@
                   },
                   {
                     "concept": "",
-                    "label": "MMS - multiple micronutrient supplementation"
+                    "label": "MMS - Multiple Micronutrient Supplementation"
                   }
                 ]
               }
@@ -1155,9 +1255,9 @@
             {
               "label": "Specify other treatments offered to the baby",
               "type": "obs",
-              "id": "otherTreatment",
+              "id": "otherInfantTreatment",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "textarea",
                 "concept": "59560ede-43e2-4e56-a47e-0f876779f0e1",
                 "conceptMappings": [],
                 "answers": []
