@@ -65,7 +65,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "dc353acd-1d7f-4b62-a38b-96cd0924a798",
+                    "concept": "66796d3f-7cc0-4177-ac06-0dbe52172f86",
                     "label": "3rd ANC visit",
                     "conceptMappings": []
                   },
@@ -266,7 +266,7 @@
               "id": "facilityResult",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "6a24b53e-9916-4073-b1f3-b8b2f8a16bc2",
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
@@ -373,18 +373,18 @@
               "id": "prepEligibilityCode",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "3b042553-b721-43c3-afd9-56914d87a0c2",
                 "answers": [
                   {
                     "concept": "",
                     "label": "Eligible for PrEP"
                   },
                   {
-                    "concept": "",
+                    "concept": "30849a77-aa98-4d76-83cc-f322e3e4d7b0",
                     "label": "Eligible and Initiated on PrEP"
                   },
                   {
-                    "concept": "",
+                    "concept": "93965cb9-d5ab-4ac3-8af8-775a0c7e0fc2",
                     "label": "Eligible for PrEP but declined"
                   },
                   {
@@ -405,7 +405,7 @@
               "id": "prepNo",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "f762afb5-21cc-4fe1-b905-067ad78c563d"
               },
               "validators": []
             }
@@ -747,7 +747,7 @@
               "id": "birthPreparedness",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "82b07322-929a-46c4-bbe6-05e2c7522cfb",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -903,30 +903,30 @@
               "id": "womanArvEligibility",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "f53b4efe-f2b2-4ffc-ae76-9c2131456f21",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "43d25c27-7097-4e17-a75d-9e720228d134",
                     "label": "P: Eligible for prophylaxis and initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "71d17387-d689-40d4-a326-23b79532ed8d",
                     "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "b49c293b-9a66-4381-a537-f6c948cdca18",
                     "label": "LT-Rx: Eligible for life long treatment and treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "c575db02-3da2-4c57-8b91-2d568b14348e",
                     "label": "LTN: Eligible for life long treatment but not treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "55a9ad4f-09de-46b8-b94c-db788ec0ad49",
                     "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
                     "conceptMappings": []
                   }
@@ -967,7 +967,7 @@
               "id": "partnersHbsAg",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "e919a46e-59d0-4443-9a63-ddda2346786d",
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
@@ -991,30 +991,30 @@
               "id": "arvPartnerEligiblity",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "1ae5db56-256c-4a16-a0c0-1bb3e2dcaeed",
+                "concept": "2f2c65d4-4498-46a8-8c32-e32c4da62c51",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "43d25c27-7097-4e17-a75d-9e720228d134",
                     "label": "P: Eligible for prophylaxis and initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "71d17387-d689-40d4-a326-23b79532ed8d",
                     "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "b49c293b-9a66-4381-a537-f6c948cdca18",
                     "label": "LT-Rx: Eligible for life long treatment and treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "c575db02-3da2-4c57-8b91-2d568b14348e",
                     "label": "LTN: Eligible for life long treatment but not treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "55a9ad4f-09de-46b8-b94c-db788ec0ad49",
                     "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
                     "conceptMappings": []
                   }
@@ -1052,7 +1052,7 @@
               "id": "linkedToGroupAnc",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "9e68083f-1c4d-4919-9ec1-4a270ed5c975",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
