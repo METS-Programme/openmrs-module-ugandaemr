@@ -376,7 +376,7 @@
                 "concept": "3b042553-b721-43c3-afd9-56914d87a0c2",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "9eef9a6a-2225-4120-b9db-dc14512fd90b",
                     "label": "Eligible for PrEP"
                   },
                   {
@@ -1110,7 +1110,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "0c522db6-4332-4aa1-8293-e97ce406829a"
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(referralType) || referralType !== '1ca0db4a-c5c6-48ed-9e17-84905f4487eb'"
@@ -1122,7 +1122,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "6f4f345f-e6a7-40ec-b7be-7d3b99f202ef"
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(referralType) || referralType !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
