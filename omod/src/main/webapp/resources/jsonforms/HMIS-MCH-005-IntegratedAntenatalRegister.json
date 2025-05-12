@@ -1,6 +1,6 @@
 {
   "name": "HMIS 005 Integrated Antenatal Register",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Entry form for patients enrolled for ANC services",
   "encounterType": "044daI6d-f80e-48fe-aba9-037f241905Pe",
   "encounter": "ANC - Encounter",
@@ -292,15 +292,15 @@
               "id": "tfvResult",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "d5b0394c-424f-41db-bc2f-37180dcdbe74",
                 "answers": [
                   {
-                    "concept": "d5b0394c-424f-41db-bc2f-37180dcdbe74",
+                    "concept": "86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a",
                     "label": "Negative",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465",
                     "label": "Positive",
                     "conceptMappings": []
                   },
@@ -407,7 +407,10 @@
                 "rendering": "text",
                 "concept": "f762afb5-21cc-4fe1-b905-067ad78c563d"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "prepEligibilityCode == 'dca26f78-30ab-102d-86b0-7a5022ba4115' || prepEligibilityCode == 'bafa7b0a-aaa5-4a23-843f-f40ab68ecc43'"
+              }
             }
           ]
         },
@@ -1134,6 +1137,15 @@
           "label": "Complications/Risk Factors",
           "isExpanded": "true",
           "questions": [
+            {
+              "label": "Complications and Risk Factors found after assessment",
+              "type": "obs",
+              "id": "riskFactors",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2ff3c0b-1d02-4f45-96a4-8b5087f232fc"
+              }
+            },
             {
               "label": "Return Date",
               "type": "obs",
