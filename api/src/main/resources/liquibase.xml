@@ -295,22 +295,27 @@
 
 	</changeSet>
 
-	<changeSet id="ugandaemr-08022021-7" author="slubwama">
+	<changeSet id="ugandaemr-02052025-00-14-00" author="slubwama">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
-                SELECT COUNT(*) FROM scheduler_task_config
-                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask'
-            </sqlCheck>
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask'
+			</sqlCheck>
 		</preConditions>
+
 		<comment>Close all active facility visits</comment>
-		<sql>DELETE FROM scheduler_task_config where uuid='1434dd72-1ff7-11ea-978f-2e728ce88125'</sql>
+
+		<!-- Delete the existing task configuration if it exists (ensure no duplicate configurations) -->
+		<sql>DELETE FROM scheduler_task_config WHERE uuid='1434dd72-1ff7-11ea-978f-2e728ce88125'</sql>
+
+		<!-- Insert a new task configuration -->
 		<insert tableName="scheduler_task_config">
 			<column name="name" value="Close Active Facility Visits" />
-			<column name="description" value="generates_uics into patient identifier table" />
+			<column name="description" value="Closes all active facility visits that started before today." />
 			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask" />
 			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
 			<column name="start_time" valueDate="2019-11-08T16:59:59" />
-			<column name="repeat_interval" value="86400" />
+			<column name="repeat_interval" value="86400" /> <!-- 1 day -->
 			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
 			<column name="created_by" value="1" />
 			<column name="start_on_startup" value="1"/>
@@ -318,7 +323,8 @@
 			<column name="uuid" value="1434dd72-1ff7-11ea-978f-2e728ce88125" />
 		</insert>
 	</changeSet>
-	
+
+
 	<changeSet id="ugandaemr-08-08-2020-1155" author="mmwanje">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
@@ -1278,6 +1284,20 @@ VALUES
 			<column name="started" value="0"/>
 			<column name="uuid" value="0ea91bba-193a-11f0-9e19-da924fd23489" />
 		</insert>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20250429-0834" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="2">
+				select count(*) from concept_set where concept_id in (165982,99601);
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			change concept Breastfeeding and ACTIVE TB to coded
+		</comment>
+		<sql>
+			update concept set datatype_id=2 where concept_id in (165982,99601);
+		</sql>
 	</changeSet>
 </databaseChangeLog>
 

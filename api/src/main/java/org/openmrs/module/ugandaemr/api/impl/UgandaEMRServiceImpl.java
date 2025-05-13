@@ -2816,7 +2816,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     private void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) destDir.mkdirs();
-        log.info("📂 Extracting ZIP to: " + destDirectory);
+       log.info("📂 Extracting ZIP to: " + destDirectory);
 
         try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
             ZipEntry entry = zipIn.getNextEntry();
