@@ -204,4 +204,33 @@ public class PersonAttributeTypes {
             return "5ecfd59d-5988-4aa3-84f8-8b43599fc67c";
         }
     };
+
+    public static PersonAttributeTypeDescriptor EDUCATION_LEVEL = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 13;
+        }
+
+        @Override
+        public Class<?> format() {
+            return Concept.class;
+        }
+
+        @Override
+        public String name() {
+            return "Education Level";
+        }
+
+        @Override
+        public String description() {
+            return "Person Education Level";
+        }
+
+        public String uuid() {
+            return "ec6e8300-38e8-4c95-8e57-27c9cdfba104";
+        }
+
+        @Override
+        public boolean searchable() {return true;}
+    };
 }

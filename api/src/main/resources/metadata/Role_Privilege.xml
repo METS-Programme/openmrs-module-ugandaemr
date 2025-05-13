@@ -624,8 +624,6 @@
     <privilege  privilege="Manage Procedures"  description="Allows the user to manage procedure orders"  uuid="ce981491-76d8-4925-b8d8-089352538a34"/>
     <privilege  privilege="Manage Billing"  description="Allows the cashier to manage billing requests"  uuid="bfe2218c-86db-49d0-93c7-6012c4953fee"/>
 
-    <privilege  privilege="Manage Patient Billing"  description="Manage Patient Billing"  uuid="0c37f23a-bdc4-434d-b1f1-7af02c3dac64"/>
-
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
     <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
@@ -801,7 +799,6 @@
     <role_privilege  role="Reception"  privilege="App: datavisualiserui.downloaddata"/>
     <role_privilege  role="Reception"  privilege="Queue Patients"/>
     <role_privilege role="Reception" privilege="Manage Patient Queues"/>
-    <role_privilege role="Reception" privilege="Search Patient"/>
     <role_privilege role="Reception" privilege="View Reception Queuelist"/>
     <role_privilege role="Reception" privilege="View Reception Metrics"/>
     <role_privilege role="Reception" privilege="Add Patient Button"/>
@@ -927,7 +924,7 @@
     <role_privilege role="Organizational: Clinician" privilege="Manage patient attachments"/>
     <role_privilege role="Organizational: Clinician" privilege="Manage Patient Appointments Link"/>
     <role_privilege role="Organizational: Clinician" privilege="Stop Visit Button"/>
-
+    <role_privilege role="Organizational: Clinician" privilege="Search Patient"/>
 
 
     <!--* COUNSELOR ROLE *-->
