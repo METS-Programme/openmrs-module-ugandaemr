@@ -1,10 +1,10 @@
 {
-  "name": "HMIS MCH 006: Integrated Maternity Register",
+  "name": "HMIS MCH 006: Integrated Maternity Register - Daphine",
   "version": "4.1.0",
   "description": "Admission into a clinic for a pregnant woman to give birth",
   "encounterType": "a9f11592-22e7-45fc-904d-dfe24cb1fc67",
   "encounter": "Maternity - Encounter",
-  "uuid": "0b946c41-957c-4aeb-9b1a-da3983c0d163",
+  "uuid": "fba57e92-69fe-4c89-a8b7-13e7d9cd70ab",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -85,7 +85,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "0c522db6-4332-4aa1-8293-e97ce406829a"
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(referralType) || referralType !== '1ca0db4a-c5c6-48ed-9e17-84905f4487eb'"
@@ -288,17 +288,17 @@
                 "concept": "4c94afa1-5cd4-4803-bd06-cff11fa2eee2",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "34b9dbdc-c448-4d9f-b4ef-c9de8046a62c",
                     "label": "1st Time: Client counselled and tested for the first time during this pregnancy",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "5b09a3ec-ef8c-4d8e-a162-3460453266b7",
                     "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "6b5a2e89-1ffe-47c5-896a-6e0c1c876f3c",
                     "label": "Retest: Client  re-tested for HIV during this visit",
                     "conceptMappings": []
                   },
@@ -342,17 +342,17 @@
                 "concept": "62a37075-fc2a-4729-8950-b9fae9b22cfb",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "34b9dbdc-c448-4d9f-b4ef-c9de8046a62c",
                     "label": "1st Time: Client counselled and tested for the first time during this pregnancy",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "5b09a3ec-ef8c-4d8e-a162-3460453266b7",
                     "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "6b5a2e89-1ffe-47c5-896a-6e0c1c876f3c",
                     "label": "Retest: Client  re-tested for HIV during this visit",
                     "conceptMappings": []
                   },
@@ -472,12 +472,12 @@
                 "concept": "275a6f72-b8a4-4038-977a-727552f69cb8",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "1fa7844c-58fb-4925-b940-12fd17708852",
                     "label": "Rx-1: Tested Positive for syphilis within the past 1 year and completed treatment but not eligible for a test this pregnancy",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "2b9b8d2b-d3dd-48bd-ad72-17b529265d5c",
                     "label": "Rx-2: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment, not eligible for a test this pregnancy but initiated on treatment at this contact",
                     "conceptMappings": []
                   },
@@ -487,7 +487,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "0df1325b-adf0-4cfe-aca2-e26192df8616",
                     "label": "+Ve-K: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment at this contact but not initiated on treatment",
                     "conceptMappings": []
                   },
@@ -502,7 +502,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "ee5ba4a0-e03d-421a-bbbd-e391884477a4",
+                    "concept": "451f794b-2f67-4ac5-bfb6-39cdae7bf4fc",
                     "label": "NR: Client not tested for syphilis at this visit",
                     "conceptMappings": []
                   }
@@ -515,30 +515,30 @@
               "id": "womanArvEligibility",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "6f07ddd3-79f6-4fc7-a267-1e8dcf712918",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "3231e55c-db94-41fb-8a1b-fde9cc2d6740",
                     "label": "P: Eligible for prophylaxis and initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "ffc55492-5507-46d7-b904-ac87da37693d",
                     "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "5976235d-d5b6-4f06-ac99-beeb88621551",
                     "label": "LT-Rx: Eligible for life long treatment and treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "88e36a64-1503-4af5-8b0f-8e2d5627e484",
                     "label": "LTN: Eligible for life long treatment but not treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "85d234b2-554d-4a14-934d-4be342c50fd9",
                     "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
                     "conceptMappings": []
                   }
@@ -554,12 +554,12 @@
                 "concept": "3f84a63b-1aed-42a1-b59e-49f75626a60e",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "1fa7844c-58fb-4925-b940-12fd17708852",
                     "label": "Rx-1: Tested Positive for syphilis within the past 1 year and completed treatment but not eligible for a test this pregnancy",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "2b9b8d2b-d3dd-48bd-ad72-17b529265d5c",
                     "label": "Rx-2: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment, not eligible for a test this pregnancy but initiated on treatment at this contact",
                     "conceptMappings": []
                   },
@@ -569,7 +569,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "0df1325b-adf0-4cfe-aca2-e26192df8616",
                     "label": "+Ve-K: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment at this contact but not initiated on treatment",
                     "conceptMappings": []
                   },
@@ -597,30 +597,30 @@
               "id": "partnerArvEligibility",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "d9fa4e36-a422-4293-81ca-999d7f9a735d",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "3231e55c-db94-41fb-8a1b-fde9cc2d6740",
                     "label": "P: Eligible for prophylaxis and initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "ffc55492-5507-46d7-b904-ac87da37693d",
                     "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "5976235d-d5b6-4f06-ac99-beeb88621551",
                     "label": "LT-Rx: Eligible for life long treatment and treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "88e36a64-1503-4af5-8b0f-8e2d5627e484",
                     "label": "LTN: Eligible for life long treatment but not treated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "85d234b2-554d-4a14-934d-4be342c50fd9",
                     "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
                     "conceptMappings": []
                   }
@@ -699,7 +699,7 @@
               "id": "liveBirths",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "f41da5ee-9344-4a63-9850-fecd87a967e3",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -738,7 +738,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "d35d4370-c8d9-4432-ace8-afe3a1f049a9",
                     "label": "Tranexamic",
                     "conceptMappings": []
                   }
@@ -751,7 +751,7 @@
               "id": "uterotonicsUsedforPphMgt",
               "questionOptions": {
                 "rendering": "multiCheckbox",
-                "concept": "",
+                "concept": "17c49069-a91d-4a87-a2b0-1cd45b5c4400",
                 "answers": [
                   {
                     "concept": "eca9da28-31d3-4e6f-828d-441e9237b7a5",
@@ -769,7 +769,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "d35d4370-c8d9-4432-ace8-afe3a1f049a9",
                     "label": "Tranexamic",
                     "conceptMappings": []
                   }
