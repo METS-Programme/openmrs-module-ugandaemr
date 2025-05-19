@@ -138,6 +138,11 @@
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.1.3</ugandaemrReportsVersion>
+
+		<build.timestamp.format>yyyyMMddHHmmss</build.timestamp.format>
+		<TIMESTAMP>${maven.build.timestamp}</TIMESTAMP>
+		<openmrs.version.shortnumericonly>263</openmrs.version.shortnumericonly>
+		<openmrs.version.long>2.6.3</openmrs.version.long>
 	</properties>
 
 	<dependencyManagement>
