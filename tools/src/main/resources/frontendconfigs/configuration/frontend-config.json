@@ -480,9 +480,7 @@
             }
           }
         }
-      },
       }
-    }
   },
   "@openmrs/esm-styleguide": {
     "Brand color #1": " #009384",
