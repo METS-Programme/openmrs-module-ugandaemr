@@ -1,0 +1,67 @@
+{
+  "name": "Ward Admission",
+  "version": "1.0.0",
+  "description": "Create an admission request to an inpatient ward",
+  "encounterType": "b2c4d5e6-7f8a-4e9b-8c1d-2e3f8e4a3b8f",
+  "encounter": "Transfer Request",
+  "uuid": "b488a799-1e8e-43c1-b07a-2803d3319e07",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "Ward Request",
+      "sections": [
+        {
+          "label": "Ward Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obsGroup",
+              "id": "inpatientDispositionConstruct",
+              "questionOptions": {
+                "concept": "CIEL:199466",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "id": "disposition",
+                  "type": "obs",
+                  "required": true,
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "required": true,
+                    "concept": "CIEL:199463",
+                    "answers": [
+                      {
+                        "concept": "CIEL:199457"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "id": "admitToLocation",
+                  "type": "obs",
+                  "required": true,
+                  "questionOptions": {
+                    "rendering": "ui-select-extended",
+                    "required": true,
+                    "concept": "CIEL:199465",
+                    "datasource": {
+                      "name": "location_datasource",
+                      "config": {
+                        "tag": "Admission Location"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
