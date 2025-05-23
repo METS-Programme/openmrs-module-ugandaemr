@@ -4,7 +4,7 @@
   "description": "Admission into a clinic for a pregnant woman to give birth",
   "encounterType": "a9f11592-22e7-45fc-904d-dfe24cb1fc67",
   "encounter": "Maternity - Encounter",
-  "uuid": "0b946c41-957c-4aeb-9b1a-da3983c0d163",
+  "uuid": "fba57e92-69fe-4c89-a8b7-13e7d9cd70ab",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -1579,6 +1579,392 @@
                     "label": "8 days to 2 weeks"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Mother's Final Diagnosis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother counseled on IYCF",
+              "type": "obs",
+              "id": "counseledOnIycf",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5d993591-9334-43d9-a208-11b10adfad85",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Infant feeding option",
+              "type": "obs",
+              "id": "infantFeedingOption",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dc9a00a2-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "EBF - Exclusive Breastfeeding",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                    "label": "RF - Replacement Feeding",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MF - Mixed Feeding",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "counseledOnIycf !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Obstetrical Diagnosis",
+              "type": "obs",
+              "id": "obstetricalDiagnosis",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5d993591-9334-43d9-a208-11b10adfad85",
+                "answers": [
+                  {
+                    "concept": "dc9aee12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Normal Delivery",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9af278-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cesarean Section",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "124261AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Transverse position",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "59e7d413-9a7f-4e69-9566-3d0ab18a6ac7",
+                    "label": "BBA - born before arrival",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Obstetrical Complications",
+              "type": "obs",
+              "id": "obstetricalComplications",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "7ea516db-62f2-471a-a4a8-c819e784a78e",
+                "answers": [
+                  {
+                    "concept": "dc6504d3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Abortions",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc69f6f5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "APH",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "230AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PPH",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "135361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Malaria in Pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc55064a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "High blood Pressure in Pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "115036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Obstructed Labour",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "130AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Puerperal Sepsis",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc69ec17-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Sepsis related to pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "148834AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Anaemia in pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "127259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rupture of Uterus",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc550257-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ectopic Pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other complications",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Complications of Pregnancy",
+              "type": "obs",
+              "id": "otherPregnancyComplications",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "120186AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "hide": {
+                "hideWhenExpression": "obstetricalComplications != '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Discharge Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Danger Signs Counseling",
+              "type": "obs",
+              "id": "dangerSignsCounseling",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3095d500-4a3e-4cf3-ab96-6f406e0d371d",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "e070fc3f-6233-466a-a0d2-ba3333a45235",
+                    "label": "C -  Counseled"
+                  },
+                  {
+                    "concept": "7525bab1-60a0-4635-a36d-4855c051f8bb",
+                    "label": "NC - Not Counseled"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Maternal Nutrition Counseling",
+              "type": "obs",
+              "id": "maternalNutritionCounseling",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "af7dccfd-4692-4e16-bd74-5ac4045bb6bf",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Condition of baby at discharge",
+              "type": "obs",
+              "id": "babyConditionAtDischarge",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a5638850-0cb4-4ce8-8e87-96fc073de25d",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "135436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "MSB: Macerated Still Bath"
+                  },
+                  {
+                    "concept": "7a15616a-c12a-44fc-9a11-553639128b69",
+                    "label": "FSB: Fresh Still Birth"
+                  },
+                  {
+                    "concept": "ab3a7679-f5ee-48d6-b690-f55a1dfe95ea",
+                    "label": "NND: Immediate Neonatal Death"
+                  },
+                  {
+                    "concept": "eb7041a0-02e6-4e9a-9b96-ff65dd09a416",
+                    "label": "AL-N: Live Baby"
+                  },
+                  {
+                    "concept": "23ac7575-f0ea-49a5-855e-b3348ad1da01",
+                    "label": "AL-BOD: Live Baby with other defect"
+                  },
+                  {
+                    "concept": "3de8af5d-ab86-4262-a1a3-b4c958ae2de3",
+                    "label": "AL-R - Live baby referred to another unit"
+                  },
+                  {
+                    "concept": "7ca3dddc-b55e-46fb-b15e-40df4724bcfd",
+                    "label": "AL-T - Live baby transferred to another ward/ Department"
+                  },
+                  {
+                    "concept": "",
+                    "label": "AL-BC: Live Baby with clubfoot"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Condition of mother at discharge",
+              "type": "obs",
+              "id": "motherConditionAtDischarge",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e87431db-b49e-4ab6-93ee-a3bd6c616a94",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "3f02ee62-613d-4eba-88bc-d0cd66b863c5",
+                    "label": "D - Mother discharged alive"
+                  },
+                  {
+                    "concept": "17fcfd67-a1a2-4361-9915-ad4e81a7a61d",
+                    "label": "DD - Mother discharged dead"
+                  },
+                  {
+                    "concept": "6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef",
+                    "label": "RA - Mother ran away or left before being discharged"
+                  },
+                  {
+                    "concept": "",
+                    "label": "R - Mother referred to another health unit for further management"
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "T - Mother transferred to another Ward/department"
+                  },
+                  {
+                    "concept": "6d15f334-2130-47a8-b5a2-3b26b6a65c69",
+                    "label": "DF - Mother discharged alive with fistula"
+                  },
+                  {
+                    "concept": "4095ac37-4955-4718-8e3e-b6f6fb55cf6d",
+                    "label": "RF- Mother ran away with fistula"
+                  },
+                  {
+                    "concept": "862b583e-97ba-4bef-8997-5a460449a87a",
+                    "label": "F - Mother transferred with fistula"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Transferred to",
+              "id": "locationTransferredTo",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "hide": {
+                "hideWhenExpression": "motherConditionAtDischarge !== 'dd27a783-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "LLINS given to baby",
+              "type": "obs",
+              "id": "llinsGivenToBaby",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165025AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Discharged By",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider"
+            },
+            {
+              "label": "Date of Discharge",
+              "type": "obs",
+              "id": "dateOfDischarge",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "ff31a419-0eb1-45fc-920a-77b4a3481e00"
               }
             }
           ]
