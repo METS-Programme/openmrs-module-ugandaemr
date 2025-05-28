@@ -293,7 +293,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "5b09a3ec-ef8c-4d8e-a162-3460453266b7",
+                    "concept": "bf335c17-7925-44a2-b8b2-f530bad7ea10",
                     "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
                     "conceptMappings": []
                   },
@@ -347,7 +347,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "5b09a3ec-ef8c-4d8e-a162-3460453266b7",
+                    "concept": "bf335c17-7925-44a2-b8b2-f530bad7ea10",
                     "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
                     "conceptMappings": []
                   },
@@ -905,15 +905,15 @@
               "id": "babyOutcomeAtDelivery",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "cf7544d3-d25c-4b63-8b19-a76017158a4b",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "ddebe155-cdc7-48a5-94c3-a73306cf399a",
                     "label": "Alive and well",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "3a0c423a-73bf-4beb-9516-52e7a1fd6d57",
                     "label": "Alive and sick",
                     "conceptMappings": []
                   },
@@ -1037,7 +1037,7 @@
               "id": "umbilicalCareProvided",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "8453f86e-270f-4a30-a2fb-799534012f96",
+                "concept": "2368491d-c128-4512-8599-89dfe66434ba",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1057,7 +1057,7 @@
               "id": "receivedTetracyclineEyeOintment",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "04aaf94e-cc2b-410d-bec5-532140bc67ec",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1185,7 +1185,7 @@
               "id": "polioImmunisation",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "388984c3-f00b-4725-90b5-c65efa376989",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1205,7 +1205,7 @@
               "id": "hepBImmunisation",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "6f94f48c-7a91-4a25-836c-9f2c566f10e8",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1307,7 +1307,7 @@
               "id": "babyBreathing",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "ece75a9f-18c7-48b6-ba69-cd64094cf615",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1341,7 +1341,7 @@
               "id": "excessiveBleeding",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "c788faff-de83-45d7-bff9-56b34b69e63c",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1361,7 +1361,7 @@
               "id": "checkedUmbilicalCode",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "bd23a245-ce4b-4c1f-924d-cc12c5a68f25",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1389,7 +1389,7 @@
               "id": "babyBreastFeeding",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "cdd75d5a-772e-4655-8253-1479c59c3261",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1417,7 +1417,7 @@
               "id": "babyBreathing",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "66204563-8ec9-47fa-a84b-56f53c9b5b41",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1531,7 +1531,7 @@
               "id": "ppfpTimingCode",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "cc27c3ee-9314-4886-af7b-31c7e8b457de",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1539,7 +1539,7 @@
                     "label": "Within 48 hours"
                   },
                   {
-                    "concept": "",
+                    "concept": "a6e7239a-4a81-4f32-8ed4-ac59d84bdde0",
                     "label": "3 days to 3 weeks"
                   },
                   {
@@ -1547,12 +1547,12 @@
                     "label": "4 weeks to 6 weeks"
                   },
                   {
-                    "concept": "",
+                    "concept": "7c3bcee4-40a9-4a2b-9de5-8ac82e1ccba3",
                     "label": "7 weeks to 5 months"
                   },
                   {
-                    "concept": "",
-                    "label": "6 weeks to 12 months"
+                    "concept": "22ddaed0-f0b1-4845-993d-74b8b8713fe9",
+                    "label": "6 months to 12 months"
                   }
                 ]
               }
@@ -1563,7 +1563,7 @@
               "id": "pafpTimingCode",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "7595b02e-4f7a-49bd-9a4c-7f9137b83793",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -1868,7 +1868,7 @@
                     "label": "AL-T - Live baby transferred to another ward/ Department"
                   },
                   {
-                    "concept": "",
+                    "concept": "5bbf8572-7a5f-4d79-83df-ba5aa7d7afc7",
                     "label": "AL-BC: Live Baby with clubfoot"
                   }
                 ]
@@ -1896,7 +1896,7 @@
                     "label": "RA - Mother ran away or left before being discharged"
                   },
                   {
-                    "concept": "",
+                    "concept": "d45e698e-1211-481a-b495-0d50918c8ebd",
                     "label": "R - Mother referred to another health unit for further management"
                   },
                   {
