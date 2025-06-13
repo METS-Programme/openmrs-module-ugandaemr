@@ -209,7 +209,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "d0287ce7-a5a2-4c3b-af2b-063d01efedeb"
+                "concept": "164985AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "id": "mothersHTSNo",
               "label": "Mother’s HTS No."
@@ -246,7 +246,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "c0b1b5f1-a692-49d1-9a69-ff901e07fa27"
+                "concept": "38460266-6bcd-47e8-844c-649d34323810"
               },
               "id": "antenatal",
               "label": "Antenatal"
@@ -264,105 +264,10 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"
               },
               "id": "postnatal",
               "label": "Postnatal"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "POC Testing",
-      "sections": [
-        {
-          "label": "POC Testing",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "c2c0c193-cf35-40eb-9472-ee014ed389f2"
-              },
-              "id": "pocDeviceUsed",
-              "label": "POC Device Used"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "f2aa1852-fcfe-484b-a6ef-1613bd3a1a7f"
-              },
-              "id": "stationLocated",
-              "label": "Station Located"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "a0a6545b-8383-4235-a74f-417db2b580f3"
-              },
-              "id": " sampleID ",
-              "label": " Sample ID "
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "0cb778f3-6508-4c03-8beb-39dee300e2e1"
-              },
-              "id": "results",
-              "label": "Results"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "e7f0ed50-a83d-11ed-afa1-0242ac120002"
-              },
-              "id": " commentOnInvalids",
-              "label": " Comment On Invalids"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "ff216c52-93f4-4d39-af7c-94501538e4b6"
-              },
-              "id": "testedBy",
-              "label": "Tested By"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "id": "testingDate",
-              "label": "Testing Date",
-              "datePickerFormat": "calendar"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "minLength": "",
-                "concept": "51404c9c-b2c0-11ed-afa1-0242ac120002"
-              },
-              "id": "reviewedAndReleasedBy",
-              "label": "Reviewed and Released By"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "cbbc09cc-a7e2-11ed-afa1-0242ac120002"
-              },
-              "id": "dateResultsDispatched",
-              "label": "Date Results Dispatched",
-              "datePickerFormat": "calendar"
             }
           ]
         }
