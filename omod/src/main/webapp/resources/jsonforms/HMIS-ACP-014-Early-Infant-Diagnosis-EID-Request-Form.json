@@ -1,0 +1,372 @@
+{
+  "name": "HMIS ACP 014: Early Infant Diagnosis (EID) Request Form",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "5ef205bc-136a-469b-b074-5f39488db91a",
+  "uuid": "f480da00-12f6-4574-b7a0-e9390fb7ead9",
+  "description": "This form is used to carry out tests on an exposed infant",
+  "version": "4.1.1",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Child Information",
+      "sections": [
+        {
+          "label": "Patient Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "8ea2dd3d-7d16-42f6-b034-5ffe3a4dbc99"
+              },
+              "id": "expNumber",
+              "label": "Exp-Number"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c3d744f6-00ef-4774-b9a7-d33c58f5b014",
+                "answers": [
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  }
+                ]
+              },
+              "id": "givenContrimoxazole",
+              "label": "Given Contrimoxazole"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c3d744f6-00ef-4774-b9a7-d33c58f5b014",
+                "answers": [
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  }
+                ]
+              },
+              "id": "deliveredAtHealthFacility",
+              "label": "Delivered at Health Facility"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcd87b79-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MEDICAL OUTPATIENT"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  },
+                  {
+                    "concept": "e9469d61-b0c3-4785-81c6-057c7bc099fc",
+                    "label": "YCC-Young child clinic"
+                  },
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PMTCT"
+                  }
+                ]
+              },
+              "id": "entryPoint",
+              "label": "Entry Point"
+            }
+          ]
+        },
+        {
+          "label": "Sample Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "3074a7fa-6b55-4521-8270-1227a63b8b55"
+              },
+              "id": "collectionDate",
+              "label": "Collection Date",
+              "datePickerFormat": "calendar"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "cbbc09cc-a7e2-11ed-afa1-0242ac120002"
+              },
+              "id": "dispatchDate",
+              "label": "Dispatch Date",
+              "datePickerFormat": "calendar"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0e07f19e-9990-4e9a-97ab-8c39f4d9f828",
+                "answers": [
+                  {
+                    "concept": "dc68b527-30ab-102d-86b0-7a5022ba4115",
+                    "label": "BITE, HUMAN"
+                  },
+                  {
+                    "concept": "97fa712a-0314-47cd-a065-bea8a773790b",
+                    "label": "Condom burst"
+                  },
+                  {
+                    "concept": "6fb83a8c-c898-46ca-9d0a-bc01080fc7c1",
+                    "label": "Defilement"
+                  }
+                ]
+              },
+              "id": "typeOfTest",
+              "label": "Type of Test"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "30d24eb0-e8c5-4c2f-a369-ddba9d88e92a",
+                "answers": [
+                  {
+                    "concept": "f8fc1be7-65ea-4179-8472-d67e9e446b46",
+                    "label": "6 weeks"
+                  },
+                  {
+                    "concept": "7520826e-e098-4bde-b1c8-f08690366a78",
+                    "label": "9 MONTHS"
+                  },
+                  {
+                    "concept": "21f19331-e15f-4b39-8a3c-70499e5b2aae",
+                    "label": "18 Months"
+                  }
+                ]
+              },
+              "id": "nonRoutinePCR",
+              "label": "Non-routine PCR"
+            }
+          ]
+        },
+        {
+          "label": "Infant Feeding Status At Test",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dc9a00a2-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "BREASTFED EXCLUSIVELY"
+                  },
+                  {
+                    "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MIXED FEEDING"
+                  },
+                  {
+                    "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                    "label": "REPLACEMENT FEEDING"
+                  },
+                  {
+                    "concept": "dc9a30bc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WEANED"
+                  }
+                ]
+              },
+              "id": "infantFeedingStatusAtTest",
+              "label": "Infant Feeding Status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Mother Information",
+      "sections": [
+        {
+          "label": "Mother Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "d0287ce7-a5a2-4c3b-af2b-063d01efedeb"
+              },
+              "id": "mothersHTSNo",
+              "label": "Mother’s HTS No."
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "105ef9de-ad90-4c08-bcd5-ab48f74f6287"
+              },
+              "id": "artNo",
+              "label": "Art No"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dca25616-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dca2817c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ON ART"
+                  },
+                  {
+                    "concept": "eeee7b94-8556-4bf8-919f-1fce764f93e6",
+                    "label": "Not On ART"
+                  }
+                ]
+              },
+              "id": "artStatus",
+              "label": "Art Status"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c0b1b5f1-a692-49d1-9a69-ff901e07fa27"
+              },
+              "id": "antenatal",
+              "label": "Antenatal"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5b40c070-a7e2-11ed-afa1-0242ac120002"
+              },
+              "id": "delivery",
+              "label": "Delivery"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "postnatal",
+              "label": "Postnatal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "POC Testing",
+      "sections": [
+        {
+          "label": "POC Testing",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c2c0c193-cf35-40eb-9472-ee014ed389f2"
+              },
+              "id": "pocDeviceUsed",
+              "label": "POC Device Used"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f2aa1852-fcfe-484b-a6ef-1613bd3a1a7f"
+              },
+              "id": "stationLocated",
+              "label": "Station Located"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a0a6545b-8383-4235-a74f-417db2b580f3"
+              },
+              "id": " sampleID ",
+              "label": " Sample ID "
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0cb778f3-6508-4c03-8beb-39dee300e2e1"
+              },
+              "id": "results",
+              "label": "Results"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e7f0ed50-a83d-11ed-afa1-0242ac120002"
+              },
+              "id": " commentOnInvalids",
+              "label": " Comment On Invalids"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ff216c52-93f4-4d39-af7c-94501538e4b6"
+              },
+              "id": "testedBy",
+              "label": "Tested By"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "testingDate",
+              "label": "Testing Date",
+              "datePickerFormat": "calendar"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "minLength": "",
+                "concept": "51404c9c-b2c0-11ed-afa1-0242ac120002"
+              },
+              "id": "reviewedAndReleasedBy",
+              "label": "Reviewed and Released By"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "cbbc09cc-a7e2-11ed-afa1-0242ac120002"
+              },
+              "id": "dateResultsDispatched",
+              "label": "Date Results Dispatched",
+              "datePickerFormat": "calendar"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
