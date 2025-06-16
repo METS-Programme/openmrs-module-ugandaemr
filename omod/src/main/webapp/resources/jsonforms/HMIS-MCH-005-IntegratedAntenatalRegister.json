@@ -1,6 +1,6 @@
 {
   "name": "HMIS 005 Integrated Antenatal Register",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Entry form for patients enrolled for ANC services",
   "encounterType": "044daI6d-f80e-48fe-aba9-037f241905Pe",
   "encounter": "ANC - Encounter",
@@ -193,6 +193,37 @@
                   {
                     "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
                     "label": "UKN: Not tested, and HIV status is Unknown",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Timing",
+              "type": "obs",
+              "id": "womanTiming",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e769076c-e5b7-4597-8e26-439cda656d41",
+                "answers": [
+                  {
+                    "concept": "eb335177-355d-41c9-bb54-bdc2b222a277",
+                    "label": "1st Time: Counselled and tested for the first time during this PNC Attendance",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "fee6c16f-1d50-404c-aa0e-d12700afa478",
+                    "label": "Re-Attd: Known HIV status from a previous PNC Attendance not eligible for a re-test in PNC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6b5a2e89-1ffe-47c5-896a-6e0c1c876f3c",
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c2cf5f7c-b919-4a09-8f8e-811e976d4555",
+                    "label": "Known POS: Known HIV positive status who did not attend Antenantal from any health facility",
                     "conceptMappings": []
                   }
                 ]
