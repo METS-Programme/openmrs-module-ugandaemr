@@ -1,6 +1,6 @@
 {
   "name": "HMIS 005 Integrated Antenatal Register",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "Entry form for patients enrolled for ANC services",
   "encounterType": "044daI6d-f80e-48fe-aba9-037f241905Pe",
   "encounter": "ANC - Encounter",
@@ -47,8 +47,9 @@
               }
             },
             {
-              "label": "ANC Visit number",
+              "label": "ANC Visit Number",
               "type": "obs",
+              "required": true,
               "id": "ancVisitNumber",
               "questionOptions": {
                 "rendering": "select",
@@ -208,12 +209,12 @@
                 "answers": [
                   {
                     "concept": "eb335177-355d-41c9-bb54-bdc2b222a277",
-                    "label": "1st Time: Counselled and tested for the first time during this PNC Attendance",
+                    "label": "1st Time: Counselled and tested for the first time during this ANC Attendance",
                     "conceptMappings": []
                   },
                   {
                     "concept": "fee6c16f-1d50-404c-aa0e-d12700afa478",
-                    "label": "Re-Attd: Known HIV status from a previous PNC Attendance not eligible for a re-test in PNC",
+                    "label": "Re-Attd: Known HIV status from a previous ANC Attendance not eligible for a re-test in ANC",
                     "conceptMappings": []
                   },
                   {
@@ -313,6 +314,10 @@
                     "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
                     "label": "Inconclusive",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
                   }
                 ]
               }
@@ -1053,6 +1058,273 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Medication",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "IPT Dose",
+              "type": "obs",
+              "id": "iptDose",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1da3cb98-59d8-4bfd-b0bb-c9c1bcd058c6",
+                "answers": [
+                  {
+                    "concept": "0192ca59-b647-4f88-b07e-8fda991ba6d6",
+                    "label": "First dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f1d5afce-8dfe-4d2d-b24b-051815d61848",
+                    "label": "Second dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a5497b5a-7da1-42d2-9985-b5ec695b4199",
+                    "label": "Third dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "da40fa2a-074f-4d90-a875-5bb8316bc753",
+                    "label": "Fourth dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dca06bae-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Completed",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f29f43c6-076a-4f70-9ae8-4563ac3fda80",
+                    "label": "ND: Not due for the dose at that visit",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Mother received free LLIN",
+              "type": "obs",
+              "id": "receivedFreeLlin",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3e7bb52c-e6ae-4a0b-bce0-3b36286e8658",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Mother received Mebandazole Dose",
+              "type": "obs",
+              "id": "receivedMebandazoleDose",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "9d6abbc4-707a-4ec7-a32a-4090b1c3af87",
+                "answers": [
+                  {
+                    "concept": "a7a9d632-b266-4085-9a5e-57fc8dd56f0c",
+                    "label": "Dose received"
+                  },
+                  {
+                    "concept": "0134c1d3-a255-46b2-ac77-38c0edcd9e53",
+                    "label": "Dose not received"
+                  },
+                  {
+                    "concept": "dca06bae-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Completed"
+                  },
+                  {
+                    "concept": "beb5523f-ec5a-46fe-a7c9-f3270a05f4b4",
+                    "label": "Not due for dose"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Vaccination Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Tetanus",
+              "type": "obs",
+              "id": "tetanusVaccinationStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "39217e3d-6a39-4679-bf56-f0954a7ffdb8",
+                "answers": [
+                  {
+                    "concept": "0192ca59-b647-4f88-b07e-8fda991ba6d6",
+                    "label": "First dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f1d5afce-8dfe-4d2d-b24b-051815d61848",
+                    "label": "Second dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a5497b5a-7da1-42d2-9985-b5ec695b4199",
+                    "label": "Third dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "da40fa2a-074f-4d90-a875-5bb8316bc753",
+                    "label": "Fourth dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "18f11bf4-c986-4cdd-b31c-fb189ea39333",
+                    "label": "Fifth Dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dca06bae-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Completed",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hepatitis B",
+              "type": "obs",
+              "id": "hepatitisBVaccinationStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "0192ca59-b647-4f88-b07e-8fda991ba6d6",
+                    "label": "First dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f1d5afce-8dfe-4d2d-b24b-051815d61848",
+                    "label": "Second dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a5497b5a-7da1-42d2-9985-b5ec695b4199",
+                    "label": "Third dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "da40fa2a-074f-4d90-a875-5bb8316bc753",
+                    "label": "Fourth dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "18f11bf4-c986-4cdd-b31c-fb189ea39333",
+                    "label": "Fifth Dose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dca06bae-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Completed",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "COVID-19",
+              "type": "obs",
+              "id": "covidVaccStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "50032cf9-d5e6-4b8d-8d7d-32906d6a1115",
+                "answers": [
+                  {
+                    "concept": "560c41fd-07a2-4b84-8f6c-df7b671f0425",
+                    "label": "Partial"
+                  },
+                  {
+                    "concept": "dca06bae-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Completed"
+                  },
+                  {
+                    "concept": "f1ba16e1-1567-4657-b881-02a6218f7533",
+                    "label": "Boosted"
+                  },
+                  {
+                    "concept": "9a135b14-6b01-474b-a8ff-63398e65a4c6",
+                    "label": "Not Vaccinated"
+                  },
+                  {
+                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Eligible"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Micro nutrients supplements",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Number of Iron Sulphates pills",
+              "type": "obs",
+              "id": "ironSulphatesPills",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c02d9887-6a46-43cc-9495-5ec034dc05d6",
+                "step": 1
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of Folic Acid pills",
+              "type": "obs",
+              "id": "folicAcidPills",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "961ff308-bc19-4ae4-ba11-fe29157d20f9",
+                "step": 1
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of Iron & Folic Acid Combined pills",
+              "type": "obs",
+              "id": "ironFolicAcidPills",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "b1e565e0-833e-4c9e-aea4-43ebf781c1e4",
+                "step": 1
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of Multiple Micronutrient Supplements pills",
+              "type": "obs",
+              "id": "multipleMicronutrientPills",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "step": 1
               },
               "validators": []
             }
