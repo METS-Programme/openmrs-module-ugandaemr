@@ -40,6 +40,7 @@
               "label": "ANC NO.",
               "id": "ancNumber",
               "type": "obs",
+              "required": true,
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -900,6 +901,27 @@
               "validators": []
             },
             {
+              "label": "Baby's sex",
+              "type": "obs",
+              "id": "babySex",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "M - Male",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "F - Female",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
               "label": "Baby's outcome at delivery",
               "type": "obs",
               "id": "babyOutcomeAtDelivery",
@@ -1451,7 +1473,7 @@
               "id": "usedFpBefore",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "dcb2e4e5-30ab-102d-86b0-7a5022ba4115",
                 "conceptMappings": [],
                 "answers": [
                   {
