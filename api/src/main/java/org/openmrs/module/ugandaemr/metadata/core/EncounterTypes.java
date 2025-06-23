@@ -297,7 +297,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor COVID19_POSTMORTEM = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Covid19 Postmortem";            
+            return "Covid19 Postmortem";
         }
 
         @Override
@@ -611,19 +611,19 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor PROCEDURE_RESULTS_ENCOUNTER = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor HIV_SELF_TESTING_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Procedure Results";
+            return "TB Screening";
         }
 
         @Override
         public String description() {
-            return "Encounter type for processing procedure results";
+            return "Encounter type for to record clients accessing HIV Self-Test kits at Health facility and community distribution points";
         }
 
         public String uuid() {
-            return "a4870f6d-ea06-4bbe-b775-bcbfb0816dbf";
+            return "b75fc5be-83a6-4771-afae-87d1b68af4f7";
         }
     };
 }

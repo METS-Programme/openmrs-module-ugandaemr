@@ -50,7 +50,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.OCCUPATION);
         install(PersonAttributeTypes.NATIONALITY);
         install(PersonAttributeTypes.EMAIL_ADDRESS);
-        install(PersonAttributeTypes.EDUCATION_LEVEL);
         log.info("Person AttributeTypes installed");
 
         // install roles
@@ -104,7 +103,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.MEDICATION_ORDER);
         install(EncounterTypes.TB_SCREENING_ENCOUNTER);
         install(EncounterTypes.MONKEY_POX_SCREENING_ENCOUNTER);
-        install(EncounterTypes.PROCEDURE_RESULTS_ENCOUNTER);
+        install(EncounterTypes.HIV_SELF_TESTING_ENCOUNTER);
 
 
         //installing programs metadata
