@@ -99,7 +99,7 @@
                     "label": "Uniformed Forces (UF)"
                   },
                   {
-                    "concept": "342db3a7-74c4-4cb0-943a-432c6b3693b6",
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
                     "label": "Other Specify"
                   }
                 ]
@@ -112,11 +112,11 @@
               "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "eac4e9c2-a086-43fc-8d43-b5a4e02febb4"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(specialCategory) || specialCategory !== '342db3a7-74c4-4cb0-943a-432c6b3693b6'"
+                "hideWhenExpression": "isEmpty(specialCategory) || specialCategory !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
