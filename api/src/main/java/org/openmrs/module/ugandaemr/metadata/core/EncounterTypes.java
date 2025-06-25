@@ -611,6 +611,22 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor PROCEDURE_RESULTS_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Procedure Results";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter type for processing procedure results";
+        }
+
+        public String uuid() {
+            return "a4870f6d-ea06-4bbe-b775-bcbfb0816dbf";
+        }
+    };
+
     public static EncounterTypeDescriptor HIV_SELF_TESTING_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
