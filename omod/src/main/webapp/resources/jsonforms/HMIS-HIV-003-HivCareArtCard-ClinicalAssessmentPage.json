@@ -14,6 +14,34 @@
       "label": "HIV CARE/ART CARD - CLINICAL ASSESSMENT",
       "sections": [
         {
+          "label": "Represented",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Is client represented",
+              "type": "obs",
+              "required": "true",
+              "id": "clientRepresented",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "51409d82-b2c0-11ed-afa1-0242ac120002",
+                "defaultValue": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
           "label": "NCDs (Non-communicable Diseases) Status",
           "isExpanded": "true",
           "questions": [
