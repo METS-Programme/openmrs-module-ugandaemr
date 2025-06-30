@@ -1,6 +1,6 @@
 {
   "name": "HMIS 003 HIV Care ART Card - Clinical Assessment",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "A visit for a client for clinical assessment",
   "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
   "encounter": "ART Card - Encounter",
