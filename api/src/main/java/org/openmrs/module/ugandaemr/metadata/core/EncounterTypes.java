@@ -630,7 +630,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor HIV_SELF_TESTING_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "TB Screening";
+            return "HIV Self Testing Encounter";
         }
 
         @Override
@@ -640,6 +640,22 @@ public class EncounterTypes {
 
         public String uuid() {
             return "b75fc5be-83a6-4771-afae-87d1b68af4f7";
+        }
+    };
+
+    public static EncounterTypeDescriptor HIV_CONTACT_TRACING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HIV Contact Tracing Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter to record all clients eligible for index testing and SNS";
+        }
+
+        public String uuid() {
+            return "3849c43c-f14d-40ab-80d7-670cf251e525";
         }
     };
 }
