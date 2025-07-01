@@ -728,12 +728,61 @@
   },
   "@openmrs/esm-home-app": {
     "extensionSlots": {
-      "clinical-appointments-dashboard-slot": {
+      "homepage-dashboard-slot": {
         "configure": {
           "clinical-appointments-dashboard": {
             "Display conditions": {
               "privileges": [
                 "Manage Patient Appointments Link"
+              ]
+            }
+          },
+          "data-visualizer-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Data Visualizer"
+              ]
+            }
+          },
+          "dispensing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Dispensing Menu"
+              ]
+            }
+          },
+          "patient-lists-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Lists"
+              ]
+            }
+          },
+          "queue-triage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Triage Menu"
+              ]
+            }
+          },
+          "laboratory-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Laboratory"
+              ]
+            }
+          },
+          "queue-reception-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Reception Menu"
+              ]
+            }
+          },
+          "queue-clinical-room-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Room Menu"
               ]
             }
           }
@@ -975,94 +1024,6 @@
             "Display conditions": {
               "privileges": [
                 "Manage TB Program"
-              ]
-            }
-          }
-        }
-      },
-      "homepage-dashboard-slot": {
-        "configure": {
-          "patient-queues-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Queues"
-              ]
-            }
-          },
-          "queue-reception-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Reception Menu"
-              ]
-            }
-          },
-          "queue-triage-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Triage Menu"
-              ]
-            }
-          },
-          "queue-clinical-room-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Clinical Room Menu"
-              ]
-            }
-          },
-          "dispensing-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Dispensing Menu"
-              ]
-            }
-          },
-          "patient-lists-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Lists"
-              ]
-            }
-          },
-          "service-queues-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Service Queues"
-              ]
-            }
-          },
-          "clinical-appointments-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Appointments Link"
-              ]
-            }
-          },
-          "bed-admission-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Inpatient"
-              ]
-            }
-          },
-          "data-visualizer-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Data Visualizer"
-              ]
-            }
-          },
-          "laboratory-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Laboratory"
-              ]
-            }
-          },
-          "home-widget-db-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Home Link"
               ]
             }
           }
