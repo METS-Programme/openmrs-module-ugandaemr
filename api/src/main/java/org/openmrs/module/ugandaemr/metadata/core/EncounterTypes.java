@@ -643,10 +643,10 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor HIV_CONTACT_TRACING_ENCOUNTER = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor HTS_CONTACT_TRACING_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "HIV Contact Tracing Encounter";
+            return "HTS Contact Tracing Encounter";
         }
 
         @Override
