@@ -598,7 +598,7 @@
               "id": "contactNumber",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "274d3000-9012-46c5-a4a7-fbf1cd3cf748"
               },
               "validators": []
             },
@@ -900,7 +900,7 @@
               "id": "contactEncounterOutcome",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "cf4d7296-3f81-4ea3-8669-8bf5cc050d12",
                 "answers": [
                   {
                     "concept": "07b01959-749b-4ffb-a8ac-b859f6fa79f9",
@@ -941,7 +941,7 @@
               "id": "otherContactEncounterOutcome",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "",
+                "concept": "46b9f21d-4bcd-4d5d-9cc3-e0873782f4ab",
                 "conceptMappings": [],
                 "answers": []
               },
