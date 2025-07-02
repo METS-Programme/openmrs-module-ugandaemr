@@ -3,7 +3,7 @@
   "version": "4.1.0",
   "description": "Records clients accessing HIV Self-Test kits at Health facility and community distribution points",
   "encounter": "HIV Self Testing Encounter",
-  "encounterType": "d325a161-bc6a-4d62-aec3-80cbb555778a",
+  "encounterType": "b75fc5be-83a6-4771-afae-87d1b68af4f7",
   "uuid": "58f7f83d-3dd0-4fa8-ab9b-73ad33f8e791",
   "processor": "EncounterFormProcessor",
   "published": true,
