@@ -122,6 +122,7 @@
     }
   },
   "@openmrs/esm-patient-medications-app": {
+    "maxDispenseDurationInDays": 365,
     "Display conditions": {
       "privileges": [
         "Add Orders",
@@ -720,15 +721,31 @@
           "value": "Female",
           "label": "Female"
         }
-      ]
+      ],
+      "address": {
+        "useAddressHierarchy": {
+          "useAddressHierarchyLabel": {
+            "countyDistrict": "County",
+            "address4": "Ward",
+            "stateProvince": "Sub county"
+          },
+          "searchAddressByLevel": true
+        }
+      },
+      "causeOfDeath": {
+        "conceptUuid": "dca2c3f2-30ab-102d-86b0-7a5022ba4115"
+      }
     },
     "registrationObs": {
       "encounterTypeUuid": "1458b726-4a62-4444-be97-bb3e08c73745"
+    },
+    "causeOfDeath": {
+      "conceptUuid": "dca2c3f2-30ab-102d-86b0-7a5022ba4115"
     }
   },
   "@openmrs/esm-home-app": {
     "extensionSlots": {
-      "homepage-dashboard-slot": {
+      "clinical-appointments-dashboard-slot": {
         "configure": {
           "clinical-appointments-dashboard": {
             "Display conditions": {
@@ -736,11 +753,36 @@
                 "Manage Patient Appointments Link"
               ]
             }
-          },
-          "data-visualizer-dashboard-link": {
+          }
+        }
+      },
+      "homepage-dashboard-slot": {
+        "configure": {
+          "patient-queues-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "Manage Data Visualizer"
+                "Manage Patient Queues"
+              ]
+            }
+          },
+          "queue-reception-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Reception Menu"
+              ]
+            }
+          },
+          "queue-triage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Triage Menu"
+              ]
+            }
+          },
+          "queue-clinical-room-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Room Menu"
               ]
             }
           },
@@ -758,10 +800,31 @@
               ]
             }
           },
-          "queue-triage-dashboard-link": {
+          "service-queues-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "View Triage Menu"
+                "Manage Service Queues"
+              ]
+            }
+          },
+          "clinical-appointments-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          },
+          "bed-admission-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Inpatient"
+              ]
+            }
+          },
+          "data-visualizer-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Data Visualizer"
               ]
             }
           },
@@ -772,17 +835,10 @@
               ]
             }
           },
-          "queue-reception-dashboard-link": {
+          "homepage-dashboard-link": {
             "Display conditions": {
               "privileges": [
-                "View Reception Menu"
-              ]
-            }
-          },
-          "queue-clinical-room-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Clinical Room Menu"
+                "Manage Home Link"
               ]
             }
           }
@@ -1038,15 +1094,35 @@
   "@openmrs/esm-patient-banner-app": {
     "extensionSlots": {
       "patient-actions-slot": {
-        "remove": [
-          "stop-visit-button",
-          "mark-patient-deceased-button",
-          "start-visit-button",
-          "cancel-visit-button",
-          "delete-visit-button"
-        ],
         "configure": {
-
+          "start-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Start Visit Button"
+              ]
+            }
+          },
+          "stop-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Stop Visit Button"
+              ]
+            }
+          },
+          "cancel-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Cancel Visit Button"
+              ]
+            }
+          },
+          "mark-patient-deceased-button": {
+            "Display conditions": {
+              "privileges": [
+                "Mark Dead Button"
+              ]
+            }
+          },
           "edit-patient-details-button": {
             "Display conditions": {
               "privileges": [
@@ -1116,7 +1192,7 @@
       }
     },
     "dispenseBehavior": {
-      "restrictTotalQuantityDispensed": false,
+      "restrictTotalQuantityDispensed": true,
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
@@ -1126,14 +1202,35 @@
   "@openmrs/esm-patient-search-app": {
     "extensionSlots": {
       "patient-actions-slot": {
-        "remove": [
-          "start-visit-button",
-          "stop-visit-button",
-          "cancel-visit-button",
-          "mark-patient-deceased-button",
-          "delete-visit-button"
-        ],
         "configure": {
+          "start-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Start Visit Button"
+              ]
+            }
+          },
+          "stop-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Stop Visit Button"
+              ]
+            }
+          },
+          "cancel-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Cancel Visit Button"
+              ]
+            }
+          },
+          "mark-patient-deceased-button": {
+            "Display conditions": {
+              "privileges": [
+                "Mark Dead Button"
+              ]
+            }
+          },
           "edit-patient-details-button": {
             "Display conditions": {
               "privileges": [
