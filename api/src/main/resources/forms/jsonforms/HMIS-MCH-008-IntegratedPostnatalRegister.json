@@ -1,0 +1,1367 @@
+{
+  "name": "HMIS MCH 008 - Integrated Postnatal Register",
+  "version": "4.1.0",
+  "description": "Encounter form for patients enrolled for PNC services",
+  "encounterType": "fa6f3ff5-b784-43fb-ab35-a08ab7dbf074",
+  "encounter": "PNC - Encounter",
+  "uuid": "a6c5a8c3-c414-449f-a077-c2f6acbdd8b1",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Integrated Postnatal Register",
+      "sections": [
+        {
+          "label": "Mother's Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Encounter Date",
+              "type": "encounterDatetime",
+              "id": "encDate",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "label": "Serial Number",
+              "type": "obs",
+              "id": "serialNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Client Number",
+              "type": "obs",
+              "id": "pncNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"
+              }
+            },
+            {
+              "label": "Timing of PNC Visit",
+              "type": "obs",
+              "id": "pncTimingVisit",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c7700c4f-3dc6-4270-ba0d-dd42c0557027",
+                "answers": [
+                  {
+                    "concept": "d0d97e19-4955-4dc8-93bb-d29084f48d4e",
+                    "label": "PNC at 6 days",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b86c8e18-2c4e-4b0f-b7a4-9442c6a90102",
+                    "label": "PNC at 6 weeks",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2fdad88f-23a2-45f1-8e16-618e28ea2d83",
+                    "label": "PNC at 6 months",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Family Planning, Counseling & Linkage",
+              "type": "obs",
+              "id": "clientLinkedForFpServices",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3d620422-0641-412e-ab31-5e45b98bc459",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Breast Examination",
+              "type": "obs",
+              "id": "breastStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "07c10f5c-17fd-4a7e-8d72-c2252f589da0",
+                "answers": [
+                  {
+                    "concept": "e4c6b70d-aaa6-490b-8edc-01c44d982cb2",
+                    "label": "FOM - Free Of Malignancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5e416f86-aaf1-4ae4-96f0-30226b9fdd5f",
+                    "label": "SS - Suspicious Of Malignancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ND - Not Done",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Nutrition Status",
+              "type": "obs",
+              "id": "nutritionStatus",
+              "questionOptions": {
+                "concept": "165050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dc9816bd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "N - Normal"
+                  },
+                  {
+                    "concept": "267a937a-f03c-487b-963c-1858f1382a5a",
+                    "label": "MU - Moderate Underweight"
+                  },
+                  {
+                    "concept": "a4543170-8155-41c7-b618-da6962b81f45",
+                    "label": "SU - Severe Underweight"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "INR No",
+              "type": "obs",
+              "required": "false",
+              "id": "inrNumber",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "b644c29c-9bb0-447e-9f73-2ae89496a709",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "nutritionStatus == 'dc9816bd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Father's Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Father's Name",
+              "type": "obs",
+              "required": "false",
+              "id": "fathersName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1594AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Father's Contact",
+              "type": "obs",
+              "required": "false",
+              "id": "fathersContact",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce17480-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Cervical Cancer Screening",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Cervical cancer screening method",
+              "type": "obs",
+              "id": "cervicalCancerScreeningMethod",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "bd0c20f2-39a5-4d82-ad69-742e7b67e447",
+                "answers": [
+                  {
+                    "concept": "159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HPV",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6155ab75-5849-4130-ba07-0bb9da59f595",
+                    "label": "VIA",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc8e17cc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pap Smear",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Cervical cancer screening status",
+              "type": "obs",
+              "id": "cervicalCancerScreeningStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d3ac6593-b782-4ba9-9ff9-f320e59c6417",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "03a2a1b7-f1c0-4655-a26b-9053e8c57fa4",
+                    "label": "Suspicious of Cancer",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5b3f1946-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Invasive Cancer",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Done",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Cervical cancer treatment given",
+              "type": "obs",
+              "id": "cervicalCancerScreeningTreatment",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6f1baf4c-1cdd-44a5-a48e-909391ed05f2",
+                "answers": [
+                  {
+                    "concept": "c09f8971-8bf4-4624-b9f2-a62bfea92c67",
+                    "label": "Thermocoagulation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "12f92268-8e92-4c4e-8b8d-53b81c1c361d",
+                    "label": "LEEP",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd80befb-70fc-4f90-a1ff-0c78c9752d67",
+                    "label": "Cryotherapy",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Cervical cancer screening treatment date",
+              "type": "obs",
+              "id": "cervicalCancerScreeningTreatmentDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "3ca531d9-2524-423e-a182-babb785b9d77",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "TB Screening",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Screened for TB",
+              "type": "obs",
+              "id": "screenedForTb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "81fa73db-eb74-4e1b-b259-be76658cbb10",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Client has presumptive TB",
+              "type": "obs",
+              "id": "clientHasPresumptiveTb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b80f04a4-1559-42fd-8923-f8a6d2456a04",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "screenedForTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Unit TB No.",
+              "type": "obs",
+              "id": "unitTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '2e2ec250-f5d3-4de7-8c70-a458f42441e6')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "clientHasPresumptiveTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Woman's HIV STK Kit Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Woman's Codes",
+              "type": "obs",
+              "id": "womanHivStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d5b0394c-424f-41db-bc2f-37180dcdbe74",
+                "answers": [
+                  {
+                    "concept": "86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a",
+                    "label": "NEG: Counselled, tested, and given HIV Negative results",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465",
+                    "label": "POS: Counselled, tested, and given HIV Positive results",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "INC: Counselled, tested, and given HIV Inconclusive results",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UKN: Not tested, and HIV status is Unknown",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Timing",
+              "type": "obs",
+              "id": "womanTiming",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "765ed989-9df6-4a7e-93dd-7a035d28e169",
+                "answers": [
+                  {
+                    "concept": "34b9dbdc-c448-4d9f-b4ef-c9de8046a62c",
+                    "label": "1st Time: Counselled and tested for the first time during this PNC Attendance",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9ab9f41f-09e5-4009-9b8f-d5dd7cd78473",
+                    "label": "Re-Attd: Known HIV status from a previous PNC Attendance not eligible for a re-test in PNC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6b5a2e89-1ffe-47c5-896a-6e0c1c876f3c",
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c2cf5f7c-b919-4a09-8f8e-811e976d4555",
+                    "label": "Known POS: Known HIV positive status who did not attend Antenantal from any health facility",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "TFV",
+              "type": "obs",
+              "id": "womanTfv",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "27ed8c9d-3101-4d07-9cfe-01ea082af0f5",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Woman given HIV STK",
+              "type": "obs",
+              "id": "givenStk",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "609c9aee-92b3-4e17-828a-efc7933f2ecf",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Partner HIV STK Result",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Partner's Age",
+              "type": "obs",
+              "required": "false",
+              "id": "partnerAge",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c"
+              },
+              "validators": []
+            },
+            {
+              "label": "Partner's Codes",
+              "type": "obs",
+              "id": "partnerHivStatus",
+              "required": "false",
+              "questionOptions": {
+                "concept": "62a37075-fc2a-4729-8950-b9fae9b22cfb",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a",
+                    "label": "NEG: Counselled, tested, and given HIV Negative results",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465",
+                    "label": "POS: Counselled, tested, and given HIV Positive results",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "INC: Counselled, tested, and given HIV Inconclusive results",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UKN: Not tested, and HIV status is Unknown",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner's TFV",
+              "type": "obs",
+              "id": "partnerTfv",
+              "required": "false",
+              "questionOptions": {
+                "concept": "03aad24f-b80f-4f17-af88-90b83592d044",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner's STK Result",
+              "type": "obs",
+              "id": "partnerStkResult",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e47d9ead-5b33-4315-9ea0-42669e4491b6",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(givenStk) || givenStk != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "ART Code (Woman)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ART Code",
+              "type": "obs",
+              "required": "false",
+              "id": "artCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a615f932-26ee-449c-8e20-e50a15232763",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "026e31b7-4a26-44d0-8398-9a41c40ff7d3",
+                    "label": "New: Initiated on ART for eMTCT on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2c000b41-f9d7-40c1-8de0-bce91dbae932",
+                    "label": "Known ART: Already on HAART for their own health prior to first ANC visit or before this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bbc63761-0741-4583-9396-a34d3a18601c",
+                    "label": "Refill: Revisiting HIV Positive client already on ART",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3ad7c615-ce7d-4823-93ab-78a9896ad85e",
+                    "label": "No Drugs",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Pre-ART No.",
+              "type": "obs",
+              "required": "false",
+              "id": "preArtNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9fc5bf9d-a79e-4548-9207-b2afbbeba796",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "artCode !== 'dc9b0596-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "ART Code (Partner)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ART Code",
+              "type": "obs",
+              "required": "false",
+              "id": "partnerArtCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "11dafd93-23c1-4b89-86e0-593e5f7ca386",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "026e31b7-4a26-44d0-8398-9a41c40ff7d3",
+                    "label": "New: Initiated on ART for eMTCT on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2c000b41-f9d7-40c1-8de0-bce91dbae932",
+                    "label": "Known ART: Already on HAART for their own health prior to first ANC visit or before this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bbc63761-0741-4583-9396-a34d3a18601c",
+                    "label": "Refill: Revisiting HIV Positive client already on ART",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3ad7c615-ce7d-4823-93ab-78a9896ad85e",
+                    "label": "No Drugs",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Pre-ART No",
+              "type": "obs",
+              "required": "false",
+              "id": "partnerPreArtNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "723c45bf-57eb-4865-b5c9-4a0ad6a36522",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "artCode !== 'dc9b0596-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "PrEP Screening / Eligibility",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Screened for PrEP",
+              "type": "obs",
+              "id": "prepScreening",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ba834a14-05bc-479e-93e6-53467799ec23",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Eligible for PrEP",
+              "type": "obs",
+              "id": "prepEligible",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7250cfe9-91dd-47dc-b715-c4d67c39e634",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "prepScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "CD4 Results, CD4 Date",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "CD4",
+              "type": "obs",
+              "id": "cd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
+            },
+            {
+              "label": "Date CD4 Sample Collected",
+              "type": "obs",
+              "required": "false",
+              "id": "dateStarted",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c')).then(obs => obs?.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "WHO Clinical Stage",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "WHO Clinical Stage",
+              "type": "obs",
+              "required": "true",
+              "id": "wHOClinicStage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcdff274-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage 4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Stage T4",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Viral Load Monitoring",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Eligible for Viral Load",
+              "type": "obs",
+              "id": "eligibleForVl",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ad072e53-792b-49e7-9626-f3532dc107e8",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "womanHivStatus !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
+            },
+            {
+              "label": "Date of Sample Collection",
+              "type": "obs",
+              "required": "false",
+              "id": "vlDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "eligibleForVl !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Viral Load",
+              "type": "obs",
+              "id": "viralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "womanInitialResult !== '25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Diagnosis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Diagnosis",
+              "type": "obs",
+              "id": "diagnosis",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0de0b715-f3ef-4a91-a145-09509112b693"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Treatment(s) Offered",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Routine Medication",
+              "type": "obs",
+              "id": "routineMedication",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "673d99cc-79a9-45a6-ba84-ecd3e9e793ef",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Routine Administration",
+              "type": "obs",
+              "id": "routineAdministration",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dc9b5b8f-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "315825e8-8ba4-4551-bdd1-aa4e02a36639",
+                    "label": "Iron",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8c346216-c444-4528-a174-5139922218ed",
+                    "label": "Folic Acid",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d12abd7f-c90d-4798-9240-0f2f81977183",
+                    "label": "Cotrimoxazole (CTX)",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Treatment(s) given",
+              "type": "obs",
+              "id": "otherTreatmentGiven",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Infant Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Status of the Baby",
+              "type": "obs",
+              "id": "babyStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dd8a2ad9-16f6-44db-82d7-87d6eef14886",
+                "answers": [
+                  {
+                    "concept": "9d9e6b5a-8b5d-4b8c-8ab7-9fdabb279493",
+                    "label": "Alive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9d2ff8e6-c6e9-4d62-a103-1bda37cef8c8",
+                    "label": "Dead",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Age (Weeks)",
+              "type": "obs",
+              "required": "false",
+              "id": "babyAgeWks",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "274d8abf-f41d-4dce-a496-8c949d362466",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Infant Vitals",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Weight (Kg)",
+              "type": "obs",
+              "required": "false",
+              "id": "infantWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "94e4aeea-84d0-4207-aacb-ce38fe8e109c",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Weight for Age (Z-Score)",
+              "type": "obs",
+              "required": "false",
+              "id": "weightForAge",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "162584AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Nutrition Status",
+              "type": "obs",
+              "id": "nutritionStatus",
+              "questionOptions": {
+                "concept": "165050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dc9816bd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "N - Normal"
+                  },
+                  {
+                    "concept": "267a937a-f03c-487b-963c-1858f1382a5a",
+                    "label": "MU - Moderate Underweight"
+                  },
+                  {
+                    "concept": "a4543170-8155-41c7-b618-da6962b81f45",
+                    "label": "SU - Severe Underweight"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "INR No",
+              "type": "obs",
+              "required": "false",
+              "id": "inrNumber",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "40d04ad1-babf-426f-85d7-e6ba156919bd",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "nutritionStatus == 'dc9816bd-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Infant Diagnosis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Infant Diagnosis",
+              "type": "obs",
+              "id": "infantDiagnosis",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0de0b715-f3ef-4a91-a145-09509112b693"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Infant Feeding Options / IYCF / Maternal Nutrition Counseling",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Infant Feeding Method",
+              "type": "obs",
+              "id": "infantFeedingMethod",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "151283c0-8ef7-442f-8b03-3d7382a9d9cd",
+                "answers": [
+                  {
+                    "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "EBF - Exclusive Breastfeeding"
+                  },
+                  {
+                    "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                    "label": "RF - Replacement Feeding (never breastfed)"
+                  },
+                  {
+                    "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MF - Mixed Feeding (<6 months)"
+                  },
+                  {
+                    "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                    "label": "CF - Complementary Feeding (>6 months)"
+                  },
+                  {
+                    "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                    "label": "W - Weaning"
+                  },
+                  {
+                    "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                    "label": "NLB - No Longer Breastfeeding"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "IYCF counselling",
+              "type": "obs",
+              "id": "iycfCounseling",
+              "questionOptions": {
+                "concept": "5d993591-9334-43d9-a208-11b10adfad85",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Exclusive Breastfeeding Counseling"
+                  },
+                  {
+                    "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                    "label": "Replacement Feeding or infant formular feeding counseling"
+                  },
+                  {
+                    "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Mixed Feeding Counseling"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Maternal Nutrition Counseling",
+              "type": "obs",
+              "id": "maternalNutritionCounseling",
+              "questionOptions": {
+                "concept": "af7dccfd-4692-4e16-bd74-5ac4045bb6bf",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "47a2d770-5654-42b8-93c7-ddcb2a04bf27",
+                    "label": "ODD - Optimal/Dietary Diversity"
+                  },
+                  {
+                    "concept": "79b590d1-5fc2-4ea3-bc82-206e41769741",
+                    "label": "IFA - iron/folic acid"
+                  },
+                  {
+                    "concept": "46b842e-e3c3-4699-84a9-8ec6ddb9c475",
+                    "label": "MMS - Multiple Micronutrient Supplementation"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Immunization Counseling and Linkage, Other Treatment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Counseled and linked to Immunization Services",
+              "type": "obs",
+              "id": "immunizationCounselingAndLinkage",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "23768adf-3e64-4c59-88e4-082ab9c3d93b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Specify other treatments offered to the baby",
+              "type": "obs",
+              "id": "otherInfantTreatment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "59560ede-43e2-4e56-a47e-0f876779f0e1",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Referral Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Referred to clinic/facility",
+              "type": "obs",
+              "id": "clinicReferred",
+              "questionOptions": {
+                "concept": "2b00ebe6-edfd-4290-8b8d-942554e3c30d",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "6abc57f2-3718-42f6-84c4-4f71e921d590",
+                    "label": "Infant and Young child clinic"
+                  },
+                  {
+                    "concept": "37549919-5934-448e-b110-cc7868e73ff2",
+                    "label": "HIV chronic care"
+                  },
+                  {
+                    "concept": "e646fcf7-aaf2-4b04-a24c-9b4506bf634f",
+                    "label": "Community Services"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others (Specify)"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other referral clinic",
+              "type": "obs",
+              "id": "otherReferralLocation",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "clinicReferred !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "PSS Group enrollment",
+              "type": "obs",
+              "id": "pssGroupEnrollment",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5d7ca9e8-ac1c-4550-bd44-3457b9a754d8",
+                "answers": [
+                  {
+                    "concept": "3af0aae4-4ea7-489d-a5be-c5339f7c5a77",
+                    "label": "FSG",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a02f9bdc-1ae2-4cfa-8023-1f534a9e906d",
+                    "label": "FSG√",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0c0edbd7-ce81-48fd-8f56-ab3aa4406f8d",
+                    "label": "FSGK",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Enrolled at MBCP",
+              "type": "obs",
+              "id": "mbcpEnrolled",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c0701e58-8f29-47cb-9f6e-3b578c3b4444",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

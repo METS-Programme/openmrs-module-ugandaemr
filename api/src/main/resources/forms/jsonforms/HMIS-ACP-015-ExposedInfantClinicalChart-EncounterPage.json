@@ -1,0 +1,1101 @@
+{
+  "name": "HMIS ACP 015 - Exposed Infant Card Encounter Form",
+  "version": "4.1.0",
+  "description": "Captures encounter details for infants born to HIV positive mothers",
+  "encounter": "EID Card - Encounter",
+  "encounterType": "4345dacb-909d-429c-99aa-045f2db77e2b",
+  "uuid": "6f6b4802-7642-4226-84dc-ea7db01924b6",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Infant Follow Up Information",
+      "sections": [
+        {
+          "label": "Appointment Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Visit Number",
+              "type": "obs",
+              "id": "visitNumber",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "046b5fd4-3840-409b-9edb-5e05f2d81bd6",
+                "answers": [
+                  {
+                    "concept": "560b0058-eb8a-4afc-94c3-4c27e94e2b9e",
+                    "label": "Visit 1"
+                  },
+                  {
+                    "concept": "14c0f4ed-5d97-49bd-8842-21f32c59b6c2",
+                    "label": "Visit 2"
+                  },
+                  {
+                    "concept": "fd7af77c-e7c4-4fc9-8e66-d0b16ae7d04b",
+                    "label": "Visit 3"
+                  },
+                  {
+                    "concept": "b56c620a-4205-4e54-b97a-1dc2bc66cded",
+                    "label": "Visit 4"
+                  },
+                  {
+                    "concept": "87e1a42a-f239-4396-98af-d022a302231c",
+                    "label": "Visit 5"
+                  },
+                  {
+                    "concept": "40087a4b-84af-4acb-be9c-690359016ded",
+                    "label": "Visit 6"
+                  },
+                  {
+                    "concept": "9f951a74-941b-4951-ad54-e138bc394a06",
+                    "label": "Visit 7"
+                  },
+                  {
+                    "concept": "714ad317-99a6-4363-b0ba-b7e6cc6213cb",
+                    "label": "Visit 8"
+                  },
+                  {
+                    "concept": "8d161cb8-ec55-43b9-8d64-9493ac1ed3b5",
+                    "label": "Visit 9"
+                  },
+                  {
+                    "concept": "af4c8109-8938-44ae-a9a2-074cbb23de22",
+                    "label": "Visit 10"
+                  },
+                  {
+                    "concept": "63a55799-0236-4f68-a75e-69adf516ac08",
+                    "label": "Visit 11"
+                  },
+                  {
+                    "concept": "c1ff67d1-99dd-4c15-95b5-d5e052314bc9",
+                    "label": "Visit 12"
+                  },
+                  {
+                    "concept": "d8327788-2898-4f6c-bf26-d88fd2b82fcb",
+                    "label": "Visit 13"
+                  },
+                  {
+                    "concept": "052edbb1-714c-43e4-9f1b-e046284667fe",
+                    "label": "Visit 14"
+                  },
+                  {
+                    "concept": "4de8ee51-f3e6-42fb-84e6-7429a21afb91",
+                    "label": "Visit 15"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of Appointment",
+              "type": "obs",
+              "id": "dateOfAppointment",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "72339c21-ed50-450d-8adb-20ae62f15265",
+                "answers": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "Date of Visit",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Next Appointment Date",
+              "type": "obs",
+              "id": "nextAppointmentDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dcac04cf-30ab-102d-86b0-7a5022ba4115",
+                "answers": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "HIV Test, Infant Feeding, Immunisation Codes",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV Test",
+              "type": "obs",
+              "id": "hivTest",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ddcd8aad-9085-4a88-a411-f19521be4785",
+                "answers": [
+                  {
+                    "concept": "57c357ea-b4de-491e-99aa-962a62ff368f",
+                    "label": "PCR Test"
+                  },
+                  {
+                    "concept": "395b3f79-d807-436d-92a7-908abcc1fe70",
+                    "label": "Antibody Test"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Infant Feeding Code",
+              "type": "obs",
+              "id": "infantFeedingCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "151283c0-8ef7-442f-8b03-3d7382a9d9cd",
+                "answers": [
+                  {
+                    "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "EBF - Exclusive Breast Feeding"
+                  },
+                  {
+                    "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                    "label": "RF - Replacement Feeding (never breastfed)"
+                  },
+                  {
+                    "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MF - Mixed Feeding (below 6 months)"
+                  },
+                  {
+                    "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                    "label": "CF - Complimentary Feeding (above 6 months)"
+                  },
+                  {
+                    "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                    "label": "W - Wean from breastfeeding"
+                  },
+                  {
+                    "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                    "label": "NLB - No Longer Breastfeeding"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Immunisation Codes",
+              "type": "obs",
+              "id": "immunisationCodes",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "c74ce384-60ce-4740-9bdd-9c2a673b5a7d",
+                "answers": [
+                  {
+                    "concept": "dc8e1be9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "BCG",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "ac86e9ac-20b8-486c-b9de-a4b53197a8ef",
+                    "label": "Polio 0",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "4c46cbd8-b1e7-4470-814d-417ec6c168fc",
+                    "label": "Polio 1",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "6df1c6b8-7083-419d-be97-712f59ff6737",
+                    "label": "Polio 2",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "9cf81b09-7781-4bb7-bde0-9543a5ab9e45",
+                    "label": "Polio 3",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "1422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "IPV",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "6a726010-a6f2-4caf-9f09-dcbde1a5073c",
+                    "label": "DPT- HepB + Hib 1",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "bca18e0d-7c1b-4fca-a742-f5ad26b4984b",
+                    "label": "DPT- HepB + Hib 2",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "62d87122-0a08-4e04-b57c-7e1b2f821854",
+                    "label": "PCV 1",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "b0b23e6f-e0a9-41d2-85f6-541d21da4683",
+                    "label": "PCV2",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "e47e2908-3fd1-4e05-9cf8-9c357bcc4a7f",
+                    "label": "PCV3",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "162346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rotavirus 1",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "162347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rotavirus 2",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "b29973ee-7949-4355-92c0-3e9780a72caf",
+                    "label": "Measles 1 (MR1)",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "9d90d594-1999-41b7-b111-ec7c5c56f48c",
+                    "label": "Measles 2 (MR2)",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "680f7f8d-eac6-44b4-8899-101fa2c4f873",
+                    "label": "Vitamin A",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "65c568ba-cd9b-4acf-9a0a-bdca2f15b989",
+                    "label": "De-Worming",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(immunisationCodes, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Done (specify which ones)"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Immunisation Code",
+              "type": "obs",
+              "id": "immunisationCodesOtherSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "d87dae7a-22bc-4f68-83cd-fee1d3b1664b"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(immunisationCodes) || immunisationCodes != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Growth Measures, HIV Clinical Assessment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Height (cm)",
+              "type": "obs",
+              "id": "height",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Weight (Kg)",
+              "type": "obs",
+              "id": "weight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Z-Scores",
+              "type": "obs",
+              "id": "zscores",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "01b61dfb-7be9-4de5-8880-b37fefc253ba",
+                "answers": [
+                  {
+                    "concept": "35a89dcf-d35c-4fc6-8d51-e958b666a0f3",
+                    "label": "Z-Score1 (< -3)"
+                  },
+                  {
+                    "concept": "3709d446-3017-4c19-a1af-2da64975928b",
+                    "label": "Z-Score2 (-3_<-1)"
+                  },
+                  {
+                    "concept": "11b62d4d-b879-4727-8e26-9bced62269db",
+                    "label": "Z-Score3 (-1_1)"
+                  },
+                  {
+                    "concept": "ab51899b-e5b9-4b20-965c-fa0d3d2ff6fb",
+                    "label": "Z-Score4 (>1_3)"
+                  },
+                  {
+                    "concept": "73b79d62-17d1-4958-93cb-0f22760db69e",
+                    "label": "Z-Score5 (>3)"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "MUAC (cm)",
+              "type": "obs",
+              "id": "muac",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            },
+            {
+              "label": "Clinical Assessment for Signs and Symptoms of HIV",
+              "type": "obs",
+              "id": "clinicialAssessment",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "f0826902-a6d1-4abb-9783-1aeec0dea9d3",
+                "answers": [
+                  {
+                    "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
+                    "label": "WELL - No Clinical Signs and Symptoms",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "c14a4ba0-e923-4447-9571-e718516eeca2",
+                    "label": "LN - Palpable Lymph Nodes in more than one place",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WL - Weight loss",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "6f57d2e6-dc35-4fb8-a2c4-cff0a44e7fa9",
+                    "label": "G - Poor Growth (Height)",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dcddd7bf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "F - Fever",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc6625ec-30ab-102d-86b0-7a5022ba4115",
+                    "label": "C - Coughing",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc54ef9a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PNEU - Pneumonia",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dcde7e49-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OT - Oral Thrush",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "06188d96-17ec-490a-b5af-72ceefe4bc39",
+                    "label": "ADR - Acute Diarrhea",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "2061a1ad-00f8-45dc-9b54-ea1c97593608",
+                    "label": "EI - Ear Infection",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "f56e9066-af6c-4b95-bb6d-8b9c4259470e",
+                    "label": "RDR - Recurrent Diarrhea",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "RASH - Skin Rash",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "5018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PDR - Persistent Diarrhea",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(clinicialAssessment, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "O - Others Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Clinical Assessment",
+              "type": "obs",
+              "id": "otherSpecifyAsses",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4726ecef-06c4-476c-9ee8-42cd7c7b43a0"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(clinicialAssessment) || clinicialAssessment != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Developmental Assessment for Evidence of Delay",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ECD messaging and parenting given",
+              "type": "obs",
+              "id": "developmentAssessment",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "f2915ec4-31ea-49ac-881b-fb871c5ecc9a",
+                "answers": [
+                  {
+                    "concept": "da194338-ca62-43b1-99fa-ba464264ec9d",
+                    "label": "Bonding attachment given"
+                  },
+                  {
+                    "concept": "10f8eb9a-e08f-45bb-9440-57f202945564",
+                    "label": "Basics of early childhood development"
+                  },
+                  {
+                    "concept": "14f58460-1630-4030-97d1-b834f45d43b2",
+                    "label": "Early Learning Behaviour management"
+                  },
+                  {
+                    "concept": "fb31bce4-afaf-46eb-b717-596c4e285813",
+                    "label": "Keep children safe and healthy"
+                  },
+                  {
+                    "concept": "e4b603fb-b28e-46dc-9bfa-50740413de6d",
+                    "label": "PMTCT messages"
+                  },
+                  {
+                    "concept": "10fe8984-3ba7-4aa2-912c-d90b694b6527",
+                    "label": "Early learning and responsiveness"
+                  },
+                  {
+                    "concept": "a64fcf79-7556-42d6-b7a3-765afd313e35",
+                    "label": "Safe and violence prevention"
+                  },
+                  {
+                    "concept": "4dd98d1e-4714-11ee-be56-0242ac120002",
+                    "label": "Health Education"
+                  },
+                  {
+                    "concept": "d068f6ed-2042-4b0b-a761-0f45ef67f035",
+                    "label": "Referral and linkages"
+                  },
+                  {
+                    "concept": "f7850b37-bad1-4a3d-9987-f31d6bda93c2",
+                    "label": "Economic empowerment"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Development Milestones",
+              "type": "obs",
+              "id": "developmentMilestones",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "e10fdb37-c7bf-4d71-b588-dc68f011596d",
+                "answers": [
+                  {
+                    "concept": "fa35555e-ac36-4527-b64c-64838aad9a73",
+                    "label": "SMI - Smiling"
+                  },
+                  {
+                    "concept": "d871741b-4db8-4df0-853e-313ec10249ab",
+                    "label": "ST - Stand"
+                  },
+                  {
+                    "concept": "b0f2a620-e165-4f9a-8973-7133cd5d67bf",
+                    "label": "HEAD - Controlling the Head"
+                  },
+                  {
+                    "concept": "39f3e6da-d869-49c0-92a2-5ed3aaa0c93b",
+                    "label": "TOB - Transferring objects from hand to hand"
+                  },
+                  {
+                    "concept": "162dc60b-7e72-4d11-9177-9bafd448a33c",
+                    "label": "COG - Cognition (point to 3 familiar objects)"
+                  },
+                  {
+                    "concept": "0fd8b8bf-7727-4bb5-b54d-f2642cfab916",
+                    "label": "ROLL - Rolling Over"
+                  },
+                  {
+                    "concept": "02c7d757-937f-4988-9946-8f658865f6be",
+                    "label": "SIT - Sitting"
+                  },
+                  {
+                    "concept": "8d8d4694-5998-41e8-a9a9-aeccd3c54027",
+                    "label": "W - Walk"
+                  },
+                  {
+                    "concept": "91d389c5-18b3-43b6-8410-2094359418a3",
+                    "label": "CRA - Crawl"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Head Circumference (cm)",
+              "type": "obs",
+              "id": "headCircumference",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5314AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Prophylaxis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Cotrim",
+              "type": "obs",
+              "id": "cotrim",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c3d744f6-00ef-4774-b9a7-d33c58f5b014",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "NVP",
+              "type": "obs",
+              "id": "nvp",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7148f054-fa36-4746-8791-63ea32c06e1c",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Refill of ART for Mother",
+              "type": "obs",
+              "id": "refillOfArt",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "958de62d-c1ae-4262-bf19-14671b3094a2",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Medication/Care Items",
+              "type": "obs",
+              "id": "otherMedication",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dc9b5b8f-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc906386-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Amitryptiline",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc73cb3e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Amoxil",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dccc0ed1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Antimalarial medications",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc900d34-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Brufen",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc873807-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ciprofloxacin",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc903ab0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cloxacilin",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "d12abd7f-c90d-4798-9240-0f2f81977183",
+                    "label": "Ctx given to mother",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc65c7d5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Dapsone",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc65ebb9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Doxycycline",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc97f1ca-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ethizide",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc6a1f48-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Flagyl Syrup",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc875c1d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fluconazole",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "8c346216-c444-4528-a174-5139922218ed",
+                    "label": "Folic Acid given",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc73f75a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ilotycin",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "315825e8-8ba4-4551-bdd1-aa4e02a36639",
+                    "label": "Iron Given",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc824720-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Isoniazid",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc6a3dba-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Mebendazole",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc7c5bd2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MVI",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc904bf6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Nizol Tabs",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "8531d1a7-9793-4c62-adab-f6716cf9fabb",
+                    "label": "Nutrition Support andInfant Feeding",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc902b63-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Nystatin Drops",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "9b38d1cf-88dd-4a92-94b8-0c5423791a08",
+                    "label": "P01BF01",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc78412b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Paraphimosis",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc9897e7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Rifafour",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "8ba0d2c5-9eaf-4388-bc94-49b42e4104de",
+                    "label": "Rifampicin Isoniazid and Ethambutol",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "37f2389b-55e8-441a-bd59-cd50f25553c3",
+                    "label": "Rifampicin Isoniazid Pyrazinaimde Ethambutol and Streptomycin",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc87f4ad-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Rifater",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc9b5fcb-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Rifinah",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc901e78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Septrin Syrup",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc751c7d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Vitaming B Complex",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  },
+                  {
+                    "concept": "dc882826-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Zyrtec",
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(otherMedication, 'dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+                    }
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Medication",
+              "type": "obs",
+              "id": "otherMedicationSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "b04eaf95-77c9-456a-99fb-f668f58a9386"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(otherMedication) || otherMedication != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "OVC",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "OVC Screening",
+              "type": "obs",
+              "id": "screening",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2f9c9f3-3e46-456c-9f17-7bb23c473f1b",
+                "answers": [
+                  {
+                    "concept": "6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce",
+                    "label": "1 - No Signs"
+                  },
+                  {
+                    "concept": "f6e863c5-1e09-445a-a714-fe4a2255ae64",
+                    "label": "2 - Had less than one meal a day"
+                  },
+                  {
+                    "concept": "0251af24-dc19-4d68-a2bb-4b3f3867b949",
+                    "label": "3 - Not in School"
+                  },
+                  {
+                    "concept": "8595afed-96a0-4f3e-b88d-acc4ca81d03e",
+                    "label": "4 - Malnourished"
+                  },
+                  {
+                    "concept": "e1efe10b-50c4-43b1-b04d-01f81e19c215",
+                    "label": "5 - Care giver unemployed/casual labourer"
+                  },
+                  {
+                    "concept": "f56e8d46-5b2f-488b-861a-94a89d16adf6",
+                    "label": "6 - Non-suppressed viral load"
+                  },
+                  {
+                    "concept": "9ea56d9a-818b-4700-944a-5110c7248379",
+                    "label": "7 - Missed Appointment in the last 3 months"
+                  },
+                  {
+                    "concept": "32e3fc5e-cfb6-49f5-949a-77e6f191b437",
+                    "label": "8 - Has signs of abuse, explain or neglect"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "OVC Assessment",
+              "type": "obs",
+              "id": "ovcAssessment",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cb07b087-effb-4679-9e1c-5bcc506b5599",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not yet Assessed"
+                  },
+                  {
+                    "concept": "513d3a81-68d2-44f4-88a3-8dc74b5e1249",
+                    "label": "Assessed, Eligible not yet enrolled"
+                  },
+                  {
+                    "concept": "8578c43e-bb81-4adf-a4a5-389a9c716a49",
+                    "label": "Assessed and Not Eligible"
+                  },
+                  {
+                    "concept": "52aed7c2-ef3d-4220-8302-78b841f6ff24",
+                    "label": "Enrolled"
+                  },
+                  {
+                    "concept": "9669522d-d96a-411d-a534-5b13a7d65fc3",
+                    "label": "Graduated"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Referred",
+              "type": "obs",
+              "id": "referred",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7b246acf-d518-4b51-828c-d69593f3d66b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "OVC No",
+              "type": "obs",
+              "id": "ovcNumber",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "caffcc16-5a4d-4adc-a113-9a819c9b2c52",
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "ovcAssessment !== '52aed7c2-ef3d-4220-8302-78b841f6ff24'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Action(s) Taken",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ACTION(s) TAKEN if any care indicators are a concern",
+              "type": "obs",
+              "id": "actionTaken",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "7ac3b253-b25b-44fd-b2df-e255966a61bc"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

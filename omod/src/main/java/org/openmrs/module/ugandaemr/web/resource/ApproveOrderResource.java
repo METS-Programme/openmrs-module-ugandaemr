@@ -1,11 +1,9 @@
 package org.openmrs.module.ugandaemr.web.resource;
 
-import org.junit.Assert;
 import org.openmrs.Location;
 import org.openmrs.Order;
 import org.openmrs.api.OrderService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.web.customdto.ApproveOrder;

@@ -1,7 +1,11 @@
 package org.openmrs.module.ugandaemr.api.deploy.bundle;
 
+import org.openmrs.Location;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.metadatadeploy.descriptor.LocationDescriptor;
 import org.openmrs.module.ugandaemr.metadata.core.*;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
+
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 
 import org.openmrs.module.ugandaemr.metadata.core.location.*;
@@ -92,8 +96,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.CHILD_HEALTH_ENCOUNTER);
 
 
-
-
         install(EncounterTypes.SMC_FOLLOWUP);
         install(EncounterTypes.LAB_REQUEST_ENCOUNTER);
         install(EncounterTypes.INTER_FACILITY_LINKAGE_ENCOUNTER);
@@ -140,45 +142,52 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(LocationTags.QUEUE_ROOM);
 
         log.info("Installing Departments");
-        install(LocationDepartments.IPD);
-        install(LocationDepartments.OPD);
-        install(LocationDepartments.RADIOLOGY);
+        installLocation(LocationDepartments.IPD);
+        installLocation(LocationDepartments.OPD);
+        installLocation(LocationDepartments.RADIOLOGY);
 
         log.info("Installing Clinics");
-        install(LocationClinic.TB_CLINIC);
-        install(LocationClinic.ART_CLINIC);
-        install(LocationClinic.MCH_CLINIC);
-        install(LocationClinic.OPD_CLINIC);
-        install(LocationClinic.COVID19_CLINIC);
+        installLocation(LocationClinic.TB_CLINIC);
+        installLocation(LocationClinic.ART_CLINIC);
+        installLocation(LocationClinic.MCH_CLINIC);
+        installLocation(LocationClinic.OPD_CLINIC);
+        installLocation(LocationClinic.COVID19_CLINIC);
 
         log.info("Installing Wards");
-        install(LocationWard.ISOLATION_WARD);
-        install(LocationWard.PEAD_WARD);
-        install(LocationWard.PRIVATE_WAR);
-        install(LocationWard.TB_ARD);
-        install(LocationWard.GENERAL_WARD);
-        install(LocationWard.GENERAL_MEN_WARD);
-        install(LocationWard.GENERAL_WOMEN_WARD);
-        install(LocationWard.GENERAL_WARD);
-        install(LocationWard.CAUSALITY_WARD);
+        installLocation(LocationWard.ISOLATION_WARD);
+        installLocation(LocationWard.PEAD_WARD);
+        installLocation(LocationWard.PRIVATE_WAR);
+        installLocation(LocationWard.TB_ARD);
+        installLocation(LocationWard.GENERAL_WARD);
+        installLocation(LocationWard.GENERAL_MEN_WARD);
+        installLocation(LocationWard.GENERAL_WOMEN_WARD);
+        installLocation(LocationWard.GENERAL_WARD);
+        installLocation(LocationWard.CAUSALITY_WARD);
 
 
         log.info("Installing Service Areas");
-        install(LocationServiceArea.RECEPTION);
-        install(LocationServiceArea.TRIAGE);
-        install(LocationServiceArea.COUNSELING_CENTER);
+        installLocation(LocationServiceArea.RECEPTION);
+        installLocation(LocationServiceArea.TRIAGE);
+        installLocation(LocationServiceArea.COUNSELING_CENTER);
 
         log.info("Installing Supportive Service areas");
-        install(LocationSupportService.PHARMACY);
-        install(LocationSupportService.LABORATORY);
-        install(LocationSupportService.MAIN_THEATER);
+        installLocation(LocationSupportService.PHARMACY);
+        installLocation(LocationSupportService.LABORATORY);
+        installLocation(LocationSupportService.MAIN_THEATER);
 
-        install(LocationOther.UNKNOWN);
-        install(LocationOther.Community);
+        installLocation(LocationOther.UNKNOWN);
+        installLocation(LocationOther.Community);
 
 
         // Install Encounter Role
-        install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
-        install(encounterRole(EncounterRoles.PHARMACIST_NAME,EncounterRoles.PHARMACIST_DESCRIPTION,EncounterRoles.PHARMACIST_UUID));
+        install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME, EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION, EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+        install(encounterRole(EncounterRoles.PHARMACIST_NAME, EncounterRoles.PHARMACIST_DESCRIPTION, EncounterRoles.PHARMACIST_UUID));
+    }
+
+    private void installLocation(LocationDescriptor locationDescriptor) {
+        Location location = Context.getLocationService().getLocationByUuid(locationDescriptor.uuid());
+        if (location == null) {
+            install(locationDescriptor);
+        }
     }
 }

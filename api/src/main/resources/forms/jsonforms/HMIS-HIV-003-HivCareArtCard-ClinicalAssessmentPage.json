@@ -1,6 +1,6 @@
 {
   "name": "HMIS 003 HIV Care ART Card - Clinical Assessment",
-  "version": "4.1.1",
+  "version": "4.1.0",
   "description": "A visit for a client for clinical assessment",
   "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
   "encounter": "ART Card - Encounter",
@@ -13,34 +13,6 @@
     {
       "label": "HIV CARE/ART CARD - CLINICAL ASSESSMENT",
       "sections": [
-        {
-          "label": "Represented",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Is client represented",
-              "type": "obs",
-              "required": "true",
-              "id": "clientRepresented",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "51409d82-b2c0-11ed-afa1-0242ac120002",
-                "defaultValue": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
-                  }
-                ]
-              },
-              "validators": []
-            }
-          ]
-        },
         {
           "label": "NCDs (Non-communicable Diseases) Status",
           "isExpanded": "true",

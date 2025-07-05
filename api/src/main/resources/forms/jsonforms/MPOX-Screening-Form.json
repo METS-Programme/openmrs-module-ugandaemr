@@ -1,0 +1,504 @@
+{
+  "name": "MPOX Screening Form",
+  "version": "4.1.0",
+  "description": "MPOX Screening Form",
+  "encounterType": "09478ad9-ccc1-4cbe-9e55-473447984158",
+  "encounter": "Monkey Pox Screening",
+  "uuid": "ba45cff9-b9d5-41d9-beae-0ab78e747eef",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "MPOX Screening Form",
+      "sections": [
+        {
+          "label": "PRIMARY SCREENING",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Patient has a rash?",
+              "type": "obs",
+              "required": true,
+              "id": "patientRash",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "IMO ProblemIT",
+                    "value": "43543"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "AMPATH",
+                    "value": "5180"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "AMPATH",
+                    "value": "512"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "PIH",
+                    "value": "512"
+                  },
+                  {
+                    "relationship": "NARROWER-THAN",
+                    "type": "SNOMED NP",
+                    "value": "247441003"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "SNOMED CT",
+                    "value": "271807003"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "AMPATH",
+                    "value": "5950"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "CIEL",
+                    "value": "512"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "ICD-11-WHO",
+                    "value": "ME66.6 (Rash)"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "ICD-10-WHO",
+                    "value": "R21"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes (Criteria A)"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No (Criteria B)"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Additional symptoms",
+              "type": "obs",
+              "required": false,
+              "id": "additionalSymptom",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcddaf94-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Headache"
+                  },
+                  {
+                    "concept": "dcd4d9c7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "muscle pain/body aches"
+                  },
+                  {
+                    "concept": "dc658ee1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Joint pain"
+                  },
+                  {
+                    "concept": "120749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chest pain"
+                  },
+                  {
+                    "concept": "dc8dd1a1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Chills or sweats"
+                  },
+                  {
+                    "concept": "dc666657-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Conjunctivitis (eye symptoms)"
+                  },
+                  {
+                    "concept": "dcddab4c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Profound weakness, or fatigue"
+                  },
+                  {
+                    "concept": "dcde88c8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Acute onset of fever"
+                  },
+                  {
+                    "concept": "dcdebc02-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Mucosal lesions (mouth, vaginal, penile,anorectal lesions/ulcers)"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientRash) || patientRash != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": " History of exposure to a probable or confirmed case of MPOX in the 21 days before symptom onset.",
+              "type": "obs",
+              "required": true,
+              "id": "riskExpossure",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c0d8313a-117a-4375-ad93-3a792a0d3639",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientRash)"
+              }
+            },
+            {
+              "label": "Has had multiple and/or casual sexual partners in the 21 days before symptom onset.",
+              "type": "obs",
+              "required": true,
+              "id": "multipleSexualParts",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "94f24589-fa6f-414e-a45c-63cfc1e2dc73",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientRash)"
+              }
+            },
+            {
+              "label": "History of international travel/cross-border movement within the last 21 days before the onset of symptoms",
+              "type": "obs",
+              "required": true,
+              "id": "travelDetails",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "8239eb9c-5bae-4f80-88ea-5003e7d0219e",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientRash)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "SECONDARY SCREENING",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Cardinal MPOX signs: any one of the following ",
+              "type": "obs",
+              "required": false,
+              "id": "cardinalMPOX",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "d67af613-293a-4d4a-9606-37792b3423e5",
+                "answers": [
+                  {
+                    "concept": "ef14be57-94ea-41cc-bd80-ef8a99b06c6e",
+                    "label": "Lesions in one stage of development"
+                  },
+                  {
+                    "concept": "d97e1649-7078-4a8c-b0a5-bf63dc0ce0bc",
+                    "label": "Lesions more dense on face"
+                  },
+                  {
+                    "concept": "dc689047-30ab-102d-86b0-7a5022ba4115",
+                    "label": "LYMPHADENOPATHY"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(riskExpossure) || riskExpossure != 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Co-morbid conditions",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ART No",
+              "type": "patientIdentifier",
+              "required": false,
+              "id": "artNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(myValue)"
+              }
+            },
+            {
+              "label": "Most recent Viral Load Qualitative",
+              "type": "control",
+              "id": "recentVL",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dca12261-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(artNumber)"
+              }
+            },
+            {
+              "label": "Most recent Viral Load ",
+              "type": "control",
+              "required": false,
+              "id": "recentHivVL",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115'))"
+                }
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(artNumber)"
+              }
+            },
+            {
+              "label": "Does clients have other co-morbidities",
+              "type": "obs",
+              "required": false,
+              "id": "otherCom",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "9af7f2e7-9fc2-4e53-81a5-9f76f0676282",
+                "answers": [
+                  {
+                    "concept": "6c372f79-a43d-49d0-a4de-3859df4e3752",
+                    "label": "Diabetes"
+                  },
+                  {
+                    "concept": "117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hypertension"
+                  },
+                  {
+                    "concept": "116030AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cancer"
+                  },
+                  {
+                    "concept": "dc6527eb-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Tuberculosis"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(cardinalMPOX)"
+              }
+            },
+            {
+              "label": "Other Specify",
+              "type": "obs",
+              "required": false,
+              "id": "otherSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "PIH Malawi",
+                    "value": "6408"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "org.openmrs.module.mdrtb",
+                    "value": "OTHER"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "CIEL",
+                    "value": "5622"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "SNOMED MVP",
+                    "value": "56221000105001"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "PIH",
+                    "value": "5622"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "AMPATH",
+                    "value": "5622"
+                  },
+                  {
+                    "relationship": "NARROWER-THAN",
+                    "type": "SNOMED NP",
+                    "value": "74964007"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(otherCom) || otherCom != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "STI symptoms",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "STI Symptoms",
+              "type": "obs",
+              "required": false,
+              "id": "STIsymptoms",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "4337ee67-c730-4fbc-83e7-38a4226b78b9",
+                "answers": [
+                  {
+                    "concept": "ec12ee96-fa73-42d4-ba72-111027929145",
+                    "label": "Anogenital Bleeding"
+                  },
+                  {
+                    "concept": "7b2d6ad7-f526-44e3-9d28-38bb1ad83c99",
+                    "label": "Anogenital blisters/sores"
+                  },
+                  {
+                    "concept": "25e954dd-1d7d-41ad-b0c1-2ca313abd772",
+                    "label": "Anogenital pain"
+                  },
+                  {
+                    "concept": "ab684ea7-9ad5-4efa-9210-f324e0dd1fa6",
+                    "label": "Genital Ulcers"
+                  },
+                  {
+                    "concept": "dcd03934-30ab-102d-86b0-7a5022ba4115",
+                    "label": "VAGINAL DISCHARGE"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(cardinalMPOX)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "FINAL PATIENT DISPOSITION",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Patient disposition",
+              "type": "obs",
+              "required": false,
+              "id": "patientDisposition",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "63d04966-8535-4003-80a1-45035b3f2196",
+                "answers": [
+                  {
+                    "concept": "afaec6ed-fecd-444a-8117-1b7a94f1e734",
+                    "label": "Transferred to Isolation Unit in the same Facility"
+                  },
+                  {
+                    "concept": "7b246acf-d518-4b51-828c-d69593f3d66b",
+                    "label": "Referred to Isolation Unit in another Facility"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(cardinalMPOX)"
+              }
+            },
+            {
+              "label": "Name of facility",
+              "type": "obs",
+              "required": false,
+              "id": "facilityName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a2397735-328f-432f-8c0d-d5c358516375"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientDisposition) || patientDisposition != '7b246acf-d518-4b51-828c-d69593f3d66b'"
+              }
+            },
+            {
+              "label": "Ambulance used?",
+              "type": "obs",
+              "required": false,
+              "id": "ambulanceUsed",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ac5d528c-79da-4e13-8d27-46e8d0ca45a7",
+                "answers": [
+                  {
+                    "concept": "e15c794d-5e98-404b-b523-b5307c92732b",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "67819924-8d66-4bcf-860e-2907c5816b36",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientDisposition) || patientDisposition != '7b246acf-d518-4b51-828c-d69593f3d66b'"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

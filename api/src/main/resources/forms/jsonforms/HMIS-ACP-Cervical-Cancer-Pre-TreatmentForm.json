@@ -1,15 +1,16 @@
 {
   "encounterType": "6d647bd4-33d6-4d04-a04a-595d2159b456",
-  "name": "HMIS ACP 044: Cervical Cancer Pre-Treatment Form",
+  "name": "HMIS ACP: Cervical Cancer Pre-Treatment Form",
   "processor": "EncounterFormProcessor",
   "referencedForms": [],
   "uuid": "9bc7f745-b61f-4553-ad77-7208238a7068",
-  "version": "4.1.1",
+  "version": "4.1.0",
+  "description": "Cervical Cancer Treatment Form",
   "published": true,
   "retired": false,
   "pages": [
     {
-      "label": "HMIS ACP 044: Cervical Cancer Pre-Treatment Form",
+      "label": "HMIS ACP: Cervical Cancer Pre-Treatment Form",
       "sections": [
         {
           "label": "Visit Details",
@@ -37,31 +38,27 @@
                 "answers": [
                   {
                     "concept": "07fb055d-d0f9-4c37-8b3c-f2e0ea38efec",
-                    "label": "1 - Initial Screening"
-                  },
-                  {
-                    "concept": "17a3df6d-dbf9-4f10-b7e9-16cac3cac832",
-                    "label": "2a - Rescreening at 3years"
+                    "label": "Initial Screening"
                   },
                   {
                     "concept": "9c41ebad-4daf-4534-8d7c-07a1495c29f0",
-                    "label": "2b - Rescreening at 5years"
+                    "label": "Rescreening at 5years"
                   },
                   {
                     "concept": "6125d47f-fecf-45fa-872f-70718b67b6c1",
-                    "label": "3 - Post treatment follow up at 6 weeks"
+                    "label": "Post treatment follow up at 6 weeks"
                   },
                   {
                     "concept": "1192c629-8d6d-4cda-ae14-2a631946c2e4",
-                    "label": "4a - Post treatment follow up at 1 year"
+                    "label": "Post treatment follow up at 1 year"
                   },
                   {
                     "concept": "0cf325c6-ff6c-4264-9864-9fb421be3503",
-                    "label": "4b - Cancer Suspect investigation and Management"
+                    "label": "Cancer Suspect investigation and Management"
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "5 - Other Specify"
+                    "label": "Other Specify"
                   }
                 ]
               },
@@ -250,15 +247,15 @@
                 "answers": [
                   {
                     "concept": "dc9816bd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "N - Normal"
+                    "label": "N- Normal"
                   },
                   {
                     "concept": "ece7dfa9-532a-48da-a882-111b7f05e9c3",
-                    "label": "LG - Low grade"
+                    "label": "LG- Low grade"
                   },
                   {
                     "concept": "06986846-90f8-43ad-beaa-eea8fb268196",
-                    "label": "HG - High grade"
+                    "label": "HG- High grade"
                   },
                   {
                     "concept": "f77261c7-d35b-4a00-9da5-15afd49ba44b",
@@ -308,31 +305,31 @@
                 "answers": [
                   {
                     "concept": "821568d1-e0bf-4b5f-836a-569230d1985e",
-                    "label": "CIN1 - Cervical Intra-epithelial Neoplasia 1"
+                    "label": "Cervical Intra-epithelial Neoplasia 1"
                   },
                   {
                     "concept": "2d5b4e9d-a507-49a9-bb71-ace04c551235",
-                    "label": "CIN2 - Cervical Intra-epithelial Neoplasia 2"
+                    "label": "Cervical Intra-epithelial Neoplasia 2"
                   },
                   {
                     "concept": "c6ed05a2-b32d-4e6f-98c5-d3b0b9118aea",
-                    "label": "CIN3 - Cervical Intra-epithelial Neoplasia 3"
-                  },
-                  {
-                    "concept": "155424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "CaCx - Invasive Cancer"
+                    "label": "Cervical Intra-epithelial Neoplasia 3"
                   },
                   {
                     "concept": "6f3bcf5f-f113-4950-949b-2af0926b8110",
-                    "label": "Normal - No Malignancy Seen"
+                    "label": "No evidence of Malignancy"
+                  },
+                  {
+                    "concept": "155424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "carcinoma of uterine cervix, invasive"
                   },
                   {
                     "concept": "cbb28015-8f77-4e02-ab1e-8b945a3774c1",
-                    "label": "ASCUS - A typical Squamous Cells of Undermined Significance"
+                    "label": "A typical Squamous Cells of Undermined Significance"
                   },
                   {
                     "concept": "0938b2d0-b453-493f-a950-17524ba57720",
-                    "label": "ASC-H - Atypical Squamous Cells of High grade"
+                    "label": "Atypical Squamous Cells of High grade"
                   }
                 ]
               },
@@ -366,30 +363,10 @@
                   {
                     "concept": "dcb2fba9-30ab-102d-86b0-7a5022ba4115",
                     "label": "Hysterectomy"
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Other Specify",
-                    "conceptMappings": []
                   }
                 ]
               },
               "validators": []
-            },
-            {
-              "label": "Other Recommended Treatment",
-              "type": "obs",
-              "id": "otherTreatmentProvided",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "5f539165-2ca5-4ac2-a68d-f9e7579531f7",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "treatmentProvided !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
-              }
             }
           ]
         },
@@ -416,7 +393,7 @@
                   },
                   {
                     "concept": "6442c9f6-25e8-4c8e-af8a-e9f6845ceaed",
-                    "label": "Referred"
+                    "label": "Ref out"
                   }
                 ]
               },
@@ -433,7 +410,7 @@
                 "answers": [
                   {
                     "concept": "463415bf-db51-4c3b-b028-264934309580",
-                    "label": "Lack of supplies"
+                    "label": "No supplies/equipment"
                   },
                   {
                     "concept": "a36a353b-0193-4077-a0f6-97a868ad9004",
@@ -455,7 +432,7 @@
               }
             },
             {
-              "label": "Observations and Complications",
+              "label": "Other Reasons for Postponing",
               "type": "obs",
               "required": false,
               "id": "otherReasonsForPostponing",
@@ -686,5 +663,5 @@
       ]
     }
   ],
-  "description": "Cervical Cancer Treatment Form"
+  "referencedForms": []
 }

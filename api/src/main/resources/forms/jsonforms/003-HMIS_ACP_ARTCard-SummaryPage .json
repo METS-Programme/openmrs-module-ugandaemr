@@ -1,0 +1,878 @@
+{
+  "name": "HMIS ACP HIV 003: HIV CARE ART CARD - Summary Form",
+  "version": "4.1.1",
+  "description": "Summary entry form for patients enrolled for ART",
+  "encounter": "ART Card - Summary",
+  "encounterType": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f",
+  "uuid": "52653a60-8300-4c13-be4d-4b746da06fee",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
+  "pages": [
+    {
+      "label": "HIV CARE/ART CARD Summary Page",
+      "sections": [
+        {
+          "label": "CARE ENTRY",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "patientIdentifier",
+              "label": "Client Clinic #",
+              "questionInfo": "",
+              "id": "arrNumber",
+              "default": "",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              }
+            },
+            {
+              "label": "Enrollment into HIV Care",
+              "type": "obs",
+              "required": "false",
+              "id": "enrollmentIntoHivCare",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "31c5c7aa-4948-473e-890b-67fe2fbbd71a",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "Date of registration at this site",
+              "type": "encounterDatetime",
+              "id": "dateRegistrationAtSite",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false",
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Date verification HIV test",
+              "type": "obs",
+              "id": "hivTestDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dce12b4f-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "Test type",
+              "type": "obs",
+              "id": "testType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ddcd8aad-9085-4a88-a411-f19521be4785",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "6d7a7a98-2c57-4318-9961-8e61fb427781",
+                    "label": "Ab"
+                  },
+                  {
+                    "concept": "57c357ea-b4de-491e-99aa-962a62ff368f",
+                    "label": "PCR"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Where",
+              "type": "obs",
+              "id": "txtWhere",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "89d3ee61-7c74-4537-b199-4026bd6a3f67",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "In School",
+              "type": "obs",
+              "id": "inschool",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dcc3a7e9-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < '5' || age > '19'"
+              }
+            },
+            {
+              "label": "Care Entry Point",
+              "type": "obs",
+              "required": "false",
+              "id": "careEntryPoint",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "eMTCT"
+                  },
+                  {
+                    "concept": "7b082783-658c-4867-a650-ba5bdfa65d53",
+                    "label": "Outreach"
+                  },
+                  {
+                    "concept": "dcd9939d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TB"
+                  },
+                  {
+                    "concept": "dcd87b79-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Outpatient"
+                  },
+                  {
+                    "concept": "e9469d61-b0c3-4785-81c6-057c7bc099fc",
+                    "label": "YCC"
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI"
+                  },
+                  {
+                    "concept": "7d24a93f-73a9-4e7c-a722-ebc3e35809b4",
+                    "label": "SMC"
+                  },
+                  {
+                    "concept": "dcd9dd84-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Inpatient"
+                  },
+                  {
+                    "concept": "f8c4d125-caba-485d-8561-1dcb22ad715e",
+                    "label": "KP Clinic"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Care Entry Point",
+              "type": "obs",
+              "required": "true",
+              "id": "otherCareEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "adf31c43-c9a0-4ab8-b53a-42097eb3d2b6"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(careEntryPoint) || careEntryPoint !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Directions to Residence",
+              "type": "obs",
+              "id": "residenceDirections",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "dce122f3-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Treatment Supporter Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Treatment supporter Name/Medicine pick-up if ill",
+              "type": "obs",
+              "id": "treatmentSupporter",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "23e28311-3c17-4137-8eee-69860621b80b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Relationship to index clients",
+              "type": "obs",
+              "id": "relationshipToClient",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "bc61e60a-53ce-4767-8eed-29f3ec088829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dd22614e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cousin"
+                  },
+                  {
+                    "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Child"
+                  },
+                  {
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Partner/Spouse"
+                  },
+                  {
+                    "concept": "dd1e43f2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "GrandChild"
+                  },
+                  {
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Partner"
+                  },
+                  {
+                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Friend"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Relationship to Index Client",
+              "type": "obs",
+              "id": "otherRelationshipToIndexClient",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "632b3be3-626d-4cc0-b6a5-27aeb8155314"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(relationshipToClient) || relationshipToClient != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Telephone",
+              "type": "obs",
+              "required": "false",
+              "id": "supporterTelephoneNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "maxLength": "10",
+                "minLength": "10",
+                "concept": "dce17480-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "Whose",
+              "type": "obs",
+              "id": "telephone Owner",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "201d5b56-2420-4be0-92bc-69cd40ef291b"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(supporterTelephoneNumber)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "ART CARE",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "At ART Start",
+              "type": "obs",
+              "required": "true",
+              "id": "artStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "1st line Initial Regimen",
+              "type": "obs",
+              "id": "initialRegimen",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c3332e8d-2548-4ad6-931d-6855692694a3",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                    "label": "ABC-3TC-EFV"
+                  },
+                  {
+                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                    "label": "ABC-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                    "label": "ABC-3TC-NVP"
+                  },
+                  {
+                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                    "label": "ABC/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                    "label": "AZT/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-NVP"
+                  },
+                  {
+                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                    "label": "TDF-3TC-EFV"
+                  },
+                  {
+                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                    "label": "TDF-3TC-NVP"
+                  },
+                  {
+                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                    "label": "TDF-FTC-EFV"
+                  },
+                  {
+                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                    "label": "TDF-FTC-NVP"
+                  },
+                  {
+                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                    "label": "TDF/3TC/DTG"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other 1st line Initial Regimen",
+              "type": "obs",
+              "id": "otherBaselineRegimen",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "cc3d64df-61a5-4c5a-a755-6e95d6ef3295"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(initialRegimen) || initialRegimen !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Weight",
+              "type": "obs",
+              "required": "false",
+              "id": "baselineWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "900b8fd9-2039-4efc-897b-9b8ce37396f5"
+              },
+              "validators": []
+            },
+            {
+              "label": "WHO Clinical Stage",
+              "type": "obs",
+              "required": "false",
+              "id": "baselineWhoClinicalStage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "39243cef-b375-44b1-9e79-cbf21bd10878",
+                "answers": [
+                  {
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 1"
+                  },
+                  {
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 2"
+                  },
+                  {
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 3"
+                  },
+                  {
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 4"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "required": "false",
+              "id": "baselineCd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c17bd9df-23e6-4e65-ba42-eb6d9250ca3f"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "eMTCT Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Baseline eMTCT",
+              "type": "obsGroup",
+              "id": "baselineEmtct",
+              "questionOptions": {
+                "concept": "f838147d-277d-421a-9c6f-202aa30e799c",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Pregnant",
+                  "type": "obs",
+                  "id": "baselinePregnancy",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "b253be65-0155-4b43-ad15-88bc797322c9",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "sex !== 'F'"
+                  }
+                },
+                {
+                  "label": "Lactating",
+                  "type": "obs",
+                  "id": "baselineLactating",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "ab7bb4db-1a54-4225-b71c-d8e138b471e9",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                        "label": "No"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "sex !== 'F'"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "PRIOR ARV/ART",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Prior ARV/ART",
+              "type": "obs",
+              "id": "priorART",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "902e30a1-2d10-4e92-8f77-784b6677109a",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Pep Set",
+              "type": "obsGroup",
+              "id": "pepSet",
+              "questionOptions": {
+                "concept": "331f1521-14ac-4f06-b064-d1d6e928d47e",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "PEP",
+                  "type": "obs",
+                  "id": "pepChecked",
+                  "questionOptions": {
+                    "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "PEP"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "PEP Regimen Start Date",
+                  "type": "obs",
+                  "id": "pepStartDate",
+                  "questionOptions": {
+                    "concept": "999dea3b-ad8b-45b4-b858-d7ab98de486c",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pepChecked)"
+                  }
+                },
+                {
+                  "label": "PEP Duration in Months",
+                  "type": "obs",
+                  "id": "pepDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "0b5fa454-0757-4f6d-b376-fefd60ae42ba",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pepChecked)"
+                  }
+                },
+                {
+                  "label": "PrEP",
+                  "type": "obs",
+                  "id": "prepChecked",
+                  "questionOptions": {
+                    "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "PrEP"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "PrEP Regimen Start Date",
+                  "type": "obs",
+                  "id": "prepStartDate",
+                  "questionOptions": {
+                    "concept": "9a7b4b98-4cbb-4f94-80aa-d80a56084181",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(prepChecked)"
+                  }
+                },
+                {
+                  "label": "PrEP Duration in Months",
+                  "type": "obs",
+                  "id": "prepDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "d11d4ad1-4aa2-4f90-8f2c-83f52155f0fc",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(prepChecked)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Hep-B prior ART set",
+              "type": "obsGroup",
+              "id": "hepBSet",
+              "questionOptions": {
+                "concept": "17a0c852-ae9c-42c4-b18d-7aac96d5cb3d",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Hep-B",
+                  "type": "obs",
+                  "id": "hepBChecked",
+                  "questionOptions": {
+                    "concept": "4937ae55-afed-48b0-abb5-aad1152d9d4c",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Hep-B"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "Hep-B Start Date",
+                  "type": "obs",
+                  "id": "hepBStartDate",
+                  "questionOptions": {
+                    "concept": "ce1d514c-142b-4b93-aea2-6d24b7cc9614",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(hepBChecked)"
+                  }
+                },
+                {
+                  "label": "Hep-B Duration in Months",
+                  "type": "obs",
+                  "id": "hepBDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "33a2a6fb-c02c-4015-810d-71d0761c8dd5",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(hepBChecked)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "PMTCT set",
+              "type": "obsGroup",
+              "id": "pmtctSet",
+              "questionOptions": {
+                "concept": "8512daeb-4fce-495e-8efb-a4d923262259",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "PTMCT",
+                  "type": "obs",
+                  "id": "pmtctChecked",
+                  "questionOptions": {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "PMTCT"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "PMTCT Start Date",
+                  "type": "obs",
+                  "id": "pmtctStartDate",
+                  "questionOptions": {
+                    "concept": "3f125b4f-7c60-4a08-9f8d-c9936e0bb422",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pmtctChecked)"
+                  }
+                },
+                {
+                  "label": "PMTCT Duration in Months",
+                  "type": "obs",
+                  "id": "pmtcDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "0f7e7d9d-d8d1-4ef8-9d61-ae5d17da4d1e",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(pmtctChecked)"
+                  }
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
+            },
+            {
+              "label": "ART (not transfer in) set",
+              "type": "obsGroup",
+              "id": "artNotTransferInSet",
+              "questionOptions": {
+                "concept": "c26525eb-6fdb-43ef-bee4-cb5d839756ee",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "ART (not transfer in)",
+                  "type": "obs",
+                  "id": "artNotTransferInChecked",
+                  "questionOptions": {
+                    "concept": "240edc6a-5c70-46ce-86cf-1732bc21e95c",
+                    "rendering": "checkbox",
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "ART (not transfer in)"
+                      }
+                    ]
+                  },
+                  "hide": {
+                    "hideWhenExpression": "priorART !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "ART (not transfer in) Start Date",
+                  "type": "obs",
+                  "id": "artNotTransferInDate",
+                  "questionOptions": {
+                    "concept": "5e0d5edc-486c-41f1-8429-fbbad5416629",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(artNotTransferInChecked)"
+                  }
+                },
+                {
+                  "label": "ART (not transfer in) Duration in Months",
+                  "type": "obs",
+                  "id": "artNotTransferInDurationInMonths",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "666afa00-2cbf-4ca0-9576-2c89a19fe466",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(artNotTransferInChecked)"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

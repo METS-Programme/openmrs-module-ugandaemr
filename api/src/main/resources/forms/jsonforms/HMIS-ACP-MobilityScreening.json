@@ -1,0 +1,290 @@
+{
+  "encounterType": "b57e1835-4ee2-47fa-9569-c700c39c169a",
+  "encounter": "Mobility Screening - Encounter",
+  "name": "Mobility Screening Form",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "uuid": "67a71486-2a54-468f-ac3e-BB91a9a79545",
+  "version": "4.1.0",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Mobility  Screening Form",
+      "sections": [
+        {
+          "label": "Personal Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Nationality",
+              "type": "obs",
+              "required": false,
+              "id": "nationality",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "03b90a31-ed26-4375-bbb7-d26b3afd5afd",
+                "answers": [
+                  {
+                    "concept": "922be2a9-4f2b-4f42-804f-037f84576fba",
+                    "label": "Uganda"
+                  },
+                  {
+                    "concept": "d23adc2a-de0f-40ed-b429-86c33fa51dfe",
+                    "label": "Kenya"
+                  },
+                  {
+                    "concept": "0e130d25-07e9-418a-9def-161705feb04c",
+                    "label": "Tanzania"
+                  },
+                  {
+                    "concept": "08375205-3328-4eda-a6b2-8d35e1e0b372",
+                    "label": "Rwanda"
+                  },
+                  {
+                    "concept": "837241e6-ee9c-4f74-bfb5-330124942f8a",
+                    "label": "S-Sudan"
+                  },
+                  {
+                    "concept": "78bfb3b9-69a0-422d-b643-3b0950a56a24",
+                    "label": "DRC"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Service",
+              "type": "obs",
+              "required": false,
+              "id": "service",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "e06ac289-2920-4b85-80c9-805c69b6e5a9",
+                    "label": "ART Refill"
+                  },
+                  {
+                    "concept": "ab4510ac-3feb-4abb-8653-5d252813798f",
+                    "label": "ART Initiation"
+                  },
+                  {
+                    "concept": "801b8959-4b2a-46c0-a28f-f7d3fc8b98bb",
+                    "label": "ANC Visit"
+                  },
+                  {
+                    "concept": "165043AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Admission"
+                  },
+                  {
+                    "concept": "4b19b253-97c4-4b1b-bb14-41f2c576b8c5",
+                    "label": "ART Regimen Switch/ Substitution"
+                  },
+                  {
+                    "concept": "5def0b16-460a-494b-ab1f-ac8e398a88fa",
+                    "label": "T.B Drug Refill"
+                  },
+                  {
+                    "concept": "77cd3409-b088-42dd-af70-47673b222042",
+                    "label": "Refill"
+                  },
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PMTCT"
+                  },
+                  {
+                    "concept": "66e0322d-6e4f-409d-b37c-ca9e58b5a157",
+                    "label": "Ultrasound"
+                  },
+                  {
+                    "concept": "dcbc7b8e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NUTRITIONAL SUPPORT"
+                  },
+                  {
+                    "concept": "e021a3a4-25f0-4ecb-b94c-9162c9980414",
+                    "label": "Natural Disaster"
+                  },
+                  {
+                    "concept": "aab0ab6d-400c-4654-b0d9-71f79f2f5269",
+                    "label": "Lockdown"
+                  },
+                  {
+                    "concept": "163153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intensive adherence counseling sessions set"
+                  },
+                  {
+                    "concept": "dc8f22f9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HYPERTENSION"
+                  },
+                  {
+                    "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV VIRAL LOAD"
+                  },
+                  {
+                    "concept": "e496b6a9-d6e7-4470-bdf5-165028ab4e20",
+                    "label": "Family Planning Refill"
+                  },
+                  {
+                    "concept": "3f0f9c04-25a4-4070-84cc-5b49566aeb4c",
+                    "label": "EID Visit"
+                  },
+                  {
+                    "concept": "32dbfbc2-0f6c-4beb-88d0-55e0ee1a7b8c",
+                    "label": "CLINICAL ASSESSMENT"
+                  },
+                  {
+                    "concept": "347e93a0-72c2-400f-9579-116ce3ba6a68",
+                    "label": "Checkup"
+                  },
+                  {
+                    "concept": "24fe86b4-b945-48f7-aac2-8976588a54e7",
+                    "label": "Booking"
+                  },
+                  {
+                    "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CD4 COUNT"
+                  },
+                  {
+                    "concept": "e17524f4-4445-417e-9098-ecdd134a6b81",
+                    "label": "Other reason for appointment"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Travel Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Traveled to another country in the last 3 months",
+              "type": "obs",
+              "required": false,
+              "id": "traveledToAnotherCountryInTheLast3Months",
+              "datePickerFormat": "both",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8239eb9c-5bae-4f80-88ea-5003e7d0219e",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Travelled to another country in the last 6 months?",
+              "type": "obs",
+              "required": false,
+              "id": "travelledToAnotherCountryInTheLast6Months",
+              "datePickerFormat": "both",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4833f25a-de94-4c00-9d8c-4366bbd76715",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(traveledToAnotherCountryInTheLast3Months) || traveledToAnotherCountryInTheLast3Months === 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Travelled to another country in the last 12 months",
+              "type": "obs",
+              "required": false,
+              "id": "travelledToAnotherCountryInTheLast12Months",
+              "datePickerFormat": "both",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dd8f7391-28d5-45b9-a696-8b05ebaa3276",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(travelledToAnotherCountryInTheLast6Months) || travelledToAnotherCountryInTheLast6Months === 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Days Spent in another Country",
+              "type": "obs",
+              "required": false,
+              "id": "daysSpentInAnotherCountry",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "15e4a114-1d1c-4404-aa7b-cc0189def813"
+              },
+              "validators": []
+            },
+            {
+              "label": "Frequency of Travel",
+              "type": "obs",
+              "required": false,
+              "id": "frequencyOfTravel",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6577c0fa-ef07-4637-bef4-05777de6e4e6",
+                "answers": [
+                  {
+                    "concept": "1e732ba4-244b-4e3f-8552-fb5fd639b0aa",
+                    "label": "Daily"
+                  },
+                  {
+                    "concept": "1099AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Weekly"
+                  },
+                  {
+                    "concept": "1098AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Monthly"
+                  },
+                  {
+                    "concept": "b5815906-6251-4c8d-a59b-8c39524c2df4",
+                    "label": "Once in 3 months"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "description": "Mobility Screening Form for cross-border"
+}

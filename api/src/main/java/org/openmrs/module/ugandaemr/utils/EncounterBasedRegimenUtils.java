@@ -17,7 +17,7 @@ import org.openmrs.*;
 import org.openmrs.api.EncounterService;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
-import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.module.ugandaemr.api.SimpleObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -120,115 +120,103 @@ public class EncounterBasedRegimenUtils {
     }
 
     public static SimpleObject buildRegimenChangeObject(Set<Obs> obsList, Encounter e) {
+        final String CURRENT_DRUGS = "1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        final String REASON_REGIMEN_STOPPED_CODED = "1252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        final String REASON_REGIMEN_STOPPED_NON_CODED = "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        final String DATE_REGIMEN_STOPPED = "1191AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        final String CURRENT_DRUG_NON_STANDARD = "1088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        final String REGIMEN_LINE_CONCEPT = "163104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-        String CURRENT_DRUGS = "1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        String REASON_REGIMEN_STOPPED_CODED = "1252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        String REASON_REGIMEN_STOPPED_NON_CODED = "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        String DATE_REGIMEN_STOPPED = "1191AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        String CURRENT_DRUG_NON_STANDARD ="1088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        String REGIMEN_LINE_CONCEPT = "163104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"; // concept should be changed to correct one
-
-
-
-        String regimen = null;
-        String regimenShort = null;
-        String regimenLine = null;
-        String regimenUuid = null;
-        String endDate = null;
-        String startDate = e != null? DATE_FORMAT.format(e.getEncounterDatetime()) : "";
-        Set<String> changeReason = new HashSet<String>();
-
+        String regimen = null, regimenShort = null, regimenLine = null, regimenUuid = null, endDate = null;
+        String startDate = e != null ? DATE_FORMAT.format(e.getEncounterDatetime()) : "";
+        Set<String> changeReasons = new HashSet<>();
         StringBuilder nonstandardRegimen = new StringBuilder();
-        for(Obs obs:obsList) {
 
-            if (obs.getConcept().getUuid().equals(CURRENT_DRUGS) ) {
-                regimen = obs.getValueCoded() != null ? obs.getValueCoded().getFullySpecifiedName(Locale.ENGLISH).getName() : "Unresolved Regimen name";
-                try {
-                    regimenShort = getRegimenNameFromRegimensXMLString(obs.getValueCoded().getUuid(), getRegimenConceptJson());
-                  //  regimenLine = getRegimenLineFromRegimensXMLString(obs.getValueCoded().getUuid(), getRegimenConceptJson());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                regimenUuid = obs.getValueCoded() != null ? obs.getValueCoded().getUuid() : "";
-            } else if (obs.getConcept().getUuid().equals(CURRENT_DRUG_NON_STANDARD) ) {
-                nonstandardRegimen.append(obs.getValueCoded().getFullySpecifiedName(Locale.ENGLISH).getName().toUpperCase() + "/");
-                regimenUuid = obs.getValueCoded() != null ? obs.getValueCoded().getUuid() : "";
-            }
+        for (Obs obs : obsList) {
+            String conceptUuid = obs.getConcept() != null ? obs.getConcept().getUuid() : null;
+            if (conceptUuid == null) continue;
 
-            else if (obs.getConcept().getUuid().equals(REASON_REGIMEN_STOPPED_CODED)) {
-                String reason = obs.getValueCoded() != null ?  obs.getValueCoded().getName().getName() : "";
-                if (reason != null)
-                    changeReason.add(reason);
-            } else if (obs.getConcept().getUuid().equals(REASON_REGIMEN_STOPPED_NON_CODED)) {
-                String reason = obs.getValueText();
-                if (reason != null)
-                    changeReason.add(reason);
-            } else if (obs.getConcept() != null && obs.getConcept().getUuid().equals(DATE_REGIMEN_STOPPED)) {
-                if(obs.getValueDatetime() != null){
-                    endDate = DATE_FORMAT.format(obs.getValueDatetime());
-                }
-            } else if (obs.getConcept() != null && obs.getConcept().getUuid().equals(REGIMEN_LINE_CONCEPT)) {
-                if(obs.getValueText() != null){
-                    if (obs.getValueText().equals("AF")) {
-                        regimenLine = "Adult first line";
-                    } else if (obs.getValueText().equals("AS")) {
-                        regimenLine = "Adult second line";
-                    } else if (obs.getValueText().equals("AT")) {
-                        regimenLine = "Adult third line";
-                    } else if (obs.getValueText().equals("CF")) {
-                        regimenLine = "Child first line";
-                    } else if (obs.getValueText().equals("CS")) {
-                        regimenLine = "Child second line";
-                    } else if (obs.getValueText().equals("CT")) {
-                        regimenLine = "Child third line";
+            switch (conceptUuid) {
+                case CURRENT_DRUGS:
+                    regimen = obs.getValueCoded() != null
+                            ? obs.getValueCoded().getFullySpecifiedName(Locale.ENGLISH).getName()
+                            : "Unresolved Regimen name";
+                    try {
+                        regimenShort = getRegimenNameFromRegimensXMLString(
+                                obs.getValueCoded().getUuid(), getRegimenConceptJson());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
+                    regimenUuid = obs.getValueCoded() != null ? obs.getValueCoded().getUuid() : "";
+                    break;
 
-                }
+                case CURRENT_DRUG_NON_STANDARD:
+                    if (obs.getValueCoded() != null) {
+                        nonstandardRegimen
+                                .append(obs.getValueCoded().getFullySpecifiedName(Locale.ENGLISH).getName().toUpperCase())
+                                .append("/");
+                        regimenUuid = obs.getValueCoded().getUuid();
+                    }
+                    break;
+
+                case REASON_REGIMEN_STOPPED_CODED:
+                    if (obs.getValueCoded() != null) {
+                        changeReasons.add(obs.getValueCoded().getName().getName());
+                    }
+                    break;
+
+                case REASON_REGIMEN_STOPPED_NON_CODED:
+                    if (obs.getValueText() != null) {
+                        changeReasons.add(obs.getValueText());
+                    }
+                    break;
+
+                case DATE_REGIMEN_STOPPED:
+                    if (obs.getValueDatetime() != null) {
+                        endDate = DATE_FORMAT.format(obs.getValueDatetime());
+                    }
+                    break;
+
+                case REGIMEN_LINE_CONCEPT:
+                    if (obs.getValueText() != null) {
+                        switch (obs.getValueText()) {
+                            case "AF": regimenLine = "Adult first line"; break;
+                            case "AS": regimenLine = "Adult second line"; break;
+                            case "AT": regimenLine = "Adult third line"; break;
+                            case "CF": regimenLine = "Child first line"; break;
+                            case "CS": regimenLine = "Child second line"; break;
+                            case "CT": regimenLine = "Child third line"; break;
+                        }
+                    }
+                    break;
             }
-
-
-        }
-        if(nonstandardRegimen.length() > 0) {
-            return SimpleObject.create(
-                    "startDate", startDate,
-                    "endDate", endDate != null? endDate : "",
-                    "regimenShortDisplay", (nonstandardRegimen.toString()).substring(0,nonstandardRegimen.length() - 1) ,
-                    "regimenLine", regimenLine != null ? regimenLine : "",
-                    "regimenLongDisplay", (nonstandardRegimen.toString()).substring(0,nonstandardRegimen.length() - 1),
-                    "changeReasons", changeReason,
-                    "regimenUuid", regimenUuid,
-                    "current",endDate != null ? false : true
-
-            );
         }
 
-        if(regimen != null) {
-            return SimpleObject.create(
-                    "startDate", startDate,
-                    "endDate", endDate != null? endDate : "",
-                    "regimenShortDisplay", regimenShort != null ? regimenShort : regimen,
-                    "regimenLine", regimenLine != null ? regimenLine : "",
-                    "regimenLongDisplay", regimen,
-                    "changeReasons", changeReason,
-                    "regimenUuid", regimenUuid,
-                    "current",endDate != null ? false : true
+        String shortDisplay = "", longDisplay = "", line = regimenLine != null ? regimenLine : "";
+        boolean current = (endDate == null);
+        String end = (endDate != null) ? endDate : "";
 
-            );
+        if (nonstandardRegimen.length() > 0) {
+            String trimmed = nonstandardRegimen.substring(0, nonstandardRegimen.length() - 1);
+            shortDisplay = trimmed;
+            longDisplay = trimmed;
+        } else if (regimen != null) {
+            shortDisplay = (regimenShort != null) ? regimenShort : regimen;
+            longDisplay = regimen;
         }
-        return SimpleObject.create(
-                "startDate",  "",
-                "endDate",  "",
-                "regimenShortDisplay", "",
-                "regimenLine",  "",
-                "regimenLongDisplay", "",
-                "changeReasons", "",
-                "regimenUuid", "",
-                "current",""
 
-        );
-
-        //return null;
+        return new SimpleObject()
+                .add("startDate", startDate)
+                .add("endDate", end)
+                .add("regimenShortDisplay", shortDisplay)
+                .add("regimenLine", line)
+                .add("regimenLongDisplay", longDisplay)
+                .add("changeReasons", changeReasons)
+                .add("regimenUuid", regimenUuid != null ? regimenUuid : "")
+                .add("current", current);
     }
+
+
 
     public static String getRegimenNameFromRegimensXMLString(String conceptRef, String regimenJson) throws IOException {
 

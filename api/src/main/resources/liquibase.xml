@@ -1314,6 +1314,61 @@ VALUES
 		</sql>
 	</changeSet>
 
+	<changeSet id="ugandaemr-20250612-2146" author="slubwama">
+		<comment>
+			change check some of stockmanagement module liquibasecahngeset
+		</comment>
+		<sql>
+			update liquibasechangelog set  MD5SUM="8:47a65bd373b17220bd1518ccc74350a3" where ID="stockmanagement-1758855877841-1"   AND  MD5SUM="8:6e7233fa50fa3cf95883de1227d7099c";
+			update liquibasechangelog set  MD5SUM="8:814ad63603e3bb5735456d30de4d55ea" where ID="stockmanagement-1758855877841-2"   AND  MD5SUM="8:dc9859a8266e67353efa23b549f5e3a9";
+			update liquibasechangelog set  MD5SUM="8:5bad04e7339c4507e828d764d183c2d9" where ID="stockmanagement-1758855877841-3"   AND  MD5SUM="8:471c73808429724ba04a9af68d2dd49a";
+			update liquibasechangelog set  MD5SUM="8:17d25a3b4e125cb56cc4453a568c1e15" where ID="stockmanagement-1758855877841-5"   AND  MD5SUM="8:16aceb3b8a6f12997619e41bfb8a8734";
+			update liquibasechangelog set  MD5SUM="8:752c454a1fca0af39b57051ecde7bc73" where ID="stockmanagement-1758855877841-7"   AND  MD5SUM="8:2786d8bc54be71704cc6d8801af3b46b";
+			update liquibasechangelog set  MD5SUM="8:10b202c0c25a7cc7ffecf56861b31ca7" where ID="stockmanagement-1758855877841-8"   AND  MD5SUM="8:e02765bca7e72598aede3b9e68762440";
+			update liquibasechangelog set  MD5SUM="8:d9043eaa8957c37499ef3a6b78272501" where ID="stockmanagement-1758855877841-9"   AND  MD5SUM="8:5feb493ef44c9e4f072170ea8f7b37cf";
+			update liquibasechangelog set  MD5SUM="8:22127459a01daea79d1080d0d26445ce" where ID="stockmanagement-1758855877841-10"  AND  MD5SUM="8:702d43fe7c88f8e4773756911c77b705";
+			update liquibasechangelog set  MD5SUM="8:35e680c5a13b971e9f60e5a4e24a51ec" where ID="stockmanagement-1758855877841-11"  AND  MD5SUM="8:fe1cc6769f2e12a4554b48c4ac46e28f";
+			update liquibasechangelog set  MD5SUM="8:559da37d9c2aa38468fbe1518700a62f" where ID="stockmanagement-1758855877841-12"  AND  MD5SUM="8:b8fe117cfa7782825268ac5930927f77";
+			update liquibasechangelog set  MD5SUM="8:472510441aa2ce760e6724f90dd19474" where ID="stockmanagement-1758855877841-13"  AND  MD5SUM="8:e1b8fd4520fda8fc408a46ad2a248133";
+			update liquibasechangelog set  MD5SUM="8:18a09d0ea326cf14ad314ddbd9afb168" where ID="stockmanagement-1758855877841-14"  AND  MD5SUM="8:7bfdf550071348c715709c6ae73171d3";
+			update liquibasechangelog set  MD5SUM="8:c04438fa091fd6498ebb5340ddfbbff4" where ID="stockmanagement-1758855877841-15"  AND  MD5SUM="8:25bbc29a1079e1bcb30296ce6ea7ecda";
+			update liquibasechangelog set  MD5SUM="8:d1c77613d27318eff317a1e54000a28d" where ID="stockmanagement-1758855877841-16"  AND  MD5SUM="8:28a3edf05af6a0856ae3fca7cf1787f8";
+			update liquibasechangelog set  MD5SUM="8:32dca350a72d0f9b489cb25f1ae2b226" where ID="stockmanagement-1758855877841-17"  AND  MD5SUM="8:db838d343ff95c251772ff7bfbb2840d";
+			update liquibasechangelog set  MD5SUM="8:9816cb1d4105237d20c139d5ee87a2ad" where ID="stockmanagement-1758855877841-228" AND  MD5SUM="8:2065304b3040fb00c9706ec4b73a5a3d";
+			update liquibasechangelog set  MD5SUM="8:c8b15bfc4b28586011c3aec80dffcd88" where ID="stockmanagement-1758855877841-230" AND  MD5SUM="8:7b4ecd4a24e2b9cb7c7920b6dae3fa53";
+			update liquibasechangelog set  MD5SUM="8:9bd885583b73bb811c7cfc201d8feaa9" where ID="stockmanagement-1758855877841-232" AND  MD5SUM="8:683c951bc1a22f29e9a89dd3bf121fac";
+			update liquibasechangelog set  MD5SUM="8:b41dbba693caf364b47b316afb94b919" where ID="stockmanagement-1758855877841-241" AND  MD5SUM="8:dec4722b33abdac0915dfec8caee9622";
+			update liquibasechangelog set  MD5SUM="8:1973b4d0426e1d944086ace2053ed95f" where ID="stockmanagement-1758855877841-242" AND  MD5SUM="8:6b561041b37ea52d032909aa85fddbcd";
+			update liquibasechangelog set  MD5SUM="8:d3b8d51d9c3162de77ced8ec60d0123f" where ID="stockmanagement-1758855877841-243" AND  MD5SUM="8:3af60c3de007c3d10d22d2f32a3aaa05";
+			update liquibasechangelog set  MD5SUM="8:785d3725844c76d6f068fede949cd03d" where ID="stockmanagement-1758855877841-245" AND  MD5SUM="8:1ba6f81297ec5445e0a40feb940eac19";
+			update liquibasechangelog set  MD5SUM="8:6d845d6e0038ae61e2165927922c2d10" where ID="stockmanagement-1758855877841-246" AND  MD5SUM="8:cab8b2309ed999da852fa1a90b267a57";
+			update liquibasechangelog set  MD5SUM="8:7e106451240cbeeccad5684d40c6f83b" where ID="stockmanagement-1758855877841-247" AND  MD5SUM="8:14b3e823995cc77729beee155f596991";
+			update liquibasechangelog set  MD5SUM="8:e5447c6229d8621087dc873d82da6e33" where ID="stockmanagement-1758855877841-249" AND  MD5SUM="8:799d603042fdd133976eb41e7787ef3f";
+			update liquibasechangelog set  MD5SUM="8:ed6b0d7a4f2b3c08efdfc145094d01d3" where ID="stockmanagement-1758855877841-251" AND  MD5SUM="8:c766ce48757c5e9016de615f11fd3a96";
+			update liquibasechangelog set   MD5SUM="8:a50e433e55483261262735f477bfb6a6" where ID="stockmanagement-1758855877841-253" AND   MD5SUM="8:538dbfef4583cd37271ad32708f4e319";
+			update liquibasechangelog set   MD5SUM="8:0b0c379c972268a8ce4ab90e3264c091" where ID="stockmanagement-1758855877841-254" AND   MD5SUM="8:ffe07f55b0893e906ee62a5386a7fd66";
+			update liquibasechangelog set   MD5SUM="8:2db08165994a8ec42e5b009e94cde53f" where ID="stockmanagement-1758855877841-255" AND   MD5SUM="8:36e11721b018eda3cd7dcd7f3546da20";
+			update liquibasechangelog set   MD5SUM="8:00d0c4826356e7bf16e4ec97414a0722" where ID="stockmanagement-1758855877841-257" AND   MD5SUM="8:7e604e96d3b32d15ddb35c3699f8df4c";
+			update liquibasechangelog set   MD5SUM="8:3ee8002312f20896cb17551710873e0b" where ID="stockmanagement-1758855877841-258" AND   MD5SUM="8:398f9c5f414229a3597b904a57d9c285";
+			update liquibasechangelog set   MD5SUM="8:0e813cd209a573c0f753b562c273d2c7" where ID="stockmanagement-1758855877841-259" AND   MD5SUM="8:3ed5dc94619eb292474a18786de1d668";
+			update liquibasechangelog set   MD5SUM="8:dc201dbda6095194a1f4e6c14f402926" where ID="stockmanagement-1758855877841-261" AND   MD5SUM="8:4312bc4d3f2604535f0498702bc5fd77";
+			update liquibasechangelog set   MD5SUM="8:10eb7761cafbd358f476a0a9902086dc" where ID="stockmanagement-1758855877841-262" AND   MD5SUM="8:bb68c84c5ebf4a2c7c66a868b33428ea";
+			update liquibasechangelog set   MD5SUM="8:5e6ce0921bd0768f4d846560cdba9123" where ID="stockmanagement-1758855877841-263" AND   MD5SUM="8:2716f80457933b3481522a280b3ef009";
+			update liquibasechangelog set   MD5SUM="8:a8117719ee719863b17937cc815d8d7f" where ID="stockmanagement-1758855877841-265" AND   MD5SUM="8:4cdfd9655c762e8b5373185e27d7906a";
+			update liquibasechangelog set   MD5SUM="8:243f709240dfb0598d7c4a1ec0877a5d" where ID="stockmanagement-1758855877841-266" AND   MD5SUM="8:6075855de9382fcc10ae9eb4169b4938";
+			update liquibasechangelog set   MD5SUM="8:d7b41f1048d2d0eb0c818afc3be5a048" where ID="stockmanagement-1758855877841-267" AND   MD5SUM="8:d5007b1a929333a157b48ed5cdfbce7a";
+			update liquibasechangelog set   MD5SUM="8:15a5482ffc8d19e5ade3059b1eac54a4" where ID="stockmanagement-1758855877841-269" AND   MD5SUM="8:50c7835794ac7caedb8a39ab4ecc5c7b";
+			update liquibasechangelog set   MD5SUM="8:0e95e6b794fdcdba2d52b7015b3d83eb" where ID="stockmanagement-1758855877841-270" AND   MD5SUM="8:c78533a513dfa51b82eebf8b9265a820";
+			update liquibasechangelog set   MD5SUM="8:db8994531ca754e8c561ba8eb670bb63" where ID="stockmanagement-1758855877841-271" AND   MD5SUM="8:135dc83d28e58d2012f56857cff5b402";
+			update liquibasechangelog set   MD5SUM="8:8dfa749657d63b9fec18713cd1f4eb94" where ID="stockmanagement-1758855877841-272" AND   MD5SUM="8:cf3d0fde28a168823336ac1d4533fb06";
+			update liquibasechangelog set   MD5SUM="8:bbc0d3614af0757261cbdd217432d9df" where ID="stockmanagement-1758855877841-301" AND   MD5SUM="8:bdcdb2a309f36979e640c518d05000c9";
+			update liquibasechangelog set   MD5SUM="8:d9b50cabaad0f301b98e3dc787b02d14" where ID="stockmanagement-1758855877841-311" AND   MD5SUM="8:dcc0c6cc01c090427cff12ba168b7818";
+			update liquibasechangelog set   MD5SUM="8:983024c01a79b491a143602c20ed32c7" where ID="stockmanagement-1758855877841-313" AND   MD5SUM="8:eef1a05906fa9c47ed205da9b6e5d2a8";
+			update liquibasechangelog set   MD5SUM="8:e477471ac14e504234e45c5490ecb6a0" where ID="stockmanagement-1758855877841-332" AND   MD5SUM="8:3d6d3f97bec84454996da0cc248e0f1d";
+			update liquibasechangelog set   MD5SUM="8:aea8af274b5e3a0c01794e34de6807a9" where ID="stockmanagement-1758855877841-333" AND   MD5SUM="8:ba17bee92d14027c12d900280fee161c";
+		</sql>
+	</changeSet>
+
 </databaseChangeLog>
 
 

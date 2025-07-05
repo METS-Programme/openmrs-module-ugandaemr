@@ -1,6 +1,5 @@
 package org.openmrs.module.ugandaemr.api;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -14,8 +13,6 @@ import org.junit.Before;
 import org.mockito.Mock;
 
 import org.openmrs.Order;
-import org.openmrs.TestOrder;
-import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.Concept;
 import org.openmrs.api.PatientService;
@@ -24,12 +21,9 @@ import org.openmrs.api.VisitService;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 
-
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

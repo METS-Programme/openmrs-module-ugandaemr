@@ -1,0 +1,1703 @@
+{
+  "name": "HMIS ACP 015:Exposed Infant Card Summary Form",
+  "version": "4.1.0",
+  "description": "Captures demographic details for infants born to HIV positive mothers",
+  "encounter": "EID Card - Summary",
+  "encounterType": "9fcfcc91-ad60-4d84-9710-11cc25258719",
+  "uuid": "860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "5e8c094c-0a36-11e7-b779-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
+  "pages": [
+    {
+      "label": "Exposed Infant Summary Information",
+      "sections": [
+        {
+          "label": "Infant Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date Chart Opened",
+              "type": "encounterDatetime",
+              "id": "encDate",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "type": "patientIdentifier",
+              "label": "Exposed Infant No.",
+              "questionInfo": "",
+              "id": "exposedInfantNumber",
+              "default": "",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
+              }
+            },
+            {
+              "label": "Entry Point (Clinic/Ward)",
+              "type": "obs",
+              "required": "false",
+              "id": "careEntryPoint",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "eMTCT"
+                  },
+                  {
+                    "concept": "7b082783-658c-4867-a650-ba5bdfa65d53",
+                    "label": "Outreach"
+                  },
+                  {
+                    "concept": "dcd9939d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TB"
+                  },
+                  {
+                    "concept": "dcd87b79-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Outpatient"
+                  },
+                  {
+                    "concept": "e9469d61-b0c3-4785-81c6-057c7bc099fc",
+                    "label": "YCC"
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI"
+                  },
+                  {
+                    "concept": "7d24a93f-73a9-4e7c-a722-ebc3e35809b4",
+                    "label": "SMC"
+                  },
+                  {
+                    "concept": "dcd9dd84-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Inpatient"
+                  },
+                  {
+                    "concept": "f8c4d125-caba-485d-8561-1dcb22ad715e",
+                    "label": "KP Clinic"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Entry Point",
+              "type": "obs",
+              "required": "false",
+              "id": "otherCareEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "adf31c43-c9a0-4ab8-b53a-42097eb3d2b6"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(careEntryPoint) || careEntryPoint !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Date of NVP Start",
+              "type": "obs",
+              "id": "dateOfNvpStart",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "4d667898-fc8d-4df5-add4-1b9ca84ca7ea"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "Date of CTX Start",
+              "type": "obs",
+              "id": "dateOfCtxStart",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "e4ca65ac-dc1d-485d-bdb2-b73c2f892aca"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "Birth Defect",
+              "type": "obs",
+              "id": "birthDefect",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f10be4c0-2ee9-4597-b52a-7f18838fd820",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Neurotube Defect",
+              "type": "obs",
+              "id": "neurotubeDefect",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "844f40ef-7b44-4b3c-a462-d5155c4d83ed",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(birthDefect) || birthDefect != '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Other Neurotube Defect",
+              "type": "obs",
+              "id": "otherSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "8ecc35ef-05ba-4700-88d1-e6ade7dc2774"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(neurotubeDefect) || neurotubeDefect !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Mother/Care Giver Follow Up Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother's Name",
+              "type": "obs",
+              "id": "motherName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "137a9d5c-25cc-4a3c-98ad-328a89c6e681"
+              },
+              "validators": []
+            },
+            {
+              "label": "Common Name",
+              "type": "obs",
+              "id": "commonName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "71828cbc-c13c-43a1-9cbe-f3eaf164019a"
+              },
+              "validators": []
+            },
+            {
+              "label": "Telephone No.",
+              "type": "obs",
+              "id": "telephoneNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4a90b605-6d4a-4abe-a6c6-53199da7da18"
+              },
+              "validators": []
+            },
+            {
+              "label": "District",
+              "type": "obs",
+              "id": "district",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "557c868f-2d6c-4690-b9c1-298c1fe2bf4e"
+              },
+              "validators": []
+            },
+            {
+              "label": "County",
+              "type": "obs",
+              "id": "county",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "d65b71cb-6962-4176-9e92-3f809134a73d"
+              },
+              "validators": []
+            },
+            {
+              "label": "Sub County",
+              "type": "obs",
+              "id": "subCounty",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "50c26305-8cc6-4bd0-ba82-2cda06a21eab"
+              },
+              "validators": []
+            },
+            {
+              "label": "Village",
+              "type": "obs",
+              "id": "village",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9f0e45d3-a19c-4832-b427-018cff22e929"
+              },
+              "validators": []
+            },
+            {
+              "label": "Parish",
+              "type": "obs",
+              "id": "parish",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "3d829126-7809-430d-a087-6b67723bbc68"
+              },
+              "validators": []
+            },
+            {
+              "label": "LC1 Zone",
+              "type": "obs",
+              "id": "lc1Zone",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "cb806624-2e43-4922-a6f6-2c65ce4f99e8"
+              },
+              "validators": []
+            },
+            {
+              "label": "LC1 Chairman",
+              "type": "obs",
+              "id": "lc1Chairman",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2fac4cb7-9207-44fb-b214-973a9e379dce"
+              },
+              "validators": []
+            },
+            {
+              "label": "How should outreach workers introduce themselves?",
+              "type": "obs",
+              "id": "outreachIntorduce",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "07f92ca9-d64d-407d-a429-04a6d35956e9"
+              },
+              "validators": []
+            },
+            {
+              "label": "Directions to caregiver's home address",
+              "type": "obs",
+              "id": "caregiverDirectionToHome",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "78ed9223-4ec3-4cb2-971a-823a47c64b86"
+              },
+              "validators": []
+            },
+            {
+              "label": "Alternate Contact Person",
+              "type": "obs",
+              "id": "alternateContactPerson",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ca148ffe-134c-46b0-8e85-b08d67f0b62c"
+              },
+              "validators": []
+            },
+            {
+              "label": "Relationship",
+              "type": "obs",
+              "id": "relationship",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce138f8-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dce186ca-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Aunt/Uncle"
+                  },
+                  {
+                    "concept": "dd21e8b5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Brother/Sister"
+                  },
+                  {
+                    "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Child"
+                  },
+                  {
+                    "concept": "dd22614e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cousin"
+                  },
+                  {
+                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Friend"
+                  },
+                  {
+                    "concept": "dd1e43f2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Granchild"
+                  },
+                  {
+                    "concept": "dd1e1d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Grandparent"
+                  },
+                  {
+                    "concept": "dd1df716-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Niece/Nephew"
+                  },
+                  {
+                    "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Parent"
+                  },
+                  {
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Spouse/Partner"
+                  },
+                  {
+                    "concept": "dd22b709-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Family"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Telephone No.",
+              "type": "obs",
+              "id": "telephone",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ac1da2d4-3555-4276-b402-46005b4bc6b9"
+              },
+              "validators": []
+            },
+            {
+              "label": "Has this person been disclosed to?",
+              "type": "obs",
+              "id": "personDisclosedTo",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Mother's History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Place of Delivery",
+              "type": "obs",
+              "id": "placeOfDelivery",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "fdca545d-edc8-49d5-ae65-8140330c948d"
+              },
+              "validators": []
+            },
+            {
+              "label": "Mode of Delivery",
+              "type": "obs",
+              "id": "modeOfDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcc3ac63-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc9af8cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Breech"
+                  },
+                  {
+                    "concept": "dc9af278-30ab-102d-86b0-7a5022ba4115",
+                    "label": "C-Section"
+                  },
+                  {
+                    "concept": "510c9c4b-9f8c-4f90-aeb0-3d83cb899fa2",
+                    "label": "Forceps or Vacuum Extractor Delivery"
+                  },
+                  {
+                    "concept": "dc9aee12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Spontaneous Vaginal Delivery"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Mode of Delivery",
+              "type": "obs",
+              "id": "otherModeOfDelivery",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4af9f205-38e1-44cc-aa8a-ccf75d225ac7"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(modeOfDelivery) || modeOfDelivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Mother received ARVs for PMTCT",
+              "type": "obs",
+              "id": "motherReceivedArvsForPMTCT",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "57ad8a9d-2b60-46f4-a37e-9f61e4fce70c",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Mother's ANC No./MCH Group No.",
+              "type": "obs",
+              "id": " mothersANCNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "98e1543d-dbee-4a5a-8dca-8df5eb28ed07"
+              },
+              "validators": []
+            },
+            {
+              "label": "Mothers most recent Viral load",
+              "type": "obs",
+              "id": "mothersViralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "d749f513-7aa6-4d15-bdc8-441718c0b487",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Mother registered on Family Connect - EMTCT",
+              "type": "obs",
+              "id": "emtctMotherRegistrationStatus",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3b5d6a54-4fa3-40b0-b2d8-bb67b4dbc900",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Mother's PMTCT ARVs",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Antenatal",
+              "type": "obs",
+              "id": "antenatal",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e0ad9c75-d04a-4433-b51d-3f9d6b34af2e",
+                "answers": [
+                  {
+                    "concept": "19c1111f-4076-4420-9cb5-5d481edc4381",
+                    "label": "Lifelong ART"
+                  },
+                  {
+                    "concept": "d2c55da5-1da3-41ca-8be6-8731f2eda5ce",
+                    "label": "No ART"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "During Labour/Delivery",
+              "type": "obs",
+              "id": "duringLabourDeliverly",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2234ce82-f0e2-4363-b6d9-b1011a9f7630",
+                "answers": [
+                  {
+                    "concept": "19c1111f-4076-4420-9cb5-5d481edc4381",
+                    "label": "Lifelong ART"
+                  },
+                  {
+                    "concept": "d2c55da5-1da3-41ca-8be6-8731f2eda5ce",
+                    "label": "No ART"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Postnatal",
+              "type": "obs",
+              "id": "postnatal",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "18eca553-af98-441f-ad37-a133c4c8d353",
+                "answers": [
+                  {
+                    "concept": "19c1111f-4076-4420-9cb5-5d481edc4381",
+                    "label": "Lifelong ART"
+                  },
+                  {
+                    "concept": "d2c55da5-1da3-41ca-8be6-8731f2eda5ce",
+                    "label": "No ART"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Infant's PMTCT ARVs",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Infant's PMTCT ARVs",
+              "type": "obs",
+              "id": "infantPmtctArvs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "133d0cb7-53ce-460a-8826-e98a2bb99d73",
+                "answers": [
+                  {
+                    "concept": "da9308a0-6202-426c-9b32-eb3095a35ea0",
+                    "label": "Daily NVP from birth to 6wks"
+                  },
+                  {
+                    "concept": "5c298370-0520-43f4-a7b8-d9749a26d15c",
+                    "label": "Daily NVP from birth to 12weeks"
+                  },
+                  {
+                    "concept": "17d3e4b2-af0c-41d4-9b88-14227ee5eaa1",
+                    "label": "No ARVs taken at birth"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown (Infant eMTCT regimen not known)"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT/3TC/NVP"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other PTMCT ARV Regimen",
+              "type": "obs",
+              "id": "infantPMTCTARVsOther",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "30c866f6-479e-4474-ac85-2c183bbe752b"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(infantPmtctArvs) || infantPmtctArvs !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Mother's ART",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother in care at an ART Clinic",
+              "type": "obs",
+              "id": "motherInART",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "9b9fe6e5-349c-4b18-9171-f75dbfed2389",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": " ART Clinic No",
+              "type": "obs",
+              "id": "mothersArtNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "85097a99-4126-4ad3-894e-25c1a7e91dee"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(motherInART) || motherInART !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Testing Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "1st PCR",
+              "type": "obsGroup",
+              "id": "firstPcrGroup",
+              "questionOptions": {
+                "concept": "2bd42567-a507-4dd7-956e-17cfb350bdea",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Testing Point",
+                  "type": "obs",
+                  "id": "testingPoint",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                    "answers": [
+                      {
+                        "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                        "label": "POC"
+                      },
+                      {
+                        "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                        "label": "CPHL"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Test Date",
+                  "type": "obs",
+                  "id": "testDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "51941f01-307f-44ca-9351-401bc008a208"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ]
+                },
+                {
+                  "label": "Feeding Method",
+                  "type": "obs",
+                  "id": "feedingMethod",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "3621e994-11c3-4ef6-b0bc-7080128594a7",
+                    "answers": [
+                      {
+                        "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Exclusive Breastfeeding"
+                      },
+                      {
+                        "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                        "label": "Replacement Feeding (never breasfed)"
+                      },
+                      {
+                        "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Mixed Feeding (below 6 months)"
+                      },
+                      {
+                        "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                        "label": "Complementary Feeding (above 6 months)"
+                      },
+                      {
+                        "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                        "label": "Wean from Breastfeeding"
+                      },
+                      {
+                        "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                        "label": "No Longer Breastfeeding"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Result",
+                  "type": "obs",
+                  "id": "result",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "b6a6210b-ccdf-45fc-80dd-1567f65e2d98",
+                    "answers": [
+                      {
+                        "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Positive"
+                      },
+                      {
+                        "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Negative"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testDate)"
+                  }
+                },
+                {
+                  "label": "Date Results given to caregiver",
+                  "type": "obs",
+                  "id": "dateResultsGiven",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "f4d8932c-2b95-46c5-8aac-1fc345c3f01f"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(result)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "PCR at 9 months",
+              "type": "obsGroup",
+              "id": "nineMnthsPcrGroup",
+              "questionOptions": {
+                "concept": "9a07b530-c41a-4a56-be39-4f27528a3807",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Testing Point at 9 Months",
+                  "type": "obs",
+                  "id": "testingPoint9Mths",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                    "answers": [
+                      {
+                        "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                        "label": "POC"
+                      },
+                      {
+                        "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                        "label": "CPHL"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Test Date at 9 Months",
+                  "type": "obs",
+                  "id": "testDate9mths",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "1f627527-2f97-4f21-9b61-2b79d887950f"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ]
+                },
+                {
+                  "label": "Feeding Method at 9 Months",
+                  "type": "obs",
+                  "id": "feedingMethod9mths",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "f13d9884-bf63-4f86-bc96-a650a29a9e42",
+                    "answers": [
+                      {
+                        "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Exclusive Breastfeeding"
+                      },
+                      {
+                        "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                        "label": "Replacement Feeding (never breasfed)"
+                      },
+                      {
+                        "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Mixed Feeding (below 6 months)"
+                      },
+                      {
+                        "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                        "label": "Complementary Feeding (above 6 months)"
+                      },
+                      {
+                        "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                        "label": "Wean from Breastfeeding"
+                      },
+                      {
+                        "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                        "label": "No Longer Breastfeeding"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Result at 9 Months",
+                  "type": "obs",
+                  "id": "result9mths",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "e1b4efbf-0dff-4e9e-a2f2-34edcb02a5d0",
+                    "answers": [
+                      {
+                        "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Positive"
+                      },
+                      {
+                        "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Negative"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testDate9mths)"
+                  }
+                },
+                {
+                  "label": "Date Results given to caregiver at 9 Months",
+                  "type": "obs",
+                  "id": "dateResultsGiven9mths",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "358cbf29-0d6f-4be0-9af4-5844049d5f28"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(result9mths)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "PCR at at 6wks after stoping breastfeeding",
+              "type": "obsGroup",
+              "id": "sixWeeksPcrGroup",
+              "questionOptions": {
+                "concept": "068ed6a2-4b81-4c21-a75f-d2e9c98c265a",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Testing Point at 6 Weeks",
+                  "type": "obs",
+                  "id": "testingPoint6Weeks",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                    "answers": [
+                      {
+                        "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                        "label": "POC"
+                      },
+                      {
+                        "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                        "label": "CPHL"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Test Date at 6 Weeks",
+                  "type": "obs",
+                  "id": "testDate6wks",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "b28177ee-d386-466e-82fb-4ad041cf97a2"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ]
+                },
+                {
+                  "label": "Feeding Method at 6 Weeks",
+                  "type": "obs",
+                  "id": "feedingMethod6wks",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "c0294aea-3cc7-4f5e-8ad3-7ae99cfcc566",
+                    "answers": [
+                      {
+                        "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Exclusive Breastfeeding"
+                      },
+                      {
+                        "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                        "label": "Replacement Feeding (never breasfed)"
+                      },
+                      {
+                        "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Mixed Feeding (below 6 months)"
+                      },
+                      {
+                        "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                        "label": "Complementary Feeding (above 6 months)"
+                      },
+                      {
+                        "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                        "label": "Wean from Breastfeeding"
+                      },
+                      {
+                        "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                        "label": "No Longer Breastfeeding"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Result at 6 Weeks",
+                  "type": "obs",
+                  "id": "result6wks",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "e82cd146-9b6d-4c24-8085-80e96d2e1357",
+                    "answers": [
+                      {
+                        "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Positive"
+                      },
+                      {
+                        "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Negative"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testDate6wks)"
+                  }
+                },
+                {
+                  "label": "Date Results given to caregiver at 6 Weeks",
+                  "type": "obs",
+                  "id": "dateResultsGiven6wks",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "26f6e338-4ba3-4d53-9a5d-cbdf59148a30"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(result6wks)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Repeat PCR (if necessary)",
+              "type": "obsGroup",
+              "id": "repeatPcrGroup",
+              "questionOptions": {
+                "concept": "7ed3bf91-9275-4fba-8426-7c91befef6cc",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Testing Point at Repeat PCR",
+                  "type": "obs",
+                  "id": "testingPointRepeatPcr",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                    "answers": [
+                      {
+                        "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                        "label": "POC"
+                      },
+                      {
+                        "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                        "label": "CPHL"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Test Date at Repeat PCR",
+                  "type": "obs",
+                  "id": "testDateRepeat",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "4092ad52-3db3-47f5-b497-126e1202f1eb"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ]
+                },
+                {
+                  "label": "Feeding Method at Repeat PCR",
+                  "type": "obs",
+                  "id": "feedingMethodRepeat",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "2b200fb6-0be9-4bb0-9986-45b6ea892dd9",
+                    "answers": [
+                      {
+                        "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Exclusive Breastfeeding"
+                      },
+                      {
+                        "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                        "label": "Replacement Feeding (never breasfed)"
+                      },
+                      {
+                        "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Mixed Feeding (below 6 months)"
+                      },
+                      {
+                        "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                        "label": "Complementary Feeding (above 6 months)"
+                      },
+                      {
+                        "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                        "label": "Wean from Breastfeeding"
+                      },
+                      {
+                        "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                        "label": "No Longer Breastfeeding"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Result at Repeat PCR",
+                  "type": "obs",
+                  "id": "resultRepeat",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "6591b4ae-1a85-44a6-abf7-1dc6ff25f45a",
+                    "answers": [
+                      {
+                        "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Positive"
+                      },
+                      {
+                        "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Negative"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testDateRepeat)"
+                  }
+                },
+                {
+                  "label": "Date Results given to caregiver at Repeat PCR",
+                  "type": "obs",
+                  "id": "dateResultsGivenRepeat",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "4f3b7c47-d931-4d65-b8a2-3486d083e919"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(resultRepeat)"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "18 Month Rapid Test",
+              "type": "obsGroup",
+              "id": "rapidMonthTestGroup",
+              "questionOptions": {
+                "concept": "30210c9f-2942-4a6d-b8b8-fe97952137cd",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Test Date at 18 Month Rapid Test",
+                  "type": "obs",
+                  "id": "testDate18mths",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "7065b181-abb0-4ad6-8082-62e99398f735"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ]
+                },
+                {
+                  "label": "Feeding Method  at 18 Month Rapid Test",
+                  "type": "obs",
+                  "id": "feedingMethod18mths",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "971b7db4-81c5-49f3-bf82-3c26357b8b0c",
+                    "answers": [
+                      {
+                        "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Exclusive Breastfeeding"
+                      },
+                      {
+                        "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                        "label": "Replacement Feeding (never breasfed)"
+                      },
+                      {
+                        "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Mixed Feeding (below 6 months)"
+                      },
+                      {
+                        "concept": "d89a8589-ac19-48c4-8663-082a7d9a480d",
+                        "label": "Complementary Feeding (above 6 months)"
+                      },
+                      {
+                        "concept": "0080e335-449a-4ebd-9906-3473ff0b0821",
+                        "label": "Wean from Breastfeeding"
+                      },
+                      {
+                        "concept": "0f46cbdc-54cb-40bd-8f75-72abcf6fc852",
+                        "label": "No Longer Breastfeeding"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Result at 18 Month Rapid Test",
+                  "type": "obs",
+                  "id": "result18mths",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "71e135e8-cf63-4031-adc7-09a0a9b61c33",
+                    "answers": [
+                      {
+                        "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Positive"
+                      },
+                      {
+                        "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Negative"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testDate18mths)"
+                  }
+                },
+                {
+                  "label": "Date Results given to caregiver at 18 Month Rapid Test",
+                  "type": "obs",
+                  "id": "dateResultsGiven18mths",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "852eb620-6705-4a15-b43e-ba1c384fe5ce"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(result18mths)"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Final HIV Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Final HIV Status",
+              "type": "obs",
+              "id": "finalHivStatus",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "977b16f4-2d3e-40d2-ba51-54794c98f7ef",
+                "answers": [
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Linkage to Care/Treatment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Referred to ART Clinic",
+              "type": "obs",
+              "id": "referredToArtClinic",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5d6caa50-7dc9-44c3-aa15-be14300f7045",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalHivStatus) || finalHivStatus != 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": " Date Referred to ART Clinic",
+              "type": "obs",
+              "id": "dateReferredARTClinic",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "62dfa429-f4f8-420a-b990-14411cd9f97a"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(referredToArtClinic) || referredToArtClinic !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Enrolled at ART Clinic",
+              "type": "obs",
+              "id": "enrolledAtART",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d697d1db-32ff-4efe-a9d9-563e7c5f0827",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalHivStatus) || finalHivStatus != 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Date Enrolled at ART Clinic",
+              "type": "obs",
+              "id": "dateEnrolled",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "836a70ea-4fae-4a22-83e3-9e866f8c617c"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(enrolledAtART) || enrolledAtART !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Infant Pre-ART No.",
+              "type": "obs",
+              "id": "infantPreArt",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9fc5bf9d-a79e-4548-9207-b2afbbeba796"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalHivStatus) || finalHivStatus != 'dc866728-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Presumptive Referral",
+              "type": "obs",
+              "id": "presumptiveReferral",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "48d526ec-5bba-4475-ac51-79b37ceb79ef",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "First Attempt Follow Up Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "First Attempt Date",
+              "type": "obs",
+              "id": "firstAttemptDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "2331d278-7bbf-42db-b839-bddce38025c2"
+              },
+              "validators": []
+            },
+            {
+              "label": "First Attempt Method",
+              "type": "obs",
+              "id": "firstAttemptMethod",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "57c3a344-27bc-41cb-894e-d9f0e83104e9"
+              },
+              "validators": []
+            },
+            {
+              "label": "First Attempt Outcome",
+              "type": "obs",
+              "id": "firstAttemptOutcome",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e47c3d56-ff37-4c33-b674-190549cf4444"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Second Attempt Follow Up Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Second Attempt Date",
+              "type": "obs",
+              "id": "secondAttemptDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "a21780b5-01cd-49d6-bb84-8e249c4da530"
+              },
+              "validators": []
+            },
+            {
+              "label": "Second Attempt Method",
+              "type": "obs",
+              "id": "secondAttemptMethod",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "faa21f93-55b6-468a-b368-6e26fc311427"
+              },
+              "validators": []
+            },
+            {
+              "label": " Second Attempt Outcome",
+              "type": "obs",
+              "id": "secondAttemptOutcome",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "631733fb-0dc7-4d09-8c60-be9bfdbe5623"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Third Attempt Follow Up Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Third Attempt Date",
+              "type": "obs",
+              "id": "thirdAttemptDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "e67abee7-453e-4ef9-8186-2e33f841e3f3"
+              },
+              "validators": []
+            },
+            {
+              "label": "Third Attempt Method",
+              "type": "obs",
+              "id": "thirdAttemptMethod",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "8492ca7b-0ac1-4454-9959-eddeae18f44f"
+              },
+              "validators": []
+            },
+            {
+              "label": "Third Attempt Outcome",
+              "type": "obs",
+              "id": "thirdAttemptOutcome",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "32ff7481-af22-4d73-ac81-22884157b024"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Final Outcome Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Final Outcome Date",
+              "type": "obs",
+              "id": "finalOutcomeDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "e6a2209e-7db5-4215-866b-cf128977ff91"
+              },
+              "validators": []
+            },
+            {
+              "label": "Final Outcome",
+              "type": "obs",
+              "id": "finalOutcome",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2099355c-ceb2-482e-9a81-536890ab3d1c",
+                "answers": [
+                  {
+                    "concept": "98a22314-f091-4661-96a6-45f1b4d56e10",
+                    "label": "Discharged Negative"
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Transferred"
+                  },
+                  {
+                    "concept": "9b9fe6e5-349c-4b18-9171-f75dbfed2389",
+                    "label": "Mother in Care"
+                  },
+                  {
+                    "concept": "dcb23465-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Lost-to-follow-up"
+                  },
+                  {
+                    "concept": "5d6caa50-7dc9-44c3-aa15-be14300f7045",
+                    "label": "Positive initiated on ART"
+                  },
+                  {
+                    "concept": "1edf1f90-e44d-4eb5-bb00-5a092845349d",
+                    "label": "Positive not initiated on ART"
+                  },
+                  {
+                    "concept": "77bd00ea-5a0b-411d-893e-c39806f0bc6c",
+                    "label": "Died (Negative)"
+                  },
+                  {
+                    "concept": "ce3beade-f1b7-48d4-9f00-5a75a55fadbc",
+                    "label": "Died (Positive)"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "ART No.",
+              "type": "obs",
+              "id": "artNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "85097a99-4126-4ad3-894e-25c1a7e91dee"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalOutcome) || finalOutcome !=='5d6caa50-7dc9-44c3-aa15-be14300f7045'"
+              }
+            },
+            {
+              "label": "Location Transferred To",
+              "type": "obs",
+              "id": "locationTransferredTo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalOutcome) || finalOutcome !=='5d6caa50-7dc9-44c3-aa15-be14300f7045'"
+              }
+            },
+            {
+              "label": "Transfer out Date",
+              "type": "obs",
+              "id": "transferOutDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalOutcome) || finalOutcome !=='dd27a783-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Comment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Comment",
+              "type": "obs",
+              "id": "comment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

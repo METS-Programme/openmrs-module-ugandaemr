@@ -10,10 +10,10 @@ import org.codehaus.jackson.node.ObjectNode;
 import org.openmrs.*;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
+import org.openmrs.module.ugandaemr.api.SimpleObject;
 import org.openmrs.module.ugandaemr.utils.EncounterBasedRegimenUtils;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
-import org.openmrs.ui.framework.SimpleObject;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
