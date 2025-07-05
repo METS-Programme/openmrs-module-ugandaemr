@@ -122,6 +122,7 @@
     }
   },
   "@openmrs/esm-patient-medications-app": {
+    "maxDispenseDurationInDays": 365,
     "Display conditions": {
       "privileges": [
         "Add Orders",
@@ -754,6 +755,94 @@
             }
           }
         }
+      },
+      "homepage-dashboard-slot": {
+        "configure": {
+          "patient-queues-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Queues"
+              ]
+            }
+          },
+          "queue-reception-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Reception Menu"
+              ]
+            }
+          },
+          "queue-triage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Triage Menu"
+              ]
+            }
+          },
+          "queue-clinical-room-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Room Menu"
+              ]
+            }
+          },
+          "dispensing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Dispensing Menu"
+              ]
+            }
+          },
+          "patient-lists-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Lists"
+              ]
+            }
+          },
+          "service-queues-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Service Queues"
+              ]
+            }
+          },
+          "clinical-appointments-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          },
+          "bed-admission-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Inpatient"
+              ]
+            }
+          },
+          "data-visualizer-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Data Visualizer"
+              ]
+            }
+          },
+          "laboratory-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Laboratory"
+              ]
+            }
+          },
+          "homepage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Home Link"
+              ]
+            }
+          }
+        }
       }
     }
   },
@@ -995,94 +1084,6 @@
             }
           }
         }
-      },
-      "homepage-dashboard-slot": {
-        "configure": {
-          "patient-queues-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Queues"
-              ]
-            }
-          },
-          "queue-reception-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Reception Menu"
-              ]
-            }
-          },
-          "queue-triage-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Triage Menu"
-              ]
-            }
-          },
-          "queue-clinical-room-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Clinical Room Menu"
-              ]
-            }
-          },
-          "dispensing-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Dispensing Menu"
-              ]
-            }
-          },
-          "patient-lists-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Lists"
-              ]
-            }
-          },
-          "service-queues-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Service Queues"
-              ]
-            }
-          },
-          "clinical-appointments-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Appointments Link"
-              ]
-            }
-          },
-          "bed-admission-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Inpatient"
-              ]
-            }
-          },
-          "data-visualizer-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Data Visualizer"
-              ]
-            }
-          },
-          "laboratory-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Laboratory"
-              ]
-            }
-          },
-          "home-widget-db-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Home Link"
-              ]
-            }
-          }
-        }
       }
     },
     "logo": {
@@ -1191,7 +1192,7 @@
       }
     },
     "dispenseBehavior": {
-      "restrictTotalQuantityDispensed": false,
+      "restrictTotalQuantityDispensed": true,
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
