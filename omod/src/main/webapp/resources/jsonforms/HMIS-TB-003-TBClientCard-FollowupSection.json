@@ -123,6 +123,19 @@
                 ]
               },
               "validators": []
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "ab65b69a-3c72-4145-aa4d-770994f35ede"
+              },
+              "id": "next_visit_date_at_pharmacy",
+              "datePickerFormat": "calendar",
+              "label": "Next Visit Date At Pharmacy",
+              "hide": {
+                "hideWhenExpression": "dsdModel !=='9d1a4797-766e-495f-9387-b92462926fad'"
+              }
             }
           ]
         },
