@@ -700,7 +700,7 @@
       }
     ],
     "links": {
-      "submitButton": "/openmrs/spa/home/initial-page"
+      "submitButton": "/openmrs/spa/home/patient-queues"
     },
     "fieldConfigurations": {
       "dateOfBirth": {
@@ -1088,7 +1088,8 @@
     },
     "logo": {
       "src": "/openmrs/spa/logo-white.svg",
-      "alt": "UgandaEMR+ logo"
+      "alt": "UgandaEMR+ logo",
+      "link": "${openmrsSpaBase}/home/initial-page"
     }
   },
   "@openmrs/esm-patient-banner-app": {
