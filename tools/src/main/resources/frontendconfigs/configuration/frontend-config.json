@@ -700,7 +700,7 @@
       }
     ],
     "links": {
-      "submitButton": "/openmrs/spa/home/patient-queues"
+      "submitButton": "/openmrs/spa/home/initial-page"
     },
     "fieldConfigurations": {
       "dateOfBirth": {
