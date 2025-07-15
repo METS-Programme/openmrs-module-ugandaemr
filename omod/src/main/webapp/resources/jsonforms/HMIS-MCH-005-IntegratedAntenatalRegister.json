@@ -1,6 +1,6 @@
 {
   "name": "HMIS 005 Integrated Antenatal Register",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "description": "Entry form for patients enrolled for ANC services",
   "encounterType": "044daI6d-f80e-48fe-aba9-037f241905Pe",
   "encounter": "ANC - Encounter",
@@ -676,7 +676,7 @@
                 "rendering": "date",
                 "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs.valueDateTime)"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs?.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -859,7 +859,7 @@
                 "rendering": "text",
                 "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '2e2ec250-f5d3-4de7-8c70-a458f42441e6')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '2e2ec250-f5d3-4de7-8c70-a458f42441e6')).then(obs => obs.valueString)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -1512,5 +1512,3 @@
     }
   ]
 }
-
-
