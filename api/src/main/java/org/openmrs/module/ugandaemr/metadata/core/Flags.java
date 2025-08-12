@@ -907,4 +907,185 @@ public class Flags {
             return "8311e3eb-d87d-40f2-a35f-dd60f1782ddd";
         }
     };
+    public static FlagDescriptor PATIENT_HTN_STATUS = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "SELECT DISTINCT\n" +
+                    "               p.patient_id,\n" +
+                    "               obs.value_coded,\n" +
+                    "               CASE\n" +
+                    "                   WHEN obs.value_coded = 198889 THEN 'Known Hypertensive, not controlled and on lifestyle modification and Medication'\n" +
+                    "                   WHEN obs.value_coded = 198888 THEN 'Known Hypertensive, not controlled and on lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 198890 THEN 'Known Hypertensive and Controlled and on lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 198892 THEN 'Known Hypertensive but not on Treatment'\n" +
+                    "                   WHEN obs.value_coded = 198891 THEN 'Known Hypertensive and Controlled and on lifestyle modification and Medication'\n" +
+                    "                   WHEN obs.value_coded = 198887 THEN 'Newly Diagnosed and on lifestyle modification and Medication'\n" +
+                    "                   WHEN obs.value_coded = 198886 THEN 'Newly Diagnosed and on lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 198893 THEN 'Hypertensive patient referred for further management'\n" +
+                    "               END AS value_coded_text,\n" +
+                    "               DATE_FORMAT(obs.date_created, '%d. %b. %Y') AS formatted_date\n" +
+                    "           FROM obs\n" +
+                    "           INNER JOIN patient p ON p.patient_id = obs.person_id\n" +
+                    "           INNER JOIN encounter e ON obs.encounter_id = e.encounter_id\n" +
+                    "           WHERE obs.concept_id = 198894\n" +
+                    "           AND obs.value_coded IN (198889, 198888, 198890, 198892, 198891,198887,198886,198893)\n" +
+                    "           AND obs.date_created = (\n" +
+                    "               SELECT MAX(obs_sub.date_created)\n" +
+                    "               FROM obs obs_sub\n" +
+                    "               WHERE obs_sub.person_id = obs.person_id\n" +
+                    "               AND obs_sub.concept_id = 198894\n" +
+                    "           );";
+        }
+
+        @Override
+        public String message() {
+            return "${2} on ${3}";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.RED.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Patient HTN Status";
+        }
+
+        @Override
+        public String description() {
+            return "Patient HTN Status";
+        }
+
+        @Override
+        public String uuid() {
+            return "2e622f27-9a34-4dd8-acd9-ad23d3c6ace7";
+        }
+    };
+
+    public static FlagDescriptor PATIENT_DM_STATUS = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "SELECT DISTINCT\n" +
+                    "               p.patient_id,\n" +
+                    "               obs.value_coded,\n" +
+                    "               CASE\n" +
+                    "                   WHEN obs.value_coded = 198896 THEN 'Known Diabetic and not controlled on lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 198886 THEN 'Newly Diagnosed and on lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 198897 THEN 'Known Diabetic and not controlled on medication and lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 198887 THEN 'Newly Diagnosed and on lifestyle modification and Medication'\n" +
+                    "                   WHEN obs.value_coded = 198898 THEN 'Known Diabetic but not on Treatment'\n" +
+                    "                   WHEN obs.value_coded = 198899 THEN 'Diabetic patient referred for further management'\n" +
+                    "                   WHEN obs.value_coded = 199031 THEN 'Known Diabetic and controlled on medication and lifestyle modification'\n" +
+                    "                   WHEN obs.value_coded = 199030 THEN 'Known Diabetic and controlled on lifestyle modification'\n" +
+                    "               END AS value_coded_text,\n" +
+                    "               DATE_FORMAT(obs.date_created, '%d. %b. %Y') AS formatted_date\n" +
+                    "           FROM obs\n" +
+                    "           INNER JOIN patient p ON p.patient_id = obs.person_id\n" +
+                    "           INNER JOIN encounter e ON obs.encounter_id = e.encounter_id\n" +
+                    "           WHERE obs.concept_id = 198900\n" +
+                    "           AND obs.value_coded IN (198896, 198886, 198897, 198887, 198898,  198899,199031,199030)\n" +
+                    "           AND obs.date_created = (\n" +
+                    "               SELECT MAX(obs_sub.date_created)\n" +
+                    "               FROM obs obs_sub\n" +
+                    "               WHERE obs_sub.person_id = obs.person_id\n" +
+                    "               AND obs_sub.concept_id = 198900\n" +
+                    "           );";
+        }
+
+        @Override
+        public String message() {
+            return "${2} on ${3}";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.RED.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Patient DM Status";
+        }
+
+        @Override
+        public String description() {
+            return "Patient DM Status";
+        }
+
+        @Override
+        public String uuid() {
+            return "77c8de26-e20a-4bf1-b1f2-6ad50d746d84";
+        }
+    };
+
+    public static FlagDescriptor PATIENT_MH_AD_STATUS = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "SELECT DISTINCT\n" +
+                    "               p.patient_id,\n" +
+                    "               obs.value_coded,\n" +
+                    "               CASE\n" +
+                    "                   WHEN obs.value_coded = 198873 THEN 'Has signs and symptoms with high suicide Risk on Medication only'\n" +
+                    "                   WHEN obs.value_coded = 198874 THEN 'Has signs and symptoms with high suicide Risk on Psychotherapy and Medication'\n" +
+                    "                   WHEN obs.value_coded = 198872 THEN 'Has signs and symptoms with Low/moderate suicide Risk'\n" +
+                    "                   WHEN obs.value_coded = 198875 THEN 'Known mental illness on Psychotherapy only'\n" +
+                    "                   WHEN obs.value_coded = 198876 THEN 'Known mental illness on Medication only'\n" +
+                    "                   WHEN obs.value_coded = 198878 THEN 'Known mental illness NEITHER on Psychotherapy NOR Medication'\n" +
+                    "                   WHEN obs.value_coded = 198877 THEN 'Known mental illness on Psychotherapy and Medication'\n" +
+                    "               END AS value_coded_text,\n" +
+                    "               DATE_FORMAT(obs.date_created, '%d. %b. %Y') AS formatted_date\n" +
+                    "           FROM obs\n" +
+                    "           INNER JOIN patient p ON p.patient_id = obs.person_id\n" +
+                    "           INNER JOIN encounter e ON obs.encounter_id = e.encounter_id\n" +
+                    "           WHERE obs.concept_id = 198879\n" +
+                    "           AND obs.value_coded IN (198873, 198874, 198872, 198875, 198876,  198878,198877)\n" +
+                    "           AND obs.date_created = (\n" +
+                    "               SELECT MAX(obs_sub.date_created)\n" +
+                    "               FROM obs obs_sub\n" +
+                    "               WHERE obs_sub.person_id = obs.person_id\n" +
+                    "               AND obs_sub.concept_id = 198879\n" +
+                    "           );";
+        }
+
+        @Override
+        public String message() {
+            return "${2} on ${3}";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.RED.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Patient MH-A/D Status";
+        }
+
+        @Override
+        public String description() {
+            return "Patient MH-A/D Status";
+        }
+
+        @Override
+        public String uuid() {
+            return "eb42d019-d54c-4fa5-bddc-564da7ef4678";
+        }
+    };
 }
