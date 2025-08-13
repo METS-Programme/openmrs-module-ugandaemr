@@ -974,6 +974,7 @@
     <role_privilege  role="Organizational: Laboratory"  privilege="Delete Orders"/>
     <role_privilege  role="Organizational: Laboratory"  privilege="Manage Laboratory"/>
     <role_privilege  role="Organizational: Laboratory"  privilege="Edit Diagnoses"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="Edit Medication Dispense"/>
 
 
     <!--* PHARMACY ROLE *-->
@@ -989,6 +990,9 @@
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense.ifCreator" />
     <role_privilege role="Organizational:Pharmacy" privilege="View Dispensing Menu"/>
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.create.dispense.allowSubstitutions"/>
+    <role_privilege role="Organizational:Pharmacy" privilege="Get Medication Dispense"/>
+    <role_privilege role="Organizational:Pharmacy" privilege="Get Allergies"/>
+    <role_privilege role="Organizational:Pharmacy" privilege="App: stockmanagement.stockoperations"/>
 
 
     <!--* DATA MANAGER ROLE *-->
@@ -1109,6 +1113,9 @@
     <role_privilege  role="OPD Clinic"  privilege="Add Attachments"/>
     <role_privilege  role="OPD Clinic"  privilege="Manage Patient Vital"/>
     <role_privilege  role="OPD Clinic"  privilege="Manage Patient Investigation"/>
+    <role_privilege  role="OPD Clinic"  privilege="Get Allergies"/>
+    <role_privilege  role="OPD Clinic"  privilege="Edit Diagnoses"/>
+    <role_privilege  role="OPD Clinic"  privilege="App: stockmanagement.stockItems"/>
 
     <!--* MCH Clinic *-->
     <!--role-role-->
