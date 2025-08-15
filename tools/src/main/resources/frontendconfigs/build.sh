@@ -5,7 +5,7 @@ echo "Cleaning up previous build artifacts ..."
 rm -rf frontend
 # Assemble assets
 echo "Assembling assets ..."
-npx --legacy-peer-deps openmrs@latest assemble \
+npx --legacy-peer-deps openmrs@next assemble \
   --manifest \
   --mode config \
   --config ./configuration/spa-build-config.json \
@@ -13,7 +13,7 @@ npx --legacy-peer-deps openmrs@latest assemble \
 # Build assets
 echo "Building assets for UgandaEMR+..."
 CWD=$(pwd)
-npx --legacy-peer-deps openmrs@latest build \
+npx --legacy-peer-deps openmrs@next build \
   --build-config ./configuration/spa-build-config.json \
   --target ./frontend \
   --page-title "UgandaEMR+" \
@@ -25,7 +25,7 @@ cp "${CWD}/assets/logo.svg" "${CWD}/frontend"
 cp "${CWD}/configuration/frontend-config.json" "${CWD}/frontend"
 mv "${CWD}/frontend/frontend-config.json" "${CWD}/frontend/config.json"
 cp -r assets/* frontend/.
-zip -r frontend.zip frontend/*
+#zip -r frontend.zip frontend/*
 
 # Exit with success status
 exit 0
