@@ -204,7 +204,7 @@ public class Flags {
                     "         LEFT JOIN mamba_fact_transfer_out mfto ON mfplvl.client_id = mfto.client_id\n" +
                     "         LEFT JOIN mamba_fact_transfer_in mfti ON mfti.client_id = mfto.client_id\n" +
                     "         LEFT JOIN mamba_fact_patients_latest_viral_load_ordered mfplvlo ON mfplvl.client_id = mfplvlo.client_id\n" +
-                    "WHERE mfap.dead = FALSE\n" +
+                    "WHERE mfap.dead = FALSE AND mfplvl.hiv_viral_collection_date IS NOT NULL \n" +
                     "  AND (mfti.client_id IS NULL OR mfti.transfer_in_date > mfto.transfer_out_date)\n" +
                     "  AND (mfplvlo.client_id IS NULL OR TIMESTAMPDIFF(MONTH,order_date,CURDATE()) >=2)\n" +
                     "  AND CURRENT_DATE() >IF(TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) < 16, DATE_ADD(hiv_viral_collection_date, INTERVAL 6 MONTH),\n" +
