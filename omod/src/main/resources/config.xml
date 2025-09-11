@@ -43,25 +43,10 @@
 
 	<require_modules>
         <require_module>
-            org.openmrs.module.appframework
-        </require_module>
-        <require_module>
             org.openmrs.module.dataexchange
         </require_module>
-		<require_module>
-			org.openmrs.module.dataintegrity
-		</require_module>
         <require_module>
             org.openmrs.module.emrapi
-        </require_module>
-        <require_module>
-            org.openmrs.module.formentryapp
-        </require_module>
-        <require_module>
-            org.openmrs.module.htmlformentry
-        </require_module>
-        <require_module>
-            org.openmrs.module.htmlformentryui
         </require_module>
         <require_module>
             org.openmrs.module.idgen
@@ -72,29 +57,34 @@
         <require_module>
             org.openmrs.module.patientflags
         </require_module>
-		<require_module>
-			org.openmrs.module.referenceapplication
-		</require_module>
-        <require_module>
-            org.openmrs.module.registrationapp
-        </require_module>
-        <require_module>
-            org.openmrs.module.registrationcore
-        </require_module>
-        <require_module>
-            org.openmrs.module.uiframework
-        </require_module>
         <require_module>
             org.openmrs.module.patientqueueing
         </require_module>
 
         <require_module>
-            org.openmrs.module.ugandaemrfingerprint
+            org.openmrs.module.webservices.rest
         </require_module>
 
         <require_module>
-            org.openmrs.module.stockmanagement
+            org.openmrs.module.addresshierarchy
         </require_module>
+
+        <require_module>
+            org.openmrs.module.metadatasharing
+        </require_module>
+
+        <require_module>
+            org.openmrs.module.patientflags
+        </require_module>
+
+        <require_module>
+            org.openmrs.module.reporting
+        </require_module>
+
+        <require_module>
+            org.openmrs.module.reportingcompatibility
+        </require_module>
+
 	</require_modules>
 	
 	<aware_of_modules>

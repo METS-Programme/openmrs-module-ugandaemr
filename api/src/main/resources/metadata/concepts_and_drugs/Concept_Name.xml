@@ -6797,8 +6797,8 @@
     <concept_name  concept_name_id="107467"  concept_id="159928"  name="school"  locale="en"  locale_preferred="0"  creator="1"  date_created="2010-11-29 01:42:21"  concept_name_type="FULLY_SPECIFIED"  voided="1"  voided_by="1"  date_voided="2024-05-28 12:30:19"  void_reason="Deleted due to change of name"  uuid="107467BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  date_changed="2024-05-28 12:30:19"  changed_by="1"/>
     <concept_name  concept_name_id="187872"  concept_id="159928"  name="School, other institution, public administrative area"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-05-28 12:30:19"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="b87bf7b2-77cd-489c-b9df-dd22428b1984"  date_changed="2024-05-28 12:30:19"  changed_by="1"/>
     <concept_name  concept_name_id="198843"  concept_id="186350"  name="arv split drug set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-06-18 12:40:41"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="b824100c-2d84-11ef-b0cb-e5066d1008f8"/>
-    <concept_name  concept_name_id="198844"  concept_id="186351"  name="Image attachment"  locale="en"  locale_preferred="1"  creator="2"  date_created="2024-04-14 15:40:17"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad" />
-    <concept_name  concept_name_id="198845"  concept_id="186352"  name="Default attachment"  locale="en"  locale_preferred="1"  creator="2"  date_created="2024-04-14 15:40:17"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="209ebadb-d3df-489a-bd10-7171e21c4869" />
+    <concept_name  concept_name_id="198844"  concept_id="186351"  name="Image attachment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-04-14 15:40:17"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad" />
+    <concept_name  concept_name_id="198845"  concept_id="186352"  name="Default attachment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-04-14 15:40:17"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="209ebadb-d3df-489a-bd10-7171e21c4869" />
 
 
     <concept_name  concept_name_id="198956"  concept_id="198948"  name="Bimonthly"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:13:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d74c7c7f-319f-4385-8d19-ef60c4280773"/>
@@ -6807,5 +6807,4 @@
     <concept_name  concept_name_id="199038"  concept_id="199029"  name="CACX Screening/Treatment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-11-12 13:37:28"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="a35a0840-ecdf-44b5-a6ea-97f0855ba496"/>
     <concept_name  concept_name_id="199039"  concept_id="199030"  name="Known Diabetic and controlled on lifestyle modification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-11-13 11:16:57"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="78f2e1da-15bc-4872-b3d3-7a2522e5c6c7"/>
     <concept_name  concept_name_id="199040"  concept_id="199031"  name="Known Diabetic and controlled on medication and lifestyle modification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-11-13 11:18:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4ced5e42-b1ed-44c7-ae22-fbc3d6492db8"/>
-
 </dataset>

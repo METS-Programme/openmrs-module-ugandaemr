@@ -75,5 +75,7 @@
     <concept_description  concept_description_id="18823"  concept_id="199369"  description="Question identifying site of bleeding"  locale="en"  creator="1"  date_created="2025-03-24 13:25:00"  uuid="1d1e23f6-29a5-4612-8180-461cdc6f8388"/>
     <concept_description  concept_description_id="18824"  concept_id="199371"  description="Used to describe the side of a physical finding or organ."  locale="en"  creator="1"  date_created="2025-03-24 13:29:38" uuid="99e3af5d-b9fe-4f75-8e6c-b84f94dc2a95"/>
 
-
+    <concept_description  concept_description_id="18825"  concept_id="199461"  description="RX-2"  locale="en"  creator="1"  date_created="2025-05-17 01:52:12"   uuid="48faeacd-4e15-47fa-8afe-2cb224433e38"/>
+    <concept_description  concept_description_id="18826"  concept_id="199460"  description="RX-1"  locale="en"  creator="1"  date_created="2025-05-17 01:53:35"   uuid="5cc95c94-01ea-4e32-9243-e97291a57e6c"/>
+    <concept_description  concept_description_id="18827"  concept_id="199462"  description="+Ve-K"  locale="en"  creator="1"  date_created="2025-05-17 01:55:08"  uuid="07f791ee-abe4-4102-bfe3-9bc6b78b054f"/>
 </dataset>

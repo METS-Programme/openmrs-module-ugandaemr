@@ -16,8 +16,6 @@ package org.openmrs.module.ugandaemr.api;
 import org.openmrs.*;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.htmlformentry.FormEntrySession;
-import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.activator.Initializer;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
@@ -28,9 +26,8 @@ import org.openmrs.module.patientqueueing.mapper.PatientQueueMapper;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.lab.mapper.OrderMapper;
 import org.openmrs.module.ugandaemr.api.lab.util.TestResultModel;
-import org.openmrs.module.ugandaemr.pharmacy.DispensingModelWrapper;
 import org.openmrs.module.ugandaemr.pharmacy.mapper.PharmacyMapper;
-import org.openmrs.ui.framework.SimpleObject;
+
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -137,12 +134,6 @@ public interface UgandaEMRService extends OpenmrsService {
     public PublicHoliday getPublicHolidaybyUuid(String uuid);
 
 
-    /**
-     * This method is used to create an HIV Summary encounter based on values from another encounter
-     * @param formEntrySession the formEntrySession where
-     * @return
-     */
-    public Encounter createPatientHIVSummaryEncounterOnTransferIn(FormEntrySession formEntrySession);
 
     /**
      * Checks id a patient has an HIV Summary page
@@ -242,30 +233,6 @@ public interface UgandaEMRService extends OpenmrsService {
     public List<PharmacyMapper> mapPatientQueueToMapperWithDrugOrders(List<PatientQueue> patientQueueList, boolean includeOrders);
 
     /**
-     * Process Orders
-     * @param formSession
-     * @return
-     */
-    public Encounter processLabTestOrdersFromEncounterObs(FormEntrySession formSession, boolean completePreviousQueue);
-
-
-    /**
-     * Process Orders
-     *
-     * @param formSession
-     * @return
-     */
-    public Encounter processDrugOrdersFromEncounterObs(FormEntrySession formSession, boolean completePreviousQueue);
-
-
-    /**
-     * Send Patient To Lab
-     * @param session
-     */
-    public void sendPatientToNextLocation(FormEntrySession session, String locationUUID, String locationFromUUID, PatientQueue.Status nextQueueStatus, boolean completePreviousQueue);
-
-
-    /**
      * @param encounter
      * @return
      */
@@ -314,16 +281,6 @@ public interface UgandaEMRService extends OpenmrsService {
      */
     public void completePatientActiveVisit(Patient patient);
 
-
-    /**
-     * Dispenses medications in pharmacy
-     * @param resultWrapper the data object containing dispensing information
-     * @param provider the provider dispensing the medication
-     * @param location the location where the medication is being dispensed from
-     * @return simple object containing information about that status of dispensing
-     */
-    public SimpleObject dispenseMedication(DispensingModelWrapper resultWrapper, Provider provider, Location location);
-
     /**
      * This Method creates a patient Program Attribute for a given patient in a given program
      * @param programAttributeType the programAttribute Type which will be created
@@ -342,15 +299,6 @@ public interface UgandaEMRService extends OpenmrsService {
      * @return
      */
     public PatientProgramAttribute generatePatientProgramAttributeFromObservation(PatientProgram patientProgram, Set<Obs> observations, Integer conceptID, String programAttributeUUID);
-
-    /**
-     * This processes viral load order to be sent to CPHL
-     * @param viralLoadRequestObservation
-     * @param accessionNumber
-     * @return Encounter with Viral load Order
-     */
-    public Encounter processRetrospectiveViralLoadOrder(Obs viralLoadRequestObservation, Obs accessionNumber, Obs specimenSource);
-
 
     /**
      * This Method Checks if a test order has results entered on it either through an encounter or on the order it self
@@ -473,16 +421,10 @@ public interface UgandaEMRService extends OpenmrsService {
 
     public CheckInPatient checkInPatient(Patient patient, Location currentLocation, Location locationTo, Location queueRoom, Provider provider, String visitComment, String patientStatus, String visitTypeUuid,Integer priority);
 
-    public void copyFilesToApplicationDataDirectory(String source, String destination);
-
     public void downloadFormsAndMetaDataFromGitHub();
 
     public void downloadFrontendFromGitHub();
     public void downloadOmodsFromGitHub();
-
-
-
-
 
 
 }

@@ -13,8 +13,6 @@ import org.openmrs.api.EncounterService;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.ClobDatatypeStorage;
-import org.openmrs.ui.framework.resource.ResourceFactory;
-import org.openmrs.ui.framework.resource.ResourceProvider;
 import org.openmrs.util.OpenmrsUtil;
 
 
@@ -28,7 +26,7 @@ import java.util.UUID;
 
 public class JsonFormsInitializer implements Initializer {
 
-    protected static final Log log = LogFactory.getLog(HtmlFormsInitializer.class);
+    protected static final Log log = LogFactory.getLog(JsonFormsInitializer.class);
 
     protected static final String formsPath = "jsonforms/";
 
@@ -46,9 +44,7 @@ public class JsonFormsInitializer implements Initializer {
     @Override
     public void started() {
         log.info("Setting HFE forms for " + getProviderName());
-
-        final ResourceFactory resourceFactory = ResourceFactory.getInstance();
-        final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(getProviderName());
+        
 
         // Scanning the forms resources folder
         String fileFormPathLocal=formsPath;
@@ -56,13 +52,11 @@ public class JsonFormsInitializer implements Initializer {
         // Scanning the forms resources folder
         List<String> formPaths = new ArrayList<String>();
 
-        File formsDir;
+        File formsDir = null;
 
         if (!formFilePath.equals("")) {
             fileFormPathLocal = this.formFilePath;
             formsDir = new File(fileFormPathLocal);
-        } else {
-            formsDir = resourceProvider.getResource(fileFormPathLocal);
         }
 
         if (formsDir == null || !formsDir.isDirectory()) {

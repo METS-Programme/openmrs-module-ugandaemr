@@ -297,7 +297,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor COVID19_POSTMORTEM = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Covid19 Postmortem";            
+            return "Covid19 Postmortem";
         }
 
         @Override
@@ -624,6 +624,38 @@ public class EncounterTypes {
 
         public String uuid() {
             return "a4870f6d-ea06-4bbe-b775-bcbfb0816dbf";
+        }
+    };
+
+    public static EncounterTypeDescriptor HIV_SELF_TESTING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HIV Self Testing Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter type for to record clients accessing HIV Self-Test kits at Health facility and community distribution points";
+        }
+
+        public String uuid() {
+            return "b75fc5be-83a6-4771-afae-87d1b68af4f7";
+        }
+    };
+
+    public static EncounterTypeDescriptor HTS_CONTACT_TRACING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HTS Contact Tracing Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter to record all clients eligible for index testing and SNS";
+        }
+
+        public String uuid() {
+            return "3849c43c-f14d-40ab-80d7-670cf251e525";
         }
     };
 }

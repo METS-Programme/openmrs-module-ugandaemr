@@ -122,6 +122,7 @@
     }
   },
   "@openmrs/esm-patient-medications-app": {
+    "maxDispenseDurationInDays": 365,
     "Display conditions": {
       "privileges": [
         "Add Orders",
@@ -730,10 +731,16 @@
           },
           "searchAddressByLevel": true
         }
+      },
+      "causeOfDeath": {
+        "conceptUuid": "dca2c3f2-30ab-102d-86b0-7a5022ba4115"
       }
     },
     "registrationObs": {
       "encounterTypeUuid": "1458b726-4a62-4444-be97-bb3e08c73745"
+    },
+    "causeOfDeath": {
+      "conceptUuid": "dca2c3f2-30ab-102d-86b0-7a5022ba4115"
     }
   },
   "@openmrs/esm-home-app": {
@@ -744,6 +751,94 @@
             "Display conditions": {
               "privileges": [
                 "Manage Patient Appointments Link"
+              ]
+            }
+          }
+        }
+      },
+      "homepage-dashboard-slot": {
+        "configure": {
+          "patient-queues-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Queues"
+              ]
+            }
+          },
+          "queue-reception-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Reception Menu"
+              ]
+            }
+          },
+          "queue-triage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Triage Menu"
+              ]
+            }
+          },
+          "queue-clinical-room-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Clinical Room Menu"
+              ]
+            }
+          },
+          "dispensing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Dispensing Menu"
+              ]
+            }
+          },
+          "patient-lists-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Lists"
+              ]
+            }
+          },
+          "service-queues-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Service Queues"
+              ]
+            }
+          },
+          "clinical-appointments-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Patient Appointments Link"
+              ]
+            }
+          },
+          "bed-admission-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Inpatient"
+              ]
+            }
+          },
+          "data-visualizer-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Data Visualizer"
+              ]
+            }
+          },
+          "laboratory-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Laboratory"
+              ]
+            }
+          },
+          "homepage-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "Manage Home Link"
               ]
             }
           }
@@ -989,108 +1084,25 @@
             }
           }
         }
-      },
-      "homepage-dashboard-slot": {
-        "configure": {
-          "patient-queues-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Queues"
-              ]
-            }
-          },
-          "queue-reception-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Reception Menu"
-              ]
-            }
-          },
-          "queue-triage-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Triage Menu"
-              ]
-            }
-          },
-          "queue-clinical-room-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Clinical Room Menu"
-              ]
-            }
-          },
-          "dispensing-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "View Dispensing Menu"
-              ]
-            }
-          },
-          "patient-lists-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Lists"
-              ]
-            }
-          },
-          "service-queues-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Service Queues"
-              ]
-            }
-          },
-          "clinical-appointments-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Patient Appointments Link"
-              ]
-            }
-          },
-          "bed-admission-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Inpatient"
-              ]
-            }
-          },
-          "data-visualizer-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Data Visualizer"
-              ]
-            }
-          },
-          "laboratory-dashboard-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Laboratory"
-              ]
-            }
-          },
-          "home-widget-db-link": {
-            "Display conditions": {
-              "privileges": [
-                "Manage Home Link"
-              ]
-            }
-          }
-        }
       }
     },
     "logo": {
       "src": "/openmrs/spa/logo-white.svg",
-      "alt": "UgandaEMR+ logo"
+      "alt": "UgandaEMR+ logo",
+      "link": "${openmrsSpaBase}/home/initial-page"
     }
   },
   "@openmrs/esm-patient-banner-app": {
     "extensionSlots": {
       "patient-actions-slot": {
-        "remove": [
-          "start-visit-button"
-        ],
         "configure": {
+          "start-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Start Visit Button"
+              ]
+            }
+          },
           "stop-visit-button": {
             "Display conditions": {
               "privileges": [
@@ -1181,7 +1193,7 @@
       }
     },
     "dispenseBehavior": {
-      "restrictTotalQuantityDispensed": false,
+      "restrictTotalQuantityDispensed": true,
       "allowModifyingPrescription": false
     },
     "enableStockDispense": true,
@@ -1191,10 +1203,14 @@
   "@openmrs/esm-patient-search-app": {
     "extensionSlots": {
       "patient-actions-slot": {
-        "remove": [
-          "start-visit-button"
-        ],
         "configure": {
+          "start-visit-button": {
+            "Display conditions": {
+              "privileges": [
+                "Start Visit Button"
+              ]
+            }
+          },
           "stop-visit-button": {
             "Display conditions": {
               "privileges": [
