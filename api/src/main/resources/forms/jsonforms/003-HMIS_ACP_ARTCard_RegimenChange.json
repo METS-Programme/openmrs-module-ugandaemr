@@ -1,0 +1,672 @@
+{
+  "name": "ART Regimen Change",
+  "version": "4.1.0",
+  "description": "ART Regimen Switch and Substitution Form",
+  "encounter": "ART Regimen Change",
+  "encounterType": "c11774c1-3b4a-4bdb-a847-6060895e006d",
+  "uuid": "53a3850c-855a-11eb-8dcd-0242ac130003",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "ART Regimen Switch and Substitution",
+      "sections": [
+        {
+          "label": "Switch and Substitution Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date",
+              "type": "encounterDatetime",
+              "required": "false",
+              "id": "date",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Current Regimen",
+              "type": "obs",
+              "id": "currentRegimen",
+              "readonly": "false",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "107bef04-bf05-4f41-9260-b167c1108f7e",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "25186d70-ed8f-486c-83e5-fc31cbe95630",
+                    "label": "ABC-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                    "label": "ABC-3TC-EFV"
+                  },
+                  {
+                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                    "label": "ABC-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                    "label": "ABC-3TC-NVP"
+                  },
+                  {
+                    "concept": "faf13d3c-7ca8-4995-ab29-749f3960b83d",
+                    "label": "ABC-DDI-ATV/r"
+                  },
+                  {
+                    "concept": "dd2b9181-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b97d3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-NFV"
+                  },
+                  {
+                    "concept": "dd2b9e11-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b452c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(250)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b53d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(250)-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b4d82-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(400)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b5a01-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(400)-SQV/R"
+                  },
+                  {
+                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                    "label": "ABC/3TC/DTG"
+                  },
+                  {
+                    "concept": "d4393bd0-3a9e-4716-8968-1057c58c32bc",
+                    "label": "AZT-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-EFV"
+                  },
+                  {
+                    "concept": "f30e9dae-cc6a-4669-98d5-ad25b8a3ce9c",
+                    "label": "AZT-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "f00e5ff7-73bb-4385-8ee1-ea7aa772ec3e",
+                    "label": "AZT-ABC-LPV/r"
+                  },
+                  {
+                    "concept": "4a608d68-516f-44d2-9e0b-1783dc0d870e",
+                    "label": "AZT-DDI-LPV/r"
+                  },
+                  {
+                    "concept": "942e427c-7a3b-49b6-97f3-5cdbfeb8d0e3",
+                    "label": "AZT-DDI(250)-LPV/r"
+                  },
+                  {
+                    "concept": "29439504-5f5d-49ac-b8e4-258adc08c67a",
+                    "label": "AZT-DDI(400)-LPV/r"
+                  },
+                  {
+                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                    "label": "AZT/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-NVP"
+                  },
+                  {
+                    "concept": "dd2b29b1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(30)-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b1d43-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(30)-3TC-NVP"
+                  },
+                  {
+                    "concept": "dd2b2fec-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(40)-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b2384-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(40)-3TC-NVP"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  },
+                  {
+                    "concept": "fe78521e-eb7a-440f-912d-0eb9bf2d4b2c",
+                    "label": "TDF-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                    "label": "TDF-3TC-EFV"
+                  },
+                  {
+                    "concept": "4b9c639e-3d06-4f2a-9c34-dd07e44f4fa6",
+                    "label": "TDF-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                    "label": "TDF-3TC-NVP"
+                  },
+                  {
+                    "concept": "d239c3d5-d296-4458-b49d-8501258886e5",
+                    "label": "TDF-DDI-LPV/R"
+                  },
+                  {
+                    "concept": "e391909f-6682-4132-a08e-c481127cdeda",
+                    "label": "TDF-DDI-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b603c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(250)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b7604-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(250)-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b6f61-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(400)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b7c12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(400)-SQV/R"
+                  },
+                  {
+                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                    "label": "TDF-FTC-EFV"
+                  },
+                  {
+                    "concept": "b06bdb63-dd08-4b80-af5a-d17f6b3062a5",
+                    "label": "TDF-FTC-LPV/r"
+                  },
+                  {
+                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                    "label": "TDF-FTC-NVP"
+                  },
+                  {
+                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                    "label": "TDF/3TC/DTG"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Current Regimen Line",
+              "type": "obs",
+              "id": "currentRegimenLine",
+              "readonly": "false",
+              "questionOptions": {
+                "concept": "80148344-ce80-42f7-9d4a-8c1935efe76e",
+                "rendering": "select",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "value": "dce145c0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "First Line ARV Regimen"
+                  },
+                  {
+                    "value": "dd277db4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Second Line ARV Regimen"
+                  },
+                  {
+                    "value": "c2742c79-8c24-4fd6-9750-ecfdc7501080",
+                    "label": "Third Line ARV Regimen"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Regimen Change Type",
+              "type": "obs",
+              "required": "false",
+              "id": "regimenChangeType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ca5a71aa-05f9-42a0-bf0d-65bcfd08036b",
+                "answers": [
+                  {
+                    "concept": "dca294f2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Regimen Switch"
+                  },
+                  {
+                    "concept": "dca2992b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Regimen Substitution"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "New Regimen",
+              "type": "obs",
+              "required": "false",
+              "id": "newRegimen",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "25186d70-ed8f-486c-83e5-fc31cbe95630",
+                    "label": "ABC-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                    "label": "ABC-3TC-EFV"
+                  },
+                  {
+                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                    "label": "ABC-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                    "label": "ABC-3TC-NVP"
+                  },
+                  {
+                    "concept": "faf13d3c-7ca8-4995-ab29-749f3960b83d",
+                    "label": "ABC-DDI-ATV/r"
+                  },
+                  {
+                    "concept": "dd2b9181-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b97d3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-NFV"
+                  },
+                  {
+                    "concept": "dd2b9e11-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b452c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(250)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b53d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(250)-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b4d82-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(400)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b5a01-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(400)-SQV/R"
+                  },
+                  {
+                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                    "label": "ABC/3TC/DTG"
+                  },
+                  {
+                    "concept": "d4393bd0-3a9e-4716-8968-1057c58c32bc",
+                    "label": "AZT-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-EFV"
+                  },
+                  {
+                    "concept": "f30e9dae-cc6a-4669-98d5-ad25b8a3ce9c",
+                    "label": "AZT-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "f00e5ff7-73bb-4385-8ee1-ea7aa772ec3e",
+                    "label": "AZT-ABC-LPV/r"
+                  },
+                  {
+                    "concept": "4a608d68-516f-44d2-9e0b-1783dc0d870e",
+                    "label": "AZT-DDI-LPV/r"
+                  },
+                  {
+                    "concept": "29439504-5f5d-49ac-b8e4-258adc08c67a",
+                    "label": "AZT-DDI(400)-LPV/r"
+                  },
+                  {
+                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                    "label": "AZT/3TC/DTG"
+                  },
+                  {
+                    "concept": "942e427c-7a3b-49b6-97f3-5cdbfeb8d0e3",
+                    "label": "AZT-DDI(250)-LPV/r"
+                  },
+                  {
+                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-NVP"
+                  },
+                  {
+                    "concept": "dd2b29b1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(30)-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b1d43-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(30)-3TC-NVP"
+                  },
+                  {
+                    "concept": "dd2b2fec-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(40)-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b2384-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(40)-3TC-NVP"
+                  },
+                  {
+                    "concept": "fe78521e-eb7a-440f-912d-0eb9bf2d4b2c",
+                    "label": "TDF-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                    "label": "TDF-3TC-EFV"
+                  },
+                  {
+                    "concept": "4b9c639e-3d06-4f2a-9c34-dd07e44f4fa6",
+                    "label": "TDF-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                    "label": "TDF-3TC-NVP"
+                  },
+                  {
+                    "concept": "d239c3d5-d296-4458-b49d-8501258886e5",
+                    "label": "TDF-DDI-LPV/R"
+                  },
+                  {
+                    "concept": "e391909f-6682-4132-a08e-c481127cdeda",
+                    "label": "TDF-DDI-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b603c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(250)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b7604-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(250)-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b6f61-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(400)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b7c12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(400)-SQV/R"
+                  },
+                  {
+                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                    "label": "TDF-FTC-EFV"
+                  },
+                  {
+                    "concept": "b06bdb63-dd08-4b80-af5a-d17f6b3062a5",
+                    "label": "TDF-FTC-LPV/r"
+                  },
+                  {
+                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                    "label": "TDF-FTC-NVP"
+                  },
+                  {
+                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                    "label": "TDF/3TC/DTG"
+                  },
+                  {
+                    "concept": "b3bd1d21-aa40-4e8a-959f-2903b358069c",
+                    "label": "Other First Line Regimen"
+                  },
+                  {
+                    "concept": "834625e9-3273-445e-be99-2beca081702c",
+                    "label": "Other Second Line Regimen"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "New Regimen Other",
+              "type": "obs",
+              "required": "false",
+              "id": "newRegimenOther",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(newRegimen) || newRegimen != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "New Regimen Line",
+              "type": "obs",
+              "id": "newRegimenLine",
+              "readonly": "false",
+              "questionOptions": {
+                "concept": "164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "value": "dce145c0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "First Line ARV Regimen"
+                  },
+                  {
+                    "value": "dd277db4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Second Line ARV Regimen"
+                  },
+                  {
+                    "value": "c2742c79-8c24-4fd6-9750-ecfdc7501080",
+                    "label": "Third Line ARV Regimen"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Reason for Regimen Substitution",
+              "type": "obs",
+              "required": "false",
+              "id": "reasonForRegimenSubstitution",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce0c977-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcda62f7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Availability of New Drug"
+                  },
+                  {
+                    "concept": "dcda6cd2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Clinical Treatment Failure"
+                  },
+                  {
+                    "concept": "dcda671a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Drug Stock-out"
+                  },
+                  {
+                    "concept": "3fc15700-0a92-4e70-a7cc-b6f6b1a14101",
+                    "label": "Excluded HIV infection in infant"
+                  },
+                  {
+                    "concept": "dcda7fb0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Illness or Hospitalization"
+                  },
+                  {
+                    "concept": "dcda710e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Immunologic Failure"
+                  },
+                  {
+                    "concept": "dcda5eda-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Newly Diagnosed TB"
+                  },
+                  {
+                    "concept": "dcda87f3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Patient Decision"
+                  },
+                  {
+                    "concept": "dcda83d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Patient lacked sufficient financial resources"
+                  },
+                  {
+                    "concept": "dcda8be6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Planned Treatment Interruption"
+                  },
+                  {
+                    "concept": "dcda7b99-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor Adherence"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pregnant"
+                  },
+                  {
+                    "concept": "dcda5a93-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Risk of pregnancy"
+                  },
+                  {
+                    "concept": "dcda4d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Toxicity or Side Effects"
+                  },
+                  {
+                    "concept": "dcda7757-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Virologic Failure"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(regimenChangeType) || regimenChangeType != 'dca2992b-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Reason for regimen switch",
+              "type": "obs",
+              "required": "false",
+              "id": "reasonForRegimenSwitch",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce0cd97-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcda62f7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Availability of New Drug"
+                  },
+                  {
+                    "concept": "dcda6cd2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Clinical Treatment Failure"
+                  },
+                  {
+                    "concept": "dcda671a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Drug Stock-out"
+                  },
+                  {
+                    "concept": "3fc15700-0a92-4e70-a7cc-b6f6b1a14101",
+                    "label": "Excluded HIV infection in infant"
+                  },
+                  {
+                    "concept": "dcda7fb0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Illness or Hospitalization"
+                  },
+                  {
+                    "concept": "dcda710e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Immunologic Failure"
+                  },
+                  {
+                    "concept": "dcda5eda-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Newly Diagnosed TB"
+                  },
+                  {
+                    "concept": "dcda87f3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Patient Decision"
+                  },
+                  {
+                    "concept": "dcda83d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Patient lacked sufficient financial resources"
+                  },
+                  {
+                    "concept": "dcda8be6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Planned Treatment Interruption"
+                  },
+                  {
+                    "concept": "dcda7b99-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor Adherence"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pregnant"
+                  },
+                  {
+                    "concept": "dcda5a93-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Risk of pregnancy"
+                  },
+                  {
+                    "concept": "dcda4d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Toxicity or Side Effects"
+                  },
+                  {
+                    "concept": "dcda7757-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Virologic Failure"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(regimenChangeType) || regimenChangeType != 'dca294f2-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Clinical Notes",
+              "type": "obs",
+              "required": "false",
+              "id": "clinicalNotes",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

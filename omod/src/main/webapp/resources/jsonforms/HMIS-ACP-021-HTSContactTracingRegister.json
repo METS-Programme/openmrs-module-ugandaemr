@@ -1,0 +1,1236 @@
+{
+  "name": "HMIS ACP 021: HTS Contact Tracing Register",
+  "version": "4.1.0",
+  "description": "Encounter to record all clients eligible for index testing and SNS",
+  "encounterType": "3849c43c-f14d-40ab-80d7-670cf251e525",
+  "encounter": "HTS Contact Tracing",
+  "uuid": "e446b778-0410-43b1-8446-192eb1b65193",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "HTS Contact Tracing Register",
+      "sections": [
+        {
+          "label": "Index/Recruiter Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HTS No.",
+              "type": "obs",
+              "id": "htsNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "type": "patientIdentifier",
+              "label": "Client Clinic No.",
+              "questionInfo": "",
+              "id": "artNumber",
+              "default": "",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              }
+            },
+            {
+              "label": "Contact Tracing Category",
+              "type": "obs",
+              "id": "contactTracingCategory",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f629b7f1-de33-4287-a80c-f00af8754e10",
+                "answers": [
+                  {
+                    "concept": "7521c6a6-fa5b-4ad3-9561-352e150388bf",
+                    "label": "1 - Index Client",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b1f34616-de68-4b90-9bc4-f0397692befa",
+                    "label": "2 - Social Network Strategy (SNS)",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Type of contact",
+              "type": "obs",
+              "id": "contactType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "51df656d-a2a6-43dc-a834-abc05521511b",
+                "answers": [
+                  {
+                    "concept": "4662ba12-e995-4b5c-8e19-19365e29c173",
+                    "label": "1 - Newly identified HIV Positive including those on ART for less than 6 months",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== '7521c6a6-fa5b-4ad3-9561-352e150388bf'"
+                    }
+                  },
+                  {
+                    "concept": "b5d6f7f3-b7c0-4d2d-af17-31a9c355f4c2",
+                    "label": "2 - Already on ART for more than six months but not virally suppressed",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== '7521c6a6-fa5b-4ad3-9561-352e150388bf'"
+                    }
+                  },
+                  {
+                    "concept": "807128ee-59cc-4a53-b387-2bbad7d939a2",
+                    "label": "3 - PLHIV on ART with an identified risk",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== '7521c6a6-fa5b-4ad3-9561-352e150388bf'"
+                    }
+                  },
+                  {
+                    "concept": "902e30a1-2d10-4e92-8f77-784b6677109a",
+                    "label": "4 - Pre-ART, not started ART",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== '7521c6a6-fa5b-4ad3-9561-352e150388bf'"
+                    }
+                  },
+                  {
+                    "concept": "5c25542d-1887-4706-8d02-749d859af63a",
+                    "label": "5 - Child of HIV positive client",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== '7521c6a6-fa5b-4ad3-9561-352e150388bf'"
+                    }
+                  },
+                  {
+                    "concept": "002dfa89-5b94-4e7e-bc74-b5e556a7734a",
+                    "label": "6 - Family/Relative",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== 'b1f34616-de68-4b90-9bc4-f0397692befa'"
+                    }
+                  },
+                  {
+                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "7 - Friend",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== 'b1f34616-de68-4b90-9bc4-f0397692befa'"
+                    }
+                  },
+                  {
+                    "concept": "f3844204-c7d9-448c-a27f-1f4a8bd423d4",
+                    "label": "8 - Workmate",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== 'b1f34616-de68-4b90-9bc4-f0397692befa'"
+                    }
+                  },
+                  {
+                    "concept": "e5640aa7-3994-416a-9965-9bed2a63b3fc",
+                    "label": "9 - Social group member",
+                    "hide": {
+                      "hideWhenExpression": "contactTracingCategory !== 'b1f34616-de68-4b90-9bc4-f0397692befa'"
+                    }
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Reason why at Risk",
+              "type": "obs",
+              "id": "reasonWhyAtRisk",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cd101fa1-0c62-4bc6-bb12-0c2cc24ac8ca",
+                "answers": [
+                  {
+                    "concept": "2b0f5c02-d1e8-4f3e-936b-1d8d43132515",
+                    "label": "1 - Lifestyle",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a5fbc605-0847-437e-9885-ba79229fedf4",
+                    "label": "2 - Physical Presentation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5b08f9d2-dd78-42fd-bcf5-ee265af2a3cf",
+                    "label": "3 - Sexual History",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Reason why at Risk",
+              "type": "obs",
+              "id": "otherReasonWhyAtRisk",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4d89d682-9b5d-4f5b-872b-a0a0f7276009"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "reasonWhyAtRisk !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Entry point for health facility testing",
+              "type": "obs",
+              "id": "entryPointHFTesting",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "720a1e85-ea1c-4f7b-a31e-cb896978df79",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "OPD",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c09c3d3d-d07d-4d34-84f0-89ea4fd5d6d5",
+                    "label": "Ward",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ART Clinic",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Clinic",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "11c12455-2f54-4bb5-b051-0ecfd4a5fe96",
+                    "label": "Nutrition unit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e9469d61-b0c3-4785-81c6-057c7bc099fc",
+                    "label": "Young Child Clinic (YCC)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "164983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ANC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "160456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Maternity",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PNC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "164984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Family Planning",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "7d24a93f-73a9-4e7c-a722-ebc3e35809b4",
+                    "label": "SMC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI Clinic",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd9f59f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Adolescent Clinic",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other entry point",
+              "type": "obs",
+              "id": "otherEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "adf31c43-c9a0-4ab8-b53a-42097eb3d2b6",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "entryPointHFTesting !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Entry point for community health testing",
+              "type": "obs",
+              "id": "entryPointCommunityTesting",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4f4e6d1d-4343-42cc-ba47-2319b8a84369",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "e8dd38d8-28a2-4c09-8cb4-f93f112279ea",
+                    "label": "Home Based",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "29d1a223-4ce4-43df-96fc-6d53c0e022b1",
+                    "label": "Hotspot",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6080ad91-fc24-49dd-aa5d-3ce7c1b4ce2e",
+                    "label": "Workplace",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "03596df2-09bc-4d1f-94fd-484411ac9012",
+                    "label": "Outreach",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b928b2e7-3ab4-4924-b730-5a13d8305408",
+                    "label": "Drop in Centre (DIC)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8a965b76-4241-410f-87a5-faad44be32e6",
+                    "label": "Safe Space",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other community entry point",
+              "type": "obs",
+              "id": "otherCommunityEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "16820069-b4bf-4c47-9efc-408746e1636b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "entryPointCommunityTesting !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Special Category",
+              "type": "obs",
+              "id": "specialCategory",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "AGYW"
+                  },
+                  {
+                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                    "label": "Breast feeding"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current drug user"
+                  },
+                  {
+                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "People with Disabilities (PWD)"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisher Folks"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "People Who Inject Drugs (PWID)"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prisoners (PIP)"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance drivers (Truckers)"
+                  },
+                  {
+                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Migrant Workers"
+                  },
+                  {
+                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
+                    "label": "Non Injected Drug Users (Non-IDU)"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pregnant"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugees"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Forces (UF)"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Special Category",
+              "type": "obs",
+              "id": "otherSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "eac4e9c2-a086-43fc-8d43-b5a4e02febb4"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "specialCategory !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Number of Contacts",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Number of sexual partners",
+              "type": "obs",
+              "id": "numberOfSexualPartners",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f1a6ede9-052e-4707-9cd8-a77fdeb2a02b",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of biological children",
+              "type": "obs",
+              "id": "numberOfBiologicalChildren",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "e7ef42f2-a83d-11ed-afa1-0242ac120002",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of social contact",
+              "type": "obs",
+              "id": "numberOfSocialContact",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "e421ccd7-6816-42a9-bd0e-b2ab8389376e",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of PWID contact",
+              "type": "obs",
+              "id": "numberOfPwidContact",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "6378aa4a-39b0-4ec6-bb8a-75299171bdc2",
+                "step": 1,
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Index/Recruiter Encounter Outcome",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Attempt made to reach index/recruiter",
+              "type": "obs",
+              "id": "attemptMade",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7faf2044-2590-470b-b257-8ca96829c084",
+                "answers": [
+                  {
+                    "concept": "51409ea4-b2c0-11ed-afa1-0242ac120002",
+                    "label": "First Attempt",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "51409fb2-b2c0-11ed-afa1-0242ac120002",
+                    "label": "Second Attempt",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5140a0d4-b2c0-11ed-afa1-0242ac120002",
+                    "label": "Third Attempt",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Index/Recruiter counselled",
+              "type": "obs",
+              "id": "CounselingDone",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e986646c-501e-4f6f-9921-4fd936db9692",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Date when index/recruiter was reached",
+              "type": "obs",
+              "id": "indexDateReached",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "d7f97396-a1c2-46d5-9ef0-41f9f115136d"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Encounter Outcome",
+              "type": "obs",
+              "id": "encounterOutcome",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8f00bb8d-e262-43a3-bb71-42f4dba6e37f",
+                "answers": [
+                  {
+                    "concept": "d4973cc1-4036-40d0-84ec-7f6958542d53",
+                    "label": "Accepted"
+                  },
+                  {
+                    "concept": "7d7205cb-1128-4f1f-9dcb-47e684bdf7e6",
+                    "label": "Declined"
+                  },
+                  {
+                    "concept": "57526dfb-d202-4baf-99c8-93a9800bb00d",
+                    "label": "Postponed"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Remarks (Additional comments important for client care)",
+              "type": "obs",
+              "id": "remarks",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "1648e8a1-ed34-4318-87d8-735da453fb38"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Contact Tracing Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Contact/Recruiter Name",
+              "type": "obs",
+              "id": "contactName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e0ad4fb8-6b74-41b0-a7d0-d23909cfc3b4"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact/Recruiter Number",
+              "type": "obs",
+              "id": "contactNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "274d3000-9012-46c5-a4a7-fbf1cd3cf748"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact Category",
+              "type": "obs",
+              "id": "contactCategory",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d217f1ed-997d-42b6-b928-a1a9d4d756f2",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "AGYW"
+                  },
+                  {
+                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                    "label": "Breast feeding"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current drug user"
+                  },
+                  {
+                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "People with Disabilities (PWD)"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisher Folks"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prisoners (PIP)"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance drivers (Truckers)"
+                  },
+                  {
+                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Migrant Workers"
+                  },
+                  {
+                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
+                    "label": "Non Injected Drug Users (Non-IDU)"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pregnant"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugees"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Forces (UF)"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Contact Category",
+              "type": "obs",
+              "id": "otherContactCategory",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "77dfdf96-46e2-4410-8fb3-7d4797cf96a3"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(clientCategory) || clientCategory !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Common Name",
+              "type": "obs",
+              "id": "commonName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "96557634-22fb-469b-8574-ae7fb80cd6df"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact/Recruiter Age",
+              "type": "obs",
+              "id": "contactAge",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "4be9eb4c-ee9a-4652-973e-3f6ac97ffcb2"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact/Recruiter Sex",
+              "type": "obs",
+              "id": "contactSex",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dce0e46e-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcdf3e24-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Male",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdf3a0a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Female",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact/Recruiter Telephone Number",
+              "type": "obs",
+              "id": "contactTelephoneNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact/Recruiter Alternative Telephone Number",
+              "type": "obs",
+              "id": "contactAlternativeTelephoneNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ac1da2d4-3555-4276-b402-46005b4bc6b9"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact/Recruiter Current Place of Residence",
+              "type": "obs",
+              "id": "contactCurrentResidentialPlace",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ab7aec05-632b-4e0f-97c3-5c30e6747acc"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contact Notification Method",
+              "type": "obs",
+              "id": "contactNotificationMethod",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "65a87964-1946-46bf-8310-5a1183b13717",
+                "answers": [
+                  {
+                    "concept": "ca263513-7def-4a66-a1d1-dad80d19d913",
+                    "label": "1 - Provider Referral",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "353cb734-d5eb-45f2-8d47-365b84cb0a10",
+                    "label": "2 - Client Referral",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "cc44fcbb-da36-4d67-9e7d-fa9538abfce3",
+                    "label": "3 - Contact Referral",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2b5c68ca-788f-435c-8ea3-87f0a7c02086",
+                    "label": "4 - Dual Referral",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "History of Contact/Recruiter Violence",
+              "type": "obs",
+              "id": "contactViolenceHistory",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5f078989-6c96-43c7-b790-5674088571ac",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Contact Encounter",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Contact Encounter Date",
+              "type": "obs",
+              "id": "contactEncounterDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "3c926066-d9b8-460b-9dc8-e18eb4fbc876"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Attempt made to reach contact",
+              "type": "obs",
+              "id": "contactReachAttempt",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "642afc3b-2ac3-49f8-8418-4c9907e850ae",
+                "answers": [
+                  {
+                    "concept": "51409ea4-b2c0-11ed-afa1-0242ac120002",
+                    "label": "First Attempt",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "51409fb2-b2c0-11ed-afa1-0242ac120002",
+                    "label": "Second Attempt",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5140a0d4-b2c0-11ed-afa1-0242ac120002",
+                    "label": "Third Attempt",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Contact Encounter Means",
+              "type": "obs",
+              "id": "contactEncounterMeans",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a4418367-97f0-40e2-aec1-f93c500d52f3",
+                "answers": [
+                  {
+                    "concept": "b07f5c69-6514-44fc-951a-b77ba512765c",
+                    "label": "1 - Phone Call",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "cea04f6d-2fae-472e-ab57-3ce0f15113b5",
+                    "label": "2 - Home Visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Contact Encounter Means",
+              "type": "obs",
+              "id": "otherContactEncounterMeans",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "34c5f198-9134-4b31-bc69-b27442313a25",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "contactEncounterMeans != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Contact Encounter Outcome",
+              "type": "obs",
+              "id": "contactEncounterOutcome",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cf4d7296-3f81-4ea3-8669-8bf5cc050d12",
+                "answers": [
+                  {
+                    "concept": "07b01959-749b-4ffb-a8ac-b859f6fa79f9",
+                    "label": "1 - Came for HIV test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "950fc614-d03a-41b1-b5f2-1296893f63e9",
+                    "label": "2 - Will test elsewhere",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d56e872d-d9a9-4456-a554-f9bf74b69fb2",
+                    "label": "3 - Refused test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "7c3b7c88-8152-4dd9-8b7f-2855bb289760",
+                    "label": "4 - Known HIV Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e33ce9b6-f3fb-47c7-9701-4314de379891",
+                    "label": "5 - Documented HIV negative results (for previous four weeks)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "6 - Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Contact Encounter Outcome",
+              "type": "obs",
+              "id": "otherContactEncounterOutcome",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "46b9f21d-4bcd-4d5d-9cc3-e0873782f4ab",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "contactEncounterOutcome != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Results / Linkage",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV test Date",
+              "type": "obs",
+              "id": "hivTestDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "HIV Test Results",
+              "type": "obs",
+              "id": "hivTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "37a5bf42-5b94-4ae7-8c46-9ebff55ef349",
+                "answers": [
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
+                    "label": "Inconclusive Results"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Case Closure Status",
+              "type": "obs",
+              "id": "caseClosureStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "28368a0c-9b46-4f21-8aff-6056d3578edd",
+                "answers": [
+                  {
+                    "concept": "e47dbba0-78de-4dd7-977c-2916c430d0f7",
+                    "label": "1 - Contact has tested HIV"
+                  },
+                  {
+                    "concept": "47233296-9bb2-48bf-b6eb-e666b01731b5",
+                    "label": "2 - All attempts to allocate contact have been unsuccessful over a period of 3 months"
+                  },
+                  {
+                    "concept": "94620530-7a88-4b0d-abc0-9e16260bd7bc",
+                    "label": "3 - Contact is confirmed to be already in HIV Care"
+                  },
+                  {
+                    "concept": "e2d8f565-cb5e-4e66-bfce-1b3941a237d6",
+                    "label": "4 - Contact is out of the district/country and can't come for HIV testing in the next 3 months"
+                  },
+                  {
+                    "concept": "dcbe80d7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "5 - Contact confirmed to be dead"
+                  },
+                  {
+                    "concept": "2dbbbc60-1dd4-41ff-aa0e-bffa9da2ee65",
+                    "label": "6 - Contact is unwilling to come"
+                  },
+                  {
+                    "concept": "7918d531-5ade-4e5b-b6a1-2693aad14456",
+                    "label": "7 - Contact has opted to test elsehwere"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "8 - Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Case Closure Status",
+              "type": "obs",
+              "id": "otherCaseClosureStatus",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f82c1618-93d6-4c58-a2c3-b4872cf144a",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "caseClosureStatus != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Client Clinic Number",
+              "type": "obs",
+              "id": "contactClinicNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "b12f285a-0a26-44b5-83b3-e229bda74679",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "caseClosureStatus != 'alreadyInHivUuid'"
+              }
+            },
+            {
+              "label": "HIV Prevention Services Received",
+              "type": "obs",
+              "id": "hivPreventionServices",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
+                "answers": [
+                  {
+                    "concept": "2aa4eeb6-14d3-410c-aa50-94219b0d7866",
+                    "label": "Prevention Information",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "7e8eefbe-10a1-4a93-b399-04bb3a5f8aaf",
+                    "label": "Risk Reduction Counselling",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5d26ffa1-8b58-45af-a534-bc3b469850cb",
+                    "label": "GBV Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "63542453-423a-47ab-a66e-af9140ef485d",
+                    "label": "LiveHood services",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdd712d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Condoms",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2c48beab-1fc0-4000-91e0-523f8d22f0b5",
+                    "label": "STI Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9fd4c833-652b-4c84-a5f2-d5b7171fa89e",
+                    "label": "STI treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "719fd46d-a795-479b-8f5d-5545970f8049",
+                    "label": "SMC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8f38d77a-6488-49ad-a22e-0f84ab91ed7c",
+                    "label": "Post-GBV care",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
+                    "label": "PEP",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                    "label": "PrEP",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivTestResults !== 'dc85aa72-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Other prevention services",
+              "type": "obs",
+              "id": "otherPreventionServices",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f3419b12-f6da-4aed-a001-e9f0bd078140",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivPreventionServices != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Exprienced violence within one month post notification",
+              "type": "obs",
+              "id": "experiencedViolence",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "070445ca-847e-49b6-9424-e0c429a8971e",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Type of Violence",
+              "type": "obs",
+              "id": "typeOfViolence",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ad1aa7be-167e-41d2-9a4c-3d04f62a06d1",
+                "answers": [
+                  {
+                    "concept": "cf8735f7-a4f7-4893-94d2-5b3ef72da7eb",
+                    "label": "Rape",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d39b7e68-49a3-429c-8c4c-cfdf2b5a6076",
+                    "label": "Defilement",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "17892f6e-8159-4f0c-8cdb-83a79967083d",
+                    "label": "Physical Violence",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c5160b00-0641-4742-8672-97081379a92d",
+                    "label": "Psychological/Emotional",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "experiencedViolence !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Remarks (Additional comments important for contact care)",
+              "type": "obs",
+              "id": "contactCareComments",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

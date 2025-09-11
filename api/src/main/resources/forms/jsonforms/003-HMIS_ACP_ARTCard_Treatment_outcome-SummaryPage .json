@@ -1,0 +1,131 @@
+{
+  "name": "Treatment Interruptions Outcomes",
+  "version": "4.1.0",
+  "description": "Summary entry form for patients enrolled for ART",
+  "encounter": "ART Card - Summary",
+  "encounterType": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f",
+  "uuid": "6cb0f203-7e89-4815-8aca-81a84a18cd81",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Treatment Interruptions and Outcomes",
+      "sections": [
+        {
+          "label": "ART/TPT/FLUCONAZOLE/TB INTERRUPTIONS",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obsGroup",
+              "id":"interruptions",
+              "label": "Interruptions",
+              "questionOptions": {
+                "concept": "2bb2e360-263c-4167-8c68-87dab66dc0f6",
+                "rendering": "repeating"
+              },
+              "questions": [
+                {
+                  "label": "Treatment Type",
+                  "type": "obs",
+                  "required": "true",
+                  "id": "treatmentType",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "3aaf3680-6240-4819-a704-e20a93841942",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "label": "ART",
+                        "concept": "4212962f-437a-4723-b4bd-3ce69fe0aac9"
+                      },
+                      {
+                        "label": "TPT",
+                        "concept": "277f8bf8-ae27-4489-a1fc-6d7253efc217"
+                      },
+                      {
+                        "label": "Fluconazole",
+                        "concept": "dc875c1d-30ab-102d-86b0-7a5022ba4115"
+                      },
+                      {
+                        "label": "TB Drugs",
+                        "concept": "dc6527eb-30ab-102d-86b0-7a5022ba4115"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Interruption (Stop/Lost)",
+                  "type": "obs",
+                  "id": "interruptionStopLost",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "65d1bdf6-e518-4400-9f61-b7f2b1e80169",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "label": "Stopped",
+                        "concept": "dca26b47-30ab-102d-86b0-7a5022ba4115"
+                      },
+                      {
+                        "label": "Lost to Followup",
+                        "concept": "e741d1a6-1206-4223-b0a2-905ecf6500a7"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Stop date",
+                  "type": "obs",
+                  "id": "stopDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "ac98d431-8ebc-4397-8c78-78b0eee0ffe7",
+                    "conceptMappings": []
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": false
+                    }
+                  ]
+                },
+                {
+                  "label": "Why",
+                  "type": "obs",
+                  "id": "txtWhy",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "89d3ee61-7c74-4537-b199-4026bd6a3f67",
+                    "conceptMappings": [],
+                    "answers": []
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Date if Restart/Re-activated",
+                  "type": "obs",
+                  "id": "restartDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "160738AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "conceptMappings": []
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

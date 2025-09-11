@@ -1,0 +1,1196 @@
+{
+  "name": "HMIS ACP 008: HIV Care ART Patient Transfer In Form",
+  "version": "4.1.0",
+  "description": "HMIS ACP 008: HIV Care/ART Patient Transfer In Form",
+  "encounterType": "3e8354f7-31b3-4862-a52e-ff41a1ee60af",
+  "encounter": "Transfer Out",
+  "published": true,
+  "processor": "EncounterFormProcessor",
+  "uuid": "1306e612-3d25-4daa-b1f1-648e20804695",
+  "referencedForms": [],
+  "allowUnspecifiedAll": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "Patient Transfer/Referral Form (Transfer In)",
+      "sections": [
+        {
+          "label": "Introduction",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "markdown",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "id": "fooMarkdown",
+              "value": [
+                "**Use this form to:** Transfer in a client"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Transfer In Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Transfer In Date",
+              "type": "obs",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f363f153-f659-438b-802f-9cc1828b5fa9",
+                "conceptMappings": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "id": "transferInDate"
+            },
+            {
+              "label": "From Where",
+              "type": "obs",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "88e07e7c-f7e4-4ccf-8068-b770a3e3957b"
+              },
+              "id": "transferInPlace"
+            }
+          ]
+        },
+        {
+          "label": "Patient ART History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Baseline Regimen",
+              "type": "obs",
+              "id": "baselineRegimen",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c3332e8d-2548-4ad6-931d-6855692694a3",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                    "label": "ABC-3TC-EFV"
+                  },
+                  {
+                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                    "label": "ABC-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                    "label": "ABC-3TC-NVP"
+                  },
+                  {
+                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                    "label": "ABC/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                    "label": "AZT/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-NVP"
+                  },
+                  {
+                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                    "label": "TDF-3TC-EFV"
+                  },
+                  {
+                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                    "label": "TDF-3TC-NVP"
+                  },
+                  {
+                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                    "label": "TDF-FTC-EFV"
+                  },
+                  {
+                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                    "label": "TDF-FTC-NVP"
+                  },
+                  {
+                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                    "label": "TDF/3TC/DTG"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Baseline Regimen",
+              "type": "obs",
+              "id": "otherBaselineRegimen",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "cc3d64df-61a5-4c5a-a755-6e95d6ef3295"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(baselineRegimen) || baselineRegimen !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "ART Start Date",
+              "type": "obs",
+              "id": "artStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "conceptMappings": []
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Baseline Lab (At Start of ART)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV Viral Load Qualitative",
+              "type": "obs",
+              "required": false,
+              "id": "viralLoadQualitative",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dca10c94-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Detected"
+                  },
+                  {
+                    "concept": "dca11907-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor Sample Quality"
+                  },
+                  {
+                    "concept": "dca1269d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Target Not Detected"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV Viral Load (copies/ml)",
+              "type": "obs",
+              "id": "viralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(viralLoadQualitative) || viralLoadQualitative !== 'dca10c94-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Baseline HB",
+              "type": "obs",
+              "required": false,
+              "id": "baselineHb",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "3814409a-0caa-4816-895e-67e843ad2a2d"
+              },
+              "validators": []
+            },
+            {
+              "label": "Baseline CD4",
+              "type": "obs",
+              "required": false,
+              "id": "baselineCd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c17bd9df-23e6-4e65-ba42-eb6d9250ca3f"
+              },
+              "validators": []
+            },
+            {
+              "label": "Baseline CD4 (%)",
+              "type": "obs",
+              "required": false,
+              "id": "baselineCd4Percent",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "264e34a1-3ae3-4b59-9763-48c961a8a56a"
+              },
+              "validators": []
+            },
+            {
+              "label": "Baseline TLC",
+              "type": "obs",
+              "required": false,
+              "id": "baselineTlc",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "3bd96dc6-cb19-4e8b-9e3e-ba351d2f13c5"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Baseline Clinical Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Baseline Weight (Kg)",
+              "type": "obs",
+              "required": false,
+              "id": "baselineWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "900b8fd9-2039-4efc-897b-9b8ce37396f5"
+              },
+              "validators": []
+            },
+            {
+              "label": "Baseline Height (cm)",
+              "type": "obs",
+              "required": false,
+              "id": "baselineHeight",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7f7e9c9a-2fda-4de8-98a7-aad538b8a2b4"
+              },
+              "validators": []
+            },
+            {
+              "label": "WHO Clinical Stage",
+              "type": "obs",
+              "required": false,
+              "id": "whoClinicalStage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d65cfbee-ba13-4cba-aa5c-2a6438219a90",
+                "answers": [
+                  {
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 1"
+                  },
+                  {
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 2"
+                  },
+                  {
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 3"
+                  },
+                  {
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 4"
+                  },
+                  {
+                    "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T1"
+                  },
+                  {
+                    "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T2"
+                  },
+                  {
+                    "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T3"
+                  },
+                  {
+                    "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T4"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Baseline Functional Status",
+              "type": "obs",
+              "required": false,
+              "id": "baselineFunctionalStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a2554d4b-00ca-4f55-93df-65a8a6d8f9a2",
+                "answers": [
+                  {
+                    "concept": "dcda3ea0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ambulatory"
+                  },
+                  {
+                    "concept": "dcda4923-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Bedridden"
+                  },
+                  {
+                    "concept": "dcda42d4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Working"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Current Regimen",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Current Regimen",
+              "type": "obs",
+              "id": "currentRegimen",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "25186d70-ed8f-486c-83e5-fc31cbe95630",
+                    "label": "ABC-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                    "label": "ABC-3TC-EFV"
+                  },
+                  {
+                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                    "label": "ABC-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                    "label": "ABC-3TC-NVP"
+                  },
+                  {
+                    "concept": "faf13d3c-7ca8-4995-ab29-749f3960b83d",
+                    "label": "ABC-DDI-ATV/r"
+                  },
+                  {
+                    "concept": "dd2b9181-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b97d3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-NFV"
+                  },
+                  {
+                    "concept": "dd2b9e11-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b452c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(250)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b53d6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(250)-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b4d82-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(400)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b5a01-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ABC-DDI(400)-SQV/R"
+                  },
+                  {
+                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                    "label": "ABC/3TC/DTG"
+                  },
+                  {
+                    "concept": "d4393bd0-3a9e-4716-8968-1057c58c32bc",
+                    "label": "AZT-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-EFV"
+                  },
+                  {
+                    "concept": "f30e9dae-cc6a-4669-98d5-ad25b8a3ce9c",
+                    "label": "AZT-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "f00e5ff7-73bb-4385-8ee1-ea7aa772ec3e",
+                    "label": "AZT-ABC-LPV/r"
+                  },
+                  {
+                    "concept": "4a608d68-516f-44d2-9e0b-1783dc0d870e",
+                    "label": "AZT-DDI-LPV/r"
+                  },
+                  {
+                    "concept": "942e427c-7a3b-49b6-97f3-5cdbfeb8d0e3",
+                    "label": "AZT-DDI(250)-LPV/r"
+                  },
+                  {
+                    "concept": "29439504-5f5d-49ac-b8e4-258adc08c67a",
+                    "label": "AZT-DDI(400)-LPV/r"
+                  },
+                  {
+                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                    "label": "AZT/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-NVP"
+                  },
+                  {
+                    "concept": "dd2b29b1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(30)-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b1d43-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(30)-3TC-NVP"
+                  },
+                  {
+                    "concept": "dd2b2fec-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(40)-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b2384-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T(40)-3TC-NVP"
+                  },
+                  {
+                    "concept": "fe78521e-eb7a-440f-912d-0eb9bf2d4b2c",
+                    "label": "TDF-3TC-ATV/r"
+                  },
+                  {
+                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                    "label": "TDF-3TC-EFV"
+                  },
+                  {
+                    "concept": "4b9c639e-3d06-4f2a-9c34-dd07e44f4fa6",
+                    "label": "TDF-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                    "label": "TDF-3TC-NVP"
+                  },
+                  {
+                    "concept": "d239c3d5-d296-4458-b49d-8501258886e5",
+                    "label": "TDF-DDI-LPV/R"
+                  },
+                  {
+                    "concept": "e391909f-6682-4132-a08e-c481127cdeda",
+                    "label": "TDF-DDI-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b603c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(250)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b7604-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(250)-SQV/R"
+                  },
+                  {
+                    "concept": "dd2b6f61-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(400)-LPV/R"
+                  },
+                  {
+                    "concept": "dd2b7c12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TDF-DDI(400)-SQV/R"
+                  },
+                  {
+                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                    "label": "TDF-FTC-EFV"
+                  },
+                  {
+                    "concept": "b06bdb63-dd08-4b80-af5a-d17f6b3062a5",
+                    "label": "TDF-FTC-LPV/r"
+                  },
+                  {
+                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                    "label": "TDF-FTC-NVP"
+                  },
+                  {
+                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                    "label": "TDF/3TC/DTG"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Current ARV Regimen",
+              "type": "obs",
+              "id": "otherCurrentRegimen",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(currentRegimen) || currentRegimen !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Regimen Issued till",
+              "type": "obs",
+              "required": false,
+              "id": "dateStartedCurrentRegimen",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "aa791416-71b7-4ab0-8fcc-0a11d5910244",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Most recent lab",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV Viral Load Qualitative",
+              "type": "obs",
+              "required": false,
+              "id": "mostRecentviralLoadQual",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dca10c94-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Detected"
+                  },
+                  {
+                    "concept": "dca11907-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poor Sample Quality"
+                  },
+                  {
+                    "concept": "dca1269d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Target Not Detected"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV Viral Load (copies/ml)",
+              "type": "obs",
+              "id": "mostRecentViralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(viralLoadQualitative) || viralLoadQualitative !== 'dca10c94-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HB",
+              "type": "obs",
+              "required": false,
+              "id": "mostRecentHb",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dc548e89-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "required": false,
+              "id": "mostRecentCd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4 (%)",
+              "type": "obs",
+              "required": false,
+              "id": "mostRecentCd4Percent",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dc86e9fb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "TLC",
+              "type": "obs",
+              "required": false,
+              "id": "mostRecentTlc",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dc92757d-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Current Clinical Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Weight (Kg)",
+              "type": "obs",
+              "id": "currentWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Height (cm)",
+              "type": "obs",
+              "id": "Currentheight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "WHO Clinical Stage",
+              "type": "obs",
+              "id": "currentWHOClinicStage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcda2bc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3251-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3663-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda3a80-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage 4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd25e735-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T1",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd2666a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T2",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd266d64-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T3",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd269c18-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO Clinical Stage T4",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Functional Status",
+              "type": "obs",
+              "required": false,
+              "id": "functionalStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce09a15-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcda3ea0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ambulatory"
+                  },
+                  {
+                    "concept": "dcda42d4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Working"
+                  },
+                  {
+                    "concept": "dcda4923-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Bedridden"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "TB Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "TB Status",
+              "type": "obs",
+              "id": "tbStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcdaccc1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No signs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdaaf0f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Suspect TB",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdac38b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Diagnosed with TB",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdaa6b4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Currently on TB treatment",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "TB Start Date",
+              "type": "obs",
+              "id": "tbStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dce02eca-30ab-102d-86b0-7a5022ba4115",
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(tbStatus) || tbStatus !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Pregnancy Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Pregnant",
+              "type": "obs",
+              "id": "pregnancyStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
+            },
+            {
+              "label": "EDD",
+              "type": "obs",
+              "id": "edd",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dcc033e5-30ab-102d-86b0-7a5022ba4115",
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F' || pregnancyStatus !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Opportunist Infections / Other Medications / Drug Allergies",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Opportunist Infections",
+              "type": "obs",
+              "id": "opportunistInfections",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcde6b70-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Zoster"
+                  },
+                  {
+                    "concept": "dcde6fa4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pneumonia"
+                  },
+                  {
+                    "concept": "dcde75ed-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Dementia"
+                  },
+                  {
+                    "concept": "dcde7e49-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Thrush"
+                  },
+                  {
+                    "concept": "dcde88c8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fever"
+                  },
+                  {
+                    "concept": "dcde8cfc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cough"
+                  },
+                  {
+                    "concept": "dcde9191-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Breathing Difficulty"
+                  },
+                  {
+                    "concept": "dcde9e0d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Weight Loss"
+                  },
+                  {
+                    "concept": "dcddab4c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fatigue"
+                  },
+                  {
+                    "concept": "149856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Acute Diarrhea"
+                  },
+                  {
+                    "concept": "dcde7a2e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Encephalitis"
+                  },
+                  {
+                    "concept": "dcde97e6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Immune Reconstitution Inflammatory Syndrome"
+                  },
+                  {
+                    "concept": "dcdea40e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Urethral Discharge"
+                  },
+                  {
+                    "concept": "dcdeac6a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pelvic Inflammatory Disease"
+                  },
+                  {
+                    "concept": "dcdeb5a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Genital Ulcer Disease"
+                  },
+                  {
+                    "concept": "dcdebc02-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ulcers"
+                  },
+                  {
+                    "concept": "dc668353-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Presumed"
+                  },
+                  {
+                    "concept": "dc91d130-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Respiratory Tract Infection"
+                  },
+                  {
+                    "concept": "cf471f5f-5aeb-456b-bc79-76a0d33cd618",
+                    "label": "Runny nose"
+                  },
+                  {
+                    "concept": "dcddab4c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fatigue"
+                  },
+                  {
+                    "concept": "158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sore throat"
+                  },
+                  {
+                    "concept": "dc8dd1a1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Chills"
+                  },
+                  {
+                    "concept": "dccfffa9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Vomiting"
+                  },
+                  {
+                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "None"
+                  },
+                  {
+                    "concept": "94c53f26-13cd-43bc-80b7-0390122aa6ab",
+                    "label": "Recent inability to walk"
+                  },
+                  {
+                    "concept": "147241AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bleeding"
+                  },
+                  {
+                    "concept": "dbff1242-8cc7-4808-9adb-beae4cb136ae",
+                    "label": "Bleeding site"
+                  },
+                  {
+                    "concept": "dc666657-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Conjuctivitis"
+                  },
+                  {
+                    "concept": "dc685df9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Abdominal Pain"
+                  },
+                  {
+                    "concept": "dcd4d9c7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Muscle Pain"
+                  },
+                  {
+                    "concept": "dc658ee1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Joint Pain"
+                  },
+                  {
+                    "concept": "512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rash"
+                  },
+                  {
+                    "concept": "dcb1c8f8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Weakness"
+                  },
+                  {
+                    "concept": "206AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Seizure"
+                  },
+                  {
+                    "concept": "dcdde239-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Confusion"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Medications Dispensed",
+              "type": "obs",
+              "id": "otherMedicationsDispensed",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dc9b5b8f-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc65c7d5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Dapsone"
+                  },
+                  {
+                    "concept": "dc7c5bd2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Multivitamin"
+                  },
+                  {
+                    "concept": "dc824720-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Isoniazid"
+                  },
+                  {
+                    "concept": "dc875c1d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fluconazole"
+                  },
+                  {
+                    "concept": "dc87f4ad-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Rifampicin Isoniazid and Pyrazinamide"
+                  },
+                  {
+                    "concept": "dc902b63-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NYSTATIN"
+                  },
+                  {
+                    "concept": "dc9897e7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "RIFAMPICIN ISONIAZID PYRAZINAMIDE AND ETHAMBUTOL"
+                  },
+                  {
+                    "concept": "dc9b5fcb-30ab-102d-86b0-7a5022ba4115",
+                    "label": "RIFAMPICIN AND ISONIAZID"
+                  },
+                  {
+                    "concept": "dccc0ed1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ANTIMALARIAL MEDICATIONS"
+                  },
+                  {
+                    "concept": "dc78412b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PARAPHIMOSIS"
+                  },
+                  {
+                    "concept": "dc73cb3e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AMOXICILLIN"
+                  },
+                  {
+                    "concept": "dc6a3dba-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MEBENDAZOLE"
+                  },
+                  {
+                    "concept": "dc751c7d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "VITAMIN B COMPLEX"
+                  },
+                  {
+                    "concept": "dc906386-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AMITRYPTILINE"
+                  },
+                  {
+                    "concept": "dc873807-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CIPROFLOXACIN"
+                  },
+                  {
+                    "concept": "dc900d34-30ab-102d-86b0-7a5022ba4115",
+                    "label": "IBUPROFEN"
+                  },
+                  {
+                    "concept": "dc65ebb9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "DOXYCYCLINE"
+                  },
+                  {
+                    "concept": "dc6a1f48-30ab-102d-86b0-7a5022ba4115",
+                    "label": "METRONIDAZOLE"
+                  },
+                  {
+                    "concept": "dc904bf6-30ab-102d-86b0-7a5022ba4115",
+                    "label": "KETOCONAZOLE"
+                  },
+                  {
+                    "concept": "dc97f1ca-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ETHAMBUTOL AND ISONIZAID"
+                  },
+                  {
+                    "concept": "37f2389b-55e8-441a-bd59-cd50f25553c3",
+                    "label": "RIFAMPICIN ISONIAZID PYRAZINAMIDE ETHAMBUTOL AND STREPTOMYCIN"
+                  },
+                  {
+                    "concept": "8ba0d2c5-9eaf-4388-bc94-49b42e4104de",
+                    "label": "RIFAMPICIN ISONIAZID AND ETHAMBUTOL"
+                  },
+                  {
+                    "concept": "8531d1a7-9793-4c62-adab-f6716cf9fabb",
+                    "label": "NUTRITION SUPPORT AND INFANT FEEDING"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  },
+                  {
+                    "concept": "dc903ab0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CLOXACILLIN"
+                  },
+                  {
+                    "concept": "9b38d1cf-88dd-4a92-94b8-0c5423791a08",
+                    "label": "COARTEM"
+                  },
+                  {
+                    "concept": "dc73f75a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ERYTHROMYCIN"
+                  },
+                  {
+                    "concept": "dcdf568b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "DAPSONE"
+                  },
+                  {
+                    "concept": "dc882826-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CETIRIZINE"
+                  },
+                  {
+                    "concept": "b04eaf95-77c9-456a-99fb-f668f58a9386",
+                    "label": "OTHER MEDICATIONS DISPENSED"
+                  },
+                  {
+                    "concept": "315825e8-8ba4-4551-bdd1-aa4e02a36639",
+                    "label": "Iron Given"
+                  },
+                  {
+                    "concept": "8c346216-c444-4528-a174-5139922218ed",
+                    "label": "FOLIC ACID Given"
+                  },
+                  {
+                    "concept": "d12abd7f-c90d-4798-9240-0f2f81977183",
+                    "label": "Ctx given to mother"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Any Drug Allergies",
+              "type": "obs",
+              "id": "anyDrugAllergies",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "dc674105-30ab-102d-86b0-7a5022ba4115",
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Reason for Transfer",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Reason for Transfer",
+              "type": "obs",
+              "required": true,
+              "id": "reasonForTransfer",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f88453e3-1676-4b23-9273-39795ac29524"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

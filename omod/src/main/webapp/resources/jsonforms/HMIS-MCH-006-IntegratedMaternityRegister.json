@@ -1,0 +1,1997 @@
+{
+  "name": "HMIS MCH 006: Integrated Maternity Register",
+  "version": "4.1.0",
+  "description": "Admission into a clinic for a pregnant woman to give birth",
+  "encounterType": "a9f11592-22e7-45fc-904d-dfe24cb1fc67",
+  "encounter": "Maternity - Encounter",
+  "uuid": "fba57e92-69fe-4c89-a8b7-13e7d9cd70ab",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "allowUnspecifiedAll": true,
+  "pages": [
+    {
+      "label": "Integrated Maternity Register",
+      "sections": [
+        {
+          "label": "Admission Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of Admission",
+              "id": "admissionDate",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "datetime",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "label": "Admission No.",
+              "id": "admissionNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a73edeb2-8a34-43a4-916d-1d8954870d92"
+              }
+            },
+            {
+              "label": "ANC NO.",
+              "id": "ancNumber",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329"
+              }
+            },
+            {
+              "label": "Referral Type",
+              "type": "obs",
+              "id": "referralType",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "67ea4375-0f4f-4e67-b8b0-403942753a4d",
+                "answers": [
+                  {
+                    "concept": "865811ad-796f-48c2-b575-1f530122c408",
+                    "label": "Health Facility",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1ca0db4a-c5c6-48ed-9e17-84905f4487eb",
+                    "label": "Community",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Ref In No.",
+              "id": "refInNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9bf35577-f802-437d-8ca3-84ab15191d6e"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(referralType) || referralType !== '865811ad-796f-48c2-b575-1f530122c408'"
+              }
+            },
+            {
+              "label": "C/Ref In No.",
+              "id": "crefInNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0c522db6-4332-4aa1-8293-e97ce406829a"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(referralType) || referralType !== '1ca0db4a-c5c6-48ed-9e17-84905f4487eb'"
+              }
+            },
+            {
+              "label": "IPD NO.",
+              "id": "ipdNumber",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            },
+            {
+              "label": "Gravida",
+              "id": "gravida",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "dcc39097-30ab-102d-86b0-7a5022ba4115"
+              }
+            },
+            {
+              "label": "Parity",
+              "id": "parity",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            },
+            {
+              "label": "Gestation Age (Weeks Of Amenorrhea)",
+              "id": "gestationAge",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "0b995cb8-7d0d-46c0-bd1a-bd322387c870"
+              }
+            },
+            {
+              "label": "Delivery",
+              "type": "obs",
+              "id": "delivery",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Term",
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "gestationAge < 37"
+                    }
+                  },
+                  {
+                    "concept": "129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Pre-term",
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "gestationAge >= 37"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Reason for Admission",
+              "type": "obs",
+              "id": "admissionReason",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "03967f0d-70a7-4c65-b2d8-4b3ad6b2a3d8",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "WHO Clinical Stage / CD4 / Viral Load",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV Status",
+              "type": "obs",
+              "id": "hivStatus",
+              "required": "false",
+              "questionOptions": {
+                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "id": "cd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dcbcba2c-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Date CD4 Sample Collected",
+              "type": "obs",
+              "required": "false",
+              "id": "dateStarted",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c')).then(obs => obs?.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Viral Load",
+              "type": "obs",
+              "id": "viralLoad",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dc8d83e3-30ab-102d-86b0-7a5022ba4115')).then(obs => obs?.valueQuantity?.value)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "HIV Viral Load Date",
+              "type": "obs",
+              "required": "false",
+              "id": "vlDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '0b434cfa-b11c-4d14-aaa2-9aed6ca2da88')).then(obs => obs.valueDateTime)"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "eMTCT",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Woman eMTCT",
+              "type": "obs",
+              "id": "womanEmtct",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4c94afa1-5cd4-4803-bd06-cff11fa2eee2",
+                "answers": [
+                  {
+                    "concept": "34b9dbdc-c448-4d9f-b4ef-c9de8046a62c",
+                    "label": "1st Time: Client counselled and tested for the first time during this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bf335c17-7925-44a2-b8b2-f530bad7ea10",
+                    "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6b5a2e89-1ffe-47c5-896a-6e0c1c876f3c",
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "eb2a4be8-73fd-4f78-a528-db6c2d07d216",
+                    "label": "Known POS: Clients with a known HIV positive status who did not attend Antenantal from any health facility",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Woman TFV",
+              "type": "obs",
+              "id": "womanTfv",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "27ed8c9d-3101-4d07-9cfe-01ea082af0f5",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner eMTCT",
+              "type": "obs",
+              "id": "PartnerEmtct",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "62a37075-fc2a-4729-8950-b9fae9b22cfb",
+                "answers": [
+                  {
+                    "concept": "34b9dbdc-c448-4d9f-b4ef-c9de8046a62c",
+                    "label": "1st Time: Client counselled and tested for the first time during this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bf335c17-7925-44a2-b8b2-f530bad7ea10",
+                    "label": "Re-Attd: Client with a Known HIV status from a previous ANC Attendance not eligible for a re-test in maternity",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6b5a2e89-1ffe-47c5-896a-6e0c1c876f3c",
+                    "label": "Retest: Client  re-tested for HIV during this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "eb2a4be8-73fd-4f78-a528-db6c2d07d216",
+                    "label": "Known POS: Clients with a known HIV positive status who did not attend Antenantal from any health facility",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner TFV",
+              "type": "obs",
+              "id": "partnerTfv",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "03aad24f-b80f-4f17-af88-90b83592d044",
+                "answers": [
+                  {
+                    "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "ART Status Code",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "ART Codes",
+              "type": "obs",
+              "id": "artCodes",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a615f932-26ee-449c-8e20-e50a15232763",
+                "answers": [
+                  {
+                    "concept": "026e31b7-4a26-44d0-8398-9a41c40ff7d3",
+                    "label": "New - Client Initiated on ART for eMTCT on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2aa7d442-6cbb-4609-9dd3-bc2ad6f05016",
+                    "label": "Known ART - Client already on HAART prior to ANC first visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bbc63761-0741-4583-9396-a34d3a18601c",
+                    "label": "Refill - Revisiting HIV Positive client already on ART",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "type": "patientIdentifier",
+              "label": "ART Number",
+              "questionInfo": "",
+              "id": "artNumber",
+              "default": "",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              }
+            },
+            {
+              "label": "CTX",
+              "type": "obs",
+              "id": "ctx",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "791cc131-8f5f-4795-a1bc-196241a007b7",
+                "answers": [
+                  {
+                    "concept": "82e45aa0-225c-4654-9277-ccd233b15516",
+                    "label": "CTX - Mother initiated/prescribed CTX on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3ea38a22-33c7-4790-ba76-340b50122a14",
+                    "label": "CTX √ - Mother initiated on and given a refill on this visit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable - Mother HIV Negative",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Syphilis and Hep B Test Results",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Woman's Screening Results for Syphilis",
+              "type": "obs",
+              "id": "womanSyphilisTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "275a6f72-b8a4-4038-977a-727552f69cb8",
+                "answers": [
+                  {
+                    "concept": "1fa7844c-58fb-4925-b940-12fd17708852",
+                    "label": "Rx-1: Tested Positive for syphilis within the past 1 year and completed treatment but not eligible for a test this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2b9b8d2b-d3dd-48bd-ad72-17b529265d5c",
+                    "label": "Rx-2: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment, not eligible for a test this pregnancy but initiated on treatment at this contact",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f544bf93-327a-4483-b1ff-cf9d95d13a43",
+                    "label": "RX-3: Tested Positive for syphilis and initiated on syphilis treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0df1325b-adf0-4cfe-aca2-e26192df8616",
+                    "label": "+Ve-K: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment at this contact but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e378c65a-945a-4d2e-95bb-cc4b87e2d0b2",
+                    "label": "+Ve: Tested Positive for syphilis but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ecdcedbb-c19b-4269-9854-b2c00114d2b8",
+                    "label": "-Ve: Tested for syphilis and the results are negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "451f794b-2f67-4ac5-bfb6-39cdae7bf4fc",
+                    "label": "NR: Client not tested for syphilis at this visit",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Woman's Hep-B Eligibility for ARVs",
+              "type": "obs",
+              "id": "womanArvEligibility",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6f07ddd3-79f6-4fc7-a267-1e8dcf712918",
+                "answers": [
+                  {
+                    "concept": "3231e55c-db94-41fb-8a1b-fde9cc2d6740",
+                    "label": "P: Eligible for prophylaxis and initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ffc55492-5507-46d7-b904-ac87da37693d",
+                    "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5976235d-d5b6-4f06-ac99-beeb88621551",
+                    "label": "LT-Rx: Eligible for life long treatment and treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "88e36a64-1503-4af5-8b0f-8e2d5627e484",
+                    "label": "LTN: Eligible for life long treatment but not treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "85d234b2-554d-4a14-934d-4be342c50fd9",
+                    "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner's Screening Results for Syphilis",
+              "type": "obs",
+              "id": "partnerSyphilisTestResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3f84a63b-1aed-42a1-b59e-49f75626a60e",
+                "answers": [
+                  {
+                    "concept": "1fa7844c-58fb-4925-b940-12fd17708852",
+                    "label": "Rx-1: Tested Positive for syphilis within the past 1 year and completed treatment but not eligible for a test this pregnancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2b9b8d2b-d3dd-48bd-ad72-17b529265d5c",
+                    "label": "Rx-2: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment, not eligible for a test this pregnancy but initiated on treatment at this contact",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f544bf93-327a-4483-b1ff-cf9d95d13a43",
+                    "label": "RX-3: Tested Positive for syphilis and initiated on syphilis treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0df1325b-adf0-4cfe-aca2-e26192df8616",
+                    "label": "+Ve-K: Tested Positive for syphilis within the past 1 year and did not receive or complete treatment at this contact but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e378c65a-945a-4d2e-95bb-cc4b87e2d0b2",
+                    "label": "+Ve: Tested Positive for syphilis but not initiated on treatment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ecdcedbb-c19b-4269-9854-b2c00114d2b8",
+                    "label": "-Ve: Tested for syphilis and the results are negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ee5ba4a0-e03d-421a-bbbd-e391884477a4",
+                    "label": "NR: Client not tested for syphilis at this visit",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Partner's Hep-B Eligibility for ARVs",
+              "type": "obs",
+              "id": "partnerArvEligibility",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d9fa4e36-a422-4293-81ca-999d7f9a735d",
+                "answers": [
+                  {
+                    "concept": "3231e55c-db94-41fb-8a1b-fde9cc2d6740",
+                    "label": "P: Eligible for prophylaxis and initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ffc55492-5507-46d7-b904-ac87da37693d",
+                    "label": "NP: Eligible for prophylaxis but not initiated on ARVs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5976235d-d5b6-4f06-ac99-beeb88621551",
+                    "label": "LT-Rx: Eligible for life long treatment and treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "88e36a64-1503-4af5-8b0f-8e2d5627e484",
+                    "label": "LTN: Eligible for life long treatment but not treated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "85d234b2-554d-4a14-934d-4be342c50fd9",
+                    "label": "NE: Not Eligible for prophylaxis or lifelong treatment",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Delivery Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mode of Delivery",
+              "type": "obs",
+              "id": "modeOfDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcc3ac63-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc9aee12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Spontaneous Vaginal delivery",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "510c9c4b-9f8c-4f90-aeb0-3d83cb899fa2",
+                    "label": "Vacuum Extraction",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9af278-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Caesarean section",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9af8cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Breech",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Mode of Delivery",
+              "type": "obs",
+              "id": "otherModeOfDelivery",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4af9f205-38e1-44cc-aa8a-ccf75d225ac7",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(modeOfDelivery) || modeOfDelivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Date and Time of Delivery",
+              "type": "obs",
+              "id": "dateOfDelivery",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "f9573837-6a9b-4f2f-9298-aecf27b15fb3"
+              }
+            },
+            {
+              "label": "Live Births",
+              "type": "obs",
+              "id": "liveBirths",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f41da5ee-9344-4a63-9850-fecd87a967e3",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Active Management of 3rd Stage of Labour",
+              "type": "obs",
+              "id": "activeManagementOfThirdStageLabour",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "425458af-d1f7-40e4-a672-7d9e38aedb3c",
+                "answers": [
+                  {
+                    "concept": "eca9da28-31d3-4e6f-828d-441e9237b7a5",
+                    "label": "Oxytocin",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1c4323a3-6cc6-44d0-81ee-839014bca19c",
+                    "label": "Misoprostol",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e123d685-812a-43c3-bc05-db4e14d8c05c",
+                    "label": "Ergometrine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d35d4370-c8d9-4432-ace8-afe3a1f049a9",
+                    "label": "Tranexamic",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Uterotonics used for PPH Management",
+              "type": "obs",
+              "id": "uterotonicsUsedforPphMgt",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "17c49069-a91d-4a87-a2b0-1cd45b5c4400",
+                "answers": [
+                  {
+                    "concept": "eca9da28-31d3-4e6f-828d-441e9237b7a5",
+                    "label": "Oxytocin",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1c4323a3-6cc6-44d0-81ee-839014bca19c",
+                    "label": "Misoprostol",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e123d685-812a-43c3-bc05-db4e14d8c05c",
+                    "label": "Ergometrine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d35d4370-c8d9-4432-ace8-afe3a1f049a9",
+                    "label": "Tranexamic",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Management Procedures",
+              "type": "obs",
+              "id": "otherManagementProcedureForComplication",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0643aa57-4772-4a7a-84f5-23cce7061397",
+                "answers": [
+                  {
+                    "concept": "1637AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Dilation and Curettage (D & C)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0031cf08-4508-40dd-92ca-d4f48ac6509c",
+                    "label": "Manual Vaccum Aspiration (MVA)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e1c4f528-aab8-4818-b040-36dbdeb46858",
+                    "label": "Laparatomy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdd95c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Hysterectomy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Specify Other Management Procedure for Complications",
+              "type": "obs",
+              "id": "otherManagementProcedure",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "946f69f8-aa5a-49b2-afd0-4afb6f5fcf7d"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(otherManagementProcedureForComplication) || otherManagementProcedureForComplication !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Other Treatment Given",
+              "type": "obs",
+              "id": "otherTreatmentGiven",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "0aea6828-2328-4038-9cd9-680dbdf29790"
+              }
+            },
+            {
+              "label": "Delivered By",
+              "type": "encounterProvider",
+              "id": "deliveredBy",
+              "questionOptions": {
+                "rendering": "select"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Transfer Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Transferred By",
+              "type": "encounterProvider",
+              "id": "transferredBy",
+              "questionOptions": {
+                "rendering": "select"
+              }
+            },
+            {
+              "label": "Transferred To",
+              "type": "obs",
+              "id": "transferredTo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(transferredBy)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Baby's Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Apgar 1st Minute Score",
+              "type": "obs",
+              "id": "apgarFirstMinScore",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "056ee92e-3104-4529-8f83-70580e0f4501",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Apgar 5th Minute Score",
+              "type": "obs",
+              "id": "apgarFifthMinScore",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "015ab92b-c5de-40cc-903d-21612bf4d9ab",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Baby's sex",
+              "type": "obs",
+              "id": "babySex",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "M - Male",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "F - Female",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Baby's outcome at delivery",
+              "type": "obs",
+              "id": "babyOutcomeAtDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cf7544d3-d25c-4b63-8b19-a76017158a4b",
+                "answers": [
+                  {
+                    "concept": "ddebe155-cdc7-48a5-94c3-a73306cf399a",
+                    "label": "Alive and well",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3a0c423a-73bf-4beb-9516-52e7a1fd6d57",
+                    "label": "Alive and sick",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9d2ff8e6-c6e9-4d62-a103-1bda37cef8c8",
+                    "label": "Dead",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Resuscitation at delivery",
+              "type": "obs",
+              "id": "resuscitationAtDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dc958e5c-ab9b-4c0c-b02d-d136b7505754",
+                "answers": [
+                  {
+                    "concept": "911808cd-f455-4a63-9e18-aeee1f74adf0",
+                    "label": "SS - Baby breathes after Stimulation and or Sunction procedure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e6004c96-2eaf-41f4-874e-6c3203bc1c40",
+                    "label": "BM - Baby breathes after Bag and Mask procedure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d5ff53b2-1821-43e5-9abe-8c5e86d9639b",
+                    "label": "BMD - Baby dies after Bag and Mask procedure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Immediate Skin to Skin Contact",
+              "type": "obs",
+              "id": "immediateSkinToSkin",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "be4b37fc-4197-4a4e-913d-0d8f3babdffd",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Birth Weight (kg)",
+              "type": "obs",
+              "id": "birthWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcce847a-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Baby received KMC",
+              "type": "obs",
+              "id": "kmc",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "79185d62-3574-409e-b318-119c2dac6c45",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "birthWeight > 2.5"
+              }
+            },
+            {
+              "label": "Baby breastfed within the first Hour",
+              "type": "obs",
+              "id": "breatsfedWithinFirstHour",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "a4063d62-a936-4a26-9c1c-a0fb279a71b1",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Provided umbilical cord care",
+              "type": "obs",
+              "id": "umbilicalCareProvided",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "2368491d-c128-4512-8599-89dfe66434ba",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Received Tetracycline Eye Ointment",
+              "type": "obs",
+              "id": "receivedTetracyclineEyeOintment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "04aaf94e-cc2b-410d-bec5-532140bc67ec",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "New born injected with Vitamin K",
+              "type": "obs",
+              "id": "vitaminKinjection",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "64533b34-1c86-48e0-85a5-5d5a1aab97ce",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Baby Temperature (C)",
+              "type": "obs",
+              "id": "babyTemperature",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcce847a-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Risk Status",
+              "type": "obs",
+              "id": "riskStatus",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "a6037516-7c28-48ac-83c4-98ab4a032fa3",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1408AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "High"
+                  },
+                  {
+                    "concept": "26514156-31fb-4a99-95f1-f005a4676c16",
+                    "label": "Low"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "NVP Given to Baby",
+              "type": "obs",
+              "id": "nvpGivenToBaby",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1e4dbd48-e261-417c-a360-831c99982c56",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Duration of NVP syrup",
+              "type": "obs",
+              "id": "nvpSyrupDuration",
+              "questionOptions": {
+                "rendering": "number",
+                "step": 1,
+                "concept": "3897f06e-39db-4e52-aafe-5b651f95d6b7",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "nvpGivenToBaby !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Imumunisation BCG",
+              "type": "obs",
+              "id": "bcgImmunisation",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "337f8027-b7a4-486c-9231-f6755726d6b7",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Imumunisation Polio",
+              "type": "obs",
+              "id": "polioImmunisation",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "388984c3-f00b-4725-90b5-c65efa376989",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Imumunisation Hep B",
+              "type": "obs",
+              "id": "hepBImmunisation",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "6f94f48c-7a91-4a25-836c-9f2c566f10e8",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Care At 6Hrs",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother Excessive Bleeding",
+              "type": "obs",
+              "id": "excessiveBleeding",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ac307106-50c4-4625-b041-ac77b4a14fb4",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Ckecked Baby's Umbilical Cord",
+              "type": "obs",
+              "id": "checkedUmbilicalCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8453f86e-270f-4a30-a2fb-799534012f96",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Assessed for breathing"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Baby Breast Feeding",
+              "type": "obs",
+              "id": "babyBreastFeeding",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "b0551461-d462-42f3-aeaf-9e1c05c58527",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes - Breathing Normally"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No -  Abnormal breathing"
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Assessed for breathing"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Baby Breathing",
+              "type": "obs",
+              "id": "babyBreathing",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ece75a9f-18c7-48b6-ba69-cd64094cf615",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes - Breathing Normally"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No -  Abnormal breathing"
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Assessed for breathing"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Care At 24Hrs",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother Excessive Bleeding",
+              "type": "obs",
+              "id": "excessiveBleeding",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c788faff-de83-45d7-bff9-56b34b69e63c",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Ckecked Baby's Umbilical Cord",
+              "type": "obs",
+              "id": "checkedUmbilicalCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "bd23a245-ce4b-4c1f-924d-cc12c5a68f25",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Assessed for breathing"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Baby Breast Feeding",
+              "type": "obs",
+              "id": "babyBreastFeeding",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cdd75d5a-772e-4655-8253-1479c59c3261",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes - Breathing Normally"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No -  Abnormal breathing"
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Assessed for breathing"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Baby Breathing",
+              "type": "obs",
+              "id": "babyBreathing",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "66204563-8ec9-47fa-a84b-56f53c9b5b41",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes - Breathing Normally"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No -  Abnormal breathing"
+                  },
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Assessed for breathing"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Applicable"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Family Planning",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Used family planning method before",
+              "type": "obs",
+              "id": "usedFpBefore",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dcb2e4e5-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "4dd9392c-4714-11ee-be56-0242ac120002",
+                    "label": "New - Never Used a modern FP method before"
+                  },
+                  {
+                    "concept": "7981b0af-0697-4a46-9fa1-43c683418545",
+                    "label": "Revisit - Used a modern FP method before"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "FP Method",
+              "type": "obs",
+              "id": "fpMethod",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "dc7620b3-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcdd91a7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Female Sterilization (Bilateral Tubal Ligation)"
+                  },
+                  {
+                    "concept": "fed07c37-7bb6-4baa-adf9-596ce4c4e93c",
+                    "label": "IUD Copper T"
+                  },
+                  {
+                    "concept": "dd4c3016-13cf-458a-8e93-fe54460be667",
+                    "label": "IUD Hormonal"
+                  },
+                  {
+                    "concept": "bb83fd9d-24c5-4d49-89c0-97e13c792aaf",
+                    "label": "Implant"
+                  },
+                  {
+                    "concept": "0edfb877-4e55-493e-ac90-27a9d09ccef1",
+                    "label": "DMPA-IM"
+                  },
+                  {
+                    "concept": "8979b425-9eba-4ef0-8e59-16bbe7f6164e",
+                    "label": "DMPA-SC"
+                  },
+                  {
+                    "concept": "82624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "POPs - Progesterone Only Pills"
+                  },
+                  {
+                    "concept": "efbe5bf3-3411-4949-855b-636ada05f5e7",
+                    "label": "COCs - Combined Oral Contraceptive Pills"
+                  },
+                  {
+                    "concept": "5f93cb2b-3eed-4b5c-bbcf-3c20ecbb4ba4",
+                    "label": "Lactational amenorrhea method"
+                  },
+                  {
+                    "concept": "aeee4ccf-cbf8-473c-9d9f-846643afbf11",
+                    "label": "Female Condoms"
+                  },
+                  {
+                    "concept": "164813AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Male Condoms"
+                  },
+                  {
+                    "concept": "aaf150a5-92d2-416f-8254-95d34ed9c4ab",
+                    "label": "No family planning method given"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Post Partum FP Timing Code",
+              "type": "obs",
+              "id": "ppfpTimingCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cc27c3ee-9314-4886-af7b-31c7e8b457de",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "fae2e0c6-e258-471b-a016-7bd7bb67c2d2",
+                    "label": "Within 48 hours"
+                  },
+                  {
+                    "concept": "a6e7239a-4a81-4f32-8ed4-ac59d84bdde0",
+                    "label": "3 days to 3 weeks"
+                  },
+                  {
+                    "concept": "13bf7056-94c9-42de-8d66-23c7e39e93e0",
+                    "label": "4 weeks to 6 weeks"
+                  },
+                  {
+                    "concept": "7c3bcee4-40a9-4a2b-9de5-8ac82e1ccba3",
+                    "label": "7 weeks to 5 months"
+                  },
+                  {
+                    "concept": "22ddaed0-f0b1-4845-993d-74b8b8713fe9",
+                    "label": "6 months to 12 months"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Post Abortion FP Timing Code",
+              "type": "obs",
+              "id": "pafpTimingCode",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7595b02e-4f7a-49bd-9a4c-7f9137b83793",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "fae2e0c6-e258-471b-a016-7bd7bb67c2d2",
+                    "label": "Within 48 hours"
+                  },
+                  {
+                    "concept": "0112d327-d156-4691-9281-c00f6774e8e8",
+                    "label": "3 days to 1 week"
+                  },
+                  {
+                    "concept": "df3c51d3-ebe0-4049-8acd-82905debc1bb",
+                    "label": "8 days to 2 weeks"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Mother's Final Diagnosis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother counseled on IYCF",
+              "type": "obs",
+              "id": "counseledOnIycf",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5d993591-9334-43d9-a208-11b10adfad85",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Infant feeding option",
+              "type": "obs",
+              "id": "infantFeedingOption",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dc9a00a2-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dcbd637e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "EBF - Exclusive Breastfeeding",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "40fdb5b6-e8ac-424d-988c-f2f2937348db",
+                    "label": "RF - Replacement Feeding",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd5487d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MF - Mixed Feeding",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "counseledOnIycf !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Obstetrical Diagnosis",
+              "type": "obs",
+              "id": "obstetricalDiagnosis",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5d993591-9334-43d9-a208-11b10adfad85",
+                "answers": [
+                  {
+                    "concept": "dc9aee12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Normal Delivery",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9af278-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cesarean Section",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "124261AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Transverse position",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "59e7d413-9a7f-4e69-9566-3d0ab18a6ac7",
+                    "label": "BBA - born before arrival",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Obstetrical Complications",
+              "type": "obs",
+              "id": "obstetricalComplications",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "7ea516db-62f2-471a-a4a8-c819e784a78e",
+                "answers": [
+                  {
+                    "concept": "dc6504d3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Abortions",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc69f6f5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "APH",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "230AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PPH",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "135361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Malaria in Pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc55064a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "High blood Pressure in Pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "115036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Obstructed Labour",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "130AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Puerperal Sepsis",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc69ec17-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Sepsis related to pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "148834AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Anaemia in pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "127259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rupture of Uterus",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "dc550257-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Ectopic Pregnancy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(obstetricalComplications, '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    }
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other complications",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Complications of Pregnancy",
+              "type": "obs",
+              "id": "otherPregnancyComplications",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "120186AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "hide": {
+                "hideWhenExpression": "obstetricalComplications != '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Discharge Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Danger Signs Counseling",
+              "type": "obs",
+              "id": "dangerSignsCounseling",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3095d500-4a3e-4cf3-ab96-6f406e0d371d",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "e070fc3f-6233-466a-a0d2-ba3333a45235",
+                    "label": "C -  Counseled"
+                  },
+                  {
+                    "concept": "7525bab1-60a0-4635-a36d-4855c051f8bb",
+                    "label": "NC - Not Counseled"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Maternal Nutrition Counseling",
+              "type": "obs",
+              "id": "maternalNutritionCounseling",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "af7dccfd-4692-4e16-bd74-5ac4045bb6bf",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Condition of baby at discharge",
+              "type": "obs",
+              "id": "babyConditionAtDischarge",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a5638850-0cb4-4ce8-8e87-96fc073de25d",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "135436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "MSB: Macerated Still Bath"
+                  },
+                  {
+                    "concept": "7a15616a-c12a-44fc-9a11-553639128b69",
+                    "label": "FSB: Fresh Still Birth"
+                  },
+                  {
+                    "concept": "ab3a7679-f5ee-48d6-b690-f55a1dfe95ea",
+                    "label": "NND: Immediate Neonatal Death"
+                  },
+                  {
+                    "concept": "eb7041a0-02e6-4e9a-9b96-ff65dd09a416",
+                    "label": "AL-N: Live Baby"
+                  },
+                  {
+                    "concept": "23ac7575-f0ea-49a5-855e-b3348ad1da01",
+                    "label": "AL-BOD: Live Baby with other defect"
+                  },
+                  {
+                    "concept": "3de8af5d-ab86-4262-a1a3-b4c958ae2de3",
+                    "label": "AL-R - Live baby referred to another unit"
+                  },
+                  {
+                    "concept": "7ca3dddc-b55e-46fb-b15e-40df4724bcfd",
+                    "label": "AL-T - Live baby transferred to another ward/ Department"
+                  },
+                  {
+                    "concept": "5bbf8572-7a5f-4d79-83df-ba5aa7d7afc7",
+                    "label": "AL-BC: Live Baby with clubfoot"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Condition of mother at discharge",
+              "type": "obs",
+              "id": "motherConditionAtDischarge",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e87431db-b49e-4ab6-93ee-a3bd6c616a94",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "3f02ee62-613d-4eba-88bc-d0cd66b863c5",
+                    "label": "D - Mother discharged alive"
+                  },
+                  {
+                    "concept": "17fcfd67-a1a2-4361-9915-ad4e81a7a61d",
+                    "label": "DD - Mother discharged dead"
+                  },
+                  {
+                    "concept": "6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef",
+                    "label": "RA - Mother ran away or left before being discharged"
+                  },
+                  {
+                    "concept": "d45e698e-1211-481a-b495-0d50918c8ebd",
+                    "label": "R - Mother referred to another health unit for further management"
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "T - Mother transferred to another Ward/department"
+                  },
+                  {
+                    "concept": "6d15f334-2130-47a8-b5a2-3b26b6a65c69",
+                    "label": "DF - Mother discharged alive with fistula"
+                  },
+                  {
+                    "concept": "4095ac37-4955-4718-8e3e-b6f6fb55cf6d",
+                    "label": "RF- Mother ran away with fistula"
+                  },
+                  {
+                    "concept": "862b583e-97ba-4bef-8997-5a460449a87a",
+                    "label": "F - Mother transferred with fistula"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Transferred to",
+              "id": "locationTransferredTo",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
+              },
+              "hide": {
+                "hideWhenExpression": "motherConditionAtDischarge !== 'dd27a783-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "LLINS given to baby",
+              "type": "obs",
+              "id": "llinsGivenToBaby",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165025AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Discharged By",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider"
+            },
+            {
+              "label": "Date of Discharge",
+              "type": "obs",
+              "id": "dateOfDischarge",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "ff31a419-0eb1-45fc-920a-77b4a3481e00"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

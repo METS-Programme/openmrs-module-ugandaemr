@@ -1,0 +1,164 @@
+{
+  "encounterType": "08478ad9-ccc1-4cbe-9e55-473447984158",
+  "name": "HMIS TB 002: REQUEST FORM FOR TB SPECIMEN EXAMINATION",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "uuid": "38452e3c-87fb-4d1c-a8d8-9528f331f44a",
+  "version": "4.0.0",
+  "encounter": "TB Screening",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "REQUEST FORM FOR TB SPECIMEN EXAMINATION",
+      "sections": [
+        {
+          "label": "REQUEST FORM FOR TB SPECIMEN EXAMINATION",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "typeOfPatient",
+              "label": "Type of Patient",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
+                "answers": [
+                  {
+                    "concept": "b3c43c5e-1987-42c1-a7b3-2c71dc58c126",
+                    "label": "New Case"
+                  },
+                  {
+                    "concept": "a37462b6-1f47-4efb-8df5-2bdc742efc17",
+                    "label": "Return Affter Default"
+                  },
+                  {
+                    "concept": "8ad53c8c-e136-41e3-aab8-eace935a3bbe",
+                    "label": "Relapse"
+                  },
+                  {
+                    "concept": "13678f4d-69d4-4a93-a2f2-a7d21aadd1f9",
+                    "label": "Treatment after lost to follow up"
+                  },
+                  {
+                    "concept": "fa87a1c0-0315-4e95-a868-7394e2429d6d",
+                    "label": "Treatment after failure"
+                  },
+                  {
+                    "concept": "d493a2d8-f519-4a57-9458-7962e61f4398",
+                    "label": "Treatment history unknown"
+                  },
+                  {
+                    "concept": "11522b1b-59d3-4c1f-8a9a-5d780127e84f",
+                    "label": "After failure of regimen with second line drugs"
+                  },
+                  {
+                    "concept": "ce983c0e-cdea-42e2-b93f-5ad26fe05fba",
+                    "label": "After failure of first treatment with first line drugs"
+                  },
+                  {
+                    "concept": "8b00c885-edec-47bf-8700-69913741f71c",
+                    "label": "Previously treated without known outcome"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Hiv Status",
+              "type": "obs",
+              "id": "hivStatus",
+              "required": "true",
+              "questionOptions": {
+                "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
+                    "label": "Inconclusive HIV Results"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Special Categories",
+              "type": "obs",
+              "required": false,
+              "id": "specialCategories",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisherman"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "In prison"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance truck driver"
+                  },
+                  {
+                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Migrant Worker"
+                  },
+                  {
+                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
+                    "label": "Non IDU"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PREGNANT"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee Camp"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Officer"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "id": "reasonExamination",
+              "label": "Reason for Examination",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "75fdbadd-183b-4abc-aafc-d370ba5c35bf",
+                "answers": [
+                  {
+                    "concept": "0de0b715-f3ef-4a91-a145-09509112b693",
+                    "label": "Diagnosis"
+                  },
+                  {
+                    "concept": "4d1cc565-ae34-4bb2-92e7-681614218b7b",
+                    "label": " Month of follow up"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

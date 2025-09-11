@@ -1,0 +1,705 @@
+{
+  "name": "DR TB: HMIS TB 001 Second Line TB Treatment Card - Enrollment Page",
+  "version": "4.1.0",
+  "description": "This is enrollment page of the DR TB Treatment program",
+  "encounter": "DR TB Summary (Enrollment)",
+  "encounterType": "0271ee3d-f274-49d1-b376-c842f075413f",
+  "uuid": "4929f668-f8d0-11ea-adc1-0242ac120002",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
+  "pages": [
+    {
+      "label": "DR TB Summary Page",
+      "sections": [
+        {
+          "label": "Client Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date",
+              "type": "encounterDatetime",
+              "id": "encDate",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              }
+            },
+            {
+              "label": "DR TB Reg No.",
+              "type": "obs",
+              "id": "drTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2c64410a-9f08-4b4f-9d00-23105e8730d4",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Unit TB No.",
+              "type": "obs",
+              "id": "unitTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "District",
+              "type": "obs",
+              "id": "district",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ef8aed6d-a64c-4a17-9745-c305f99c658b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(unitTbNo)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Contact Person/Next of Kin Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Contact Person/Next of Kin Name",
+              "type": "obs",
+              "id": "nextOfKinName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "162729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Contact Person/Next of Kin Phone No.",
+              "type": "obs",
+              "id": "nextOfKinContact",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "165052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": []
+              }
+            }
+          ]
+        },
+        {
+          "label": "Treatment History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Treatment History at Registration",
+              "type": "obs",
+              "id": "treatmentHistoryAtRegistration",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6b62ecbf-1f91-4fd3-8cda-56d4fdcf8b13",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "4dd9392c-4714-11ee-be56-0242ac120002",
+                    "label": "New"
+                  },
+                  {
+                    "concept": "22a71d2e-bdd0-4437-bf1b-d0a6d9a68975",
+                    "label": "Previously treated using First Line Drugs"
+                  },
+                  {
+                    "concept": "7b7ca264-027c-4338-9305-e1e8b8131f66",
+                    "label": "Previously treated using Second Line Drugs"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Risk Group",
+              "type": "obs",
+              "id": "riskGroup",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Health Worker"
+                  },
+                  {
+                    "concept": "b5171d08-77bf-40a8-a864-51caa6cd2480",
+                    "label": "TB Contact"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prisoner"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Personnel"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisher Forks"
+                  },
+                  {
+                    "concept": "119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Diabetic Patient"
+                  },
+                  {
+                    "concept": "952c6973-e163-4c0d-b6c8-a7071bd05e2a",
+                    "label": "Miner"
+                  },
+                  {
+                    "concept": "1455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Tobacco Smoker"
+                  },
+                  {
+                    "concept": "41ffa03e-5e2e-4bc6-b802-ae68db3e6d74",
+                    "label": "Undernourished"
+                  },
+                  {
+                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV"
+                  },
+                  {
+                    "concept": "118855AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Alcohol and Substance Abuse"
+                  },
+                  {
+                    "concept": "134337AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mental disorder"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Setting"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Risk Group",
+              "type": "obs",
+              "required": "true",
+              "id": "otherRiskGroup",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "eac4e9c2-a086-43fc-8d43-b5a4e02febb4"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(riskGroup) || riskGroup !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "NAAT",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of Sputum sample collected",
+              "type": "obs",
+              "id": "sputumCollectionDate",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "487af85d-de3b-4a90-9928-96516a315ce6",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "GeneXpert Results",
+              "type": "obs",
+              "id": "genexpertResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "35adf460-19b8-4247-b575-1bad5562d5e9",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "162204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "MTB detected - Rifampicin resistance not detected"
+                  },
+                  {
+                    "concept": "162203AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "MTB detected - Rifampicin resistance detected"
+                  },
+                  {
+                    "concept": "164104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "MTB detected - Rifampicin resistance indeterminate"
+                  },
+                  {
+                    "concept": "e8a9bbb0-88a9-4a49-875d-5066f403d2dd",
+                    "label": "MTB Trace detected - RR indeterminate"
+                  },
+                  {
+                    "concept": "977d7e40-c832-4d53-a6fa-ed2b8cfaaeea",
+                    "label": "MTB not detected"
+                  },
+                  {
+                    "concept": "1806bfcf-096f-4d56-9aca-7b5b661d923e",
+                    "label": "Invalid/No Result/Error"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Second Line Treatment Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Reason for entering in Second Line TB",
+              "type": "obs",
+              "id": "reasonForEnteringSecondLineTb",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "be45bb4a-eaf3-4727-9358-a3e5bc3924cb",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "b219e3e4-275b-469e-85c9-4088f4b05779",
+                    "label": "Bacteriologically confirmed MDR/XDR/RR"
+                  },
+                  {
+                    "concept": "c2519882-5047-4692-8148-85f956e02323",
+                    "label": "Presumptive MDR/XDR/RR"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Current Category after DST",
+              "type": "obs",
+              "id": "currentCategoryAfterDst",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "06a3befb-3237-4b05-8f6e-5a898c927112",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "61325258-242b-473e-b984-87b4256097d3",
+                    "label": "RR Mono Resistance"
+                  },
+                  {
+                    "concept": "164367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Poly Resistance"
+                  },
+                  {
+                    "concept": "eb670a1e-b620-4498-ad18-0adfd374e772",
+                    "label": "Confirmed MDR/XDR-TB"
+                  },
+                  {
+                    "concept": "159346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "XDR"
+                  },
+                  {
+                    "concept": "c2519882-5047-4692-8148-85f956e02323",
+                    "label": "Presumptive MDR/XDR-TB"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Type of Case/Diabetis Mellitus",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Disease Site- P/EP",
+              "type": "obs",
+              "required": "false",
+              "id": "diseaseSite",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d45871ee-62d6-4d4d-b905-f7b75a3fd3bb",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "b997423b-eb7b-4a79-bfd9-2b06afc8377c",
+                    "label": "Pulmonary TB"
+                  },
+                  {
+                    "concept": "fa8e6d5a-759f-4e94-b558-a81a6b3af4dc",
+                    "label": "Extra-pulmonary TB"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Type of Case or Patient",
+              "type": "obs",
+              "id": "patientType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "b3c43c5e-1987-42c1-a7b3-2c71dc58c126",
+                    "label": "New"
+                  },
+                  {
+                    "concept": "8ad53c8c-e136-41e3-aab8-eace935a3bbe",
+                    "label": "Relapse"
+                  },
+                  {
+                    "concept": "ce983c0e-cdea-42e2-b93f-5ad26fe05fba",
+                    "label": "Failure 1st line"
+                  },
+                  {
+                    "concept": "11522b1b-59d3-4c1f-8a9a-5d780127e84f",
+                    "label": "Failure 1st line"
+                  },
+                  {
+                    "concept": "13678f4d-69d4-4a93-a2f2-a7d21aadd1f9",
+                    "label": "Lost to follow up"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Type of Case/Patient",
+              "type": "obs",
+              "required": "true",
+              "id": "otherCaseType",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "93c1670b-4f05-4292-84cd-02d02969f6b5"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(patientType) || patientType !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Diabetes Mellitus Status",
+              "type": "obs",
+              "id": "dmstatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "126aecd6-c4de-4b1f-bfa2-8f68380f9329",
+                "answers": [
+                  {
+                    "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
+                    "label": "No signs and symptoms"
+                  },
+                  {
+                    "concept": "fd36c202-06ad-4e9b-95e7-d3e02d34c936",
+                    "label": "Normal blood sugar (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl)"
+                  },
+                  {
+                    "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
+                    "label": "Newly Diagnosed (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl) on lifestyle modification"
+                  },
+                  {
+                    "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
+                    "label": "Newly Diagnosed (FBS>7.0mmol/126mg/dl or RBS>11mmol/200mg/dl) on medication and lifestyle modification"
+                  },
+                  {
+                    "concept": "844dec77-9c0c-4bb1-ab23-ccc083c9c97a",
+                    "label": "Known Diabetic and not controlled (FBS>7.0mmol/126mg/dl or RBS>11 mmol/200mg/dl) on lifestyle modification"
+                  },
+                  {
+                    "concept": "c1ede22a-fe95-402e-b2f2-18b1709f0414",
+                    "label": "Known Diabetic and not controlled (FBS>7.0mmol/126mg/dl or RBS>11 mmol/200mg/dl) on medication and lifestyle modification"
+                  },
+                  {
+                    "concept": "973a7e7c-2e1d-4431-813f-ce03d5afda62",
+                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl)  on lifestyle modification"
+                  },
+                  {
+                    "concept": "7307349d-c333-4dee-a271-3a11cc656815",
+                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl) on medication and lifestyle modification"
+                  },
+                  {
+                    "concept": "8473a4cb-5431-4775-83b2-6f0c8086ecbe",
+                    "label": "Known Diabetic but not on Treatment"
+                  },
+                  {
+                    "concept": "8047b4be-11cb-47a6-a98b-2e7777ea7477",
+                    "label": "Diabetic patient referred for further management"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Transfer In Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Transfer In",
+              "type": "obs",
+              "id": "transferIn",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Transfer In Date",
+              "type": "obs",
+              "id": "transferInDate",
+              "questionOptions": {
+                "concept": "981368b7-dbb4-4c3f-a62a-28ad16bf1b24",
+                "rendering": "date"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(transferIn) || transferIn !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "label": "Transfer In Facility",
+              "type": "obs",
+              "id": "transferInFacility",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "88e07e7c-f7e4-4ccf-8068-b770a3e3957b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(transferIn)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "2nd Line Regimen Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date start RX 2nd Line",
+              "type": "obs",
+              "id": "secondLineStartDate",
+              "questionOptions": {
+                "concept": "dc980e0b-30ab-102d-86b0-7a5022ba4115",
+                "rendering": "date"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Type of Regimen",
+              "type": "obs",
+              "id": "tbRegimenType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "fcb90c43-aeb9-4bc1-9fa4-d779397d9be2",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "ebac27f2-3562-4c7b-b204-6f282c171c7e",
+                    "label": "BPaL/BPaLM"
+                  },
+                  {
+                    "concept": "29c344a7-0efb-4cb7-aae5-6f032aad1e6b",
+                    "label": "mSTR 9 months all oral"
+                  },
+                  {
+                    "concept": "45ca1b91-792d-4ef6-90e0-3086f59595e1",
+                    "label": "Longer IND"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "TB Treatment Phase",
+              "type": "obs",
+              "id": "tbTreatmentPhase",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159792AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "159795AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intensive Phase"
+                  },
+                  {
+                    "concept": "159794AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Continuation phase"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "DOTs Model Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "DOT Model",
+              "type": "obs",
+              "required": "false",
+              "id": "dotModel",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a0e4e03a-4475-4f41-a23f-82909cf97ee7",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "f9cdc841-1901-407e-b3ca-65dd3762051d",
+                    "label": "Health facility-based DOTS (fDOT)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ad6416c2-ca66-45e7-bfa0-9c03df0ab761",
+                    "label": "Community based DOTS (cDOT)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "65d83274-a63d-4758-8bb8-64e7d09cd307",
+                    "label": "Digital-Video (vDOT)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f73d7805-284b-4e74-85fa-9e82c242a583",
+                    "label": "Digital-Pill box (pDOT)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other specify",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other DOT Model",
+              "type": "obs",
+              "id": "otherDotModel",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "162283a3-00b4-42dc-83c6-c21220f5d1b1"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(dotModel) || dotModel !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "DOT Start Date",
+              "type": "obs",
+              "id": "dotStartDate",
+              "questionOptions": {
+                "concept": "6eef6eed-504d-4401-bf45-8a11dacfba1f",
+                "rendering": "date"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(dotModel)"
+              }
+            },
+            {
+              "label": "Treatment Supporter Name",
+              "type": "obs",
+              "id": "treatmentSupporterName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "23e28311-3c17-4137-8eee-69860621b80b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(dotModel) || dotModel !== ''"
+              }
+            },
+            {
+              "label": "Treatment Supporter Type",
+              "type": "obs",
+              "required": "true",
+              "id": "treatmentSupporterType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "805a9d40-8922-4fb0-8208-7c0fdf57936a",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "567f955b-6a5e-4ca0-a6a4-6010e9327104",
+                    "label": "Community Volunteer"
+                  },
+                  {
+                    "concept": "002dfa89-5b94-4e7e-bc74-b5e556a7734a",
+                    "label": "Family Member"
+                  },
+                  {
+                    "concept": "5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Health Worker"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(treatmentSupporterName)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}

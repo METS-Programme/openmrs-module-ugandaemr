@@ -1,0 +1,584 @@
+{
+  "name": "HMIS LAB 001:General Laboratory Test Request Form",
+  "version": "4.1.0",
+  "description": "A request for Lab test to Lab",
+  "encounterType": "cbf01392-ca29-11e9-a32f-2a2ae2dbcce4",
+  "encounter": "LAB Encounter",
+  "uuid": "14f82cc8-ca2a-11e9-a32f-2a2ae2dbcce4",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "General Laboratory Test Request",
+      "sections": [
+        {
+          "label": "Lab Request",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Tests Ordered",
+              "id": "testsOrdered",
+              "type": "testOrder",
+              "questionOptions": {
+                "rendering": "repeating",
+                "orderSettingUuid": "OUTPATIENT",
+                "orderType": "testorder",
+                "concept": "dca07f4a-30ab-102d-86b0-7a5022ba4115",
+                "selectableOrders": [
+                  {
+                    "concept": "daebb483-4eef-42b5-9380-7dbfec2ef6ce",
+                    "label": "CrAg",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5827cc4c-8b35-483e-a460-9b76885cf9de",
+                    "label": "TB LAM",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2cf5644d-73a7-42f2-b18c-f773f40b648c",
+                    "label": "GeneXpert",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5faffe89-397e-470c-a32b-e07d962d01b3",
+                    "label": "Microscopy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+                    "label": "VL",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc926649-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CBC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc824b7b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cd4",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Malaria RDT",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc748731-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Urinalysis",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f274dcaa-e515-440e-bcd7-140a691587aa",
+                    "label": "LFT",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "7f420159-b843-44a7-b53c-c6ca52a53ec5",
+                    "label": "RFT",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc80fd7f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Full Hemogram",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc81a7c7-30ab-102d-86b0-7a5022ba4115",
+                    "label": "LFTS",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc90ceb0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Liver Function Tests",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9223b2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "LIPID Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9292fc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Differential",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcbc4a1c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Serum Electrolytes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "264e34a1-3ae3-4b59-9763-48c961a8a56a",
+                    "label": "Bseline CD4 Percentage",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "159645AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CSF Examination",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "159981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Culture Construct",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prothrombin Time (with INR)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161199AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cytology",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HBG With Electrophoresis",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "RBC Morphology Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sedimentation Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161426AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Malarial Parasites Smear",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Microfilaria Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hemoglobin Only",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Routine Blood Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sickling Test Only",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Absolute Eosinophil Count Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bleeding Time Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Clotting Time Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161437AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Anemia Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Routine Urine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Stool Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161458AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Vaginal Fluid Examination",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Ziehl-Neelsen Stain Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161463AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Skin Fungal Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161464AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Skin Mycobacterial Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161468AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Semen Analysis Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Blood Grouping Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hepatitis C Serological Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hepatitis B Serological Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Syphilis serological Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Typhoid serological Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161478AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Anti-Streptolysin O Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rheumatoid Factor Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HIV Serological Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Serum Chemistry Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161486AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Culture Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161487AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Diabetes Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Renal Function Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "FSH Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Leutinizing Hormone Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161493AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Alpha Fetoprotein Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ANA",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bone Marrow Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cancer Marker Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CPK Measurement",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Coombs Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161501AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "C-reactive Protein Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Thyroid Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161508AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Ceruloplasmin Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5b40edac-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Serum HCG",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161510AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Carcinoembryonic Antigen",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Serum Iron Profile",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "G6PD",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Lipase Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prolactin Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161518AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cardiac Enzyme Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161520AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PSA Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TORCH Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TORCHS Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "162630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Basic Metabolic Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Coagulation Profile",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163602AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Arterial Blood Gas Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163625AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Toxoplasma Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "VTC Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Tuberculin skin test Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Urethral fluid examination Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163679AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bacterial culture Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163697AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Urine microscopy Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163700AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CBC (auto)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163701AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CBC With Manual Differential",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163702AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Clotting Panel",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163708AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "GTT  (75g)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a9a5af0f-cb4e-4657-8ec0-a21772a02345",
+                    "label": "Malaria Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1c654215-fcc4-439f-a975-ced21995ed15",
+                    "label": "HIVDR",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2772e8c9-c019-46db-9242-dcf81f975f50",
+                    "label": "Covid test type",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5f02429c-f83d-48e3-b6f7-bc288aa20ca0",
+                    "label": "Blood gas done",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e56b2640-271a-4e63-933b-7e1c2a8e0e50",
+                    "label": "ALT/SGOT",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "167178AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "PPG",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HIV p24 antigen",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163610AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HIV drug-resistance",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rapid test for HIV",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "167441AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HIV PCR, DBS",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CD4 COUNT",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "df09f8d4-fb7a-45a9-b309-240e700e37d3",
+                    "label": "Verification HIV Test",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Indication for viral load testing",
+              "type": "obs",
+              "id": "indicationVlTesting",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "59f36196-3ebe-4fea-be92-6fc9551c3a11",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "67fab588-d3b0-4aa5-a165-ebd3b00b285b",
+                    "label": "12 months after ART initiation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "224c94e0-2b8b-4deb-892c-04151ee0e885",
+                    "label": "6 months after ART initiation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f3cdf0b6-321a-493d-a7e8-9a2b2a077f72",
+                    "label": "Suspected treatment failure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bab153f4-7679-4040-9716-6879dffef905",
+                    "label": "Special Considerations",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "20ab2ec5-5390-4461-b85f-69bf650ce992",
+                    "label": "Repeat (after IAC)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "68b58a80-af4e-43a5-a70d-113747a6cbb7",
+                    "label": "Routine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "588ac57f-a4d0-47c2-9852-92502194ec4a",
+                    "label": "1st ANC visit",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(testsOrdered) || testsOrdered !='1eb05918-f50c-4cad-a827-3c78f296a10a'"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": []
+}
