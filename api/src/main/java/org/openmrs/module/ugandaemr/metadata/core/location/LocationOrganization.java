@@ -23,7 +23,12 @@ public class LocationOrganization {
 
 		@Override
 		public String name() {
-			return Context.getLocationService().getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117").getName();
+			String DEFAULT_HEALTH_CENTER_NAME = "Health Center Name";
+
+			org.openmrs.Location location = Context.getLocationService().getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117");
+			String name = (location != null) ? location.getName() : DEFAULT_HEALTH_CENTER_NAME;
+
+			return name;
 		}
 
 		@Override

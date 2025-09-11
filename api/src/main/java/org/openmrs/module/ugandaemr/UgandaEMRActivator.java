@@ -65,6 +65,9 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         try {
             // enable disable apps of in coreapps
             ugandaEMRService.disableEnableAPPS();
+
+            // install common metadata
+            ugandaEMRService.installCommonMetadata();
             GlobalProperty initialiseMetaDataOnStart = administrationService.getGlobalPropertyObject("ugandaemr.initialiseMetadataOnStart");
             if (initialiseMetaDataOnStart.getPropertyValue().equals("true")) {
                 DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
@@ -77,9 +80,6 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
 
                 administrationService.saveGlobalProperty(initialiseMetaDataOnStart);
             }
-
-            // install common metadata
-            ugandaEMRService.installCommonMetadata();
 
             // initialise primary Identifier
             ugandaEMRService.initializePrimaryIdentifierTypeMapping();

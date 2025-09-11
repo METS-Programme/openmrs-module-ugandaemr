@@ -697,14 +697,6 @@ VALUES
 		<comment> Updating family member's hiv unknown status concept id in obs table </comment>
 		<sql> UPDATE obs SET value_coded = 90001 where value_coded = 165165 and concept_id = 165275; </sql>
 	</changeSet>
-	<changeSet id="ugandaemr-20230413-1122" author="semujju">
-		<comment>
-			Change htmlformentry_html_form table to UTF-8 encoding
-		</comment>
-		<sql>
-			ALTER TABLE htmlformentry_html_form CONVERT TO CHARACTER SET UTF8;
-		</sql>
-	</changeSet>
 	<changeSet id="ugandaemr-20230425-1730" author="dbaluku">
 		<comment>
 			next gen reports uuids for exchange

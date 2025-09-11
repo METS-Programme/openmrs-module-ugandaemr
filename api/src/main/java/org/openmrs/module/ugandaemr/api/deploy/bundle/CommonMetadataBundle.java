@@ -140,6 +140,11 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(LocationTags.SUPPORTIVE_SERVICE);
         install(LocationTags.ADMISSION);
         install(LocationTags.QUEUE_ROOM);
+        install(LocationTags.LOGIN_LOCATION);
+        install(LocationTags.VISIT_LOCATION);
+
+        log.info("Installing Organizations");
+        installLocation(LocationOrganization.PARENT);
 
         log.info("Installing Departments");
         installLocation(LocationDepartments.IPD);
