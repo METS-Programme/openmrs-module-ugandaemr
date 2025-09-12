@@ -65,12 +65,13 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         try {
             // enable disable apps of in coreapps
             ugandaEMRService.disableEnableAPPS();
+            DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
 
             // install common metadata
             ugandaEMRService.installCommonMetadata();
             GlobalProperty initialiseMetaDataOnStart = administrationService.getGlobalPropertyObject("ugandaemr.initialiseMetadataOnStart");
             if (initialiseMetaDataOnStart.getPropertyValue().equals("true")) {
-                DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
+
                 // initialise forms and concepts and other metadata like privileges, personal attribute types
                 importInternalMetaData(dataImporter);
                 for (Initializer initializer : ugandaEMRService.initialiseForms()) {
@@ -80,6 +81,10 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
 
                 administrationService.saveGlobalProperty(initialiseMetaDataOnStart);
             }
+
+            dataImporter.importData("metadata/appointment.xml");
+
+            dataImporter.importData("metadata/Programs.xml");
 
             // initialise primary Identifier
             ugandaEMRService.initializePrimaryIdentifierTypeMapping();
@@ -155,9 +160,7 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Modifications.xml");
         log.info("import to Concept Modifications Table  Successful");
 
-        log.info("import  of  Drugs  Starting");
-        dataImporter.importData(metaDataFilePath + "appointment.xml");
-        log.info("import of Drugs  Successful");
+
 
         log.info("import  of  ICD 11 concepts  Starting");
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/icd_11_import_concept.xml");
@@ -235,9 +238,7 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         dataImporter.importData(metaDataFilePath + "RelationshipTypes.xml");
         log.info("UgandaEMR Relationship Types Imported");
 
-        log.info("Start import of Program related objects");
-        dataImporter.importData(metaDataFilePath + "Programs.xml");
-        log.info(" Program related objects Imported");
+
 
         log.info("Start import of orderFrequencies related objects");
         dataImporter.importData(metaDataFilePath + "order_frequency.xml");
