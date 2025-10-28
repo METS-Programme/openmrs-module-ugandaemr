@@ -662,7 +662,7 @@ public class EncounterTypes {
         public static EncounterTypeDescriptor GENERAL_CLINICAL_ASSESSMENT_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "General Clinical Assessment Encounter";
+            return "General Clinical Assessment";
         }
 
         @Override
