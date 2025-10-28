@@ -658,4 +658,20 @@ public class EncounterTypes {
             return "3849c43c-f14d-40ab-80d7-670cf251e525";
         }
     };
+
+        public static EncounterTypeDescriptor GENERAL_CLINICAL_ASSESSMENT_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "General Clinical Assessment Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "This is a general cinical assessment encounter type";
+        }
+
+        public String uuid() {
+            return "7b2eed30-59cb-4a0e-9741-a568952b3d76";
+        }
+    };
 }
