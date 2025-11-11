@@ -73,7 +73,8 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
             if (initialiseMetaDataOnStart.getPropertyValue().equals("true")) {
 
                 // initialise forms and concepts and other metadata like privileges, personal attribute types
-                importInternalMetaData(dataImporter);
+                addConcepts("metadata/", dataImporter);
+                addStockManagementData("metadata/", dataImporter);
                 for (Initializer initializer : ugandaEMRService.initialiseForms()) {
                     initializer.started();
                 }
@@ -82,9 +83,7 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
                 administrationService.saveGlobalProperty(initialiseMetaDataOnStart);
             }
 
-            dataImporter.importData("metadata/appointment.xml");
-
-            dataImporter.importData("metadata/Programs.xml");
+            ugandaEMRService.installPatientFlags();
 
             // initialise primary Identifier
             ugandaEMRService.initializePrimaryIdentifierTypeMapping();
@@ -99,6 +98,7 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
 
             // generate OpenMRS ID for patients without the identifier
             ugandaEMRService.generateOpenMRSIdentifierForPatientsWithout();
+
             log.info("ugandaemr Module started");
 
         } catch (Exception e) {
@@ -129,6 +129,18 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("import  to Concept Table  Starting");
         log.info("import  to Concept Table  Starting");
         String metaDataFilePath = "metadata/";
+
+        addConcepts(metaDataFilePath, dataImporter);
+        attributeTypes(metaDataFilePath, dataImporter);
+        addRolePrivilege(metaDataFilePath, dataImporter);
+        addVisitTypes(metaDataFilePath, dataImporter);
+        addRelationship(metaDataFilePath, dataImporter);
+        addOrderFrequencies(metaDataFilePath, dataImporter);
+        addStockManagementData(metaDataFilePath, dataImporter);
+    }
+
+    private void addConcepts(String metaDataFilePath, DataImporter dataImporter) {
+
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept.xml");
         log.info("import to Concept Table  Successful");
 
@@ -159,8 +171,6 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("import  of  Concept Modifications Starting");
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Modifications.xml");
         log.info("import to Concept Modifications Table  Successful");
-
-
 
         log.info("import  of  ICD 11 concepts  Starting");
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/icd_11_import_concept.xml");
@@ -221,33 +231,44 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("Retire Meta data");
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/retire_meta_data.xml");
         log.info("Retiring of meta data is Successful");
+    }
+
+    private void attributeTypes(String metaDataFilePath, DataImporter dataImporter) {
 
         log.info("Start import of person attributes");
         dataImporter.importData(metaDataFilePath + "Person_Attribute_Types.xml");
         log.info("Person Attributes imported");
+    }
 
-        log.info("Start import of UgandaEMR Privileges");
-        dataImporter.importData(metaDataFilePath + "Role_Privilege.xml");
-        log.info("UgandaEMR Privileges Imported");
-
-        log.info("Start import of UgandaEMR Visits");
-        dataImporter.importData(metaDataFilePath + "VisitTypes.xml");
-        log.info("UgandaEMR Visits Imported");
-
+    private void addRelationship(String metaDataFilePath, DataImporter dataImporter) {
         log.info("Start import of UgandaEMR Relationship Types");
         dataImporter.importData(metaDataFilePath + "RelationshipTypes.xml");
         log.info("UgandaEMR Relationship Types Imported");
+    }
 
-
-
+    private void addOrderFrequencies(String metaDataFilePath, DataImporter dataImporter) {
         log.info("Start import of orderFrequencies related objects");
         dataImporter.importData(metaDataFilePath + "order_frequency.xml");
         log.info(" orderFrequencies related objects Imported");
+    }
 
+    private void addStockManagementData(String metaDataFilePath, DataImporter dataImporter) {
         log.info("Start import of stock item objects");
         dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item.xml");
         dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_packaging_uom.xml");
         dataImporter.importData(metaDataFilePath + "stockmanagement/stock_item_uom.xml");
         log.info("stock item  objects Imported");
+    }
+
+    private void addVisitTypes(String metaDataFilePath, DataImporter dataImporter) {
+        log.info("Start import of UgandaEMR Visits");
+        dataImporter.importData(metaDataFilePath + "VisitTypes.xml");
+        log.info("UgandaEMR Visits Imported");
+    }
+
+    private void addRolePrivilege(String metaDataFilePath, DataImporter dataImporter) {
+        log.info("Start import of UgandaEMR Privileges");
+        dataImporter.importData(metaDataFilePath + "Role_Privilege.xml");
+        log.info("UgandaEMR Privileges Imported");
     }
 }

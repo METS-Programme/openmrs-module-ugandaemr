@@ -1744,7 +1744,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
 
-    public Map initializeMetaData(){
+    public Map initializeMetaData() {
 
         Map results = new HashMap<>();
         AdministrationService administrationService = Context.getAdministrationService();
@@ -1823,123 +1823,123 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         return Paths.get(appDataDir, relativePath).toString();
     }
 
-    public void importMetaDataFromXMLFiles(){
+    public void importMetaDataFromXMLFiles() {
         DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-        String metaDataFilePath=getMetadataPath("metadata")+"/";
+        String metaDataFilePath = getMetadataPath("metadata") + "/";
         log.info("import  to Concept Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept.xml");
         log.info("import to Concept Table  Successful");
 
         log.info("import  to Concept Name Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Name.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Name.xml");
         log.info("import to Concept Name Table  Successful");
 
         log.info("import  to Concept_Description Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Description.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Description.xml");
         log.info("import to Concept_Description Table  Successful");
 
         log.info("import  to Concept_Numeric Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Numeric.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Numeric.xml");
         log.info("import to Concept_Numeric Table  Successful");
 
         log.info("import  to Concept_Answer Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Answer.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Answer.xml");
         log.info("import to Concept_Answer Table  Successful");
 
         log.info("import  to Concept_Set Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Set.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Set.xml");
         log.info("import to Concept_Set Table  Successful");
 
         log.info("import  to Concept_Reference Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Reference.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Reference.xml");
         log.info("import to Concept_Reference Table  Successful");
 
         log.info("import  of  Concept Modifications Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Modifications.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Modifications.xml");
         log.info("import to Concept Modifications Table  Successful");
 
         log.info("import  of  Drugs  Starting");
-        dataImporter.importData(metaDataFilePath+"appointment.xml");
+        dataImporter.importData(metaDataFilePath + "appointment.xml");
         log.info("import of Drugs  Successful");
 
         log.info("import  of  ICD 11 concepts  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/icd_11_import_concept.xml");
         log.info("import of ICD 11 concepts  Successful");
 
         log.info("import  of  ICD 11 concept_name Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept_name.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/icd_11_import_concept_name.xml");
         log.info("import of ICD 11 concept_name  Successful");
 
         log.info("import  of  ICD 11 concept_reference Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept_reference.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/icd_11_import_concept_reference.xml");
         log.info("import of ICD 11 concept_reference  Successful");
 
         log.info("import  of  ICD 11 concept_map Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/icd_11_import_concept_map.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/icd_11_import_concept_map.xml");
         log.info("import of ICD 11 concept_map  Successful");
 
         log.info("import  of  ICD 11 cause_of_death_set Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/cause_of_death_set.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/cause_of_death_set.xml");
         log.info("import of ICD 11 cause_of_death_set  Successful");
 
         log.info("Move Non ICD Coded Diagnosis");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/icd_11/move_non_icd11-10-to-msc.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/icd_11/move_non_icd11-10-to-msc.xml");
         log.info("Move non coded ICD 11 Diagnosis");
 
         log.info("import  to Concept Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept.xml");
         log.info("import to Concept Table  Successful");
 
         log.info("import  to Concept Name Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Name.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Name.xml");
         log.info("import to Concept Name Table  Successful");
 
         log.info("import  to Concept_Description Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Description.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Description.xml");
         log.info("import to Concept_Description Table  Successful");
 
         log.info("import  to Concept_Numeric Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Numeric.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Numeric.xml");
         log.info("import to Concept_Numeric Table  Successful");
 
         log.info("import  to Concept_Answer Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Answer.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Answer.xml");
         log.info("import to Concept_Answer Table  Successful");
 
         log.info("import  to Concept_Set Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Set.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Set.xml");
         log.info("import to Concept_Set Table  Successful");
 
         log.info("import  to Concept_Reference Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Reference.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Reference.xml");
         log.info("import to Concept_Reference Table  Successful");
 
         log.info("Retire Meta data");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/retire_meta_data.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/retire_meta_data.xml");
         log.info("Retiring of meta data is Successful");
 
         log.info("Start import of person attributes");
-        dataImporter.importData(metaDataFilePath+"Person_Attribute_Types.xml");
+        dataImporter.importData(metaDataFilePath + "Person_Attribute_Types.xml");
         log.info("Person Attributes imported");
 
         log.info("Start import of UgandaEMR Privileges");
-        dataImporter.importData(metaDataFilePath+"Role_Privilege.xml");
+        dataImporter.importData(metaDataFilePath + "Role_Privilege.xml");
         log.info("UgandaEMR Privileges Imported");
 
         log.info("Start import of UgandaEMR Visits");
-        dataImporter.importData(metaDataFilePath+"VisitTypes.xml");
+        dataImporter.importData(metaDataFilePath + "VisitTypes.xml");
         log.info("UgandaEMR Visits Imported");
 
         log.info("Start import of UgandaEMR Relationship Types");
-        dataImporter.importData(metaDataFilePath+"RelationshipTypes.xml");
+        dataImporter.importData(metaDataFilePath + "RelationshipTypes.xml");
         log.info("UgandaEMR Relationship Types Imported");
 
         log.info("Start import of Program related objects");
-        dataImporter.importData(metaDataFilePath+"Programs.xml");
+        dataImporter.importData(metaDataFilePath + "Programs.xml");
         log.info(" Program related objects Imported");
 
         log.info("import  of  Drugs  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Drug.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Drug.xml");
         log.info("import of Drugs  Successful");
 
         log.info("Start import of orderFrequencies related objects");
@@ -2034,12 +2034,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
 
     public void installCommonMetadata() {
-        MetadataDeployService deployService=Context.getService(MetadataDeployService.class);
+        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
         try {
-            log.info("Installing standard metadata using the packages.xml file");
-            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
-            log.info("Standard metadata installed");
-
             log.info("Installing metadata");
             log.info("Installing commonly used metadata");
             deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
@@ -2048,7 +2044,16 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
-            // install concepts
+        } catch (Exception e) {
+            Module mod = ModuleFactory.getModuleById("ugandaemr");
+            ModuleFactory.stopModule(mod);
+            throw new RuntimeException("failed to install the common metadata ", e);
+        }
+    }
+
+    public void installPatientFlags() {
+        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
+        try {
             log.info("Installing patient flags");
             deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
             log.info("Finished installing patient flags");
@@ -2087,16 +2092,19 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
 
-    public void setHealthFacilityLocation(){
-        LocationService locationService=Context.getLocationService();
-        AdministrationService administrationService=Context.getAdministrationService();
+    public void setHealthFacilityLocation() {
+        LocationService locationService = Context.getLocationService();
+        AdministrationService administrationService = Context.getAdministrationService();
         Location healthCenter = locationService.getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117");
-        healthCenter.setName(administrationService.getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
-        locationService.saveLocation(healthCenter);
+
+        if (healthCenter != null) {
+            healthCenter.setName(administrationService.getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
+            locationService.saveLocation(healthCenter);
+        }
     }
 
-    public  void  setFlagStatus(){
-        AdministrationService administrationService=Context.getAdministrationService();
+    public void setFlagStatus() {
+        AdministrationService administrationService = Context.getAdministrationService();
         String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
 
         if (flagstatus != null) {
@@ -2105,7 +2113,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         }
     }
 
-    public void disableEnableAPPS(){
+    public void disableEnableAPPS() {
     }
 
     public CheckInPatient checkInPatient(Patient patient, Location currentLocation, Location locationTo, Location queueRoom, Provider provider, String visitComment, String patientStatus, String visitTypeUuid, Integer priority) {
@@ -2306,11 +2314,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     private List<String> loadOmodPrefixesFromJson(Path jsonPath) throws IOException {
         if (Files.exists(jsonPath)) {
-            log.info(String.format("📄 Reading prefix list from: %s",jsonPath));
+            log.info(String.format("📄 Reading prefix list from: %s", jsonPath));
             ObjectMapper mapper = new ObjectMapper();
             return Arrays.asList(mapper.readValue(jsonPath.toFile(), String[].class));
         } else {
-            log.info(String.format("⚠️ Prefix list not found at: %s",jsonPath));
+            log.info(String.format("⚠️ Prefix list not found at: %s", jsonPath));
             return new ArrayList<>();
         }
     }
@@ -2359,11 +2367,10 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
 
-
     private void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) destDir.mkdirs();
-       log.info("📂 Extracting ZIP to: " + destDirectory);
+        log.info("📂 Extracting ZIP to: " + destDirectory);
 
         try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
             ZipEntry entry = zipIn.getNextEntry();

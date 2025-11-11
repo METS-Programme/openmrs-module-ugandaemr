@@ -6,6 +6,39 @@ import org.openmrs.module.metadatadeploy.descriptor.EncounterTypeDescriptor;
  * Created by lubwamasamuel on 18/10/16.
  */
 public class EncounterTypes {
+
+    public static EncounterTypeDescriptor ART_SUMMARY_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Card - Summary";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Adult Initial Visit";
+        }
+
+        public String uuid() {
+            return "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f";
+        }
+    };
+
+    public static EncounterTypeDescriptor ART_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Card - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Adult & Child Return Visit";
+        }
+
+        public String uuid() {
+            return "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f";
+        }
+    };
+
     public static EncounterTypeDescriptor PNC_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
@@ -659,14 +692,22 @@ public class EncounterTypes {
         }
     };
 
+<<<<<<< HEAD
         public static EncounterTypeDescriptor GENERAL_CLINICAL_ASSESSMENT_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "General Clinical Assessment";
+=======
+    public static EncounterTypeDescriptor ATTACHMENT_UPLOAD = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Attachment Upload";
+>>>>>>> e81accb200c28afda3460c02cd0412c9f8456030
         }
 
         @Override
         public String description() {
+<<<<<<< HEAD
             return "This is a general cinical assessment encounter type";
         }
 
@@ -674,4 +715,238 @@ public class EncounterTypes {
             return "7b2eed30-59cb-4a0e-9741-a568952b3d76";
         }
     };
+=======
+            return "Encounters used to record uploads of attachments.";
+        }
+
+        public String uuid() {
+            return "5021b1a1-e7f6-44b4-ba02-da2f2bcf8718";
+        }
+    };
+
+    public static EncounterTypeDescriptor DISCHARGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Discharge";
+        }
+
+        @Override
+        public String description() {
+            return "Indicates that a patient's inpatient care at the hospital is ending, and they are expected to leave soon.";
+        }
+
+        public String uuid() {
+            return "181820aa-88c9-479b-9077-af92f5364329";
+        }
+    };
+
+    public static EncounterTypeDescriptor ADMISSION = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Admission";
+        }
+
+        @Override
+        public String description() {
+            return "Indicates that the patient has been admitted for inpatient care, and is not expected to leave the hospital unless discharged.";
+        }
+
+        public String uuid() {
+            return "e22e39fd-7db2-45e7-80f1-60fa0d5a4378";
+        }
+    };
+
+    public static EncounterTypeDescriptor VISIT_NOTE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Visit Note";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter where a full or abbreviated examination is done, usually leading to a presumptive or confirmed diagnosis, recorded by the examining clinician.";
+        }
+
+        public String uuid() {
+            return "d7151f82-c1f3-4152-a605-2f9ea7414a79";
+        }
+    };
+
+    public static EncounterTypeDescriptor CHECK_OUT = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Check Out";
+        }
+
+        @Override
+        public String description() {
+            return "The patient is explicitly leaving the hospital/clinic. (Usually no formal encounter is captured for this.)";
+        }
+
+        public String uuid() {
+            return "25a042b2-60bc-4940-a909-debd098b7d82";
+        }
+    };
+
+    public static EncounterTypeDescriptor CHECK_IN = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Check In";
+        }
+
+        @Override
+        public String description() {
+            return "Indicates the patient has done the required paperwork and check-in to begin a visit to the clinic/hospital.";
+        }
+
+        public String uuid() {
+            return "ca3aed11-1aa4-42a1-b85c-8332fc8001fc";
+        }
+    };
+
+    public static EncounterTypeDescriptor TRANSFER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Transfer";
+        }
+
+        @Override
+        public String description() {
+            return "Indicates that a patient is being transferred into a different department within the hospital. (Transfers out of the hospital should not use this encounter type.)";
+        }
+
+        public String uuid() {
+            return "7b68d557-85ef-4fc8-b767-4fa4f5eb5c23";
+        }
+    };
+
+    public static EncounterTypeDescriptor VITALS = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Vitals";
+        }
+
+        @Override
+        public String description() {
+            return "For capturing vital signs";
+        }
+
+        public String uuid() {
+            return "67a71486-1a54-468f-ac3e-7091a9a79584";
+        }
+    };
+
+    public static EncounterTypeDescriptor LAB_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "LAB Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Lab Encounter";
+        }
+
+        public String uuid() {
+            return "214e27a1-606a-4b1e-a96e-d736c87069d5";
+        }
+    };
+
+    public static EncounterTypeDescriptor SMC_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "SMC - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a patient gets SMC services";
+        }
+
+        public String uuid() {
+            return "244da86d-f80e-48fe-aba9-067f241905ee";
+        }
+    };
+
+    public static EncounterTypeDescriptor EID_CARD_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "EID Card - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Child Return Visit";
+        }
+
+        public String uuid() {
+            return "4345dacb-909d-429c-99aa-045f2db77e2b";
+        }
+    };
+
+    public static EncounterTypeDescriptor ART_HEALTH_EDUCATION = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Card - Health Education Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "An Health education encounter created when a patient gets health education";
+        }
+
+        public String uuid() {
+            return "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e";
+        }
+    };
+
+    public static EncounterTypeDescriptor EID_CARD_SUMMARY = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "EID Card - Summary";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Children Initial Visit";
+        }
+
+        public String uuid() {
+            return "9fcfcc91-ad60-4d84-9710-11cc25258719";
+        }
+    };
+
+    public static EncounterTypeDescriptor MATERNITY_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Maternity - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "When a mother comes to a health facility to deliver";
+        }
+
+        public String uuid() {
+            return "a9f11592-22e7-45fc-904d-dfe24cb1fc67";
+        }
+    };
+
+    public static EncounterTypeDescriptor EARLY_INFANT_DIAGNOSIS_REQUEST = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Early Infant Diagnosis (EID) Request";
+        }
+
+        @Override
+        public String description() {
+            return "";
+        }
+
+        public String uuid() {
+            return "d211f5a7-b0b7-4021-8224-72c58866600e";
+        }
+    };
+
+>>>>>>> e81accb200c28afda3460c02cd0412c9f8456030
 }
