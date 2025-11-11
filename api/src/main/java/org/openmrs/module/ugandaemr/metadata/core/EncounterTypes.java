@@ -692,6 +692,22 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor GENERAL_CLINICAL_ASSESSMENT_ENCOUNTER  = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "General Clinical Assessment";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter used for general clinical assessment";
+        }
+
+        public String uuid() {
+            return "7b2eed30-59cb-4a0e-9741-a568952b3d76";
+        }
+    };
+
     public static EncounterTypeDescriptor ATTACHMENT_UPLOAD = new EncounterTypeDescriptor() {
         @Override
         public String name() {
