@@ -55,16 +55,28 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.NATIONALITY);
         install(PersonAttributeTypes.EMAIL_ADDRESS);
         install(PersonAttributeTypes.EDUCATION_LEVEL);
+        install(PersonAttributeTypes.RACE);
+        install(PersonAttributeTypes.BIRTHPLACE);
+        install(PersonAttributeTypes.CITIZENSHIP);
+        install(PersonAttributeTypes.MOTHERS_NAME);
+        install(PersonAttributeTypes.TELEPHONE_NUMBER);
+        install(PersonAttributeTypes.UNKNOWN_PATIENT);
+        install(PersonAttributeTypes.TEST_PATIENT);
+        install(PersonAttributeTypes.FINGERPRINT);
+        install(PersonAttributeTypes.FATHERS_NAME);
+        install(PersonAttributeTypes.CARE_GIVER_NAME);
+        install(PersonAttributeTypes.CARE_GIVER_TELEPHONE_NUMBER);
+        install(PersonAttributeTypes.COMMON_NAME);
+        install(PersonAttributeTypes.LAND_MARK_FEATURE);
+        install(PersonAttributeTypes.DIRECTIONS_TO_PATIENT_HOME);
+        install(PersonAttributeTypes.EMAIL);
         log.info("Person AttributeTypes installed");
-
-        // install roles
-        log.info("Installing roles");
-        install(Roles.MID_WIFE);
-        log.info("Roles installed");
 
 
         //Install Encounter Type
         log.info("Installing EncounterTypes");
+        install(EncounterTypes.ART_SUMMARY_ENCOUNTER_TYPE);
+        install(EncounterTypes.ART_ENCOUNTER_TYPE);
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
         install(EncounterTypes.OPD_ENCOUNTER);
         install(EncounterTypes.TB_SUMMARY_ENCOUNTER);
@@ -88,14 +100,11 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.CACX_SCREENING_LOG);
         install(EncounterTypes.CACX_TREATMENT_REGISTER);
         install(EncounterTypes.COVID19_VACCINATION_TRACKING);
-
         install(EncounterTypes.SMS_ENROLLMENT);
         install(EncounterTypes.FAMILY_PLANNING_ENCOUNTER);
         install(EncounterTypes.NEW_BORN_INPATIENT_ENCOUNTER);
         install(EncounterTypes.IN_PATIENT_ENCOUNTER);
         install(EncounterTypes.CHILD_HEALTH_ENCOUNTER);
-
-
         install(EncounterTypes.SMC_FOLLOWUP);
         install(EncounterTypes.LAB_REQUEST_ENCOUNTER);
         install(EncounterTypes.INTER_FACILITY_LINKAGE_ENCOUNTER);
@@ -109,80 +118,21 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.PROCEDURE_RESULTS_ENCOUNTER);
         install(EncounterTypes.HIV_SELF_TESTING_ENCOUNTER);
         install(EncounterTypes.HTS_CONTACT_TRACING_ENCOUNTER);
-         install(EncounterTypes.GENERAL_CLINICAL_ASSESSMENT_ENCOUNTER);
-
-
-        //installing programs metadata
-        log.info("Installing Programs");
-        install(Programs.HIV_PROGRAM);
-        install(Programs.TB_PROGRAM);
-        install(Programs.MCH_PROGRAM);
-        install(Programs.NUTRITION_PROGRAM);
-        install(Programs.FBIM_PROGRAM);
-        install(Programs.FBG_PROGRAM);
-        install(Programs.FTR_PROGRAM);
-        install(Programs.CCLAD_PROGRAM);
-        install(Programs.CDDP_PROGRAM);
-
-        //install Locations
-        log.info("Installing Locations");
-
-        log.info("Installing LocationTags");
-        install(LocationTags.ORGANIZATION);
-        install(LocationTags.DEPARTMENT);
-        install(LocationTags.CLINIC);
-        install(LocationTags.RECEPTION);
-        install(LocationTags.TRIAGE);
-        install(LocationTags.CLINICAL_ROOM);
-        install(LocationTags.LABORATORY);
-        install(LocationTags.MAIN_PHARMACY);
-        install(LocationTags.THEATER);
-        install(LocationTags.RADIOLOGY);
-        install(LocationTags.SUPPORTIVE_SERVICE);
-        install(LocationTags.ADMISSION);
-        install(LocationTags.QUEUE_ROOM);
-        install(LocationTags.LOGIN_LOCATION);
-        install(LocationTags.VISIT_LOCATION);
-
-        log.info("Installing Organizations");
-        installLocation(LocationOrganization.PARENT);
-
-        log.info("Installing Departments");
-        installLocation(LocationDepartments.IPD);
-        installLocation(LocationDepartments.OPD);
-        installLocation(LocationDepartments.RADIOLOGY);
-
-        log.info("Installing Clinics");
-        installLocation(LocationClinic.TB_CLINIC);
-        installLocation(LocationClinic.ART_CLINIC);
-        installLocation(LocationClinic.MCH_CLINIC);
-        installLocation(LocationClinic.OPD_CLINIC);
-        installLocation(LocationClinic.COVID19_CLINIC);
-
-        log.info("Installing Wards");
-        installLocation(LocationWard.ISOLATION_WARD);
-        installLocation(LocationWard.PEAD_WARD);
-        installLocation(LocationWard.PRIVATE_WAR);
-        installLocation(LocationWard.TB_ARD);
-        installLocation(LocationWard.GENERAL_WARD);
-        installLocation(LocationWard.GENERAL_MEN_WARD);
-        installLocation(LocationWard.GENERAL_WOMEN_WARD);
-        installLocation(LocationWard.GENERAL_WARD);
-        installLocation(LocationWard.CAUSALITY_WARD);
-
-
-        log.info("Installing Service Areas");
-        installLocation(LocationServiceArea.RECEPTION);
-        installLocation(LocationServiceArea.TRIAGE);
-        installLocation(LocationServiceArea.COUNSELING_CENTER);
-
-        log.info("Installing Supportive Service areas");
-        installLocation(LocationSupportService.PHARMACY);
-        installLocation(LocationSupportService.LABORATORY);
-        installLocation(LocationSupportService.MAIN_THEATER);
-
-        installLocation(LocationOther.UNKNOWN);
-        installLocation(LocationOther.Community);
+        install(EncounterTypes.ATTACHMENT_UPLOAD);
+        install(EncounterTypes.DISCHARGE);
+        install(EncounterTypes.ADMISSION);
+        install(EncounterTypes.VISIT_NOTE);
+        install(EncounterTypes.CHECK_OUT);
+        install(EncounterTypes.CHECK_IN);
+        install(EncounterTypes.TRANSFER);
+        install(EncounterTypes.VITALS);
+        install(EncounterTypes.LAB_ENCOUNTER);
+        install(EncounterTypes.SMC_ENCOUNTER);
+        install(EncounterTypes.EID_CARD_ENCOUNTER);
+        install(EncounterTypes.ART_HEALTH_EDUCATION);
+        install(EncounterTypes.EID_CARD_SUMMARY);
+        install(EncounterTypes.MATERNITY_ENCOUNTER);
+        install(EncounterTypes.EARLY_INFANT_DIAGNOSIS_REQUEST);
 
 
         // Install Encounter Role

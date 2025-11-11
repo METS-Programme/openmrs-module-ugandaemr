@@ -9,6 +9,61 @@
         for a list of supported elements and attributes
     -->
 
+	<changeSet id="ugandaemr-20251101-concept-dictionary-ref" author="slubwama">
+		<preConditions onFail="MARK_RAN" onError="HALT">
+			<and>
+				<tableExists tableName="concept"/>
+				<tableExists tableName="concept_name"/>
+			</and>
+		</preConditions>
+
+		<comment>Run concept dictionary reference updates for UgandaEMR 4.0.0 with FK checks disabled</comment>
+
+		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
+		<sqlFile path="liquibase/sql/concept_dictonary_ref_4.0.0.sql"  splitStatements="true" stripComments="true"/>
+		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20251101-role-and-privilege-ref" author="slubwama">
+		<preConditions onFail="MARK_RAN" onError="HALT">
+			<and>
+				<tableExists tableName="role"/>
+				<tableExists tableName="role_role"/>
+				<tableExists tableName="role_privilege"/>
+				<tableExists tableName="privilege"/>
+			</and>
+		</preConditions>
+
+		<comment>Run roles and privileges reference updates for UgandaEMR with FK checks disabled</comment>
+
+		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
+		<sqlFile path="liquibase/sql/role_and_privilege.sql"  splitStatements="true" stripComments="true"/>
+		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20251101-initial_metadata" author="slubwama">
+		<preConditions onFail="MARK_RAN" onError="HALT">
+			<and>
+				<tableExists tableName="encounter_type"/>
+			</and>
+			<sqlCheck expectedResult="0">
+				SELECT count(*) from encounter_type;
+			</sqlCheck>
+			<sqlCheck expectedResult="0">
+				SELECT count(*) from location;
+			</sqlCheck>
+		</preConditions>
+
+		<comment>Run initial metadata for updates for UgandaEMR with FK checks disabled</comment>
+
+		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
+		<sqlFile path="liquibase/sql/initial_metadata.sql"  splitStatements="true" stripComments="true"/>
+		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
+	</changeSet>
+
+
+
+
 	<changeSet id="ugandaemr-27112020-1441" author="ssmusoke">
 		<preConditions onFail="MARK_RAN" onError="MARK_RAN">
 			<sqlCheck expectedResult="100">
@@ -783,8 +838,11 @@ VALUES
 		</insert>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20240314-1654" author="slubwama">
+	<changeSet id="ugandaemr-20251105-1654" author="slubwama">
 		<preConditions onFail="CONTINUE">
+			<and>
+				<tableExists tableName="appointment_service"/>
+			</and>
 			<sqlCheck expectedResult="1">
 				select count(*) from appointment_service where uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f";
 			</sqlCheck>
@@ -1014,12 +1072,42 @@ VALUES
         </sql>
     </changeSet>
 
-	<changeSet id="ugandaemr-20240610-1655" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
-			</sqlCheck>
+	<changeSet id="ugandaemr-20251101-1655" author="slubwama">
+		<preConditions onFail="MARK_RAN" onError="HALT">
+			<and>
+				<!-- Ensure base tables exist -->
+				<tableExists tableName="concept"/>
+				<tableExists tableName="concept_name"/>
+
+				<!-- Ensure source concept exists (by UUID) -->
+				<sqlCheck expectedResult="1">
+					SELECT COUNT(*) FROM concept WHERE uuid='7cac8397-53cd-4f00-a6fe-028e8d743f8e';
+				</sqlCheck>
+
+				<!-- Ensure destination concept exists -->
+				<sqlCheck expectedResult="1">
+					SELECT COUNT(*) FROM concept WHERE concept_id=186351;
+				</sqlCheck>
+
+				<!-- Ensure only one concept_name is linked to the source concept -->
+				<sqlCheck expectedResult="1">
+					SELECT COUNT(*) FROM concept_name cn
+					JOIN concept c ON c.concept_id=cn.concept_id
+					WHERE c.uuid='7cac8397-53cd-4f00-a6fe-028e8d743f8e';
+				</sqlCheck>
+
+				<!-- Ensure target concept_name_id is not already in use -->
+				<sqlCheck expectedResult="0">
+					SELECT COUNT(*) FROM concept_name WHERE concept_name_id=198844;
+				</sqlCheck>
+
+				<!-- Ensure target UUID is not already in use -->
+				<sqlCheck expectedResult="0">
+					SELECT COUNT(*) FROM concept_name WHERE uuid='552e757e-b072-4e68-a10d-b7db7efcd5ad';
+				</sqlCheck>
+			</and>
 		</preConditions>
+
 		<comment>Change Image attachment to known concept metadata in UgandaEMR</comment>
 		<sql>
 			update concept_name set concept_name.uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad", concept_name.concept_name_id=198844, concept_name.concept_id=186351  where concept_id in (select concept.concept_id from  concept where concept.uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e");
@@ -1027,16 +1115,47 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20240610-1656" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
-			</sqlCheck>
+	<changeSet id="ugandaemr-20251101-1656" author="slubwama">
+		<preConditions onFail="MARK_RAN" onError="HALT">
+			<and>
+				<!-- Ensure base tables exist -->
+				<tableExists tableName="concept"/>
+				<tableExists tableName="concept_name"/>
+
+				<!-- Ensure source concept exists (by UUID) -->
+				<sqlCheck expectedResult="1">
+					SELECT COUNT(*) FROM concept WHERE uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
+				</sqlCheck>
+
+				<!-- Ensure destination concept exists -->
+				<sqlCheck expectedResult="1">
+					SELECT COUNT(*) FROM concept WHERE concept_id=186352;
+				</sqlCheck>
+
+				<!-- Ensure exactly one concept_name linked to the source concept -->
+				<sqlCheck expectedResult="1">
+					SELECT COUNT(*)
+					FROM concept_name cn
+					JOIN concept c ON c.concept_id = cn.concept_id
+					WHERE c.uuid = '42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
+				</sqlCheck>
+
+				<!-- Ensure target concept_name_id is free -->
+				<sqlCheck expectedResult="0">
+					SELECT COUNT(*) FROM concept_name WHERE concept_name_id=198845;
+				</sqlCheck>
+
+				<!-- Ensure target concept_name UUID is free -->
+				<sqlCheck expectedResult="0">
+					SELECT COUNT(*) FROM concept_name WHERE uuid='209ebadb-d3df-489a-bd10-7171e21c4869';
+				</sqlCheck>
+			</and>
 		</preConditions>
+
 		<comment>Change Default attachment to known concept metadata in UgandaEMR</comment>
 		<sql>
-			update concept_name set concept_name.uuid="209ebadb-d3df-489a-bd10-7171e21c4869", concept_name.concept_name_id=198845, concept_name.concept_id=186352  where concept_id in (select concept.concept_id from  concept where concept.uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00");
-			update concept set concept_id=186352 where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
+			update concept_name set concept_name.uuid='209ebadb-d3df-489a-bd10-7171e21c4869', concept_name.concept_name_id=198845, concept_name.concept_id=186352  where concept_id in (select concept.concept_id from  concept where concept.uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00');
+			update concept set concept_id=186352 where uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
 		</sql>
 	</changeSet>
 
@@ -1359,6 +1478,30 @@ VALUES
 			update liquibasechangelog set   MD5SUM="8:e477471ac14e504234e45c5490ecb6a0" where ID="stockmanagement-1758855877841-332" AND   MD5SUM="8:3d6d3f97bec84454996da0cc248e0f1d";
 			update liquibasechangelog set   MD5SUM="8:aea8af274b5e3a0c01794e34de6807a9" where ID="stockmanagement-1758855877841-333" AND   MD5SUM="8:ba17bee92d14027c12d900280fee161c";
 		</sql>
+	</changeSet>
+
+
+	<changeSet id="ugandaemr-20251105-post-metadata-installation-task" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.PostMetaDataInstallationTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Post MetaData Installation Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Post MetaData Installation" />
+			<column name="description" value="Installation of metadata post start incase it failed on start " />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.PostMetaDataInstallationTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2017-06-01T11:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="0"/>
+			<column name="uuid" value="2d8812bc-ba60-11f0-b8b7-f4d343d76c98" />
+		</insert>
 	</changeSet>
 
 </databaseChangeLog>
