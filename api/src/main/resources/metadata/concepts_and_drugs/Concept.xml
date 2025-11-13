@@ -12,6 +12,10 @@
     <concept_class  concept_class_id="28"   name="Medical supply"  description="Durable medical equipment and other supplies."  creator="1"  date_created="2014-10-02 14:30:13"  retired="0"  retired_by="1" uuid="0dcf23d4-3008-4d8e-b12c-4ec95d1cfd97"/>
     <concept_class  concept_class_id="29"   name="InteractSet"  description="Set of drugs that interact with parent drug."  creator="1"  date_created="2016-04-18 19:31:36"  retired="0"  retired_by="1" uuid="e2c52f55-c7b4-49f7-9f82-1ffa2fe6023f"/>
 
+    <concept_class  concept_class_id="51"  name="Stationery"  description="Writing and other office materials."  creator="1"  date_created="2025-11-12 09:55:50"  retired="0"  uuid="7f7917f7-3b9f-450b-8ce4-2ebe4f80b7c9"/>
+    <concept_class  concept_class_id="52"  name="Disinfectants and cleaning agents"  description="Disinfectants and cleaning agents"  creator="1"  date_created="2025-11-12 10:04:15"  retired="0"  uuid="578752fd-a48b-4d6c-be64-2e68d70bc7ac"/>
+
+
     <!--CONCEPTS-->
     <!--MCH-->
     <concept  concept_id="159616"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2010-10-29 19:11:29"  changed_by="1"  date_changed="2014-08-13 19:28:22"  retired_by="1"  uuid="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
