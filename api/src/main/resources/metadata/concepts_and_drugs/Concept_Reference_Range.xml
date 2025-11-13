@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+     <concept_reference_range concept_reference_range_id="1" concept_id="678" criteria="$patient.getGender().equals(&quot;M&quot;) &amp;&amp; $patient.getAgeInMonths() &gt; 3" hi_normal="12" low_normal="4" uuid="eb08a260-0578-4e49-91cb-72bd95f569aa"/>
+     <concept_reference_range concept_reference_range_id="2" concept_id="678" criteria="$patient.getGender().equals(&quot;M&quot;) &amp;&amp; $patient.getAgeInMonths() &gt; 3" hi_normal="10" low_normal="4" uuid="246d4b20-04dc-4e2d-a036-37877ec65c80"/>
+     <concept_reference_range concept_reference_range_id="3" concept_id="678" criteria="$patient.getAgeInMonths() &lt;= 3" hi_normal="17" low_normal="5.5" uuid="751a5645-b1f1-43ed-9ae0-a357a6bb6ef7"/>
+     <concept_reference_range concept_reference_range_id="4" concept_id="21" criteria="$patient.getGender().equals(&quot;M&quot;) &amp;&amp; $patient.getAgeInMonths() &gt; 3" hi_normal="17" low_normal="12" uuid="a0671e96-59c5-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="5" concept_id="21" criteria="$patient.getGender().equals(&quot;M&quot;) &amp;&amp; $patient.getAgeInMonths() &gt; 3" hi_normal="17" low_normal="11" uuid="a06c3638-59c5-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="6" concept_id="21" criteria="$patient.getAgeInMonths() &lt;= 3" hi_normal="17" low_normal="8" uuid="a06f8144-59c5-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="7" concept_id="1015" criteria="$patient.getAgeInMonths() &gt; 3" hi_normal="52" low_normal="33.5" uuid="0445ec1c-59c6-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="8" concept_id="851" criteria="$patient.getAgeInMonths() &gt; 3" hi_normal="100" low_normal="80" uuid="34a65afe-59c6-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="9" concept_id="851" criteria="$patient.getAgeInMonths() &lt;= 3" hi_normal="110" low_normal="86" uuid="8d27e404-59c6-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="10" concept_id="1018" criteria="$patient.getAgeInMonths() &gt; 3" hi_normal="32" low_normal="28" uuid="13264e9c-59c7-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="11" concept_id="1018" criteria="$patient.getAgeInMonths() &lt;= 3" hi_normal="38" low_normal="26" uuid="34f10ab2-59c7-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="12" concept_id="1017" criteria="$patient.getAgeInMonths() &gt; 3" hi_normal="35" low_normal="31" uuid="34f3d6ca-59c7-11f0-bcbd-bf35c84f3004"/>
+     <concept_reference_range concept_reference_range_id="13" concept_id="1017" criteria="$patient.getAgeInMonths() &lt;= 3" hi_normal="37" low_normal="31" uuid="34f5ebea-59c7-11f0-bcbd-bf35c84f3004"/>
+</dataset>

@@ -224,6 +224,14 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Reference.xml");
         log.info("import to Concept_Reference Table  Successful");
 
+        log.info("import  to Concept_Reference_Range Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Reference_Range.xml");
+        log.info("import to Concept_Reference_Range Table  Successful");
+
+        log.info("import  to Concept_Reference_Range Table  Starting");
+        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Reference_Range.xml");
+        log.info("import to Concept_Reference_Range Table  Successful");
+
         log.info("import  of  Drugs  Starting");
         dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Drug.xml");
         log.info("import of Drugs  Successful");

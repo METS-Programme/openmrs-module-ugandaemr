@@ -1,4 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
     <concept_numeric  concept_id="199640" allow_decimal="1"/>
+
+    <concept_numeric  concept_id="199675"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199676"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199677"  units="%"  allow_decimal="1"/>
+    <concept_numeric  concept_id="199678"  units="%"  allow_decimal="1"/>
+    <concept_numeric  concept_id="199681"  units="cells/µL"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199682"  units="null"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199683"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199684"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199685"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199686"  units="pg"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199687"  units="pg"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199689"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199690"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199691"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199693" hi_normal="18"   low_normal="14"  units="seconds"  allow_decimal="1"/>
+    <concept_numeric  concept_id="199694" hi_normal="18"   low_normal="14"  units="seconds"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199695" hi_normal="20"   low_normal="15"  units="seconds"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199696" hi_normal="4"   low_normal="2"  units="g/L"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199697" hi_normal="4"   low_normal="2"  units="g/L"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199698" hi_normal="120"   low_normal="70"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199699" hi_normal="120"   low_normal="70"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199700" hi_normal="120"   low_normal="70"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199701" hi_normal="150"   low_normal="50"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199702" hi_normal="120"   low_normal="70"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199703" hi_normal="120"   low_normal="70"  units="%"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199704" hi_normal="35"   low_normal="25"  units="seconds"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199705" units="seconds"  allow_decimal="0"/>
+    <concept_numeric  concept_id="199706" units="seconds"  allow_decimal="0"/>
 </dataset>
