@@ -673,7 +673,8 @@
     <role  role="Organizational: System Administrator"  description="System Administrator"  uuid="8534b39a-bbc8-4739-81b3-9602a382b603"/>
     <role  role="Base Clinical Role"  description="The underlying role for all clinical providers"  uuid="068fb76b-bd5b-4a2a-bb3c-753fffcb542c"/>
 
-
+    <role  role="Radiologist"  description="This Role is for radiologist. Carry out and mange procedures"  uuid="e6996cab-2fac-451f-8cc8-2ffb5b346681"/>
+    <role_role  parent_role="Base Role"  child_role="Radiologist"/>
 
     <!-- ROLE PRIVILEGES -->
     <!--* BASE ROLE *-->
@@ -1479,6 +1480,10 @@
     <role_privilege  role="Organizational: Clinician"  privilege="Task: Adjust Cashier Bills"/>
     <role_privilege  role="Organizational: Clinician"  privilege="Task: Manage Cashier Metadata"/>
     <role_privilege  role="Organizational: Clinician"  privilege="Task: Manage Cashier Module"/>
+
+    <role_privilege  role="Radiologist"  privilege="Manage Procedures"/>
+    <role_privilege  role="Radiologist"  privilege="Manage Radiology"/>
+
 
 </dataset>
 
