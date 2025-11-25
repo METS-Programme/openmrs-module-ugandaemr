@@ -1159,28 +1159,6 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20241015-1111" author="mmwanje">
-		<preConditions onFail="CONTINUE">
-			<tableExists tableName="bed"/>
-			<tableExists tableName="bed_location_map"/>
-			<tableExists tableName="bed_patient_assignment_map"/>
-			<tableExists tableName="bed_tag"/>
-			<tableExists tableName="bed_tag_map"/>
-			<tableExists tableName="bed_type"/>
-		</preConditions>
-
-		<comment>Dropping bed management module related tables</comment>
-
-		<sql>SET FOREIGN_KEY_CHECKS=0;</sql>
-		<dropTable tableName="bed"/>
-		<dropTable tableName="bed_location_map"/>
-		<dropTable tableName="bed_patient_assignment_map"/>
-		<dropTable tableName="bed_tag"/>
-		<dropTable tableName="bed_tag_map"/>
-		<dropTable tableName="bed_type"/>
-		<sql>SET FOREIGN_KEY_CHECKS=1;</sql>
-	</changeSet>
-
 	<changeSet id="ugandaemr-20241029-2256" author="slubwama">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
