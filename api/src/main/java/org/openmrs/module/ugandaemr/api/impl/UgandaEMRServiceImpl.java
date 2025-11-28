@@ -2045,11 +2045,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
         try {
             log.info("Installing metadata");
-            log.info("Installing commonly used metadata");
-            deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
-            log.info("Finished installing commonly used metadata");
             log.info("Installing address hierarchy");
-            deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
         } catch (Exception e) {
