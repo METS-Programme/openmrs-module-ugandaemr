@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <visit_type  visit_type_id="2"  name="Community Visit"  description="This is a visit type that server all clients on community service models"  creator="1"  date_created="2020-08-24 14:53:20"  uuid="2ce24f40-8f4c-4bfa-8fde-09d475783468"/>
+    <encounter_type  encounter_type_id="70"  name="Early Infant Diagnosis (EID) Request"  description="The encounter type where EIR Lab requests are made"  creator="1"  date_created="2025-07-15 16:27:38"  retired="0"  uuid="d211f5a7-b0b7-4021-8224-72c58866600e"/>
 </dataset>

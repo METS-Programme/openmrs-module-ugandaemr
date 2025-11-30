@@ -91,7 +91,7 @@
 		<legacyuiVersion>1.23.0</legacyuiVersion>
 		<metadatadeployVersion>1.13.0</metadatadeployVersion>
 		<metadatamappingVersion>1.6.0</metadatamappingVersion>
-		<metadatasharingVersion>1.9.0</metadatasharingVersion>
+		<metadatasharingVersion>1.10.0</metadatasharingVersion>
 		<openconceptlabModuleVersion>2.4.0</openconceptlabModuleVersion>
 		<patientFlagsVersion>3.0.8</patientFlagsVersion>
 		<referencemetadataVersion>2.12.0</referencemetadataVersion>
@@ -100,7 +100,7 @@
 		<reportingCompatibilityVersion>2.0.9</reportingCompatibilityVersion>
 		<serializationxstreamVersion>0.2.16</serializationxstreamVersion>
 		<patientqueueingVersion>2.0.1</patientqueueingVersion>
-		<ugandaemrSyncVersion>2.0.0-SNAPSHOT</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>2.0.4</ugandaemrSyncVersion>
 		<cohortModuleVersion>3.7.3</cohortModuleVersion>
 		<stockmanagementVersion>2.0.3</stockmanagementVersion>
 		<spaModuleVersion>2.0.0</spaModuleVersion>
@@ -110,10 +110,10 @@
 		<initializerVersion>2.9.0</initializerVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.1.5-SNAPSHOT</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.1.6</ugandaemrReportsVersion>
 
 		<!-- content packs -->
-		<ugandaemr-content.version>1.0.0-SNAPSHOT</ugandaemr-content.version>
+		<ugandaemr-content.version>1.0.0</ugandaemr-content.version>
 	</properties>
 
 	<dependencyManagement>
