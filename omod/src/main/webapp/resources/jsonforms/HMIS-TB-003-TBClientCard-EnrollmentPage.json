@@ -45,7 +45,8 @@
                 "allowFutureDates": "false",
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "datePickerFormat": "calendar"
             },
             {
               "label": "Entry Point",
@@ -210,7 +211,7 @@
               "required": "false",
               "id": "tbFirstLineStartDate",
               "questionOptions": {
-                "rendering": "date",
+                "rendering": "datetime",
                 "concept": "7326297e-0ccd-4355-9b86-dde1c056e2c2",
                 "conceptMappings": [],
                 "answers": []
@@ -220,7 +221,8 @@
                   "type": "date",
                   "allowFutureDates": "false"
                 }
-              ]
+              ],
+              "datePickerFormat": "both"
             },
             {
               "label": "Regimen",
@@ -228,7 +230,7 @@
               "id": "firstLineRegimen",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "159958AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -451,7 +453,8 @@
               ],
               "hide": {
                 "hideWhenExpression": "isEmpty(referralType)"
-              }
+              },
+              "datePickerFormat": "calendar"
             }
           ]
         },
@@ -588,7 +591,8 @@
                   "type": "date",
                   "allowFutureDates": "false"
                 }
-              ]
+              ],
+              "datePickerFormat": "calendar"
             },
             {
               "label": "Diabetes Mellitus Status",
@@ -808,7 +812,8 @@
               ],
               "hide": {
                 "hideWhenExpression": "isEmpty(hivStatus) || hivStatus == 'dcd6865a-30ab-102d-86b0-7a5022ba4115'"
-              }
+              },
+              "datePickerFormat": "calendar"
             },
             {
               "label": "CPT/Dapson",
@@ -893,7 +898,8 @@
               ],
               "hide": {
                 "hideWhenExpression": "isEmpty(artStatus)"
-              }
+              },
+              "datePickerFormat": "calendar"
             },
             {
               "type": "patientIdentifier",
