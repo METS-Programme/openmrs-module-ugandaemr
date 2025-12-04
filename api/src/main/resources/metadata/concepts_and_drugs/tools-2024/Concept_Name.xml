@@ -969,4 +969,5 @@
     <concept_name concept_name_id="199932" concept_id="199912" name="Toxicology" locale="en" locale_preferred="1" creator="1" date_created="2025-11-29 00:00:00" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="7e4d1f80-6b2a-4f21-8932-000000199932"/>
     <concept_name concept_name_id="199933" concept_id="199913" name="Endocrinology" locale="en" locale_preferred="1" creator="1" date_created="2025-11-29 00:00:00" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="7e4d1f80-6b2a-4f21-8933-000000199933"/>
     <concept_name concept_name_id="199934" concept_id="199914" name="Laboratory sections" locale="en" locale_preferred="1" creator="1" date_created="2025-11-29 00:00:00" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="9c42f3a0-7a31-49a4-8934-000000199934"/>
+    <concept_name  concept_name_id="199935"  concept_id="199095"  name="HIV Test Panel"  locale="en"  locale_preferred="1"  creator="1"  date_created="2025-12-04 04:56:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="c3a347b6-8e33-4273-beea-59d1653a0b98"  date_changed="2025-12-04 04:56:29"  changed_by="1"/>
 </dataset>
