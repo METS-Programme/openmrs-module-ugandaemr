@@ -393,8 +393,4 @@
     <concept_set  concept_set_id="19928"  concept_id="199707"  concept_set="166941"  sort_weight="10"  creator="1"  date_created="2025-11-13 09:59:26"  uuid="f6818cf8-de9b-4ab5-badf-f0b6dbcf1f20"/>
     <concept_set  concept_set_id="19929"  concept_id="5271"  concept_set="166941"  sort_weight="11"  creator="1"  date_created="2025-11-13 09:59:26"  uuid="c0abde6c-112f-4ab9-b13b-871d4b6e1863"/>
 
-    <concept_set  concept_set_id="19933"  concept_id="199094"  concept_set="199095"  sort_weight="3"  creator="1"  date_created="2025-12-03 12:29:31"  uuid="5df3dc80-f0b0-4c4f-9c0a-00cc12a36b95"/>
-    <concept_set  concept_set_id="19930"  concept_id="198943"  concept_set="199095"  sort_weight="0"  creator="1"  date_created="2025-12-03 12:29:31"  uuid="ff03547c-a7a3-4870-baba-750d5878ecb3"/>
-    <concept_set  concept_set_id="19931"  concept_id="198941"  concept_set="199095"  sort_weight="1"  creator="1"  date_created="2025-12-03 12:29:31"  uuid="db1f5d3a-ffbe-478e-b7de-a971284e7bd8"/>
-    <concept_set  concept_set_id="19932"  concept_id="198942"  concept_set="199095"  sort_weight="2"  creator="1"  date_created="2025-12-03 12:29:31"  uuid="b2c49f8d-94d4-45a1-a3c0-806a30613723"/>
 </dataset>
