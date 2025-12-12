@@ -82,6 +82,9 @@
               "questionOptions": {
                 "rendering": "select",
                 "concept": "133d0cb7-53ce-460a-8826-e98a2bb99d73",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '133d0cb7-53ce-460a-8826-e98a2bb99d73')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
                 "answers": [
                   {
                     "concept": "da9308a0-6202-426c-9b32-eb3095a35ea0",
