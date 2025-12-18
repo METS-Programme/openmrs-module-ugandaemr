@@ -646,6 +646,8 @@
     <privilege privilege="View Cashier Timesheets" description="Allows viewing cashier timesheets" uuid="bc7878fa-8771-4716-b2b4-4c25a201ce28"/>
     <privilege privilege="Manage Patient Billing" description="Allows managing patient billing" uuid="bc7878fa-8771-4716-b2b4-4c25a201ce29"/>
 
+    <privilege privilege="Task: Create new bill" description="Able to access bill page" uuid="bc8c512c-cef4-45ea-a594-6e956a30154a"/>
+
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
     <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
@@ -1484,6 +1486,20 @@
     <role_privilege  role="Radiologist"  privilege="Manage Procedures"/>
     <role_privilege  role="Radiologist"  privilege="Manage Radiology"/>
 
+    <role_privilege  role="Reception"  privilege="Adjust Cashier Bills"/>
+    <role_privilege  role="Reception"  privilege="App: View Cashier App"/>
+    <role_privilege  role="Reception"  privilege="Get Admission Locations"/>
+    <role_privilege  role="Reception"  privilege="Get Beds"/>
+    <role_privilege  role="Reception"  privilege="Manage Cashier Bills"/>
+    <role_privilege  role="Reception"  privilege="Manage Cashier Metadata"/>
+    <role_privilege  role="Reception"  privilege="Purge Cashier Bills"/>
+    <role_privilege  role="Reception"  privilege="Purge Cashier Metadata"/>
+    <role_privilege  role="Reception"  privilege="Task: Adjust Cashier Bills"/>
+    <role_privilege  role="Reception"  privilege="Task: Create new bill"/>
+    <role_privilege  role="Reception"  privilege="Task: Manage Cashier Metadata"/>
+    <role_privilege  role="Reception"  privilege="Task: Manage Cashier Module"/>
+    <role_privilege  role="Reception"  privilege="View Cashier Bills"/>
+    <role_privilege  role="Reception"  privilege="View Cashier Metadata"/>
 
 </dataset>
 
