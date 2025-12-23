@@ -9,7 +9,7 @@
         for a list of supported elements and attributes
     -->
 
-	<changeSet id="ugandaemr-20251101-concept-dictionary-ref" author="slubwama">
+	<changeSet id="ugandaemr-20251223-concept-dictionary-ref" author="slubwama">
 		<preConditions onFail="MARK_RAN" onError="HALT">
 			<and>
 				<tableExists tableName="concept"/>
@@ -17,10 +17,10 @@
 			</and>
 		</preConditions>
 
-		<comment>Run concept dictionary reference updates for UgandaEMR 4.0.0 with FK checks disabled</comment>
+		<comment>Run concept dictionary reference updates for UgandaEMR 5.0.0 with FK checks disabled</comment>
 
 		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
-		<sqlFile path="liquibase/sql/concept_dictonary_ref_4.0.0.sql"  splitStatements="true" stripComments="true"/>
+		<sqlFile path="liquibase/sql/concept_dictonary_ref_5.0.0.sql"  splitStatements="true" stripComments="true"/>
 		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
 	</changeSet>
 
