@@ -1,7 +1,7 @@
 {
   "name": "HMIS ACP 014: Early Infant Diagnosis (EID) Request Form",
   "processor": "EncounterFormProcessor",
-  "encounterType": "d211f5a7-b0b7-4021-8224-72c58866600e",
+  "encounterType": "3ca75ce7-8cbe-4970-8fe4-697bc2ce7d8f",
   "uuid": "84eb332d-e977-41e2-a081-03f6f875b323",
   "description": "This form is used to carry out tests on an exposed infant",
   "version": "4.1.1",
@@ -76,6 +76,40 @@
               },
               "id": "deliveredAtHealthFacility",
               "label": "Delivered at Health Facility"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "133d0cb7-53ce-460a-8826-e98a2bb99d73",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '133d0cb7-53ce-460a-8826-e98a2bb99d73')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "da9308a0-6202-426c-9b32-eb3095a35ea0",
+                    "label": "Daily NVP from birth to 6 weeks"
+                  },
+                  {
+                    "concept": "5c298370-0520-43f4-a7b8-d9749a26d15c",
+                    "label": "Daily NVP from birth to 12weeks"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "17d3e4b2-af0c-41d4-9b88-14227ee5eaa1",
+                    "label": "No ARVs taken at birth"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "id": "infantPmtctArvs",
+              "label": "Infant PMTCT ARVs"
             },
             {
               "type": "obs",
@@ -169,21 +203,9 @@
               "type": "obs",
               "required": "true",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "select",
                 "concept": "c35086eb-c1f8-434a-91bd-3e3832c51622",
                 "answers": [
-                  {
-                    "concept": "2bd42567-a507-4dd7-956e-17cfb350bdea",
-                    "label": "1st"
-                  },
-                  {
-                    "concept": "068ed6a2-4b81-4c21-a75f-d2e9c98c265a",
-                    "label": "2nd"
-                  },
-                  {
-                    "concept": "9a07b530-c41a-4a56-be39-4f27528a3807",
-                    "label": "3rd"
-                  },
                   {
                     "concept": "57c357ea-b4de-491e-99aa-962a62ff368f",
                     "label": "PCR Test"
@@ -199,7 +221,6 @@
             },
             {
               "type": "obs",
-              "required": "true",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "30d24eb0-e8c5-4c2f-a369-ddba9d88e92a",
@@ -209,12 +230,40 @@
                     "label": "6 weeks"
                   },
                   {
+                    "concept": "9432afcb-6fd8-406a-a49e-77836e0979f3",
+                    "label": "6 Weeks after ceasation from breast feeding"
+                  },
+                  {
                     "concept": "7520826e-e098-4bde-b1c8-f08690366a78",
                     "label": "9 MONTHS"
                   },
                   {
                     "concept": "21f19331-e15f-4b39-8a3c-70499e5b2aae",
                     "label": "18 Months"
+                  }
+                ]
+              },
+              "id": "eidPcrTiming",
+              "label": "EID PCR Timing"
+            },
+            {
+              "type": "obs",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "443dd826-9234-4066-b68a-13fa3b768276",
+                "answers": [
+                  {
+                    "concept": "1461bbe4-4da4-4e3b-9ca1-9ee9798c2663",
+                    "label": "R1 - Any repeat before 2n PCRNA"
+                  },
+                  {
+                    "concept": "563d3c6e-fa7c-42f5-bf08-f0bb605acb33",
+                    "label": "R2 - Any repeat before 3rd PCRNA"
+                  },
+                  {
+                    "concept": "dec71447-006d-4b8c-ad23-5519504012d9",
+                    "label": "R3 - Any repeat after 3rd PCRNA"
                   }
                 ]
               },
@@ -301,7 +350,7 @@
                 }
               },
               "id": "mothersArtNumber",
-              "label": "Art No"
+              "label": "Mother’s ART No."
             },
             {
               "type": "obs",
@@ -324,29 +373,85 @@
               "label": "Art Status"
             },
             {
+              "label": "Antenatal",
               "type": "obs",
-              "required": false,
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "38460266-6bcd-47e8-844c-649d34323810",
-                "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '38460266-6bcd-47e8-844c-649d34323810')).then(obs => obs.valueText)"
-                }
-              },
               "id": "antenatal",
-              "label": "Antenatal"
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e0ad9c75-d04a-4433-b51d-3f9d6b34af2e",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'e0ad9c75-d04a-4433-b51d-3f9d6b34af2e')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "19c1111f-4076-4420-9cb5-5d481edc4381",
+                    "label": "Lifelong ART"
+                  },
+                  {
+                    "concept": "d2c55da5-1da3-41ca-8be6-8731f2eda5ce",
+                    "label": "No ART"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
+              },
+              "validators": []
             },
             {
+              "label": "Delivery",
               "type": "obs",
+              "id": "delivery",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "ef1f4c7a-2b90-4412-83bb-87ae8094ce4c",
+                "rendering": "select",
+                "concept": "2234ce82-f0e2-4363-b6d9-b1011a9f7630",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'ef1f4c7a-2b90-4412-83bb-87ae8094ce4c')).then(obs => obs.valueText)"
-                }
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '2234ce82-f0e2-4363-b6d9-b1011a9f7630')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "answers": [
+                  {
+                    "concept": "19c1111f-4076-4420-9cb5-5d481edc4381",
+                    "label": "Lifelong ART"
+                  },
+                  {
+                    "concept": "d2c55da5-1da3-41ca-8be6-8731f2eda5ce",
+                    "label": "No ART"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
               },
+              "validators": []
+            },
+            {
+              "label": "Postnatal",
+              "type": "obs",
               "id": "postnatal",
-              "label": "Postnatal"
+              "questionOptions": {
+                "rendering": "select",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '18eca553-af98-441f-ad37-a133c4c8d353')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "concept": "18eca553-af98-441f-ad37-a133c4c8d353",
+                "answers": [
+                  {
+                    "concept": "19c1111f-4076-4420-9cb5-5d481edc4381",
+                    "label": "Lifelong ART"
+                  },
+                  {
+                    "concept": "d2c55da5-1da3-41ca-8be6-8731f2eda5ce",
+                    "label": "No ART"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UnKnown"
+                  }
+                ]
+              },
+              "validators": []
             }
           ]
         }
@@ -356,14 +461,14 @@
       "label": "Test Details",
       "sections": [
         {
-          "label": "Order For Tests",
-          "isExpanded": "true",
+          "label": "Test Details",
+          "isExpanded": "false",
           "questions": [
             {
               "label": "Test Order",
               "type": "testOrder",
               "id": "hivDNAPCRTestOrder",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "repeating",
                 "orderSettingUuid": "OUTPATIENT",
@@ -389,7 +494,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "93e44915-e411-4e21-867e-8951cfbd80cc"
+                "concept": ""
               },
               "id": "pocDeviceUsed",
               "label": "POC Device Used"
@@ -466,7 +571,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "datetime",
-                "concept": "64ce869e-e68b-4c99-b02e-db65cbb2457e"
+                "concept": "5b4037d6-a7e2-11ed-afa1-0242ac120002"
               },
               "id": "testingDate",
               "label": "Testing Date",
