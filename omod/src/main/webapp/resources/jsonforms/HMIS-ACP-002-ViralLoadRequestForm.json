@@ -17,6 +17,9 @@
         {
           "label": "Treatment Information",
           "isExpanded": "true",
+          "hide": {
+            "hideWhenExpression": "isEmpty(vlTestOrder)"
+          },
           "questions": [
             {
               "label": "Date",
@@ -541,12 +544,17 @@
                 ]
               },
               "validators": []
-            },
+            }
+          ]
+        },
+        {
+          "label": "Orders",
+          "isExpanded": "true",
+          "questions": [
             {
               "label": "Order Test",
               "type": "testOrder",
               "id": "vlTestOrder",
-              "required": "true",
               "questionOptions": {
                 "rendering": "repeating",
                 "orderSettingUuid": "OUTPATIENT",
@@ -643,6 +651,68 @@
               "hide": {
                 "hideWhenExpression": "isEmpty(vlTestOrder)"
               }
+            }
+          ]
+        },
+        {
+          "label": "Results",
+          "isExpanded": "false",
+          "hide": {
+            "hideWhenExpression": "vlTestOrder == '1eb05918-f50c-4cad-a827-3c78f296a10a' || vlTestOrder == 'cbbc116a-a7e2-11ed-afa1-0242ac120002'"
+          },
+          "questions": [
+            {
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a"
+              },
+              "id": "viralLoadResults",
+              "label": "Viral Load Results",
+              "questions": [
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88"
+                  },
+                  "id": "dateOfSampleCollection",
+                  "datePickerFormat": "calendar",
+                  "label": "Date of Sample Collection"
+                },
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "concept": "dca12261-30ab-102d-86b0-7a5022ba4115",
+                    "rendering": "radio",
+                    "answers": [
+                      {
+                        "concept": "dca10c94-30ab-102d-86b0-7a5022ba4115",
+                        "label": "DETECTED"
+                      },
+                      {
+                        "concept": "dca1269d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Target Not Detected"
+                      },
+                      {
+                        "concept": "dca11907-30ab-102d-86b0-7a5022ba4115",
+                        "label": "POOR SAMPLE QUALITY"
+                      }
+                    ]
+                  },
+                  "id": "viralLoadQualitative",
+                  "label": "VIRAL LOAD QUALITATIVE"
+                },
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115"
+                  },
+                  "id": "viralLoadQuantitaive",
+                  "label": "VIRAL LOAD QUANTITAIVE"
+                }
+              ]
             }
           ]
         }
