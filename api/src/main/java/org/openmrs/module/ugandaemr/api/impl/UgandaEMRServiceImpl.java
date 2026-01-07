@@ -2423,19 +2423,20 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
     private boolean validateCPHLBarCode(String accessionNumber) {
-        Integer minimumCPHLBarCodeLength = Integer.parseInt(Context.getAdministrationService().getGlobalProperty("ugandaemrsync.minimumCPHLBarCodeLength"));
-        if (accessionNumber == null || accessionNumber.length() < minimumCPHLBarCodeLength) {
+        String minLengthGp = Context.getAdministrationService().getGlobalProperty("ugandaemrsync.minimumCPHLBarCodeLength");
+
+        if (StringUtils.isBlank(minLengthGp) || StringUtils.isBlank(accessionNumber)) {
             return false;
         }
 
-        int currentYearSuffix = Year.now().getValue() % 100;
-
+        int minimumCPHLBarCodeLength;
         try {
-            int prefix = Integer.parseInt(accessionNumber.substring(0, 2));
-            return prefix == currentYearSuffix || prefix == (currentYearSuffix - 1);
+            minimumCPHLBarCodeLength = Integer.parseInt(minLengthGp);
         } catch (NumberFormatException e) {
             return false;
         }
+
+        return accessionNumber.trim().length() >= minimumCPHLBarCodeLength;
     }
 
 
