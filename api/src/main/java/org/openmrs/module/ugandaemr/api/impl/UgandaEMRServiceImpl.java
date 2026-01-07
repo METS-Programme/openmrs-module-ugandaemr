@@ -2423,37 +2423,19 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
     private boolean validateCPHLBarCode(String accessionNumber) {
-        if (accessionNumber == null || accessionNumber.trim().isEmpty()) {
-            return false;
-        }
-        accessionNumber = accessionNumber.trim();
-
-        int minimumCPHLBarCodeLength = 10;
-        try {
-            String gpValue = Context.getAdministrationService()
-                    .getGlobalProperty("ugandaemrsync.minimumCPHLBarCodeLength");
-            if (gpValue != null) {
-                minimumCPHLBarCodeLength = Integer.parseInt(gpValue);
-            }
-        } catch (NumberFormatException ignored) {
-            log.error(ignored);
-        }
-
-        if (accessionNumber.length() < minimumCPHLBarCodeLength || accessionNumber.length() < 2) {
+        Integer minimumCPHLBarCodeLength = Integer.parseInt(Context.getAdministrationService().getGlobalProperty("ugandaemrsync.minimumCPHLBarCodeLength"));
+        if (accessionNumber == null || accessionNumber.length() < minimumCPHLBarCodeLength) {
             return false;
         }
 
         int currentYearSuffix = Year.now().getValue() % 100;
-        int previousYearSuffix = (currentYearSuffix == 0) ? 99 : currentYearSuffix - 1;
 
-        int prefix;
         try {
-            prefix = Integer.parseInt(accessionNumber.substring(0, 2));
+            int prefix = Integer.parseInt(accessionNumber.substring(0, 2));
+            return prefix == currentYearSuffix || prefix == (currentYearSuffix - 1);
         } catch (NumberFormatException e) {
             return false;
         }
-
-        return prefix == currentYearSuffix || prefix == previousYearSuffix;
     }
 
 
