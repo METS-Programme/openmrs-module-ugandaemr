@@ -15,6 +15,113 @@
       "label": "Viral Load Request Form",
       "sections": [
         {
+          "label": "Orders",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Order Test",
+              "type": "testOrder",
+              "id": "vlTestOrder",
+              "questionOptions": {
+                "rendering": "repeating",
+                "orderSettingUuid": "OUTPATIENT",
+                "orderType": "testorder",
+                "answers": [
+                  {
+                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+                    "label": "VL",
+                    "conceptMappings": []
+                  }
+                ],
+                "selectableOrders": [
+                  {
+                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
+                    "label": "VL"
+                  },
+                  {
+                    "concept": "cbbc116a-a7e2-11ed-afa1-0242ac120002",
+                    "label": "HIV DRUG RESITANCE"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Indication for viral load testing",
+              "type": "obs",
+              "id": "indicationVlTesting",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "59f36196-3ebe-4fea-be92-6fc9551c3a11",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '59f36196-3ebe-4fea-be92-6fc9551c3a11')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                },
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "67fab588-d3b0-4aa5-a165-ebd3b00b285b",
+                    "label": "12 months after ART initiation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "224c94e0-2b8b-4deb-892c-04151ee0e885",
+                    "label": "6 months after ART initiation",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f3cdf0b6-321a-493d-a7e8-9a2b2a077f72",
+                    "label": "Suspected treatment failure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "bab153f4-7679-4040-9716-6879dffef905",
+                    "label": "Special Considerations",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "20ab2ec5-5390-4461-b85f-69bf650ce992",
+                    "label": "Repeat (after IAC)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "68b58a80-af4e-43a5-a70d-113747a6cbb7",
+                    "label": "Routine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "588ac57f-a4d0-47c2-9852-92502194ec4a",
+                    "label": "1st ANC visit",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(vlTestOrder)"
+              }
+            },
+            {
+              "label": "Date of Sample Collection",
+              "type": "obs",
+              "required": "true",
+              "id": "sampleCollectionDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(vlTestOrder)"
+              }
+            }
+          ]
+        },
+        {
           "label": "Treatment Information",
           "isExpanded": "true",
           "hide": {
@@ -548,119 +655,21 @@
           ]
         },
         {
-          "label": "Orders",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Order Test",
-              "type": "testOrder",
-              "id": "vlTestOrder",
-              "questionOptions": {
-                "rendering": "repeating",
-                "orderSettingUuid": "OUTPATIENT",
-                "orderType": "testorder",
-                "answers": [
-                  {
-                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
-                    "label": "VL",
-                    "conceptMappings": []
-                  }
-                ],
-                "selectableOrders": [
-                  {
-                    "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
-                    "label": "VL"
-                  },
-                  {
-                    "concept": "cbbc116a-a7e2-11ed-afa1-0242ac120002",
-                    "label": "HIV DRUG RESITANCE"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Indication for viral load testing",
-              "type": "obs",
-              "id": "indicationVlTesting",
-              "required": "true",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "59f36196-3ebe-4fea-be92-6fc9551c3a11",
-                "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '59f36196-3ebe-4fea-be92-6fc9551c3a11')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
-                },
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "67fab588-d3b0-4aa5-a165-ebd3b00b285b",
-                    "label": "12 months after ART initiation",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "224c94e0-2b8b-4deb-892c-04151ee0e885",
-                    "label": "6 months after ART initiation",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "f3cdf0b6-321a-493d-a7e8-9a2b2a077f72",
-                    "label": "Suspected treatment failure",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "bab153f4-7679-4040-9716-6879dffef905",
-                    "label": "Special Considerations",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "20ab2ec5-5390-4461-b85f-69bf650ce992",
-                    "label": "Repeat (after IAC)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "68b58a80-af4e-43a5-a70d-113747a6cbb7",
-                    "label": "Routine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "588ac57f-a4d0-47c2-9852-92502194ec4a",
-                    "label": "1st ANC visit",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(vlTestOrder)"
-              }
-            },
-            {
-              "label": "Date of Sample Collection",
-              "type": "obs",
-              "required": "true",
-              "id": "sampleCollectionDate",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88"
-              },
-              "validators": [
-                {
-                  "type": "date",
-                  "allowFutureDates": "false"
-                }
-              ],
-              "hide": {
-                "hideWhenExpression": "isEmpty(vlTestOrder)"
-              }
-            }
-          ]
-        },
-        {
           "label": "Results",
           "isExpanded": "false",
           "hide": {
             "hideWhenExpression": "vlTestOrder == '1eb05918-f50c-4cad-a827-3c78f296a10a' || vlTestOrder == 'cbbc116a-a7e2-11ed-afa1-0242ac120002'"
           },
           "questions": [
+            {
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "date"
+              },
+              "id": "dateResultsEntered",
+              "label": "Date Results Entered (Visit)",
+              "datePickerFormat": "calendar"
+            },
             {
               "type": "obsGroup",
               "questionOptions": {
