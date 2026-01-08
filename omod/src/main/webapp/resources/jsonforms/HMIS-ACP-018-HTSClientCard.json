@@ -14,7 +14,7 @@
       "sections": [
         {
           "label": "Client Details",
-          "isExpanded": "true",
+          "isExpanded": "false",
           "questions": [
             {
               "label": "Serial number",
@@ -432,7 +432,7 @@
         },
         {
           "label": "HIV Risk Assessment",
-          "isExpanded": "true",
+          "isExpanded": "false",
           "questions": [
             {
               "label": "Testing for HIV for the first time",
@@ -747,165 +747,119 @@
           ]
         },
         {
-          "label": "HIV Test Results",
-          "isExpanded": "true",
+          "label": "HIV Test Results From Lab",
+          "isExpanded": "false",
           "questions": [
             {
-              "label": "HIV Test-1 Kit",
-              "type": "obs",
-              "id": "testKit1",
+              "label": "HIV Test Order",
+              "type": "testOrder",
+              "id": "hivTestOrder",
+              "required": "true",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc1d9a-a7e2-11ed-afa1-0242ac120002",
+                "rendering": "repeating",
+                "orderSettingUuid": "OUTPATIENT",
+                "orderType": "testorder",
                 "answers": [
                   {
-                    "concept": "cbbc130e-a7e2-11ed-afa1-0242ac120002",
-                    "label": "Determine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "cbbc1502-a7e2-11ed-afa1-0242ac120002",
-                    "label": "HIV- Syphilis-Duo",
+                    "concept": "8eb0bd19-ca11-4be1-8e58-c59aa53aad83",
+                    "label": "HIV test",
                     "conceptMappings": []
                   }
-                ]
-              }
-            },
-            {
-              "label": "HIV Test-1 Kit Results",
-              "type": "obs",
-              "id": "testKit1Results",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc1fb6-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-Reactive (NR)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive (R)",
-                    "conceptMappings": []
-                  }
-                ]
+                ],
+                "concept": "8eb0bd19-ca11-4be1-8e58-c59aa53aad83"
               },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testKit1)"
-              }
+              "validators": []
             },
             {
-              "label": "HIV Test-2 Kit",
-              "type": "obs",
-              "id": "testKit2",
+              "type": "obsGroup",
               "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "cbbc26fa-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "cbbc16b0-a7e2-11ed-afa1-0242ac120002",
-                    "label": "Stat Pak",
-                    "conceptMappings": []
-                  }
-                ]
+                "rendering": "group",
+                "concept": "8eb0bd19-ca11-4be1-8e58-c59aa53aad83"
               },
-              "hide": {
-                "hideWhenExpression": "testKit1Results !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "HIV Test-2 Kit Results",
-              "type": "obs",
-              "id": "testKit2Results",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc2394-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-Reactive (NR)",
-                    "conceptMappings": []
+              "id": "labTestResults",
+              "label": "Lab Test Results",
+              "questions": [
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "7803ffa8-c24f-41ec-89f8-821e2a71fda6",
+                    "answers": [
+                      {
+                        "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                        "label": "NON-REACTIVE"
+                      },
+                      {
+                        "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                        "label": "REACTIVE"
+                      }
+                    ]
                   },
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive (R)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testKit2)"
-              }
-            },
-            {
-              "label": "HIV Test-3 Kit",
-              "type": "obs",
-              "id": "testKit3",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "5140ca0a-b2c0-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "51408284-b2c0-11ed-afa1-0242ac120002",
-                    "label": "SD Bioline",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "testKit2Results !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "HIV Test-3 Kit Results",
-              "type": "obs",
-              "id": "testKit3Results",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc2556-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-Reactive (NR)",
-                    "conceptMappings": []
+                  "id": "determine",
+                  "label": "Determine"
+                },
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "85534e6a-22a1-433e-aa57-f358f1eb0a16",
+                    "answers": [
+                      {
+                        "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                        "label": "NON-REACTIVE"
+                      },
+                      {
+                        "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                        "label": "REACTIVE"
+                      }
+                    ]
                   },
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive (R)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testKit3)"
-              }
-            },
-            {
-              "label": "HIV final test results",
-              "type": "obs",
-              "id": "hivFinalTestResults",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "3d292447-d7df-417f-8a71-e53e869ec89d",
-                "answers": [
-                  {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive",
-                    "conceptMappings": []
+                  "id": "statPak",
+                  "label": "Stat Pak "
+                },
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "ad4760fe-9a58-4e60-b626-29d345b9a220",
+                    "answers": [
+                      {
+                        "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
+                        "label": "NON-REACTIVE"
+                      },
+                      {
+                        "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
+                        "label": "REACTIVE"
+                      }
+                    ]
                   },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative",
-                    "conceptMappings": []
+                  "id": "sdBioline",
+                  "label": "SD Bioline"
+                },
+                {
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "37a5bf42-5b94-4ae7-8c46-9ebff55ef349",
+                    "answers": [
+                      {
+                        "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
+                        "label": "INC (HTC)"
+                      },
+                      {
+                        "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
+                        "label": "NEGATIVE"
+                      },
+                      {
+                        "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
+                        "label": "POSITIVE"
+                      }
+                    ]
                   },
-                  {
-                    "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
-                  }
-                ]
-              }
+                  "id": "finalResult",
+                  "label": "FInal Result"
+                }
+              ]
             },
             {
               "label": "Sample sent to Reference Laboratory",
@@ -934,193 +888,8 @@
           ]
         },
         {
-          "label": "HIV Test Results (FOR MCH TESTING)",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "HIV Test-1 Kit",
-              "type": "obs",
-              "id": "mchTestKit1",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc1d9a-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "cbbc130e-a7e2-11ed-afa1-0242ac120002",
-                    "label": "Determine",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "HIV Test-1 Kit Results",
-              "type": "obs",
-              "id": "mchTestKit1Results",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc1fb6-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-Reactive (NR)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive (R)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testKit1)"
-              }
-            },
-            {
-              "label": "HIV Test-2 Kit",
-              "type": "obs",
-              "id": "mchTestKit2",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "cbbc26fa-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "cbbc16b0-a7e2-11ed-afa1-0242ac120002",
-                    "label": "Stat Pak",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "testKit1Results !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "HIV Test-2 Kit Results",
-              "type": "obs",
-              "id": "mchTestKit2Results",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc2394-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-Reactive (NR)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive (R)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testKit2)"
-              }
-            },
-            {
-              "label": "HIV Test-3 Kit",
-              "type": "obs",
-              "id": "mchTestKit3",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "5140ca0a-b2c0-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "51408284-b2c0-11ed-afa1-0242ac120002",
-                    "label": "SD Bioline",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "testKit2Results !=='dc9f3fdd-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
-            {
-              "label": "HIV Test-3 Kit Results",
-              "type": "obs",
-              "id": "mchTestKit3Results",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbbc2556-a7e2-11ed-afa1-0242ac120002",
-                "answers": [
-                  {
-                    "concept": "dc9f442a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Non-Reactive (NR)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dc9f3fdd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Reactive (R)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testKit3)"
-              }
-            },
-            {
-              "label": "HIV final test results",
-              "type": "obs",
-              "id": "mchHivFinalTestResults",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "3d292447-d7df-417f-8a71-e53e869ec89d",
-                "answers": [
-                  {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "16d4ad2b-c4eb-4e88-a27f-5d9b9b6a9aed",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Sample sent to Reference Laboratory",
-              "type": "obs",
-              "id": "mchSampleSentToLab",
-              "required": "false",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
-                  },
-                  {
-                    "concept": "",
-                    "label": "Not Collected"
-                  }
-                ]
-              }
-            }
-          ],
-          "hide": {
-            "hideWhenExpression": "testKit2Results !== 'dc9f3fdd-30ab-102d-86b0-7a5022ba4115' && testKit1 !== 'cbbc1502-a7e2-11ed-afa1-0242ac120002'"
-          }
-        },
-        {
           "label": "Result Received As/TB Screening",
-          "isExpanded": "true",
+          "isExpanded": "false",
           "questions": [
             {
               "label": "Results received as individual",
@@ -1316,7 +1085,7 @@
         },
         {
           "label": "Prevention Services and Referral",
-          "isExpanded": "true",
+          "isExpanded": "false",
           "questions": [
             {
               "label": "Client has been linked to prevention services",
@@ -1480,7 +1249,7 @@
         },
         {
           "label": "Rapid Test for HIV Recent Infection",
-          "isExpanded": "true",
+          "isExpanded": "false",
           "questions": [
             {
               "label": "Test Name",
