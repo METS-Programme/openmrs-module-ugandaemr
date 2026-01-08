@@ -2423,9 +2423,21 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
     private boolean validateCPHLBarCode(String accessionNumber) {
-        String minLengthGp = Context.getAdministrationService().getGlobalProperty("ugandaemrsync.minimumCPHLBarCodeLength");
+        if (StringUtils.isBlank(accessionNumber)) {
+            return false;
+        }
 
-        if (StringUtils.isBlank(minLengthGp) || StringUtils.isBlank(accessionNumber)) {
+        accessionNumber = accessionNumber.trim();
+
+        // Ensure barcode is numeric (without risking integer overflow)
+        if (!accessionNumber.matches("\\d+")) {
+            return false;
+        }
+
+        String minLengthGp = Context.getAdministrationService()
+                .getGlobalProperty("ugandaemrsync.minimumCPHLBarCodeLength");
+
+        if (StringUtils.isBlank(minLengthGp)) {
             return false;
         }
 
@@ -2436,7 +2448,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             return false;
         }
 
-        return accessionNumber.trim().length() >= minimumCPHLBarCodeLength;
+        return accessionNumber.length() >= minimumCPHLBarCodeLength;
     }
 
 
