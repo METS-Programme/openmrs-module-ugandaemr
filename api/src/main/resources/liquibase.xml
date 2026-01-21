@@ -24,23 +24,6 @@
 		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20251101-role-and-privilege-ref" author="slubwama">
-		<preConditions onFail="MARK_RAN" onError="HALT">
-			<and>
-				<tableExists tableName="role"/>
-				<tableExists tableName="role_role"/>
-				<tableExists tableName="role_privilege"/>
-				<tableExists tableName="privilege"/>
-			</and>
-		</preConditions>
-
-		<comment>Run roles and privileges reference updates for UgandaEMR with FK checks disabled</comment>
-
-		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
-		<sqlFile path="liquibase/sql/role_and_privilege.sql"  splitStatements="true" stripComments="true"/>
-		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
-	</changeSet>
-
 	<changeSet id="ugandaemr-20251101-initial_metadata" author="slubwama">
 		<preConditions onFail="MARK_RAN" onError="HALT">
 			<and>

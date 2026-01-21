@@ -1,5 +1,6 @@
 package org.openmrs.module.ugandaemr.web.resource;
 
+import org.openmrs.User;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
 import org.openmrs.module.webservices.rest.web.RestConstants;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.openmrs.api.context.Context;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class GPResource {
@@ -16,48 +19,30 @@ public class GPResource {
     @RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/" + UgandaEMRConstants.UGANDAEMR_MODULE_ID
             + "/gp", method = RequestMethod.GET)
 
-    public ResponseEntity<Object> evaluate(@RequestParam(required = true, value = "property") String propertyName) {
-        AdministrationService administrationService = Context.getAdministrationService();
 
-        String query = "SELECT property_value FROM global_property WHERE property = '" + propertyName + "';";
+    public ResponseEntity<Map<String, Object>> evaluate(
+            @RequestParam(value = "property", required = true) String propertyName) {
 
-        List<List<Object>> result = administrationService.executeSQL(query, true);
+        String userPrivilege = "Get Global Properties";
+        try {
+            Context.addProxyPrivilege(userPrivilege);
 
-        if (!result.isEmpty()) {
-            Object facilityName = result.get(0).get(0);
-            PropertyResult propertyResult = new PropertyResult(facilityName);
-            List<PropertyResult> resultList = new ArrayList<>();
-            resultList.add(propertyResult);
+            String healthCenterName =
+                    Context.getAdministrationService().getGlobalProperty(propertyName);
 
-            ResultObject resultObject = new ResultObject(resultList);
-            return ResponseEntity.ok().body(resultObject);
-        } else {
-            return ResponseEntity.notFound().build();
+            if (healthCenterName == null || healthCenterName.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("property", propertyName);
+            response.put("value", healthCenterName);
+
+            return ResponseEntity.ok(response);
+
+        } finally {
+            Context.removeProxyPrivilege(userPrivilege);
         }
     }
-    static class PropertyResult {
-        private Object facilityName;
-        public PropertyResult(Object facilityName) {
-            this.facilityName = facilityName;
-        }
-        public Object getFacilityName() {
-            return facilityName;
-        }
-        public void setFacilityName(Object facilityName) {
-            this.facilityName = facilityName;
-        }
-    }
-    static class ResultObject {
-        private List<PropertyResult> results;
 
-        public ResultObject(List<PropertyResult> results) {
-            this.results = results;
-        }
-        public List<PropertyResult> getResults() {
-            return results;
-        }
-        public void setResults(List<PropertyResult> results) {
-            this.results = results;
-        }
-    }
 }
