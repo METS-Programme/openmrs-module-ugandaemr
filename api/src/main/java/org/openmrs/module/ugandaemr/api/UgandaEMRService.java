@@ -19,6 +19,7 @@ import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.activator.Initializer;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
 import org.springframework.transaction.annotation.Transactional;
@@ -427,6 +428,36 @@ public interface UgandaEMRService extends OpenmrsService {
 
     public void downloadFrontendFromGitHub();
     public void downloadOmodsFromGitHub();
+
+    public List<Patient> getPatientByPhoneNumber(String phoneNumber);
+
+    public Provider getLeastBusyProviderForLocation(Location location);
+
+    public NonPatientQueue createQueueEntry(String displayName, String phoneNumber, NonPatientQueue.NonPatientQueueType queueType, Location currentLocation, Location locationTo, Location queueRoom, Integer priority, String comment);
+
+    public NonPatientQueue saveQueueEntry(NonPatientQueue queue);
+
+    public NonPatientQueue getQueueEntryById(Integer id);
+
+    public NonPatientQueue getQueueEntryByUuid(String uuid);
+
+    public List<NonPatientQueue> getQueueEntryByTicketNumber(String ticketNumber, Date fromDate, Date toDate);
+
+    public List<NonPatientQueue> getQueueEntriesByQueueRoom(Location queueRoom, Date fromDate, Date toDate);
+
+    public List<NonPatientQueue> getQueueEntriesByQueueRoomAndStatus(Location queueRoom, NonPatientQueue.NonPatientQueueStatus status);
+
+    public List<NonPatientQueue> getAllActiveQueueEntries();
+
+    public NonPatientQueue callQueueEntry(NonPatientQueue queue, Provider provider);
+
+    public NonPatientQueue markArrived(NonPatientQueue queue);
+
+    public NonPatientQueue startServing(NonPatientQueue queue, Provider provider);
+
+    public NonPatientQueue completeQueueEntry(NonPatientQueue queue, Provider provider);
+
+    public void voidQueueEntry(NonPatientQueue queue, String reason);
 
 
 }

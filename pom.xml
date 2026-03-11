@@ -99,7 +99,7 @@
 		<reportingVersion>1.27.0</reportingVersion>
 		<reportingCompatibilityVersion>2.0.9</reportingCompatibilityVersion>
 		<serializationxstreamVersion>0.2.16</serializationxstreamVersion>
-		<patientqueueingVersion>2.0.1</patientqueueingVersion>
+		<patientqueueingVersion>2.0.2-SNAPSHOT</patientqueueingVersion>
 		<ugandaemrSyncVersion>2.0.5</ugandaemrSyncVersion>
 		<cohortModuleVersion>3.7.3</cohortModuleVersion>
 		<stockmanagementVersion>2.0.3</stockmanagementVersion>

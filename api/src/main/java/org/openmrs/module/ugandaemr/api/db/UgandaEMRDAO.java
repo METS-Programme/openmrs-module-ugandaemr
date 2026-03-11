@@ -17,11 +17,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.openmrs.Encounter;
+import org.openmrs.Location;
 import org.openmrs.Obs;
 import org.openmrs.Order;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue;
 
 /**
  *  Database methods for {@link UgandaEMRService}.
@@ -68,4 +70,21 @@ public interface UgandaEMRDAO {
 	public OrderObs getOrderObsById(Integer orderObsId);
 
 	public OrderObs getOrderObsByOrder(Order order);
+
+
+	public NonPatientQueue saveNonPatientQueue(NonPatientQueue queue);
+
+	public NonPatientQueue getNonPatientQueueById(Integer id);
+
+	public NonPatientQueue getNonPatientQueueByUuid(String uuid);
+
+	public List<NonPatientQueue> getNonPatientQueueByTicketNumber(String ticketNumber, Date fromDate, Date toDate);
+
+	public List<NonPatientQueue> getNonPatientQueuesByQueueRoom(List<Location> queueRoom, Date fromDate, Date toDate);
+
+	public List<NonPatientQueue> getNonPatientQueuesByQueueRoomAndStatus(List<Location> queueRoom, NonPatientQueue.NonPatientQueueStatus status);
+
+	public List<NonPatientQueue> getAllActiveNonPatientQueues();
+
+	public void deleteNonPatientQueue(NonPatientQueue queue);
 }

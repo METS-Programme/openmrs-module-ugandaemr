@@ -23,11 +23,13 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
+import org.openmrs.Location;
+import org.openmrs.Provider;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue.NonPatientQueueStatus;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue.NonPatientQueueType;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UgandaEMRServiceTest extends BaseModuleContextSensitiveTest {
 
@@ -169,5 +171,270 @@ public class UgandaEMRServiceTest extends BaseModuleContextSensitiveTest {
     }*/
 
 
+   /* @Test
+    public void createQueueEntry_shouldCreateNonPatientQueueEntry() {
+        Location currentLocation = Context.getLocationService().getLocation(1);
+        Location locationTo = Context.getLocationService().getLocation(1);
+        Location queueRoom = Context.getLocationService().getLocation(1);
 
+        NonPatientQueue queue = ugandaemrService.createQueueEntry(
+                "Visitor John",
+                "0771234567",
+                NonPatientQueueType.VISITOR,
+                currentLocation,
+                locationTo,
+                queueRoom,
+                1,
+                "Visitor assistance"
+        );
+
+        assertNotNull(queue);
+        assertNotNull(queue.getUuid());
+        assertNotNull(queue.getTicketNumber());
+        assertEquals("Visitor John", queue.getDisplayName());
+        assertEquals("0771234567", queue.getPhoneNumber());
+        assertEquals(NonPatientQueueType.VISITOR, queue.getQueueType());
+        assertEquals(NonPatientQueueStatus.WAITING, queue.getStatus());
+        assertEquals(currentLocation, queue.getCurrentLocation());
+        assertEquals(locationTo, queue.getLocationTo());
+        assertEquals(queueRoom, queue.getQueueRoom());
+        assertEquals(Integer.valueOf(1), queue.getPriority());
+        assertEquals("Visitor assistance", queue.getComment());
+    }
+
+    @Test
+    public void saveQueueEntry_shouldPersistChanges() {
+        Location currentLocation = Context.getLocationService().getLocation(1);
+        Location locationTo = Context.getLocationService().getLocation(1);
+        Location queueRoom = Context.getLocationService().getLocation(1);
+
+        NonPatientQueue queue = ugandaemrService.createQueueEntry(
+                "Admin Client",
+                "0700000000",
+                NonPatientQueueType.ADMIN,
+                currentLocation,
+                locationTo,
+                queueRoom,
+                2,
+                "Admin support"
+        );
+
+        queue.setDisplayName("Updated Admin Client");
+        queue.setComment("Updated comment");
+
+        NonPatientQueue saved = ugandaemrService.saveQueueEntry(queue);
+
+        assertNotNull(saved);
+        assertEquals("Updated Admin Client", saved.getDisplayName());
+        assertEquals("Updated comment", saved.getComment());
+    }
+
+    @Test
+    public void getQueueEntryByUuid_shouldReturnSavedQueueEntry() {
+        Location location = Context.getLocationService().getLocation(1);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Registration Visitor",
+                null,
+                NonPatientQueueType.REGISTRATION,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        NonPatientQueue fetched = ugandaemrService.getQueueEntryByUuid(created.getUuid());
+
+        assertNotNull(fetched);
+        assertEquals(created.getUuid(), fetched.getUuid());
+        assertEquals(created.getTicketNumber(), fetched.getTicketNumber());
+    }
+
+    @Test
+    public void getQueueEntryByTicketNumber_shouldReturnSavedQueueEntry() {
+        Location location = Context.getLocationService().getLocation(1);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Records Visitor",
+                null,
+                NonPatientQueueType.RECORDS,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        NonPatientQueue fetched = ugandaemrService.getQueueEntryByTicketNumber(created.getTicketNumber());
+
+        assertNotNull(fetched);
+        assertEquals(created.getTicketNumber(), fetched.getTicketNumber());
+        assertEquals(created.getUuid(), fetched.getUuid());
+    }
+
+    @Test
+    public void callQueueEntry_shouldSetStatusCalledAndCalledAt() {
+        Location location = Context.getLocationService().getLocation(1);
+        Provider provider = Context.getProviderService().getAllProviders(false).get(0);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Visitor Call Test",
+                null,
+                NonPatientQueueType.VISITOR,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        NonPatientQueue called = ugandaemrService.callQueueEntry(created, provider);
+
+        assertEquals(NonPatientQueueStatus.CALLED, called.getStatus());
+        assertEquals(provider, called.getCalledBy());
+        assertNotNull(called.getCalledAt());
+    }
+
+    @Test
+    public void markArrived_shouldSetStatusArrivedAndArrivedAt() {
+        Location location = Context.getLocationService().getLocation(1);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Visitor Arrived Test",
+                null,
+                NonPatientQueueType.VISITOR,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        NonPatientQueue arrived = ugandaemrService.markArrived(created);
+
+        assertEquals(NonPatientQueueStatus.ARRIVED, arrived.getStatus());
+        assertNotNull(arrived.getArrivedAt());
+    }
+
+    @Test
+    public void startServing_shouldSetStatusServingAndStartedAt() {
+        Location location = Context.getLocationService().getLocation(1);
+        Provider provider = Context.getProviderService().getAllProviders(false).get(0);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Visitor Serving Test",
+                null,
+                NonPatientQueueType.VISITOR,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        NonPatientQueue serving = ugandaemrService.startServing(created, provider);
+
+        assertEquals(NonPatientQueueStatus.SERVING, serving.getStatus());
+        assertEquals(provider, serving.getServedBy());
+        assertNotNull(serving.getStartedAt());
+    }
+
+    @Test
+    public void completeQueueEntry_shouldSetStatusCompletedAndEndedAt() {
+        Location location = Context.getLocationService().getLocation(1);
+        Provider provider = Context.getProviderService().getAllProviders(false).get(0);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Visitor Complete Test",
+                null,
+                NonPatientQueueType.VISITOR,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        NonPatientQueue completed = ugandaemrService.completeQueueEntry(created, provider);
+
+        assertEquals(NonPatientQueueStatus.COMPLETED, completed.getStatus());
+        assertEquals(provider, completed.getServedBy());
+        assertNotNull(completed.getEndedAt());
+    }
+
+    @Test
+    public void getQueueEntriesByQueueRoomAndStatus_shouldReturnMatchingEntriesOnly() {
+        Location room1 = Context.getLocationService().getLocation(1);
+        Location room2 = Context.getLocationService().getLocation(2);
+        Provider provider = Context.getProviderService().getAllProviders(false).get(0);
+
+        NonPatientQueue waitingInRoom1 = ugandaemrService.createQueueEntry(
+                "Waiting Room 1",
+                null,
+                NonPatientQueueType.VISITOR,
+                room1,
+                room1,
+                room1,
+                1,
+                null
+        );
+
+        NonPatientQueue calledInRoom1 = ugandaemrService.createQueueEntry(
+                "Called Room 1",
+                null,
+                NonPatientQueueType.VISITOR,
+                room1,
+                room1,
+                room1,
+                1,
+                null
+        );
+        ugandaemrService.callQueueEntry(calledInRoom1, provider);
+
+        ugandaemrService.createQueueEntry(
+                "Waiting Room 2",
+                null,
+                NonPatientQueueType.VISITOR,
+                room2,
+                room2,
+                room2,
+                1,
+                null
+        );
+
+        List<NonPatientQueue> waitingRoom1 = ugandaemrService.getQueueEntriesByQueueRoomAndStatus(
+                room1, NonPatientQueueStatus.WAITING
+        );
+
+        assertNotNull(waitingRoom1);
+        assertTrue(waitingRoom1.size() >= 1);
+        assertTrue(waitingRoom1.stream().anyMatch(q -> q.getUuid().equals(waitingInRoom1.getUuid())));
+        assertFalse(waitingRoom1.stream().anyMatch(q -> q.getUuid().equals(calledInRoom1.getUuid())));
+    }
+
+    @Test
+    public void voidQueueEntry_shouldVoidQueueEntry() {
+        Location location = Context.getLocationService().getLocation(1);
+
+        NonPatientQueue created = ugandaemrService.createQueueEntry(
+                "Void Test",
+                null,
+                NonPatientQueueType.OTHER,
+                location,
+                location,
+                location,
+                1,
+                null
+        );
+
+        ugandaemrService.voidQueueEntry(created, "No longer needed");
+
+        NonPatientQueue fetched = ugandaemrService.getQueueEntryByUuid(created.getUuid());
+
+        assertNotNull(fetched);
+        assertTrue(fetched.getVoided());
+        assertEquals("No longer needed", fetched.getVoidReason());
+    }
+*/
 }
