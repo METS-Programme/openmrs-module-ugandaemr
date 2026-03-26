@@ -1637,6 +1637,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueue.setCreator(Context.getUserService().getUsersByPerson(provider.getPerson(), false).get(0));
                 patientQueue.setDateCreated(new Date());
                 patientQueueingService.assignVisitNumberForToday(patientQueue);
+                patientQueue.setVisitNumber(generateVisitNumber(patientQueue.getQueueRoom(),patientQueue.getPatient()));
                 patientQueueingService.savePatientQue(patientQueue);
             }
         }
@@ -2654,6 +2655,66 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         for (Location childLocation : parentLocation.getChildLocations(false)) {
             flattenLocationHierarchy(childLocation, childLocations, locationTag, onlyInQueueRooms);
+        }
+    }
+
+    public String generateVisitNumber(Location location, Patient patient) {
+        Date today = new Date();
+        SimpleDateFormat formatterExt = new SimpleDateFormat("dd/MM/yyyy");
+
+        String dateString = formatterExt.format(today);
+        String locationName = location.getName();
+        if (locationName.length() > 3) {
+            locationName = locationName.substring(0, 3);
+        }
+
+        String prefix = dateString + "-" + locationName + "-";
+
+        Set<Integer> issuedNumbers = new HashSet<>();
+
+
+        List<PatientQueue> patientQueues = Context.getService(PatientQueueingService.class).getPatientQueueList((Provider)null, OpenmrsUtil.firstSecondOfDay(today), OpenmrsUtil.getLastMomentOfDay(today), (Location)null, (Location)null, patient, (PatientQueue.Status)null);
+
+        for (PatientQueue queue : patientQueues) {
+            Integer seq = extractSequenceNumber(queue.getVisitNumber(), prefix);
+            if (seq != null) {
+                issuedNumbers.add(seq);
+            }
+        }
+
+        // Non-patient queues
+        List<NonPatientQueue> nonPatientQueues = this.getQueueEntriesByQueueRoom(
+                location,
+                OpenmrsUtil.firstSecondOfDay(today),
+                OpenmrsUtil.getLastMomentOfDay(today)
+        );
+
+        for (NonPatientQueue queue : nonPatientQueues) {
+            Integer seq = extractSequenceNumber(queue.getTicketNumber(), prefix);
+            if (seq != null) {
+                issuedNumbers.add(seq);
+            }
+        }
+
+        int nextNumberInQueue = issuedNumbers.isEmpty() ? 1 : Collections.max(issuedNumbers) + 1;
+
+        return prefix + String.format("%03d", nextNumberInQueue);
+    }
+
+    private Integer extractSequenceNumber(String queueNumber, String prefix) {
+        if (queueNumber == null || !queueNumber.startsWith(prefix)) {
+            return null;
+        }
+
+        String suffix = queueNumber.substring(prefix.length()).trim();
+        if (suffix.isEmpty()) {
+            return null;
+        }
+
+        try {
+            return Integer.valueOf(suffix);
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 
