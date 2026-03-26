@@ -4,16 +4,49 @@
   "encounterType": "3ca75ce7-8cbe-4970-8fe4-697bc2ce7d8f",
   "uuid": "84eb332d-e977-41e2-a081-03f6f875b323",
   "description": "This form is used to carry out tests on an exposed infant",
-  "version": "5.0.0",
+  "version": "5.0.2",
   "published": true,
   "retired": false,
   "pages": [
     {
-      "label": "Child Information",
+      "label": "Test Details",
+      "id": "testDetail",
       "sections": [
+        {
+          "label": "Test Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Test Order",
+              "type": "testOrder",
+              "id": "hivDNAPCRTestOrder",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "repeating",
+                "orderSettingUuid": "OUTPATIENT",
+                "orderType": "testorder",
+                "answers": [
+                  {
+                    "concept": "dc8d4af2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "EID PCR",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "161422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HB - Electrophoresis (SCD)",
+                    "conceptMappings": []
+                  }
+                ],
+                "concept": "dc8d4af2-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            }
+          ]
+        },
         {
           "label": "Patient Details",
           "isExpanded": "true",
+          "id": "patientDetails",
           "questions": [
             {
               "type": "patientIdentifier",
@@ -226,20 +259,16 @@
                 "concept": "30d24eb0-e8c5-4c2f-a369-ddba9d88e92a",
                 "answers": [
                   {
-                    "concept": "f8fc1be7-65ea-4179-8472-d67e9e446b46",
-                    "label": "6 weeks"
+                    "concept": "2bd42567-a507-4dd7-956e-17cfb350bdea",
+                    "label": "1st PCR"
                   },
                   {
-                    "concept": "9432afcb-6fd8-406a-a49e-77836e0979f3",
-                    "label": "6 Weeks after ceasation from breast feeding"
+                    "concept": "5193830b-3a5c-4d31-b381-37f6c0814543",
+                    "label": "2nd PCR"
                   },
                   {
-                    "concept": "7520826e-e098-4bde-b1c8-f08690366a78",
-                    "label": "9 MONTHS"
-                  },
-                  {
-                    "concept": "21f19331-e15f-4b39-8a3c-70499e5b2aae",
-                    "label": "18 Months"
+                    "concept": "1a35626a-3127-4a19-a2c8-e0acc88c437f",
+                    "label": "3rd PCR"
                   }
                 ]
               },
@@ -275,6 +304,7 @@
         {
           "label": "Infant Feeding Status At Test",
           "isExpanded": "true",
+          "id": "infantFeedingStatusAtTest",
           "questions": [
             {
               "type": "obs",
@@ -316,15 +346,11 @@
               "label": "Infant Feeding Status"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Mother Information",
-      "sections": [
+        },
         {
           "label": "Mother Information",
           "isExpanded": "true",
+          "id": "motherInformation",
           "questions": [
             {
               "type": "obs",
@@ -341,7 +367,7 @@
             },
             {
               "type": "obs",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "105ef9de-ad90-4c08-bcd5-ab48f74f6287",
@@ -454,41 +480,14 @@
               "validators": []
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Test Details",
-      "sections": [
-        {
-          "label": "Test Details",
-          "isExpanded": "false",
-          "questions": [
-            {
-              "label": "Test Order",
-              "type": "testOrder",
-              "id": "hivDNAPCRTestOrder",
-              "required": "false",
-              "questionOptions": {
-                "rendering": "repeating",
-                "orderSettingUuid": "OUTPATIENT",
-                "orderType": "testorder",
-                "answers": [
-                  {
-                    "concept": "dc96505b-30ab-102d-86b0-7a5022ba4115",
-                    "label": "EID PCR",
-                    "conceptMappings": []
-                  }
-                ],
-                "concept": "dc8d4af2-30ab-102d-86b0-7a5022ba4115"
-              },
-              "validators": []
-            }
-          ]
         },
         {
           "label": "POC Testing",
           "isExpanded": "true",
+          "id": "pocTesting",
+          "hide": {
+            "hideWhenExpression": "(hivDNAPCRTestOrder === 'dc8d4af2-30ab-102d-86b0-7a5022ba4115' ||hivDNAPCRTestOrder === '161422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+          },
           "questions": [
             {
               "type": "obs",
