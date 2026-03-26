@@ -22,36 +22,49 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Encounter;
+import org.openmrs.Location;
 import org.openmrs.Obs;
 import org.openmrs.Order;
 import org.openmrs.api.APIException;
+import org.openmrs.api.db.hibernate.DbSession;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.ugandaemr.api.db.UgandaEMRDAO;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue;
 import org.openmrs.util.OpenmrsUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 /**
  * It is a default implementation of  {@link UgandaEMRDAO}.
  */
 public class HibernateUgandaEMRDAO implements UgandaEMRDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
+
 	private SessionFactory sessionFactory;
-	
+
+	@Autowired
+	DbSessionFactory dbSessionFactory;
+
+	public DbSession getSession() {
+		return dbSessionFactory.getCurrentSession();
+	}
+
 	/**
      * @param sessionFactory the sessionFactory to set
      */
     public void setSessionFactory(SessionFactory sessionFactory) {
 	    this.sessionFactory = sessionFactory;
     }
-    
+
 	/**
      * @return the sessionFactory
      */
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
 	}
-	
+
 	public List<PublicHoliday> getAllPublicHolidays() {
 		return (List<PublicHoliday>) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).list();
 	}
@@ -146,6 +159,88 @@ public class HibernateUgandaEMRDAO implements UgandaEMRDAO {
 
 	public OrderObs getOrderObsByOrder(Order order){
 		return (OrderObs) sessionFactory.getCurrentSession().createCriteria(OrderObs.class).add(Restrictions.eq("order", order)).uniqueResult();
+	}
+
+
+	@Override
+	public NonPatientQueue saveNonPatientQueue(NonPatientQueue queue) {
+		sessionFactory.getCurrentSession().saveOrUpdate(queue);
+		return queue;
+	}
+
+	@Override
+	public NonPatientQueue getNonPatientQueueById(Integer id) {
+		return (NonPatientQueue) sessionFactory.getCurrentSession().get(NonPatientQueue.class, id);
+	}
+
+	@Override
+	public NonPatientQueue getNonPatientQueueByUuid(String uuid) {
+		return (NonPatientQueue) sessionFactory.getCurrentSession()
+				.createQuery("from NonPatientQueue q where q.uuid = :uuid")
+				.setParameter("uuid", uuid)
+				.uniqueResult();
+	}
+
+	@Override
+	public List<NonPatientQueue> getNonPatientQueueByTicketNumber(String ticketNumber, Date fromDate, Date toDate) {
+
+		Criteria criteria = getSession().createCriteria(NonPatientQueue.class);
+
+		criteria.add(Restrictions.between("dateCreated", fromDate, toDate));
+		criteria.add(Restrictions.in("ticketNumber", ticketNumber));
+		criteria.add(Restrictions.in("voided", false));
+
+		return criteria.list();
+	}
+
+	@Override
+	public List<NonPatientQueue> getNonPatientQueuesByQueueRoom(List<Location> queueRoom, Date fromDate, Date toDate) {
+
+		Criteria criteria = getSession().createCriteria(NonPatientQueue.class);
+
+		if (queueRoom != null)
+			criteria.add(Restrictions.in("queueRoom", queueRoom));
+		criteria.add(Restrictions.between("dateCreated", fromDate, toDate));
+
+		criteria.addOrder(org.hibernate.criterion.Order.asc("dateCreated"));
+		return criteria.list();
+	}
+
+	@Override
+	public List<NonPatientQueue> getNonPatientQueuesByQueueRoomAndStatus(List<Location> queueRoom, NonPatientQueue.NonPatientQueueStatus status) {
+
+		Criteria criteria = getSession().createCriteria(NonPatientQueue.class);
+		if (status != null) {
+			criteria.add(Restrictions.eq("status", status));
+		}
+
+		if (queueRoom != null) {
+			criteria.add(Restrictions.eq("queueRoom", queueRoom));
+		}
+
+		criteria.add(Restrictions.in("voided", false));
+
+		criteria.addOrder(org.hibernate.criterion.Order.desc("dateCreated"));
+
+
+		return criteria.list();
+	}
+
+	@Override
+	public List<NonPatientQueue> getAllActiveNonPatientQueues() {
+		Criteria criteria = getSession().createCriteria(NonPatientQueue.class);
+		criteria.add(Restrictions.in("status", NonPatientQueue.NonPatientQueueStatus.WAITING,NonPatientQueue.NonPatientQueueStatus.CALLED,NonPatientQueue.NonPatientQueueStatus.ARRIVED,NonPatientQueue.NonPatientQueueStatus.SERVING));
+
+		criteria.add(Restrictions.in("voided", false));
+
+		criteria.addOrder(org.hibernate.criterion.Order.desc("dateCreated"));
+
+		return criteria.list();
+	}
+
+	@Override
+	public void deleteNonPatientQueue(NonPatientQueue queue) {
+		sessionFactory.getCurrentSession().delete(queue);
 	}
 
 

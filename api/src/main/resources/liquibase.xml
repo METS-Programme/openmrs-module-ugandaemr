@@ -1,296 +1,313 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <!--
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
 
-	<changeSet id="ugandaemr-20251223-concept-dictionary-ref" author="slubwama">
-		<preConditions onFail="MARK_RAN" onError="HALT">
-			<and>
-				<tableExists tableName="concept"/>
-				<tableExists tableName="concept_name"/>
-			</and>
-		</preConditions>
+    <changeSet id="ugandaemr-20251223-concept-dictionary-ref" author="slubwama">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <and>
+                <tableExists tableName="concept"/>
+                <tableExists tableName="concept_name"/>
+            </and>
+        </preConditions>
 
-		<comment>Run concept dictionary reference updates for UgandaEMR 5.0.0 with FK checks disabled</comment>
+        <comment>Run concept dictionary reference updates for UgandaEMR 5.0.0 with FK checks disabled</comment>
 
-		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
-		<sqlFile path="liquibase/sql/concept_dictonary_ref_5.0.0.sql"  splitStatements="true" stripComments="true"/>
-		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
-	</changeSet>
+        <sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
+        <sqlFile path="liquibase/sql/concept_dictonary_ref_5.0.0.sql" splitStatements="true" stripComments="true"/>
+        <sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20251101-initial_metadata" author="slubwama">
-		<preConditions onFail="MARK_RAN" onError="HALT">
-			<and>
-				<tableExists tableName="encounter_type"/>
-			</and>
-			<sqlCheck expectedResult="0">
-				SELECT count(*) from encounter_type;
-			</sqlCheck>
-			<sqlCheck expectedResult="0">
-				SELECT count(*) from location;
-			</sqlCheck>
-		</preConditions>
+    <changeSet id="ugandaemr-20251101-initial_metadata" author="slubwama">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <and>
+                <tableExists tableName="encounter_type"/>
+            </and>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from encounter_type;
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location;
+            </sqlCheck>
+        </preConditions>
 
-		<comment>Run initial metadata for updates for UgandaEMR with FK checks disabled</comment>
+        <comment>Run initial metadata for updates for UgandaEMR with FK checks disabled</comment>
 
-		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
-		<sqlFile path="liquibase/sql/initial_metadata.sql"  splitStatements="true" stripComments="true"/>
-		<sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
-	</changeSet>
-
-
+        <sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=0;</sql>
+        <sqlFile path="liquibase/sql/initial_metadata.sql" splitStatements="true" stripComments="true"/>
+        <sql splitStatements="true" stripComments="true">SET FOREIGN_KEY_CHECKS=1;</sql>
+    </changeSet>
 
 
-	<changeSet id="ugandaemr-27112020-1441" author="ssmusoke">
-		<preConditions onFail="MARK_RAN" onError="MARK_RAN">
-			<sqlCheck expectedResult="100">
-				SELECT property_value
-				FROM global_property
-				WHERE property = 'ugandaemr.maximumPatientsPerDay'
-			</sqlCheck>
-		</preConditions>
-		<comment>Reset maximum patients per day value to blank which is unlimited</comment>
-		<sql>UPDATE global_property SET property_value = '' WHERE property = 'ugandaemr.maximumPatientsPerDay'</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-27112020-1441" author="ssmusoke">
+        <preConditions onFail="MARK_RAN" onError="MARK_RAN">
+            <sqlCheck expectedResult="100">
+                SELECT property_value
+                FROM global_property
+                WHERE property = 'ugandaemr.maximumPatientsPerDay'
+            </sqlCheck>
+        </preConditions>
+        <comment>Reset maximum patients per day value to blank which is unlimited</comment>
+        <sql>UPDATE global_property SET property_value = '' WHERE property = 'ugandaemr.maximumPatientsPerDay'</sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-05092018-1043" author="ssmusoke">
-		<comment>Fix bad data for the ART care section which is causing an error when saving the summary page</comment>
-		<sql>
-			UPDATE obs SET value_numeric = NULL WHERE concept_id = 99162 AND value_numeric IS NOT NULL;
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-19072018-1002" author="ssmusoke">
-		<comment>Correct the sticky note concept</comment>
-		<sql>
-			UPDATE global_property SET property_value = 'CIEL:162169' WHERE property = 'coreapps.conceptStickyNote';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-05092018-1043" author="ssmusoke">
+        <comment>Fix bad data for the ART care section which is causing an error when saving the summary page</comment>
+        <sql>
+            UPDATE obs SET value_numeric = NULL WHERE concept_id = 99162 AND value_numeric IS NOT NULL;
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-19072018-1002" author="ssmusoke">
+        <comment>Correct the sticky note concept</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'CIEL:162169' WHERE property = 'coreapps.conceptStickyNote';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
-		<comment>Move the death information from the obs table to the person table</comment>
-		<sql>
-			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 99112 AND value_coded = 90003 SET dead = 1;
-			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 90272 SET death_date = value_datetime;
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-09262017-2245" author="ssmusoke">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT count(form_id) FROM form WHERE form_id = 14
-			</sqlCheck>
-		</preConditions>
-		<comment>Move all summary pages from form_id 34 to 14</comment>
-		<sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-07112017-1757" author="ssmusoke">
-		<comment>Delete obs without concepts from previous migrations</comment>
-		<sql>
-			DELETE FROM obs WHERE concept_id IN (SELECT c.concept_id FROM concept c WHERE c.datatype_id = 2) AND value_coded IS NULL
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
-		<comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
-		<sql>
-			UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
+        <comment>Move the death information from the obs table to the person table</comment>
+        <sql>
+            UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 99112 AND value_coded =
+            90003 SET dead = 1;
+            UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 90272 SET death_date =
+            value_datetime;
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-09262017-2245" author="ssmusoke">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(form_id) FROM form WHERE form_id = 14
+            </sqlCheck>
+        </preConditions>
+        <comment>Move all summary pages from form_id 34 to 14</comment>
+        <sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
+    </changeSet>
+    <changeSet id="ugandaemr-07112017-1757" author="ssmusoke">
+        <comment>Delete obs without concepts from previous migrations</comment>
+        <sql>
+            DELETE FROM obs WHERE concept_id IN (SELECT c.concept_id FROM concept c WHERE c.datatype_id = 2) AND
+            value_coded IS NULL
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
+        <comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
+        <sql>
+            UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE
+            metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
+        </sql>
+    </changeSet>
 
 
-	<changeSet id="35ef129f-2b7f-4d17-a0b2-d305327c8fde" author="solemabrothers">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM scheduler_task_config  WHERE uuid = '415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'
-			</sqlCheck>
-		</preConditions>
-		<comment>Clear the tasks named aijar</comment>
-			<sql>
-				Delete  from liquibasechangelog where ID in ('ugandaemr-06232017-1639','ugandaemr-06232017-1638','ugandaemr-06232017-1637','uganademr-10202017-2138','551c4d8d-8d33-4bcf-bee7-5aeeadc47775','ugandaemr-2019-16-16-1425');
-			</sql>
-	</changeSet>
+    <changeSet id="35ef129f-2b7f-4d17-a0b2-d305327c8fde" author="solemabrothers">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM scheduler_task_config WHERE uuid = '415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'
+            </sqlCheck>
+        </preConditions>
+        <comment>Clear the tasks named aijar</comment>
+        <sql>
+            Delete from liquibasechangelog where ID in
+            ('ugandaemr-06232017-1639','ugandaemr-06232017-1638','ugandaemr-06232017-1637','uganademr-10202017-2138','551c4d8d-8d33-4bcf-bee7-5aeeadc47775','ugandaemr-2019-16-16-1425');
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-08022021-3" author="ssmusoke">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
+    <changeSet id="ugandaemr-08022021-3" author="ssmusoke">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
                 SELECT COUNT(*) FROM scheduler_task_config
                 WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.LinkExposedInfantToMotherTask'
             </sqlCheck>
-		</preConditions>
-		<comment>Inserting Exposed Infant Link to Mother Task into 'schedule_task_config' table</comment>
-		<sql>DELETE FROM scheduler_task_config where uuid='29584cdf-37c0-46ec-b942-3b98274e30d8'</sql>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Link infants to mothers via ART Number" />
-			<column name="description" value="Links exposed infants to mothers through their ART numbers" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.LinkExposedInfantToMotherTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2017-06-01T11:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="1"/>
-			<column name="started" value="1"/>
-			<column name="uuid" value="29584cdf-37c0-46ec-b942-3b98274e30d8" />
-		</insert>
+        </preConditions>
+        <comment>Inserting Exposed Infant Link to Mother Task into 'schedule_task_config' table</comment>
+        <sql>DELETE FROM scheduler_task_config where uuid='29584cdf-37c0-46ec-b942-3b98274e30d8'</sql>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Link infants to mothers via ART Number"/>
+            <column name="description" value="Links exposed infants to mothers through their ART numbers"/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.LinkExposedInfantToMotherTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2017-06-01T11:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="1"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="29584cdf-37c0-46ec-b942-3b98274e30d8"/>
+        </insert>
 
-	</changeSet>
-	<changeSet id="ugandaemr-08022021-2" author="ssmusoke">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
+    </changeSet>
+    <changeSet id="ugandaemr-08022021-2" author="ssmusoke">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
                 SELECT COUNT(*) FROM scheduler_task_config
                 WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.ExitTBProgramASLostToFollowUpTask'
             </sqlCheck>
-		</preConditions>
-		<sql>DELETE FROM scheduler_task_config where uuid='415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'</sql>
-		<comment>Inserting TB Lost to Followup Exit Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="TB Lost to Followup Exit Task" />
-			<column name="description" value="Exits patients from the TB program who have not come for 90 days" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.ExitTBProgramASLostToFollowUpTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2017-06-01T11:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="1"/>
-			<column name="started" value="1"/>
-			<column name="uuid" value="415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f" />
-		</insert>
+        </preConditions>
+        <sql>DELETE FROM scheduler_task_config where uuid='415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'</sql>
+        <comment>Inserting TB Lost to Followup Exit Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="TB Lost to Followup Exit Task"/>
+            <column name="description" value="Exits patients from the TB program who have not come for 90 days"/>
+            <column name="schedulable_class"
+                    value="org.openmrs.module.ugandaemr.tasks.ExitTBProgramASLostToFollowUpTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2017-06-01T11:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="1"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f"/>
+        </insert>
 
-	</changeSet>
-	<changeSet id="ugandaemr-08022021-1" author="ssmusoke">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
+    </changeSet>
+    <changeSet id="ugandaemr-08022021-1" author="ssmusoke">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
                 SELECT COUNT(*) FROM scheduler_task_config
                 WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.ExitMCHProgramASLostToFollowUpTask'
             </sqlCheck>
-		</preConditions>
-		<sql>DELETE FROM scheduler_task_config where uuid='d1147982-1fd3-4d03-8b6c-6345a8187b28'</sql>
-		<comment>Inserting MCH Lost to Followup Exit Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="MCH Lost to Followup Exit Task" />
-			<column name="description" value="Exits mothers from the MCH program who have not come for 90 days" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.ExitMCHProgramASLostToFollowUpTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2017-06-01T11:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="1"/>
-			<column name="started" value="1"/>
-			<column name="uuid" value="d1147982-1fd3-4d03-8b6c-6345a8187b28" />
-		</insert>
+        </preConditions>
+        <sql>DELETE FROM scheduler_task_config where uuid='d1147982-1fd3-4d03-8b6c-6345a8187b28'</sql>
+        <comment>Inserting MCH Lost to Followup Exit Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="MCH Lost to Followup Exit Task"/>
+            <column name="description" value="Exits mothers from the MCH program who have not come for 90 days"/>
+            <column name="schedulable_class"
+                    value="org.openmrs.module.ugandaemr.tasks.ExitMCHProgramASLostToFollowUpTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2017-06-01T11:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="1"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="d1147982-1fd3-4d03-8b6c-6345a8187b28"/>
+        </insert>
 
-	</changeSet>
+    </changeSet>
     <changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
-		<comment>Stop scheduled tasks that are not used from starting up</comment>
-		<sql>
-			UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN ('org.openmrs.module.formentry.ProcessFormEntryQueueTask', 'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
-		</sql>
-	</changeSet>
+        <comment>Stop scheduled tasks that are not used from starting up</comment>
+        <sql>
+            UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN
+            ('org.openmrs.module.formentry.ProcessFormEntryQueueTask',
+            'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-111032017-1130" author="slubwama">
-		<comment>Change concept 162394 datatype to coded concept</comment>
-		<sql>
-			UPDATE concept SET datatype_id = 2 WHERE concept_id = 162394
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-1712020-1056" author="slubwama">
-		<comment>Change birth weight concept 5916 attribute allow decimals to yes</comment>
-		<sql>
-			UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 5916
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-190920178-0923" author="carapai">
-		<comment>Migrate obs date time to viral load date concept</comment>
-		<sql>
-			INSERT INTO obs (person_id, concept_id, encounter_id, order_id, obs_datetime, location_id, obs_group_id, accession_number, value_group_id, value_coded, value_coded_name_id, value_drug, value_datetime, value_numeric, value_modifier, value_text, value_complex, comments, creator, date_created, voided, voided_by, date_voided, void_reason, uuid, previous_version, form_namespace_and_path)
-			SELECT
-			person_id,
-			163023,
-			encounter_id,
-			order_id,
-			obs_datetime,
-			location_id,
-			obs_group_id,
-			accession_number,
-			value_group_id,
-			value_coded,
-			value_coded_name_id,
-			value_drug,
-			obs_datetime,
-			value_numeric,
-			value_modifier,
-			value_text,
-			value_complex,
-			comments,
-			creator,
-			date_created,
-			voided,
-			voided_by,
-			date_voided,
-			void_reason,
-			uuid(),
-			previous_version,
-			form_namespace_and_path
-			FROM obs
-			WHERE concept_id = 856 AND obs_id NOT IN (SELECT A.obs_id
-			FROM
-			(SELECT *
-			FROM obs
-			WHERE concept_id = 856) A INNER JOIN (SELECT *
-			FROM obs
-			WHERE concept_id = 163023) B
-			ON (A.encounter_id = B.encounter_id));
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-111032017-1130" author="slubwama">
+        <comment>Change concept 162394 datatype to coded concept</comment>
+        <sql>
+            UPDATE concept SET datatype_id = 2 WHERE concept_id = 162394
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-1712020-1056" author="slubwama">
+        <comment>Change birth weight concept 5916 attribute allow decimals to yes</comment>
+        <sql>
+            UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 5916
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-190920178-0923" author="carapai">
+        <comment>Migrate obs date time to viral load date concept</comment>
+        <sql>
+            INSERT INTO obs (person_id, concept_id, encounter_id, order_id, obs_datetime, location_id, obs_group_id,
+            accession_number, value_group_id, value_coded, value_coded_name_id, value_drug, value_datetime,
+            value_numeric, value_modifier, value_text, value_complex, comments, creator, date_created, voided,
+            voided_by, date_voided, void_reason, uuid, previous_version, form_namespace_and_path)
+            SELECT
+            person_id,
+            163023,
+            encounter_id,
+            order_id,
+            obs_datetime,
+            location_id,
+            obs_group_id,
+            accession_number,
+            value_group_id,
+            value_coded,
+            value_coded_name_id,
+            value_drug,
+            obs_datetime,
+            value_numeric,
+            value_modifier,
+            value_text,
+            value_complex,
+            comments,
+            creator,
+            date_created,
+            voided,
+            voided_by,
+            date_voided,
+            void_reason,
+            uuid(),
+            previous_version,
+            form_namespace_and_path
+            FROM obs
+            WHERE concept_id = 856 AND obs_id NOT IN (SELECT A.obs_id
+            FROM
+            (SELECT *
+            FROM obs
+            WHERE concept_id = 856) A INNER JOIN (SELECT *
+            FROM obs
+            WHERE concept_id = 163023) B
+            ON (A.encounter_id = B.encounter_id));
+        </sql>
+    </changeSet>
     <changeSet id="uganademr-10202017-2138" author="ssmusoke">
-		<preConditions onFail="MARK_RAN">
-		<sqlCheck expectedResult="0">
-            SELECT COUNT(*) FROM scheduler_task_config
-            WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.ExitMCHProgramASLostToFollowUpTask'
-        </sqlCheck>
-		</preConditions>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.ExitMCHProgramASLostToFollowUpTask'
+            </sqlCheck>
+        </preConditions>
         <comment>Change column to utf8 to enable saving of multi-byte characters</comment>
         <sql>
             ALTER TABLE `serialized_object` MODIFY `serialized_data` MEDIUMTEXT CHARACTER SET utf8 NOT NULL;
         </sql>
     </changeSet>
-	<changeSet id="ugandaemr-28022018-1624" author="ssmusoke">
-		<comment>Delete any blank person attribute values from previous upgrades which prevents editing of patient</comment>
-		<sql>
-			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-2024-04-07-0700" author="slubwama">
+    <changeSet id="ugandaemr-28022018-1624" author="ssmusoke">
+        <comment>Delete any blank person attribute values from previous upgrades which prevents editing of patient
+        </comment>
+        <sql>
+            DELETE FROM person_attribute WHERE value IS NULL OR value = '';
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-2024-04-07-0700" author="slubwama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
-                SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
+                SELECT COUNT(program_id) FROM program WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
             </sqlCheck>
-			<sqlCheck expectedResult="0">
-				SELECT count(id) FROM liquibasechangelog  WHERE id="ugandaemr-01-10-2018-1200";
+            <sqlCheck expectedResult="0">
+                SELECT count(id) FROM liquibasechangelog WHERE id="ugandaemr-01-10-2018-1200";
             </sqlCheck>
         </preConditions>
-		<comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM </comment>
-		<sql>
-			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
-			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='de5d54ae-c304-11e8-9ad0-529269fb1459') AS program,MAX(encounter_datetime) AS date_enrolled,MAX(location_id),MAX(encounter.creator),NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
-		</sql>
-	</changeSet>
+        <comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM</comment>
+        <sql>
+            INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created,
+            voided, uuid)
+            SELECT patient_id,(SELECT program.program_id FROM program WHERE
+            program.uuid='de5d54ae-c304-11e8-9ad0-529269fb1459') AS program,MAX(encounter_datetime) AS
+            date_enrolled,MAX(location_id),MAX(encounter.creator),NOW(),0,UUID() AS uuid FROM encounter INNER JOIN
+            encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE
+            encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-01042019-2012" author="dbaluku">
-		<comment>Setting  modules to FHIR,Data Entry Statistics to be started manually</comment>
-		<sql>
-			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-01042019-2012" author="dbaluku">
+        <comment>Setting modules to FHIR,Data Entry Statistics to be started manually</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started',
+            'dataentrystatistics.started');
+        </sql>
+    </changeSet>
 
     <changeSet id="ugandaemr-25072019-2019" author="slubwama">
-        <comment>Setting  modules for Data Entry Statistics to be started automatically</comment>
+        <comment>Setting modules for Data Entry Statistics to be started automatically</comment>
         <sql>
             UPDATE global_property SET property_value = 'true' WHERE property ='dataentrystatistics.started';
         </sql>
@@ -298,100 +315,107 @@
 
     <changeSet id="ugandaemr-25072019-1409" author="slubwama">
         <comment>
-			Changing Concept Name for concept 99610 from SMS care entry to SMC care entry
-			Changing Concept Description to change SMS word to SMC Word
-		</comment>
+            Changing Concept Name for concept 99610 from SMS care entry to SMC care entry
+            Changing Concept Description to change SMS word to SMC Word
+        </comment>
         <sql>
-			UPDATE concept SET short_name = 'SMC' WHERE concept_id =99610;
+            UPDATE concept SET short_name = 'SMC' WHERE concept_id =99610;
             UPDATE concept_name SET name = 'SMC care entry' WHERE concept_id =99610;
-            UPDATE concept_description SET description = 'SMC as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
+            UPDATE concept_description SET description = 'SMC as HIV care entry point - This concept added to support
+            MOH ART card functionality' WHERE concept_id =99610;
         </sql>
     </changeSet>
 
-	<changeSet id="ugandaemr-08022021-5" author="dbaluku">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
+    <changeSet id="ugandaemr-08022021-5" author="dbaluku">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
                 SELECT COUNT(*) FROM scheduler_task_config
                 WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.GenerateUniqueIdentifierCodeTask'
             </sqlCheck>
-		</preConditions>
-		<sql>DELETE FROM scheduler_task_config where uuid='d356a6fd-8426-40d4-9cf2-13d699c6cbc3'</sql>
-		<comment>Inserting Unique identifier code in patient identifier table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="UIC_generator_task" />
-			<column name="description" value="generates_uics into patient identifier table" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.GenerateUniqueIdentifierCodeTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2019-11-08T11:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="1"/>
-			<column name="started" value="1"/>
-			<column name="uuid" value="d356a6fd-8426-40d4-9cf2-13d699c6cbc3" />
-		</insert>
+        </preConditions>
+        <sql>DELETE FROM scheduler_task_config where uuid='d356a6fd-8426-40d4-9cf2-13d699c6cbc3'</sql>
+        <comment>Inserting Unique identifier code in patient identifier table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="UIC_generator_task"/>
+            <column name="description" value="generates_uics into patient identifier table"/>
+            <column name="schedulable_class"
+                    value="org.openmrs.module.ugandaemr.tasks.GenerateUniqueIdentifierCodeTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2019-11-08T11:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="1"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="d356a6fd-8426-40d4-9cf2-13d699c6cbc3"/>
+        </insert>
 
-	</changeSet>
+    </changeSet>
 
-	<changeSet id="ugandaemr-02052025-00-14-00" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask'
-			</sqlCheck>
-		</preConditions>
+    <changeSet id="ugandaemr-02052025-00-14-00" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask'
+            </sqlCheck>
+        </preConditions>
 
-		<comment>Close all active facility visits</comment>
+        <comment>Close all active facility visits</comment>
 
-		<!-- Delete the existing task configuration if it exists (ensure no duplicate configurations) -->
-		<sql>DELETE FROM scheduler_task_config WHERE uuid='1434dd72-1ff7-11ea-978f-2e728ce88125'</sql>
+        <!-- Delete the existing task configuration if it exists (ensure no duplicate configurations) -->
+        <sql>DELETE FROM scheduler_task_config WHERE uuid='1434dd72-1ff7-11ea-978f-2e728ce88125'</sql>
 
-		<!-- Insert a new task configuration -->
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Close Active Facility Visits" />
-			<column name="description" value="Closes all active facility visits that started before today." />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2019-11-08T16:59:59" />
-			<column name="repeat_interval" value="86400" /> <!-- 1 day -->
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="1"/>
-			<column name="started" value="1"/>
-			<column name="uuid" value="1434dd72-1ff7-11ea-978f-2e728ce88125" />
-		</insert>
-	</changeSet>
+        <!-- Insert a new task configuration -->
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Close Active Facility Visits"/>
+            <column name="description" value="Closes all active facility visits that started before today."/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.StopActiveFacilityVisitTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2019-11-08T16:59:59"/>
+            <column name="repeat_interval" value="86400"/> <!-- 1 day -->
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="1"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="1434dd72-1ff7-11ea-978f-2e728ce88125"/>
+        </insert>
+    </changeSet>
 
 
-	<changeSet id="ugandaemr-08-08-2020-1155" author="mmwanje">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE uuid ='e1731641-30ab-102d-86b0-7a5022ba4115';
-			</sqlCheck>
-		</preConditions>
-		<comment> Enabling ART clinic number to be displayed in UgandaEMR on a patient dashboard </comment>
-		<sql>
-            REPLACE INTO metadatamapping_metadata_set_member (metadata_set_member_id, metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
-            SELECT 1, 1, 'org.openmrs.PatientIdentifierType', 'e1731641-30ab-102d-86b0-7a5022ba4115',null, null, null, 2, NOW(), null, null, 0, null, null, null,'57c7a9df-193d-4d44-b34a-3156e6204bde';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-08-08-2020-1155" author="mmwanje">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM
+                metadatamapping_metadata_set_member WHERE uuid ='e1731641-30ab-102d-86b0-7a5022ba4115';
+            </sqlCheck>
+        </preConditions>
+        <comment>Enabling ART clinic number to be displayed in UgandaEMR on a patient dashboard</comment>
+        <sql>
+            REPLACE INTO metadatamapping_metadata_set_member (metadata_set_member_id, metadata_set_id, metadata_class,
+            metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired,
+            date_retired, retired_by, retire_reason, uuid)
+            SELECT 1, 1, 'org.openmrs.PatientIdentifierType', 'e1731641-30ab-102d-86b0-7a5022ba4115',null, null, null,
+            2, NOW(), null, null, 0, null, null, null,'57c7a9df-193d-4d44-b34a-3156e6204bde';
+        </sql>
+    </changeSet>
 
-	<changeSet author="rmakoba" id="ugandaemr-04052020-iss-9">
-		<preConditions onFail="MARK_RAN">
-				<not><tableExists tableName="public_holiday"/></not>
-		</preConditions>
-		<comment>
-			Create the public_holiday table
-		</comment>
+    <changeSet author="rmakoba" id="ugandaemr-04052020-iss-9">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="public_holiday"/>
+            </not>
+        </preConditions>
+        <comment>
+            Create the public_holiday table
+        </comment>
         <createTable tableName="public_holiday">
             <column autoIncrement="true" name="public_holiday_id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column  name="public_holiday_date" type="date">
+            <column name="public_holiday_date" type="date">
                 <constraints nullable="false" unique="true"/>
             </column>
-			<column name="name" type="VARCHAR(255)">
+            <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="VARCHAR(255)">
@@ -409,446 +433,556 @@
         </createTable>
     </changeSet>
 
-	<changeSet id="ugandaemr-17052020-iss-9" author="rmakoba">
-		<preConditions onFail="CONTINUE">
-				<tableExists tableName="public_holiday"/>
-		</preConditions>
-		<comment>
-			Inserting Public holidays
-		</comment>
-		<sql>
-        REPLACE INTO `public_holiday`
-(`public_holiday_id`, `public_holiday_date`, `name`, `description`, `date_created`, `creator`, `voided`, `uuid`)
-VALUES
-(1,'2020-01-01','New Year’s Day','New Year’s Day is the first day of the year, or January 1, in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'ce864849-abdf-4b29-9e99-a62c861f8543'),
-(2,'2020-01-26','Liberation Day','Liberation Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'c49a70f2-ea66-42f9-bc4a-c5f876542615'),
-(3,'2020-02-16','Archbishop Janani Luwum Day','Remembrance of Archbishop Janani Luwum is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'44800c9b-3995-4876-810a-22dada404da9'),
-(4,'2020-03-08','International Women’s Day','International Women’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4d34541a-f50c-4337-b870-8eede8dcec6f'),
-(5,'2020-04-10','Good Friday','Good Friday is a global Christian observance two days before Easter Sunday.','2020-06-17 00:00:00',1,0,'98080bc2-689c-46f3-9b36-04ce4a71a58c'),
-(6,'2020-04-12','Easter Sunday','Easter Sunday commemorates Jesus Christ’s resurrection, according to Christian belief.','2020-06-17 00:00:00',1,0,'0a5f810c-5488-4fcb-b8dd-830cda188648'),
-(7,'2020-04-13','Easter Monday','Easter Monday is the day after Easter Sunday.','2020-06-17 00:00:00',1,0,'cdc59214-de1a-4808-8faa-4079c6db7cde'),
-(8,'2020-05-01','Labour Day','May Day, or Labor Day, is a day off for workers in many countries around the world.','2020-06-17 00:00:00',1,0,'da4d2ca5-2b4c-4111-b77b-812d536885bb'),
-(9,'2020-05-24','Eid al-Fitr','Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.','2020-06-17 00:00:00',1,0,'667bad10-aa39-4317-b5e9-4e7b08251cc7'),
-(10,'2020-06-03','Martyr’s Day','Martyr’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'69f66b76-6734-4eb7-af31-79b0b60484ec'),
-(11,'2020-06-09','National Heroes Day','National Heroes Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'e98240f6-462d-4b24-9d65-1102bc37c1fd'),
-(12,'2020-07-31','Eid al-Adha','Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.','2020-06-17 00:00:00',1,0,'b83a3a67-4228-40d3-8d53-ea49f9fca494'),
-(13,'2020-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
-(14,'2020-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
-(15,'2020-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d'),
+    <changeSet id="ugandaemr-17052020-iss-9" author="rmakoba">
+        <preConditions onFail="CONTINUE">
+            <tableExists tableName="public_holiday"/>
+        </preConditions>
+        <comment>
+            Inserting Public holidays
+        </comment>
+        <sql>
+            REPLACE INTO `public_holiday`
+            (`public_holiday_id`, `public_holiday_date`, `name`, `description`, `date_created`, `creator`, `voided`,
+            `uuid`)
+            VALUES
+            (1,'2020-01-01','New Year’s Day','New Year’s Day is the first day of the year, or January 1, in the
+            Gregorian calendar.','2020-06-17 00:00:00',1,0,'ce864849-abdf-4b29-9e99-a62c861f8543'),
+            (2,'2020-01-26','Liberation Day','Liberation Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'c49a70f2-ea66-42f9-bc4a-c5f876542615'),
+            (3,'2020-02-16','Archbishop Janani Luwum Day','Remembrance of Archbishop Janani Luwum is a public holiday in
+            Uganda','2020-06-17 00:00:00',1,0,'44800c9b-3995-4876-810a-22dada404da9'),
+            (4,'2020-03-08','International Women’s Day','International Women’s Day is a public holiday in
+            Uganda','2020-06-17 00:00:00',1,0,'4d34541a-f50c-4337-b870-8eede8dcec6f'),
+            (5,'2020-04-10','Good Friday','Good Friday is a global Christian observance two days before Easter
+            Sunday.','2020-06-17 00:00:00',1,0,'98080bc2-689c-46f3-9b36-04ce4a71a58c'),
+            (6,'2020-04-12','Easter Sunday','Easter Sunday commemorates Jesus Christ’s resurrection, according to
+            Christian belief.','2020-06-17 00:00:00',1,0,'0a5f810c-5488-4fcb-b8dd-830cda188648'),
+            (7,'2020-04-13','Easter Monday','Easter Monday is the day after Easter Sunday.','2020-06-17
+            00:00:00',1,0,'cdc59214-de1a-4808-8faa-4079c6db7cde'),
+            (8,'2020-05-01','Labour Day','May Day, or Labor Day, is a day off for workers in many countries around the
+            world.','2020-06-17 00:00:00',1,0,'da4d2ca5-2b4c-4111-b77b-812d536885bb'),
+            (9,'2020-05-24','Eid al-Fitr','Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan,
+            during which Muslims fast during the hours of daylight.','2020-06-17
+            00:00:00',1,0,'667bad10-aa39-4317-b5e9-4e7b08251cc7'),
+            (10,'2020-06-03','Martyr’s Day','Martyr’s Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'69f66b76-6734-4eb7-af31-79b0b60484ec'),
+            (11,'2020-06-09','National Heroes Day','National Heroes Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'e98240f6-462d-4b24-9d65-1102bc37c1fd'),
+            (12,'2020-07-31','Eid al-Adha','Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of
+            the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his
+            son.','2020-06-17 00:00:00',1,0,'b83a3a67-4228-40d3-8d53-ea49f9fca494'),
+            (13,'2020-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
+            (14,'2020-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on
+            December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
+            (15,'2020-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d'),
 
-(16,'2021-01-01','New Year’s Day','New Year’s Day is the first day of the year, or January 1, in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'ce864849-abdf-4b29-9e99-a62c861f8543'),
-(17,'2021-01-26','Liberation Day','Liberation Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'c49a70f2-ea66-42f9-bc4a-c5f876542615'),
-(18,'2021-02-16','Archbishop Janani Luwum Day','Remembrance of Archbishop Janani Luwum is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'44800c9b-3995-4876-810a-22dada404da9'),
-(19,'2021-03-08','International Women’s Day','International Women’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'32f24eac-09b5-4edc-94a0-b1ba0b205e2a'),
-(20,'2021-04-02','Good Friday','Good Friday is a global Christian observance two days before Easter Sunday.','2020-06-17 00:00:00',1,0,'98080bc2-689c-46f3-9b36-04ce4a71a58c'),
-(21,'2021-04-04','Easter Sunday','Easter Sunday commemorates Jesus Christ’s resurrection, according to Christian belief.','2020-06-17 00:00:00',1,0,'0a5f810c-5488-4fcb-b8dd-830cda188648'),
-(22,'2021-04-05','Easter Monday','Easter Monday is the day after Easter Sunday.','2020-06-17 00:00:00',1,0,'cdc59214-de1a-4808-8faa-4079c6db7cde'),
-(23,'2021-05-01','Labour Day','May Day, or Labor Day, is a day off for workers in many countries around the world.','2020-06-17 00:00:00',1,0,'da4d2ca5-2b4c-4111-b77b-812d536885bb'),
-(24,'2021-05-13','Eid al-Fitr','Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.','2020-06-17 00:00:00',1,0,'667bad10-aa39-4317-b5e9-4e7b08251cc7'),
-(25,'2021-06-03','Martyr’s Day','Martyr’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'69f66b76-6734-4eb7-af31-79b0b60484ec'),
-(26,'2021-06-09','National Heroes Day','National Heroes Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'e98240f6-462d-4b24-9d65-1102bc37c1fd'),
-(27,'2021-07-20','Eid al-Adha','Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.','2020-06-17 00:00:00',1,0,'b83a3a67-4228-40d3-8d53-ea49f9fca494'),
-(28,'2021-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
-(29,'2021-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
-(30,'2021-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d');
-    </sql>
-	</changeSet>
+            (16,'2021-01-01','New Year’s Day','New Year’s Day is the first day of the year, or January 1, in the
+            Gregorian calendar.','2020-06-17 00:00:00',1,0,'ce864849-abdf-4b29-9e99-a62c861f8543'),
+            (17,'2021-01-26','Liberation Day','Liberation Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'c49a70f2-ea66-42f9-bc4a-c5f876542615'),
+            (18,'2021-02-16','Archbishop Janani Luwum Day','Remembrance of Archbishop Janani Luwum is a public holiday
+            in Uganda','2020-06-17 00:00:00',1,0,'44800c9b-3995-4876-810a-22dada404da9'),
+            (19,'2021-03-08','International Women’s Day','International Women’s Day is a public holiday in
+            Uganda','2020-06-17 00:00:00',1,0,'32f24eac-09b5-4edc-94a0-b1ba0b205e2a'),
+            (20,'2021-04-02','Good Friday','Good Friday is a global Christian observance two days before Easter
+            Sunday.','2020-06-17 00:00:00',1,0,'98080bc2-689c-46f3-9b36-04ce4a71a58c'),
+            (21,'2021-04-04','Easter Sunday','Easter Sunday commemorates Jesus Christ’s resurrection, according to
+            Christian belief.','2020-06-17 00:00:00',1,0,'0a5f810c-5488-4fcb-b8dd-830cda188648'),
+            (22,'2021-04-05','Easter Monday','Easter Monday is the day after Easter Sunday.','2020-06-17
+            00:00:00',1,0,'cdc59214-de1a-4808-8faa-4079c6db7cde'),
+            (23,'2021-05-01','Labour Day','May Day, or Labor Day, is a day off for workers in many countries around the
+            world.','2020-06-17 00:00:00',1,0,'da4d2ca5-2b4c-4111-b77b-812d536885bb'),
+            (24,'2021-05-13','Eid al-Fitr','Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan,
+            during which Muslims fast during the hours of daylight.','2020-06-17
+            00:00:00',1,0,'667bad10-aa39-4317-b5e9-4e7b08251cc7'),
+            (25,'2021-06-03','Martyr’s Day','Martyr’s Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'69f66b76-6734-4eb7-af31-79b0b60484ec'),
+            (26,'2021-06-09','National Heroes Day','National Heroes Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'e98240f6-462d-4b24-9d65-1102bc37c1fd'),
+            (27,'2021-07-20','Eid al-Adha','Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of
+            the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his
+            son.','2020-06-17 00:00:00',1,0,'b83a3a67-4228-40d3-8d53-ea49f9fca494'),
+            (28,'2021-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
+            (29,'2021-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on
+            December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
+            (30,'2021-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17
+            00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d');
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-10072020-1433" author="mmwanje">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) from role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667'
-			</sqlCheck>
-		</preConditions>
-		<comment>Removing the duplicated organizational phamarcy role</comment>
-		<sql>
-			DELETE FROM user_role WHERE role IN (SELECT role FROM role WHERE uuid = '130106e6-04b4-11ea-8d71-362b9e155667');
-			DELETE FROM role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-10072020-1433" author="mmwanje">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667'
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the duplicated organizational phamarcy role</comment>
+        <sql>
+            DELETE FROM user_role WHERE role IN (SELECT role FROM role WHERE uuid =
+            '130106e6-04b4-11ea-8d71-362b9e155667');
+            DELETE FROM role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-08212020-1258" author="dbaluku">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) from concept_numeric WHERE concept_id = 851 and allow_decimal = 0
-			</sqlCheck>
-		</preConditions>
-		<comment>Changing of CBC concept to allow decimal results</comment>
-		<sql>
-			UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 851
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-081509-1604" author="ssmusoke">
-		<comment>Delete all existing notification alerts</comment>
-		<sql>
-			DELETE FROM notification_alert_recipient;
-			DELETE FROM notification_alert;
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-05-11-2019" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT  count(property) from global_property WHERE property='order.testSpecimenSourcesConceptUuid';
-			</sqlCheck>
-		</preConditions>
-		<comment>Setting Specimen source concept uuid</comment>
-		<sql>
-			UPDATE global_property SET property_value = '162476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE property='order.testSpecimenSourcesConceptUuid';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-08212020-1258" author="dbaluku">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_numeric WHERE concept_id = 851 and allow_decimal = 0
+            </sqlCheck>
+        </preConditions>
+        <comment>Changing of CBC concept to allow decimal results</comment>
+        <sql>
+            UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 851
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-081509-1604" author="ssmusoke">
+        <comment>Delete all existing notification alerts</comment>
+        <sql>
+            DELETE FROM notification_alert_recipient;
+            DELETE FROM notification_alert;
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-05-11-2019" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(property) from global_property WHERE property='order.testSpecimenSourcesConceptUuid';
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting Specimen source concept uuid</comment>
+        <sql>
+            UPDATE global_property SET property_value = '162476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE
+            property='order.testSpecimenSourcesConceptUuid';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-12-02-2020-01" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT  count(property) from global_property WHERE property='order.drugDispensingUnitsConceptUuid';
-			</sqlCheck>
-		</preConditions>
-		<comment>Setting Specimen source concept uuid</comment>
-		<sql>
-			UPDATE global_property SET property_value = '162402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE property='order.drugDispensingUnitsConceptUuid';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-12-02-2020-01" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(property) from global_property WHERE property='order.drugDispensingUnitsConceptUuid';
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting Specimen source concept uuid</comment>
+        <sql>
+            UPDATE global_property SET property_value = '162402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE
+            property='order.drugDispensingUnitsConceptUuid';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-12-02-2020-02" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT  count(property) from global_property WHERE property='order.drugDosingUnitsConceptUuid';
-			</sqlCheck>
-		</preConditions>
-		<comment>Setting Specimen source concept uuid</comment>
-		<sql>
-			UPDATE global_property SET property_value = '162384AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE property='order.drugDosingUnitsConceptUuid';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-12-02-2020-02" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(property) from global_property WHERE property='order.drugDosingUnitsConceptUuid';
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting Specimen source concept uuid</comment>
+        <sql>
+            UPDATE global_property SET property_value = '162384AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE
+            property='order.drugDosingUnitsConceptUuid';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-06-11-2019-03" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT  count(property) from global_property WHERE property='order.drugRoutesConceptUuid';
-			</sqlCheck>
-		</preConditions>
-		<comment>Setting Specimen source concept uuid</comment>
-		<sql>
-			UPDATE global_property SET property_value = '162394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE property='order.drugRoutesConceptUuid';
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-06-11-2019-03" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(property) from global_property WHERE property='order.drugRoutesConceptUuid';
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting Specimen source concept uuid</comment>
+        <sql>
+            UPDATE global_property SET property_value = '162394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE
+            property='order.drugRoutesConceptUuid';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-06-11-2019-04" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT  count(property) from global_property WHERE property='order.durationUnitsConceptUuid';
-			</sqlCheck>
-		</preConditions>
-		<comment>Setting Specimen source concept uuid</comment>
-		<sql>
-			UPDATE global_property SET property_value = '1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE property='order.durationUnitsConceptUuid';
-		</sql>
-	</changeSet>
-
-
-	<changeSet id="ugandaemr-14-08-2020-04" author="dbaluku">
-		<comment>Migrate data from concept id 90253 (HIV Status) to 165275 (Family Member HIV Status)
-			unknown answer 90001 to 165165 in the on the ART Summary Page Family Tracking Section from 2.x to 3.x</comment>
-		<sql>
-			UPDATE obs SET concept_id = 165275 WHERE concept_id = 90253 and obs_group_id is not null;
-			UPDATE obs SET value_coded=165165 WHERE concept_id = 165275 and value_coded=90001 and obs_group_id is not null;
-		</sql>
-	</changeSet>
-
-	<changeSet id="ugandaemr-27-10-2021-01" author="ssmusoke">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(program_workflow_state_id) FROM program_workflow_state  WHERE uuid = 'ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2';
-			</sqlCheck>
-		</preConditions>
-		<comment>Move all patients who have ever enrolled into care into the HIV program and set the state to UNKNOWN only after the state has been loaded </comment>
-		<sql>
-			<!-- move the patients to the HIV Program on the date that they were enrolled into care -->
-			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
-			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='18c6d4aa-0a36-11e7-8dbb-507b9dc4c741') AS program,encounter_datetime AS date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
-
-			<!-- set the initial state to First Line -->
-			INSERT INTO patient_state(patient_program_id,state,start_date,creator,date_created,uuid)
-			SELECT pp.patient_program_id, 11, pp.date_enrolled, 1, pp.date_enrolled, uuid() FROM patient_program pp, program p WHERE pp.program_id = p.program_id AND p.uuid = '18c6d4aa-0a36-11e7-8dbb-507b9dc4c741'
-		</sql>
-	</changeSet>
-
-	<changeSet id="ugandaemr-2021-03-15-1756" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM global_property where property = "ugandaemr.dhis2.organizationuuid" AND property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
-			</sqlCheck>
-		</preConditions>
-		<comment>Change the default value of the global property gandaemr.dhis2.organizationuuid from 'eg d06ace3e-9c46-11e7-abc4-cec278b6b50a' to an empty string</comment>
-		<sql>
-			UPDATE global_property SET property_value = ""  WHERE property = "ugandaemr.dhis2.organizationuuid" AND property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
-		</sql>
-	</changeSet> 
-	<changeSet id="ugandaemr-14062021-1052" author="mmwanje">
-		<comment>
-			Changing Concept Name for concept 99302 from Fifty dose to Fifth dose
-		</comment>
-		<sql>
-			UPDATE concept_name SET name = 'Fifth dose' WHERE concept_id =99302 AND concept_name_type ='FULLY_SPECIFIED'; 
-     </sql>
-	</changeSet>
-	<changeSet id="ugandaemr-2021-04-30-1509" author="dbaluku">
-
-		<comment>Add observations of transfer in date  and transfer out date for transfer in encounters and transfer out encounters respectively</comment>
-		<sql>
-			INSERT INTO obs (person_id, concept_id, encounter_id, obs_datetime, location_id,value_datetime, creator, date_created, voided, status,uuid) SELECT e.patient_id,99160,e.encounter_id,e.encounter_datetime,2,e.encounter_datetime,e.creator,e.date_created,0,'FINAL',uuid() FROM encounter e  inner join  encounter_type et on e.encounter_type = et.encounter_type_id WHERE et.uuid ='3e8354f7-31b3-4862-a52e-ff41a1ee60af' and e.voided =0;
-			INSERT INTO obs (person_id, concept_id, encounter_id, obs_datetime, location_id,value_datetime, creator, date_created, voided, status,uuid) SELECT e.patient_id,99165,e.encounter_id,e.encounter_datetime,2,e.encounter_datetime,e.creator,e.date_created,0,'FINAL',uuid() FROM encounter e  inner join  encounter_type et on e.encounter_type = et.encounter_type_id WHERE et.uuid ='e305d98a-d6a2-45ba-ba2a-682b497ce27c' and e.voided =0;
- 
-		</sql>
-	</changeSet>
-
-	<changeSet id="ugandaemr-20210813-0923" author="dbaluku">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) from scheduler_task_config WHERE uuid ='415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'
-			</sqlCheck>
-		</preConditions>
-		<comment>Delete TB Lost to Followup Exit Task</comment>
-		<sql>
-			DELETE FROM scheduler_task_config WHERE uuid = '415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f';
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-20210823-0915" author="dbaluku">
-		<comment>Insert Cohort type for CDDP Group </comment>
-		<sql>
-			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
-			('CRPDDP Cohort Type','2021-08-23',1,'e50fa0af-df36-4a26-853f-feb05244e5ca'),
-			('CLDDP Cohort Type','2021-08-23',1,'aa536e57-a3c3-453c-9413-cf70b5d2ad5d'),
-			('CCLAD Cohort Type','2021-08-23',1,'5b7136fa-d207-4229-94a8-da6661ae00bf');
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-11-08-2023" author="odorajonathan">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) from location WHERE uuid = '8f96e239-8586-4ec6-9375-04c6e19628ae';
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Retire SMC Clinic
-		</comment>
-		<sql>
-			UPDATE location SET retired = 1 WHERE uuid = '8f96e239-8586-4ec6-9375-04c6e19628ae';
-     </sql>
-	</changeSet>
-	<changeSet id="ugandaemr-01032022-1401" author="dbaluku">
-		<comment>
-			Updating encounters and obs that were created with location_id set a null to  ART Clinic location
-		</comment>
-		<sql>
-			UPDATE encounter SET location_id = (select location_id from location where uuid='86863db4-6101-4ecf-9a86-5e716d6504e4') WHERE location_id IS null;
-			UPDATE obs SET location_id = (select location_id from location where uuid='86863db4-6101-4ecf-9a86-5e716d6504e4') WHERE location_id IS null;
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-20220323-1015" author="dbaluku">
-		<comment>Insert Cohort type for SMS Cohort and SMS Cohorts </comment>
-		<sql>
-			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
-			('SMS Cohort Type','2022-03-23',1,'889aa250-7113-4ba7-ab8c-ca062e004696');
-
-			REPLACE INTO cohort(name,date_created,creator,uuid,cohort_type_id)VALUES
-			('SMS Appointment Reminder','2022-03-23',1,'c418984c-fe55-431a-90be-134da0a5ec67',(SELECT cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696')),
-			('SMS Non Suppressed ViralLoad ','2022-03-23',1,'f538f903-0258-4151-a4f6-f8ceb8046017',(SELECT cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696'));
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-06-11-2019-04" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(property) from global_property WHERE property='order.durationUnitsConceptUuid';
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting Specimen source concept uuid</comment>
+        <sql>
+            UPDATE global_property SET property_value = '1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' WHERE
+            property='order.durationUnitsConceptUuid';
+        </sql>
+    </changeSet>
 
 
-	<changeSet author="slubwama" id="order-obs-202303081017-1">
-		<createTable tableName="order_obs">
-			<column autoIncrement="true" name="order_obs_id" type="INT">
-				<constraints primaryKey="true" unique="true"/>
-			</column>
-			<column name="order_id" type="INT"/>
-			<column name="obs_id" type="INT"/>
-			<column name="encounter_id" type="INT"/>
-			<column name="date_created" type="datetime"/>
-			<column name="changed_by" type="INT"/>
-			<column name="date_changed" type="datetime"/>
-			<column name="voided" type="TINYINT(3)"/>
-			<column name="date_voided" type="datetime"/>
-			<column name="voided_by" type="INT"/>
-			<column name="void_reason" type="VARCHAR(255)"/>
-			<column name="creator" type="INT"/>
-			<column name="uuid" type="VARCHAR(38)"/>
-		</createTable>
-	</changeSet>
+    <changeSet id="ugandaemr-14-08-2020-04" author="dbaluku">
+        <comment>Migrate data from concept id 90253 (HIV Status) to 165275 (Family Member HIV Status)
+            unknown answer 90001 to 165165 in the on the ART Summary Page Family Tracking Section from 2.x to 3.x
+        </comment>
+        <sql>
+            UPDATE obs SET concept_id = 165275 WHERE concept_id = 90253 and obs_group_id is not null;
+            UPDATE obs SET value_coded=165165 WHERE concept_id = 165275 and value_coded=90001 and obs_group_id is not
+            null;
+        </sql>
+    </changeSet>
 
-	<changeSet author="slubwama" id="order_obs_202303081017-2">
-		<createIndex indexName="order_obs_encounter_id_index" tableName="order_obs">
-			<column name="encounter_id"/>
-		</createIndex>
-	</changeSet>
+    <changeSet id="ugandaemr-27-10-2021-01" author="ssmusoke">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(program_workflow_state_id) FROM program_workflow_state WHERE uuid =
+                'ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2';
+            </sqlCheck>
+        </preConditions>
+        <comment>Move all patients who have ever enrolled into care into the HIV program and set the state to UNKNOWN
+            only after the state has been loaded
+        </comment>
+        <sql>
+            <!-- move the patients to the HIV Program on the date that they were enrolled into care -->
+            INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created,
+            voided, uuid)
+            SELECT patient_id,(SELECT program.program_id FROM program WHERE
+            program.uuid='18c6d4aa-0a36-11e7-8dbb-507b9dc4c741') AS program,encounter_datetime AS
+            date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type
+            ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE
+            encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
 
-	<changeSet author="slubwama" id="order_obs_202303081017-3">
-		<addForeignKeyConstraint baseColumnNames="encounter_id" baseTableName="order_obs" constraintName="order_obs_encounter_id_index" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="encounter_id" referencedTableName="encounter"/>
-	</changeSet>
+            <!-- set the initial state to First Line -->
+            INSERT INTO patient_state(patient_program_id,state,start_date,creator,date_created,uuid)
+            SELECT pp.patient_program_id, 11, pp.date_enrolled, 1, pp.date_enrolled, uuid() FROM patient_program pp,
+            program p WHERE pp.program_id = p.program_id AND p.uuid = '18c6d4aa-0a36-11e7-8dbb-507b9dc4c741'
+        </sql>
+    </changeSet>
 
-	<changeSet author="slubwama" id="order_obs_202303081017-4">
-		<createIndex indexName="order_obs_orders_order_id_fk" tableName="order_obs">
-			<column name="order_id"/>
-		</createIndex>
-	</changeSet>
+    <changeSet id="ugandaemr-2021-03-15-1756" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM global_property where property = "ugandaemr.dhis2.organizationuuid" AND
+                property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
+            </sqlCheck>
+        </preConditions>
+        <comment>Change the default value of the global property gandaemr.dhis2.organizationuuid from 'eg
+            d06ace3e-9c46-11e7-abc4-cec278b6b50a' to an empty string
+        </comment>
+        <sql>
+            UPDATE global_property SET property_value = "" WHERE property = "ugandaemr.dhis2.organizationuuid" AND
+            property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-14062021-1052" author="mmwanje">
+        <comment>
+            Changing Concept Name for concept 99302 from Fifty dose to Fifth dose
+        </comment>
+        <sql>
+            UPDATE concept_name SET name = 'Fifth dose' WHERE concept_id =99302 AND concept_name_type
+            ='FULLY_SPECIFIED';
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-2021-04-30-1509" author="dbaluku">
 
-	<changeSet author="slubwama" id="order_obs_202303081017-5">
-		<addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_obs" constraintName="order_obs_orders_order_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="order_id" referencedTableName="orders"/>
-	</changeSet>
+        <comment>Add observations of transfer in date and transfer out date for transfer in encounters and transfer out
+            encounters respectively
+        </comment>
+        <sql>
+            INSERT INTO obs (person_id, concept_id, encounter_id, obs_datetime, location_id,value_datetime, creator,
+            date_created, voided, status,uuid) SELECT
+            e.patient_id,99160,e.encounter_id,e.encounter_datetime,2,e.encounter_datetime,e.creator,e.date_created,0,'FINAL',uuid()
+            FROM encounter e inner join encounter_type et on e.encounter_type = et.encounter_type_id WHERE et.uuid
+            ='3e8354f7-31b3-4862-a52e-ff41a1ee60af' and e.voided =0;
+            INSERT INTO obs (person_id, concept_id, encounter_id, obs_datetime, location_id,value_datetime, creator,
+            date_created, voided, status,uuid) SELECT
+            e.patient_id,99165,e.encounter_id,e.encounter_datetime,2,e.encounter_datetime,e.creator,e.date_created,0,'FINAL',uuid()
+            FROM encounter e inner join encounter_type et on e.encounter_type = et.encounter_type_id WHERE et.uuid
+            ='e305d98a-d6a2-45ba-ba2a-682b497ce27c' and e.voided =0;
 
-	<changeSet author="slubwama" id="order_obs_202303081017-6">
-		<createIndex indexName="order_obs_obs_obs_id_fk" tableName="order_obs">
-			<column name="obs_id"/>
-		</createIndex>
-	</changeSet>
+        </sql>
+    </changeSet>
 
-	<changeSet author="slubwama" id="order_obs_202303081017-7">
-		<addForeignKeyConstraint baseColumnNames="obs_id" baseTableName="order_obs" constraintName="order_obs_obs_obs_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="obs_id" referencedTableName="obs"/>
-	</changeSet>
+    <changeSet id="ugandaemr-20210813-0923" author="dbaluku">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from scheduler_task_config WHERE uuid ='415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete TB Lost to Followup Exit Task</comment>
+        <sql>
+            DELETE FROM scheduler_task_config WHERE uuid = '415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f';
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-20210823-0915" author="dbaluku">
+        <comment>Insert Cohort type for CDDP Group</comment>
+        <sql>
+            REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+            ('CRPDDP Cohort Type','2021-08-23',1,'e50fa0af-df36-4a26-853f-feb05244e5ca'),
+            ('CLDDP Cohort Type','2021-08-23',1,'aa536e57-a3c3-453c-9413-cf70b5d2ad5d'),
+            ('CCLAD Cohort Type','2021-08-23',1,'5b7136fa-d207-4229-94a8-da6661ae00bf');
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-11-08-2023" author="odorajonathan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from location WHERE uuid = '8f96e239-8586-4ec6-9375-04c6e19628ae';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Retire SMC Clinic
+        </comment>
+        <sql>
+            UPDATE location SET retired = 1 WHERE uuid = '8f96e239-8586-4ec6-9375-04c6e19628ae';
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-01032022-1401" author="dbaluku">
+        <comment>
+            Updating encounters and obs that were created with location_id set a null to ART Clinic location
+        </comment>
+        <sql>
+            UPDATE encounter SET location_id = (select location_id from location where
+            uuid='86863db4-6101-4ecf-9a86-5e716d6504e4') WHERE location_id IS null;
+            UPDATE obs SET location_id = (select location_id from location where
+            uuid='86863db4-6101-4ecf-9a86-5e716d6504e4') WHERE location_id IS null;
+        </sql>
+    </changeSet>
+    <changeSet id="ugandaemr-20220323-1015" author="dbaluku">
+        <comment>Insert Cohort type for SMS Cohort and SMS Cohorts</comment>
+        <sql>
+            REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+            ('SMS Cohort Type','2022-03-23',1,'889aa250-7113-4ba7-ab8c-ca062e004696');
 
-	<changeSet author="slubwama" id="order_obs_202303081017-8">
-		<addUniqueConstraint columnNames="obs_id,order_id" constraintName="order_obs_order_id_obs_id_uindex" tableName="order_obs"/>
-	</changeSet>
+            REPLACE INTO cohort(name,date_created,creator,uuid,cohort_type_id)VALUES
+            ('SMS Appointment Reminder','2022-03-23',1,'c418984c-fe55-431a-90be-134da0a5ec67',(SELECT cohort_type_id
+            from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696')),
+            ('SMS Non Suppressed ViralLoad ','2022-03-23',1,'f538f903-0258-4151-a4f6-f8ceb8046017',(SELECT
+            cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696'));
+        </sql>
+    </changeSet>
 
-	<changeSet  author="slubwama" id="ugandaemr-2023-03-08-1712">
-		<comment>add test orders with results into the order_obs table</comment>
-		<sql>
-			replace into order_obs (encounter_id, order_id, obs_id, date_created, creator, uuid) (select encounter_id, order_id, obs_id, date_created, creator, uuid() from obs where order_id is not null);
-		</sql>
-	</changeSet>
 
-	<changeSet id="ugandaemr-20230127-2345" author="daphinenalule">
-		<comment>
-			Insert General CDDP Cohort type for CDDP Group
-		</comment>
-		<sql>
-			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
-			('General CDDP Cohort Type','2023-01-27',1,'da964ff0-648e-440b-a219-d2aeba3670d0');
-		</sql>
-	</changeSet>
+    <changeSet author="slubwama" id="order-obs-202303081017-1">
+        <createTable tableName="order_obs">
+            <column autoIncrement="true" name="order_obs_id" type="INT">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+            <column name="order_id" type="INT"/>
+            <column name="obs_id" type="INT"/>
+            <column name="encounter_id" type="INT"/>
+            <column name="date_created" type="datetime"/>
+            <column name="changed_by" type="INT"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="voided" type="TINYINT(3)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="voided_by" type="INT"/>
+            <column name="void_reason" type="VARCHAR(255)"/>
+            <column name="creator" type="INT"/>
+            <column name="uuid" type="VARCHAR(38)"/>
+        </createTable>
+    </changeSet>
 
-	<changeSet id="20230404-1001" author="iakileng">
-		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="obs"/>
-		</preConditions>
-		<comment> Updating family member's hiv unknown status concept id in obs table </comment>
-		<sql> UPDATE obs SET value_coded = 90001 where value_coded = 165165 and concept_id = 165275; </sql>
-	</changeSet>
-	<changeSet id="ugandaemr-20230425-1730" author="dbaluku">
-		<comment>
-			next gen reports uuids for exchange
-		</comment>
-		<sql>
-			UPDATE global_property SET property_value = '214fb8ef-6219-43f3-b20b-023261c0dec6,8dafdc32-97b7-4f49-828e-475cd4f09669,65fec0844-1970-43c5-bf77-b296415daa34,e7102e5c-b90d-4a4a-b763-20518eadbae5' WHERE property = 'ugandaemrsync.sendNextGenReports.server.reportuuids';
-			UPDATE global_property SET property_value = '27f4804f-ec6f-466e-b4ea-21f9ca584880,072b526a-4140-4c43-9f5c-6d1fa74d7c42,0e3bdfde-3ee0-4f94-b105-bff844feba30,a2d6170e-1930-4f21-920c-6106e39058e8,ac1b2145-54aa-4ed8-9590-db7c47fe51e4' WHERE property = 'ugandaemrsync.sendHMISReports.server.reportuuids';
-		</sql>
-	</changeSet>
+    <changeSet author="slubwama" id="order_obs_202303081017-2">
+        <createIndex indexName="order_obs_encounter_id_index" tableName="order_obs">
+            <column name="encounter_id"/>
+        </createIndex>
+    </changeSet>
 
-	<changeSet id="ugandaemr-01-01-2024-0010" author="iakileng">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE metadata_uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
-			</sqlCheck>
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE uuid ='2fcc3a81-0500-47df-88bd-c0a56d113662';
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM patient_identifier_type WHERE uuid="be8f222a-3751-4f93-8c74-3aff399c19b6";
-			</sqlCheck>
-		</preConditions>
-		<comment> Enabling OPD Number to be displayed in UgandaEMR on a patient dashboard </comment>
-		<sql>
-			INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
-			SELECT 1, 'org.openmrs.PatientIdentifierType', 'be8f222a-3751-4f93-8c74-3aff399c19b6',null, null, null, 2, NOW(), null, null, 0, null, null, null,'2fcc3a81-0500-47df-88bd-c0a56d113662';
-		</sql>
-	</changeSet>
+    <changeSet author="slubwama" id="order_obs_202303081017-3">
+        <addForeignKeyConstraint baseColumnNames="encounter_id" baseTableName="order_obs"
+                                 constraintName="order_obs_encounter_id_index" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="encounter_id" referencedTableName="encounter"/>
+    </changeSet>
 
-	<changeSet id="ugandaemr-2023-08-30-0828" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM concept_name WHERE concept_name_id> 7000000 limit 1;
-			</sqlCheck>
-		</preConditions>
-		<comment> Change concept names from a big number to a normal increment number</comment>
-		<sql>
-			update concept_name set concept_name_id=(concept_name_id-7187255) where concept_name_id>7000000;
-		</sql>
-	</changeSet>
+    <changeSet author="slubwama" id="order_obs_202303081017-4">
+        <createIndex indexName="order_obs_orders_order_id_fk" tableName="order_obs">
+            <column name="order_id"/>
+        </createIndex>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20240228-1080" author="mmwanje">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
-			</sqlCheck>
-		</preConditions>
-		<comment>Insert Cohort type for Eligibility Cohort and eligible Cohorts </comment>
-		<sql>
-			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
-			('Eligibility Cohort Type','2024-02-28',1,'1345c89c-8463-41e9-9cd0-8c14aa255ba8');
+    <changeSet author="slubwama" id="order_obs_202303081017-5">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_obs"
+                                 constraintName="order_obs_orders_order_id_fk" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="order_id" referencedTableName="orders"/>
+    </changeSet>
 
-			REPLACE INTO cohort(name,description, date_created,creator,uuid,cohort_type_id)VALUES
-			('HIV Program','Eligible', '2024-02-28', 1, '56b082f8-f956-499d-a8c2-d9b32a067e65',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
-			('TB Program','Eligible','2024-02-28',1,'0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
-			('MCH Program','Eligible', '2024-02-28', 1, 'd861187f-e25a-493b-81b1-b2a4c4679b7a',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
-			('Nutrition Program','Eligible', '2024-02-28',1,'2827e1b5-be8a-4c1d-afc7-f6afcc4f2537',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8'));
-		</sql>
-	</changeSet>
+    <changeSet author="slubwama" id="order_obs_202303081017-6">
+        <createIndex indexName="order_obs_obs_obs_id_fk" tableName="order_obs">
+            <column name="obs_id"/>
+        </createIndex>
+    </changeSet>
 
-	<changeSet id="ugandaemr-28022024-1032" author="mmwanje">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask'
-			</sqlCheck>
-		</preConditions>
-		<sql>DELETE FROM scheduler_task_config where uuid='3b8355ba-1f6e-4773-b95a-6101974ed462'</sql>
-		<comment>Inserting Eligibility Cohort Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Eligibility Cohort Task" />
-			<column name="description" value="Identify and add eligible members into the cohort" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2024-02-28T05:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="1"/>
-			<column name="started" value="1"/>
-			<column name="uuid" value="3b8355ba-1f6e-4773-b95a-6101974ed462" />
-		</insert>
-	</changeSet>
+    <changeSet author="slubwama" id="order_obs_202303081017-7">
+        <addForeignKeyConstraint baseColumnNames="obs_id" baseTableName="order_obs"
+                                 constraintName="order_obs_obs_obs_id_fk" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="obs_id"
+                                 referencedTableName="obs"/>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20251105-1654" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<and>
-				<tableExists tableName="appointment_service"/>
-			</and>
-			<sqlCheck expectedResult="1">
-				select count(*) from appointment_service where uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f";
-			</sqlCheck>
-		</preConditions>
-		<comment>Migrate patient appointments from observations to patient calender</comment>
-		<sql>
-			INSERT INTO patient_appointment (appointment_number, patient_id, start_date_time, end_date_time, appointment_service_id, status, location_id, appointment_kind, uuid, date_created, creator,voided)
-			select '0000',person_id,value_datetime,value_datetime,2,'Requested',location_id,'Scheduled',uuid(),obs_datetime,1,0 from obs where concept_id=5096 and voided=false;
+    <changeSet author="slubwama" id="order_obs_202303081017-8">
+        <addUniqueConstraint columnNames="obs_id,order_id" constraintName="order_obs_order_id_obs_id_uindex"
+                             tableName="order_obs"/>
+    </changeSet>
 
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 3 WHERE  b.concept_id=160288 and value_coded=856;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 13 WHERE  b.concept_id=160288 and value_coded=903;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 5 WHERE  b.concept_id=160288 and value_coded=5484;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 12 WHERE  b.concept_id=160288 and value_coded=90012;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 6 WHERE  b.concept_id=160288 and value_coded=99324;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 4 WHERE  b.concept_id=160288 and value_coded=164968;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 9 WHERE  b.concept_id=160288 and value_coded=164970;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 11 WHERE  b.concept_id=160288 and value_coded=164971;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 2 WHERE  b.concept_id=160288 and value_coded=164972;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 8 WHERE  b.concept_id=160288 and value_coded=164974;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 7 WHERE  b.concept_id=160288 and value_coded=163153;
-			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 10 WHERE  b.concept_id=160288 and value_coded=164973;
-		</sql>
-	</changeSet>
+    <changeSet author="slubwama" id="ugandaemr-2023-03-08-1712">
+        <comment>add test orders with results into the order_obs table</comment>
+        <sql>
+            replace into order_obs (encounter_id, order_id, obs_id, date_created, creator, uuid) (select encounter_id,
+            order_id, obs_id, date_created, creator, uuid() from obs where order_id is not null);
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20230127-2345" author="daphinenalule">
+        <comment>
+            Insert General CDDP Cohort type for CDDP Group
+        </comment>
+        <sql>
+            REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+            ('General CDDP Cohort Type','2023-01-27',1,'da964ff0-648e-440b-a219-d2aeba3670d0');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20230404-1001" author="iakileng">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="obs"/>
+        </preConditions>
+        <comment>Updating family member's hiv unknown status concept id in obs table</comment>
+        <sql>UPDATE obs SET value_coded = 90001 where value_coded = 165165 and concept_id = 165275;</sql>
+    </changeSet>
+    <changeSet id="ugandaemr-20230425-1730" author="dbaluku">
+        <comment>
+            next gen reports uuids for exchange
+        </comment>
+        <sql>
+            UPDATE global_property SET property_value =
+            '214fb8ef-6219-43f3-b20b-023261c0dec6,8dafdc32-97b7-4f49-828e-475cd4f09669,65fec0844-1970-43c5-bf77-b296415daa34,e7102e5c-b90d-4a4a-b763-20518eadbae5'
+            WHERE property = 'ugandaemrsync.sendNextGenReports.server.reportuuids';
+            UPDATE global_property SET property_value =
+            '27f4804f-ec6f-466e-b4ea-21f9ca584880,072b526a-4140-4c43-9f5c-6d1fa74d7c42,0e3bdfde-3ee0-4f94-b105-bff844feba30,a2d6170e-1930-4f21-920c-6106e39058e8,ac1b2145-54aa-4ed8-9590-db7c47fe51e4'
+            WHERE property = 'ugandaemrsync.sendHMISReports.server.reportuuids';
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-01-01-2024-0010" author="iakileng">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM
+                metadatamapping_metadata_set_member WHERE metadata_uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM
+                metadatamapping_metadata_set_member WHERE uuid ='2fcc3a81-0500-47df-88bd-c0a56d113662';
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM patient_identifier_type WHERE uuid="be8f222a-3751-4f93-8c74-3aff399c19b6";
+            </sqlCheck>
+        </preConditions>
+        <comment>Enabling OPD Number to be displayed in UgandaEMR on a patient dashboard</comment>
+        <sql>
+            INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid,
+            sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired,
+            retired_by, retire_reason, uuid)
+            SELECT 1, 'org.openmrs.PatientIdentifierType', 'be8f222a-3751-4f93-8c74-3aff399c19b6',null, null, null, 2,
+            NOW(), null, null, 0, null, null, null,'2fcc3a81-0500-47df-88bd-c0a56d113662';
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-2023-08-30-0828" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM concept_name WHERE concept_name_id> 7000000 limit 1;
+            </sqlCheck>
+        </preConditions>
+        <comment>Change concept names from a big number to a normal increment number</comment>
+        <sql>
+            update concept_name set concept_name_id=(concept_name_id-7187255) where concept_name_id>7000000;
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20240228-1080" author="mmwanje">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
+            </sqlCheck>
+        </preConditions>
+        <comment>Insert Cohort type for Eligibility Cohort and eligible Cohorts</comment>
+        <sql>
+            REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+            ('Eligibility Cohort Type','2024-02-28',1,'1345c89c-8463-41e9-9cd0-8c14aa255ba8');
+
+            REPLACE INTO cohort(name,description, date_created,creator,uuid,cohort_type_id)VALUES
+            ('HIV Program','Eligible', '2024-02-28', 1, '56b082f8-f956-499d-a8c2-d9b32a067e65',(SELECT cohort_type_id
+            from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+            ('TB Program','Eligible','2024-02-28',1,'0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0',(SELECT cohort_type_id from
+            cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+            ('MCH Program','Eligible', '2024-02-28', 1, 'd861187f-e25a-493b-81b1-b2a4c4679b7a',(SELECT cohort_type_id
+            from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+            ('Nutrition Program','Eligible', '2024-02-28',1,'2827e1b5-be8a-4c1d-afc7-f6afcc4f2537',(SELECT
+            cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8'));
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-28022024-1032" author="mmwanje">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class =
+                'org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask'
+            </sqlCheck>
+        </preConditions>
+        <sql>DELETE FROM scheduler_task_config where uuid='3b8355ba-1f6e-4773-b95a-6101974ed462'</sql>
+        <comment>Inserting Eligibility Cohort Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Eligibility Cohort Task"/>
+            <column name="description" value="Identify and add eligible members into the cohort"/>
+            <column name="schedulable_class"
+                    value="org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2024-02-28T05:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="1"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="3b8355ba-1f6e-4773-b95a-6101974ed462"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20251105-1654" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <and>
+                <tableExists tableName="appointment_service"/>
+            </and>
+            <sqlCheck expectedResult="1">
+                select count(*) from appointment_service where uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f";
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrate patient appointments from observations to patient calender</comment>
+        <sql>
+            INSERT INTO patient_appointment (appointment_number, patient_id, start_date_time, end_date_time,
+            appointment_service_id, status, location_id, appointment_kind, uuid, date_created, creator,voided)
+            select
+            '0000',person_id,value_datetime,value_datetime,2,'Requested',location_id,'Scheduled',uuid(),obs_datetime,1,0
+            from obs where concept_id=5096 and voided=false;
+
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 3
+            WHERE b.concept_id=160288 and value_coded=856;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 13
+            WHERE b.concept_id=160288 and value_coded=903;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 5
+            WHERE b.concept_id=160288 and value_coded=5484;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 12
+            WHERE b.concept_id=160288 and value_coded=90012;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 6
+            WHERE b.concept_id=160288 and value_coded=99324;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 4
+            WHERE b.concept_id=160288 and value_coded=164968;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 9
+            WHERE b.concept_id=160288 and value_coded=164970;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 11
+            WHERE b.concept_id=160288 and value_coded=164971;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 2
+            WHERE b.concept_id=160288 and value_coded=164972;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 8
+            WHERE b.concept_id=160288 and value_coded=164974;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 7
+            WHERE b.concept_id=160288 and value_coded=163153;
+            UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 10
+            WHERE b.concept_id=160288 and value_coded=164973;
+        </sql>
+    </changeSet>
     <changeSet id="ugandaemr-20240314-1821" author="slubama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
@@ -859,111 +993,120 @@ VALUES
                 SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
             </sqlCheck>
         </preConditions>
-        <comment>Default all users to the ART clinic except for the admin and demon. </comment>
+        <comment>Default all users to the ART clinic except for the admin and demon.</comment>
         <sql>
-            INSERT INTO provider_attribute ( provider_id, attribute_type_id, value_reference, uuid, creator, date_created,voided)
-            SELECT provider_id, (select provider_attribute_type_id from provider_attribute_type where uuid="13a721e4-68e5-4f7a-8aee-3cbcec127179"),'86863db4-6101-4ecf-9a86-5e716d6504e4', uuid(), 1, date_created,0 from provider where person_id not in (1);
+            INSERT INTO provider_attribute ( provider_id, attribute_type_id, value_reference, uuid, creator,
+            date_created,voided)
+            SELECT provider_id, (select provider_attribute_type_id from provider_attribute_type where
+            uuid="13a721e4-68e5-4f7a-8aee-3cbcec127179"),'86863db4-6101-4ecf-9a86-5e716d6504e4', uuid(), 1,
+            date_created,0 from provider where person_id not in (1);
         </sql>
     </changeSet>
 
 
-	<changeSet id="ugandaemr-20240317-1406" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where concept_id=159959;
-			</sqlCheck>
-		</preConditions>
-		<comment>Move all obs of specimen source that have concept 162476 which is of data type N/A to  159959 of data type coded</comment>
-		<sql>
-			update obs set concept_id=159959 where concept_id=162476;
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20240317-1406" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where concept_id=159959;
+            </sqlCheck>
+        </preConditions>
+        <comment>Move all obs of specimen source that have concept 162476 which is of data type N/A to 159959 of data
+            type coded
+        </comment>
+        <sql>
+            update obs set concept_id=159959 where concept_id=162476;
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20240316-1654" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				select count(*) from patient_identifier_type where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
-			</sqlCheck>
-		</preConditions>
-		<comment>Make UIC not unique to support the generation its generation in-spite of duplicates</comment>
-		<sql>
-			UPDATE patient_identifier_type set uniqueness_behavior="NON_UNIQUE" where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20240316-1654" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from patient_identifier_type where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
+            </sqlCheck>
+        </preConditions>
+        <comment>Make UIC not unique to support the generation its generation in-spite of duplicates</comment>
+        <sql>
+            UPDATE patient_identifier_type set uniqueness_behavior="NON_UNIQUE" where
+            uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20240406-1654" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				select count(*) from drug where drug_id=164;
-			</sqlCheck>
-		</preConditions>
-		<comment>change drugs Efavirenz from a capsule to a tablet</comment>
-		<sql>
-			UPDATE drug SET name = 'Efavirenz Tablet 200 mg', dosage_form = 1513 WHERE drug_id = 164
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20240406-1654" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from drug where drug_id=164;
+            </sqlCheck>
+        </preConditions>
+        <comment>change drugs Efavirenz from a capsule to a tablet</comment>
+        <sql>
+            UPDATE drug SET name = 'Efavirenz Tablet 200 mg', dosage_form = 1513 WHERE drug_id = 164
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20240408-1655" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="1">
-				select count(*) from drug where drug_id=3 and name ="Abacavir sulfate Tablet 300 mg" and concept_id=165507;
-			</sqlCheck>
-		</preConditions>
-		<comment>Change Abacavir sulfate Tablet 300 mg (Bisoprolol) CHANGE TO Abacavir 300mg</comment>
-		<sql>
-			UPDATE drug SET name = 'Abacavir 300 mg', dosage_form = 1513,concept_id = 814 WHERE drug_id = 3 and concept_id=165507;
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20240408-1655" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from drug where drug_id=3 and name ="Abacavir sulfate Tablet 300 mg" and
+                concept_id=165507;
+            </sqlCheck>
+        </preConditions>
+        <comment>Change Abacavir sulfate Tablet 300 mg (Bisoprolol) CHANGE TO Abacavir 300mg</comment>
+        <sql>
+            UPDATE drug SET name = 'Abacavir 300 mg', dosage_form = 1513,concept_id = 814 WHERE drug_id = 3 and
+            concept_id=165507;
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20240411-1655" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where concept_id=175384;
-			</sqlCheck>
-		</preConditions>
-		<comment>Migrate data from other patient decision concept to rightful TB refferrall concept</comment>
-		<sql>
-			UPDATE obs SET concept_id = 175384 where concept_id=164435;
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20240411-1655" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where concept_id=175384;
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrate data from other patient decision concept to rightful TB refferrall concept</comment>
+        <sql>
+            UPDATE obs SET concept_id = 175384 where concept_id=164435;
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20240724-1455-01" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*)  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				select count(*)  from concept_name where date_created="2023-11-08 13:34:24";
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				select count(*) from concept_name where concept_id=169007;
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				select count(*)  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where concept.date_created="2023-11-07 12:59:26";
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where concept.date_created="2023-11-08 09:19:30";
-			</sqlCheck>
-		</preConditions>
-		<comment>Delete previous cause of death concepts</comment>
-		<sql>
-			delete  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
-			delete from concept_name where date_created="2023-11-08 13:34:24";
-			delete from concept_name where concept_id=169007;
-			delete  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
-			delete from concept where concept.date_created="2023-11-07 12:59:26";
-			delete from concept where concept.date_created="2023-11-08 09:19:30";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20240724-1455-01" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name where date_created="2023-11-08 13:34:24";
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name where concept_id=169007;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_description where concept_id in
+                (169014,169015,169016,169017,169018,169019,169020);
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where concept.date_created="2023-11-07 12:59:26";
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where concept.date_created="2023-11-08 09:19:30";
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete previous cause of death concepts</comment>
+        <sql>
+            delete from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
+            delete from concept_name where date_created="2023-11-08 13:34:24";
+            delete from concept_name where concept_id=169007;
+            delete from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
+            delete from concept where concept.date_created="2023-11-07 12:59:26";
+            delete from concept where concept.date_created="2023-11-08 09:19:30";
+        </sql>
+    </changeSet>
 
     <changeSet id="ugandaemr-20240624-0535" author="slubwama">
         <preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="0">
-				select count(*) from liquibasechangelog where ID="ugandaemr-20240318-1654";
-			</sqlCheck>
+            <sqlCheck expectedResult="0">
+                select count(*) from liquibasechangelog where ID="ugandaemr-20240318-1654";
+            </sqlCheck>
 
             <sqlCheck expectedResult="1">
                 select count(*) from program where uuid="18c6d4aa-0a36-11e7-8dbb-507b9dc4c741" and program_id=1;
@@ -1015,24 +1158,48 @@ VALUES
         </preConditions>
         <comment>Migrate DSDM Programs into DSDM Workflows</comment>
         <sql>
-            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-            SELECT patient_program_id, 17 as state,pp.date_enrolled as start_date,pp.date_completed as end_date,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=5;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created,
+            changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id, 17 as state,pp.date_enrolled as start_date,pp.date_completed as
+            end_date,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by,
+            pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=5;
 
-            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-            SELECT patient_program_id, 18,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=6;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created,
+            changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id,
+            18,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by,
+            pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=6;
 
-            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-            SELECT patient_program_id, 19,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=7;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created,
+            changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id,
+            19,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by,
+            pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=7;
 
-            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-            SELECT patient_program_id, 20,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=8;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created,
+            changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id,
+            20,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by,
+            pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=8;
 
-            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-            SELECT patient_program_id, 21,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=9;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created,
+            changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id,
+            21,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by,
+            pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=9;
 
-            CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_patient_programs AS (select  patient_program.*,state,patient_state_id from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (5,6,7,8,9));
-            CREATE TEMPORARY TABLE IF NOT EXISTS hiv_program AS (select  patient_program.*,state from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (1));
-            CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_hiv_program_match  AS (select patient_state_id as matching_patient_state_id ,dsdm_patient_programs.patient_program_id asdsdm_patient_program_id , hiv_program.patient_program_id  as hiv_patient_program_id,dsdm_patient_programs.patient_program_id as dsdm_patient_program_id ,dsdm_patient_programs.patient_id as dsdm_patient from hiv_program inner join dsdm_patient_programs on (hiv_program.patient_id=dsdm_patient_programs.patient_id) where dsdm_patient_programs.state in (17,18,19,20,21));
+            CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_patient_programs AS (select
+            patient_program.*,state,patient_state_id from patient_program inner join patient_state on
+            patient_program.patient_program_id = patient_state.patient_program_id where program_id in (5,6,7,8,9));
+            CREATE TEMPORARY TABLE IF NOT EXISTS hiv_program AS (select patient_program.*,state from patient_program
+            inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where
+            program_id in (1));
+            CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_hiv_program_match AS (select patient_state_id as
+            matching_patient_state_id ,dsdm_patient_programs.patient_program_id asdsdm_patient_program_id ,
+            hiv_program.patient_program_id as hiv_patient_program_id,dsdm_patient_programs.patient_program_id as
+            dsdm_patient_program_id ,dsdm_patient_programs.patient_id as dsdm_patient from hiv_program inner join
+            dsdm_patient_programs on (hiv_program.patient_id=dsdm_patient_programs.patient_id) where
+            dsdm_patient_programs.state in (17,18,19,20,21));
 
             UPDATE patient_state
             INNER JOIN dsdm_hiv_program_match
@@ -1055,415 +1222,573 @@ VALUES
         </sql>
     </changeSet>
 
-	<changeSet id="ugandaemr-20251101-1655" author="slubwama">
-		<preConditions onFail="MARK_RAN" onError="HALT">
-			<and>
-				<!-- Ensure base tables exist -->
-				<tableExists tableName="concept"/>
-				<tableExists tableName="concept_name"/>
+    <changeSet id="ugandaemr-20251101-1655" author="slubwama">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <and>
+                <!-- Ensure base tables exist -->
+                <tableExists tableName="concept"/>
+                <tableExists tableName="concept_name"/>
 
-				<!-- Ensure source concept exists (by UUID) -->
-				<sqlCheck expectedResult="1">
-					SELECT COUNT(*) FROM concept WHERE uuid='7cac8397-53cd-4f00-a6fe-028e8d743f8e';
-				</sqlCheck>
+                <!-- Ensure source concept exists (by UUID) -->
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM concept WHERE uuid='7cac8397-53cd-4f00-a6fe-028e8d743f8e';
+                </sqlCheck>
 
-				<!-- Ensure destination concept exists -->
-				<sqlCheck expectedResult="1">
-					SELECT COUNT(*) FROM concept WHERE concept_id=186351;
-				</sqlCheck>
+                <!-- Ensure destination concept exists -->
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM concept WHERE concept_id=186351;
+                </sqlCheck>
 
-				<!-- Ensure only one concept_name is linked to the source concept -->
-				<sqlCheck expectedResult="1">
-					SELECT COUNT(*) FROM concept_name cn
-					JOIN concept c ON c.concept_id=cn.concept_id
-					WHERE c.uuid='7cac8397-53cd-4f00-a6fe-028e8d743f8e';
-				</sqlCheck>
+                <!-- Ensure only one concept_name is linked to the source concept -->
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM concept_name cn
+                    JOIN concept c ON c.concept_id=cn.concept_id
+                    WHERE c.uuid='7cac8397-53cd-4f00-a6fe-028e8d743f8e';
+                </sqlCheck>
 
-				<!-- Ensure target concept_name_id is not already in use -->
-				<sqlCheck expectedResult="0">
-					SELECT COUNT(*) FROM concept_name WHERE concept_name_id=198844;
-				</sqlCheck>
+                <!-- Ensure target concept_name_id is not already in use -->
+                <sqlCheck expectedResult="0">
+                    SELECT COUNT(*) FROM concept_name WHERE concept_name_id=198844;
+                </sqlCheck>
 
-				<!-- Ensure target UUID is not already in use -->
-				<sqlCheck expectedResult="0">
-					SELECT COUNT(*) FROM concept_name WHERE uuid='552e757e-b072-4e68-a10d-b7db7efcd5ad';
-				</sqlCheck>
-			</and>
-		</preConditions>
+                <!-- Ensure target UUID is not already in use -->
+                <sqlCheck expectedResult="0">
+                    SELECT COUNT(*) FROM concept_name WHERE uuid='552e757e-b072-4e68-a10d-b7db7efcd5ad';
+                </sqlCheck>
+            </and>
+        </preConditions>
 
-		<comment>Change Image attachment to known concept metadata in UgandaEMR</comment>
-		<sql>
-			update concept_name set concept_name.uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad", concept_name.concept_name_id=198844, concept_name.concept_id=186351  where concept_id in (select concept.concept_id from  concept where concept.uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e");
-			update concept set concept_id=186351 where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
-		</sql>
-	</changeSet>
+        <comment>Change Image attachment to known concept metadata in UgandaEMR</comment>
+        <sql>
+            update concept_name set concept_name.uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad",
+            concept_name.concept_name_id=198844, concept_name.concept_id=186351 where concept_id in (select
+            concept.concept_id from concept where concept.uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e");
+            update concept set concept_id=186351 where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20251101-1656" author="slubwama">
-		<preConditions onFail="MARK_RAN" onError="HALT">
-			<and>
-				<!-- Ensure base tables exist -->
-				<tableExists tableName="concept"/>
-				<tableExists tableName="concept_name"/>
+    <changeSet id="ugandaemr-20251101-1656" author="slubwama">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <and>
+                <!-- Ensure base tables exist -->
+                <tableExists tableName="concept"/>
+                <tableExists tableName="concept_name"/>
 
-				<!-- Ensure source concept exists (by UUID) -->
-				<sqlCheck expectedResult="1">
-					SELECT COUNT(*) FROM concept WHERE uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
-				</sqlCheck>
+                <!-- Ensure source concept exists (by UUID) -->
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM concept WHERE uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
+                </sqlCheck>
 
-				<!-- Ensure destination concept exists -->
-				<sqlCheck expectedResult="1">
-					SELECT COUNT(*) FROM concept WHERE concept_id=186352;
-				</sqlCheck>
+                <!-- Ensure destination concept exists -->
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM concept WHERE concept_id=186352;
+                </sqlCheck>
 
-				<!-- Ensure exactly one concept_name linked to the source concept -->
-				<sqlCheck expectedResult="1">
-					SELECT COUNT(*)
-					FROM concept_name cn
-					JOIN concept c ON c.concept_id = cn.concept_id
-					WHERE c.uuid = '42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
-				</sqlCheck>
+                <!-- Ensure exactly one concept_name linked to the source concept -->
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*)
+                    FROM concept_name cn
+                    JOIN concept c ON c.concept_id = cn.concept_id
+                    WHERE c.uuid = '42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
+                </sqlCheck>
 
-				<!-- Ensure target concept_name_id is free -->
-				<sqlCheck expectedResult="0">
-					SELECT COUNT(*) FROM concept_name WHERE concept_name_id=198845;
-				</sqlCheck>
+                <!-- Ensure target concept_name_id is free -->
+                <sqlCheck expectedResult="0">
+                    SELECT COUNT(*) FROM concept_name WHERE concept_name_id=198845;
+                </sqlCheck>
 
-				<!-- Ensure target concept_name UUID is free -->
-				<sqlCheck expectedResult="0">
-					SELECT COUNT(*) FROM concept_name WHERE uuid='209ebadb-d3df-489a-bd10-7171e21c4869';
-				</sqlCheck>
-			</and>
-		</preConditions>
+                <!-- Ensure target concept_name UUID is free -->
+                <sqlCheck expectedResult="0">
+                    SELECT COUNT(*) FROM concept_name WHERE uuid='209ebadb-d3df-489a-bd10-7171e21c4869';
+                </sqlCheck>
+            </and>
+        </preConditions>
 
-		<comment>Change Default attachment to known concept metadata in UgandaEMR</comment>
-		<sql>
-			update concept_name set concept_name.uuid='209ebadb-d3df-489a-bd10-7171e21c4869', concept_name.concept_name_id=198845, concept_name.concept_id=186352  where concept_id in (select concept.concept_id from  concept where concept.uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00');
-			update concept set concept_id=186352 where uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
-		</sql>
-	</changeSet>
+        <comment>Change Default attachment to known concept metadata in UgandaEMR</comment>
+        <sql>
+            update concept_name set concept_name.uuid='209ebadb-d3df-489a-bd10-7171e21c4869',
+            concept_name.concept_name_id=198845, concept_name.concept_id=186352 where concept_id in (select
+            concept.concept_id from concept where concept.uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00');
+            update concept set concept_id=186352 where uuid='42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00';
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241029-2256" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(property) from global_property where property="webservices.rest.maxResultsAbsolute";
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				select count(property) from global_property where property="webservices.rest.maxResultsDefault";
-			</sqlCheck>
-		</preConditions>
-		<comment>UPDATE GLOBAL PROPERTY OF webservices.rest to UgandaEMR Defaults.</comment>
-		<sql>
-			UPDATE global_property set property_value=500 where property="webservices.rest.maxResultsAbsolute";
-			UPDATE global_property set property_value=100 where property="webservices.rest.maxResultsDefault";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241029-2256" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(property) from global_property where property="webservices.rest.maxResultsAbsolute";
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(property) from global_property where property="webservices.rest.maxResultsDefault";
+            </sqlCheck>
+        </preConditions>
+        <comment>UPDATE GLOBAL PROPERTY OF webservices.rest to UgandaEMR Defaults.</comment>
+        <sql>
+            UPDATE global_property set property_value=500 where property="webservices.rest.maxResultsAbsolute";
+            UPDATE global_property set property_value=100 where property="webservices.rest.maxResultsDefault";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241031-1130" author="dsemujju">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from scheduler_task_config where uuid = "8c17b376-1a2b-11e1-a51a-00248140a5eb";
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Delete the following redundant sync task -  Auto close visits task
-		</comment>
-		<sql>
-			delete from scheduler_task_config where uuid ="8c17b376-1a2b-11e1-a51a-00248140a5eb";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241031-1130" author="dsemujju">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from scheduler_task_config where uuid = "8c17b376-1a2b-11e1-a51a-00248140a5eb";
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Delete the following redundant sync task - Auto close visits task
+        </comment>
+        <sql>
+            delete from scheduler_task_config where uuid ="8c17b376-1a2b-11e1-a51a-00248140a5eb";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241031-1131" author="dsemujju">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from scheduler_task_config where uuid = "1428cdc3-b340-4c86-8553-7886b88dc4c2";
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Delete the following redundant sync task -  Intialize logic rule providers
-		</comment>
-		<sql>
-			delete from scheduler_task_config where uuid = "1428cdc3-b340-4c86-8553-7886b88dc4c2";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241031-1131" author="dsemujju">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from scheduler_task_config where uuid = "1428cdc3-b340-4c86-8553-7886b88dc4c2";
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Delete the following redundant sync task - Intialize logic rule providers
+        </comment>
+        <sql>
+            delete from scheduler_task_config where uuid = "1428cdc3-b340-4c86-8553-7886b88dc4c2";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241031-1132" author="dsemujju">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from scheduler_task_config where uuid = "eb9e447d-5ef9-4771-9e88-21916340b69c";
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Delete redundant sync task - Process HL7 task
-		</comment>
-		<sql>
-			delete from scheduler_task_config where uuid = "eb9e447d-5ef9-4771-9e88-21916340b69c";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241031-1132" author="dsemujju">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from scheduler_task_config where uuid = "eb9e447d-5ef9-4771-9e88-21916340b69c";
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Delete redundant sync task - Process HL7 task
+        </comment>
+        <sql>
+            delete from scheduler_task_config where uuid = "eb9e447d-5ef9-4771-9e88-21916340b69c";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241031-1133" author="dsemujju">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from scheduler_task_config where uuid = "8b5caeea-2c3b-11e8-b467-0ed5f89f718b";
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Delete redundant sync task - Art summary patient transfer migration
-		</comment>
-		<sql>
-			delete from scheduler_task_config where uuid = "8b5caeea-2c3b-11e8-b467-0ed5f89f718b";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241031-1133" author="dsemujju">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from scheduler_task_config where uuid = "8b5caeea-2c3b-11e8-b467-0ed5f89f718b";
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Delete redundant sync task - Art summary patient transfer migration
+        </comment>
+        <sql>
+            delete from scheduler_task_config where uuid = "8b5caeea-2c3b-11e8-b467-0ed5f89f718b";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241031-1134" author="dsemujju">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Delete redundant sync task - Sync FHIR records a given server
-		</comment>
-		<sql>
-			delete from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241031-1134" author="dsemujju">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Delete redundant sync task - Sync FHIR records a given server
+        </comment>
+        <sql>
+            delete from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
+        </sql>
+    </changeSet>
 
-	<changeSet id="ugandaemr-20241101-1134" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="6">
-				select count(*) from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			Delete concept set of DSDM.
-		</comment>
-		<sql>
-			delete from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
-		</sql>
-	</changeSet>
-
-
-	<changeSet id="ugandaemr-2025-03-29-1032" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.DownloadFormsAndConceptsTask'
-			</sqlCheck>
-		</preConditions>
-		<comment>Inserting Download Forms and Concepts into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Download Forms and Concepts" />
-			<column name="description" value="Download Forms and Concepts" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.DownloadFormsAndConceptsTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2025-03-28T05:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="0"/>
-			<column name="started" value="0"/>
-			<column name="uuid" value="7579cac4-0c74-11f0-9e19-da924fd23489" />
-		</insert>
-	</changeSet>
-
-	<changeSet id="ugandaemr-2025-03-30-1032" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.initializeFormsAndMetaDataTask'
-			</sqlCheck>
-		</preConditions>
-		<comment>Inserting Initialize Forms And MetaData Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Initialize Forms And MetaData" />
-			<column name="description" value="Initialize Forms And MetaData" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.initializeFormsAndMetaDataTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2025-03-29T05:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="0"/>
-			<column name="started" value="0"/>
-			<column name="uuid" value="cd156b1e-0d1c-11f0-9e19-da924fd23489" />
-		</insert>
-	</changeSet>
-
-	<changeSet id="ugandaemr-2025-03-30-5032" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpdateFrontendTask'
-			</sqlCheck>
-		</preConditions>
-		<comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Update Frontend" />
-			<column name="description" value="This updates the Frontend" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpdateFrontendTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2025-03-29T05:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="0"/>
-			<column name="started" value="0"/>
-			<column name="uuid" value="b71c4d78-0d7b-11f0-9e19-da924fd23489" />
-		</insert>
-	</changeSet>
-
-	<changeSet id="ugandaemr-2025-04-14-5032" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpdateModulesTask'
-			</sqlCheck>
-		</preConditions>
-		<comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Update Backend Modules" />
-			<column name="description" value="This updates the backend modules in EMR. Remember to restart after task has run successfuly" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpdateModulesTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2025-04-14T05:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="0"/>
-			<column name="started" value="0"/>
-			<column name="uuid" value="0bc33774-1939-11f0-9e19-da924fd23489" />
-		</insert>
-	</changeSet>
-
-	<changeSet id="ugandaemr-2025-04-14-5035" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpgradeEnireEMRTask'
-			</sqlCheck>
-		</preConditions>
-		<comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Upgrade All EMR Components" />
-			<column name="description" value="This tasks Upgrades frontend module, core omod  and metadata of EMR" />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpgradeEnireEMRTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2025-04-14T05:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="0"/>
-			<column name="started" value="0"/>
-			<column name="uuid" value="0ea91bba-193a-11f0-9e19-da924fd23489" />
-		</insert>
-	</changeSet>
-
-	<changeSet id="ugandaemr-20250429-0834" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="2">
-				select count(*) from concept_set where concept_id in (165982,99601);
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			change concept Breastfeeding and ACTIVE TB to coded
-		</comment>
-		<sql>
-			update concept set datatype_id=2 where concept_id in (165982,99601);
-		</sql>
-	</changeSet>
-
-	<changeSet id="ugandaemr-20250530-0029" author="mmwanje">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from concept where concept_id =5271;
-			</sqlCheck>
-		</preConditions>
-		<comment>
-			change concept Family Planning to coded
-		</comment>
-		<sql>
-			update concept set datatype_id=2 where concept_id =5271;
-		</sql>
-	</changeSet>
-
-	<changeSet id="ugandaemr-20250612-2146" author="slubwama">
-		<comment>
-			change check some of stockmanagement module liquibasecahngeset
-		</comment>
-		<sql>
-			update liquibasechangelog set  MD5SUM="8:47a65bd373b17220bd1518ccc74350a3" where ID="stockmanagement-1758855877841-1"   AND  MD5SUM="8:6e7233fa50fa3cf95883de1227d7099c";
-			update liquibasechangelog set  MD5SUM="8:814ad63603e3bb5735456d30de4d55ea" where ID="stockmanagement-1758855877841-2"   AND  MD5SUM="8:dc9859a8266e67353efa23b549f5e3a9";
-			update liquibasechangelog set  MD5SUM="8:5bad04e7339c4507e828d764d183c2d9" where ID="stockmanagement-1758855877841-3"   AND  MD5SUM="8:471c73808429724ba04a9af68d2dd49a";
-			update liquibasechangelog set  MD5SUM="8:17d25a3b4e125cb56cc4453a568c1e15" where ID="stockmanagement-1758855877841-5"   AND  MD5SUM="8:16aceb3b8a6f12997619e41bfb8a8734";
-			update liquibasechangelog set  MD5SUM="8:752c454a1fca0af39b57051ecde7bc73" where ID="stockmanagement-1758855877841-7"   AND  MD5SUM="8:2786d8bc54be71704cc6d8801af3b46b";
-			update liquibasechangelog set  MD5SUM="8:10b202c0c25a7cc7ffecf56861b31ca7" where ID="stockmanagement-1758855877841-8"   AND  MD5SUM="8:e02765bca7e72598aede3b9e68762440";
-			update liquibasechangelog set  MD5SUM="8:d9043eaa8957c37499ef3a6b78272501" where ID="stockmanagement-1758855877841-9"   AND  MD5SUM="8:5feb493ef44c9e4f072170ea8f7b37cf";
-			update liquibasechangelog set  MD5SUM="8:22127459a01daea79d1080d0d26445ce" where ID="stockmanagement-1758855877841-10"  AND  MD5SUM="8:702d43fe7c88f8e4773756911c77b705";
-			update liquibasechangelog set  MD5SUM="8:35e680c5a13b971e9f60e5a4e24a51ec" where ID="stockmanagement-1758855877841-11"  AND  MD5SUM="8:fe1cc6769f2e12a4554b48c4ac46e28f";
-			update liquibasechangelog set  MD5SUM="8:559da37d9c2aa38468fbe1518700a62f" where ID="stockmanagement-1758855877841-12"  AND  MD5SUM="8:b8fe117cfa7782825268ac5930927f77";
-			update liquibasechangelog set  MD5SUM="8:472510441aa2ce760e6724f90dd19474" where ID="stockmanagement-1758855877841-13"  AND  MD5SUM="8:e1b8fd4520fda8fc408a46ad2a248133";
-			update liquibasechangelog set  MD5SUM="8:18a09d0ea326cf14ad314ddbd9afb168" where ID="stockmanagement-1758855877841-14"  AND  MD5SUM="8:7bfdf550071348c715709c6ae73171d3";
-			update liquibasechangelog set  MD5SUM="8:c04438fa091fd6498ebb5340ddfbbff4" where ID="stockmanagement-1758855877841-15"  AND  MD5SUM="8:25bbc29a1079e1bcb30296ce6ea7ecda";
-			update liquibasechangelog set  MD5SUM="8:d1c77613d27318eff317a1e54000a28d" where ID="stockmanagement-1758855877841-16"  AND  MD5SUM="8:28a3edf05af6a0856ae3fca7cf1787f8";
-			update liquibasechangelog set  MD5SUM="8:32dca350a72d0f9b489cb25f1ae2b226" where ID="stockmanagement-1758855877841-17"  AND  MD5SUM="8:db838d343ff95c251772ff7bfbb2840d";
-			update liquibasechangelog set  MD5SUM="8:9816cb1d4105237d20c139d5ee87a2ad" where ID="stockmanagement-1758855877841-228" AND  MD5SUM="8:2065304b3040fb00c9706ec4b73a5a3d";
-			update liquibasechangelog set  MD5SUM="8:c8b15bfc4b28586011c3aec80dffcd88" where ID="stockmanagement-1758855877841-230" AND  MD5SUM="8:7b4ecd4a24e2b9cb7c7920b6dae3fa53";
-			update liquibasechangelog set  MD5SUM="8:9bd885583b73bb811c7cfc201d8feaa9" where ID="stockmanagement-1758855877841-232" AND  MD5SUM="8:683c951bc1a22f29e9a89dd3bf121fac";
-			update liquibasechangelog set  MD5SUM="8:b41dbba693caf364b47b316afb94b919" where ID="stockmanagement-1758855877841-241" AND  MD5SUM="8:dec4722b33abdac0915dfec8caee9622";
-			update liquibasechangelog set  MD5SUM="8:1973b4d0426e1d944086ace2053ed95f" where ID="stockmanagement-1758855877841-242" AND  MD5SUM="8:6b561041b37ea52d032909aa85fddbcd";
-			update liquibasechangelog set  MD5SUM="8:d3b8d51d9c3162de77ced8ec60d0123f" where ID="stockmanagement-1758855877841-243" AND  MD5SUM="8:3af60c3de007c3d10d22d2f32a3aaa05";
-			update liquibasechangelog set  MD5SUM="8:785d3725844c76d6f068fede949cd03d" where ID="stockmanagement-1758855877841-245" AND  MD5SUM="8:1ba6f81297ec5445e0a40feb940eac19";
-			update liquibasechangelog set  MD5SUM="8:6d845d6e0038ae61e2165927922c2d10" where ID="stockmanagement-1758855877841-246" AND  MD5SUM="8:cab8b2309ed999da852fa1a90b267a57";
-			update liquibasechangelog set  MD5SUM="8:7e106451240cbeeccad5684d40c6f83b" where ID="stockmanagement-1758855877841-247" AND  MD5SUM="8:14b3e823995cc77729beee155f596991";
-			update liquibasechangelog set  MD5SUM="8:e5447c6229d8621087dc873d82da6e33" where ID="stockmanagement-1758855877841-249" AND  MD5SUM="8:799d603042fdd133976eb41e7787ef3f";
-			update liquibasechangelog set  MD5SUM="8:ed6b0d7a4f2b3c08efdfc145094d01d3" where ID="stockmanagement-1758855877841-251" AND  MD5SUM="8:c766ce48757c5e9016de615f11fd3a96";
-			update liquibasechangelog set   MD5SUM="8:a50e433e55483261262735f477bfb6a6" where ID="stockmanagement-1758855877841-253" AND   MD5SUM="8:538dbfef4583cd37271ad32708f4e319";
-			update liquibasechangelog set   MD5SUM="8:0b0c379c972268a8ce4ab90e3264c091" where ID="stockmanagement-1758855877841-254" AND   MD5SUM="8:ffe07f55b0893e906ee62a5386a7fd66";
-			update liquibasechangelog set   MD5SUM="8:2db08165994a8ec42e5b009e94cde53f" where ID="stockmanagement-1758855877841-255" AND   MD5SUM="8:36e11721b018eda3cd7dcd7f3546da20";
-			update liquibasechangelog set   MD5SUM="8:00d0c4826356e7bf16e4ec97414a0722" where ID="stockmanagement-1758855877841-257" AND   MD5SUM="8:7e604e96d3b32d15ddb35c3699f8df4c";
-			update liquibasechangelog set   MD5SUM="8:3ee8002312f20896cb17551710873e0b" where ID="stockmanagement-1758855877841-258" AND   MD5SUM="8:398f9c5f414229a3597b904a57d9c285";
-			update liquibasechangelog set   MD5SUM="8:0e813cd209a573c0f753b562c273d2c7" where ID="stockmanagement-1758855877841-259" AND   MD5SUM="8:3ed5dc94619eb292474a18786de1d668";
-			update liquibasechangelog set   MD5SUM="8:dc201dbda6095194a1f4e6c14f402926" where ID="stockmanagement-1758855877841-261" AND   MD5SUM="8:4312bc4d3f2604535f0498702bc5fd77";
-			update liquibasechangelog set   MD5SUM="8:10eb7761cafbd358f476a0a9902086dc" where ID="stockmanagement-1758855877841-262" AND   MD5SUM="8:bb68c84c5ebf4a2c7c66a868b33428ea";
-			update liquibasechangelog set   MD5SUM="8:5e6ce0921bd0768f4d846560cdba9123" where ID="stockmanagement-1758855877841-263" AND   MD5SUM="8:2716f80457933b3481522a280b3ef009";
-			update liquibasechangelog set   MD5SUM="8:a8117719ee719863b17937cc815d8d7f" where ID="stockmanagement-1758855877841-265" AND   MD5SUM="8:4cdfd9655c762e8b5373185e27d7906a";
-			update liquibasechangelog set   MD5SUM="8:243f709240dfb0598d7c4a1ec0877a5d" where ID="stockmanagement-1758855877841-266" AND   MD5SUM="8:6075855de9382fcc10ae9eb4169b4938";
-			update liquibasechangelog set   MD5SUM="8:d7b41f1048d2d0eb0c818afc3be5a048" where ID="stockmanagement-1758855877841-267" AND   MD5SUM="8:d5007b1a929333a157b48ed5cdfbce7a";
-			update liquibasechangelog set   MD5SUM="8:15a5482ffc8d19e5ade3059b1eac54a4" where ID="stockmanagement-1758855877841-269" AND   MD5SUM="8:50c7835794ac7caedb8a39ab4ecc5c7b";
-			update liquibasechangelog set   MD5SUM="8:0e95e6b794fdcdba2d52b7015b3d83eb" where ID="stockmanagement-1758855877841-270" AND   MD5SUM="8:c78533a513dfa51b82eebf8b9265a820";
-			update liquibasechangelog set   MD5SUM="8:db8994531ca754e8c561ba8eb670bb63" where ID="stockmanagement-1758855877841-271" AND   MD5SUM="8:135dc83d28e58d2012f56857cff5b402";
-			update liquibasechangelog set   MD5SUM="8:8dfa749657d63b9fec18713cd1f4eb94" where ID="stockmanagement-1758855877841-272" AND   MD5SUM="8:cf3d0fde28a168823336ac1d4533fb06";
-			update liquibasechangelog set   MD5SUM="8:bbc0d3614af0757261cbdd217432d9df" where ID="stockmanagement-1758855877841-301" AND   MD5SUM="8:bdcdb2a309f36979e640c518d05000c9";
-			update liquibasechangelog set   MD5SUM="8:d9b50cabaad0f301b98e3dc787b02d14" where ID="stockmanagement-1758855877841-311" AND   MD5SUM="8:dcc0c6cc01c090427cff12ba168b7818";
-			update liquibasechangelog set   MD5SUM="8:983024c01a79b491a143602c20ed32c7" where ID="stockmanagement-1758855877841-313" AND   MD5SUM="8:eef1a05906fa9c47ed205da9b6e5d2a8";
-			update liquibasechangelog set   MD5SUM="8:e477471ac14e504234e45c5490ecb6a0" where ID="stockmanagement-1758855877841-332" AND   MD5SUM="8:3d6d3f97bec84454996da0cc248e0f1d";
-			update liquibasechangelog set   MD5SUM="8:aea8af274b5e3a0c01794e34de6807a9" where ID="stockmanagement-1758855877841-333" AND   MD5SUM="8:ba17bee92d14027c12d900280fee161c";
-		</sql>
-	</changeSet>
+    <changeSet id="ugandaemr-20241101-1134" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="6">
+                select count(*) from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Delete concept set of DSDM.
+        </comment>
+        <sql>
+            delete from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
+        </sql>
+    </changeSet>
 
 
-	<changeSet id="ugandaemr-20251105-post-metadata-installation-task" author="slubwama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM scheduler_task_config
-				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.PostMetaDataInstallationTask'
-			</sqlCheck>
-		</preConditions>
-		<comment>Inserting Post MetaData Installation Task into 'schedule_task_config' table</comment>
-		<insert tableName="scheduler_task_config">
-			<column name="name" value="Post MetaData Installation" />
-			<column name="description" value="Installation of metadata post start incase it failed on start " />
-			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.PostMetaDataInstallationTask" />
-			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-			<column name="start_time" valueDate="2017-06-01T11:59:59" />
-			<column name="repeat_interval" value="86400" />
-			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-			<column name="created_by" value="1" />
-			<column name="start_on_startup" value="0"/>
-			<column name="started" value="0"/>
-			<column name="uuid" value="2d8812bc-ba60-11f0-b8b7-f4d343d76c98" />
-		</insert>
-	</changeSet>
+    <changeSet id="ugandaemr-2025-03-29-1032" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.DownloadFormsAndConceptsTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Download Forms and Concepts into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Download Forms and Concepts"/>
+            <column name="description" value="Download Forms and Concepts"/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.DownloadFormsAndConceptsTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2025-03-28T05:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="0"/>
+            <column name="uuid" value="7579cac4-0c74-11f0-9e19-da924fd23489"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-2025-03-30-1032" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.initializeFormsAndMetaDataTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Initialize Forms And MetaData Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Initialize Forms And MetaData"/>
+            <column name="description" value="Initialize Forms And MetaData"/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.initializeFormsAndMetaDataTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2025-03-29T05:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="0"/>
+            <column name="uuid" value="cd156b1e-0d1c-11f0-9e19-da924fd23489"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-2025-03-30-5032" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpdateFrontendTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Update Frontend"/>
+            <column name="description" value="This updates the Frontend"/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpdateFrontendTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2025-03-29T05:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="0"/>
+            <column name="uuid" value="b71c4d78-0d7b-11f0-9e19-da924fd23489"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-2025-04-14-5032" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpdateModulesTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Update Backend Modules"/>
+            <column name="description"
+                    value="This updates the backend modules in EMR. Remember to restart after task has run successfuly"/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpdateModulesTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2025-04-14T05:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="0"/>
+            <column name="uuid" value="0bc33774-1939-11f0-9e19-da924fd23489"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-2025-04-14-5035" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.UpgradeEnireEMRTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Update Frontend Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Upgrade All EMR Components"/>
+            <column name="description" value="This tasks Upgrades frontend module, core omod  and metadata of EMR"/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.UpgradeEnireEMRTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2025-04-14T05:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="0"/>
+            <column name="uuid" value="0ea91bba-193a-11f0-9e19-da924fd23489"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20250429-0834" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="2">
+                select count(*) from concept_set where concept_id in (165982,99601);
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            change concept Breastfeeding and ACTIVE TB to coded
+        </comment>
+        <sql>
+            update concept set datatype_id=2 where concept_id in (165982,99601);
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20250530-0029" author="mmwanje">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where concept_id =5271;
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            change concept Family Planning to coded
+        </comment>
+        <sql>
+            update concept set datatype_id=2 where concept_id =5271;
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20250612-2146" author="slubwama">
+        <comment>
+            change check some of stockmanagement module liquibasecahngeset
+        </comment>
+        <sql>
+            update liquibasechangelog set MD5SUM="8:47a65bd373b17220bd1518ccc74350a3" where
+            ID="stockmanagement-1758855877841-1" AND MD5SUM="8:6e7233fa50fa3cf95883de1227d7099c";
+            update liquibasechangelog set MD5SUM="8:814ad63603e3bb5735456d30de4d55ea" where
+            ID="stockmanagement-1758855877841-2" AND MD5SUM="8:dc9859a8266e67353efa23b549f5e3a9";
+            update liquibasechangelog set MD5SUM="8:5bad04e7339c4507e828d764d183c2d9" where
+            ID="stockmanagement-1758855877841-3" AND MD5SUM="8:471c73808429724ba04a9af68d2dd49a";
+            update liquibasechangelog set MD5SUM="8:17d25a3b4e125cb56cc4453a568c1e15" where
+            ID="stockmanagement-1758855877841-5" AND MD5SUM="8:16aceb3b8a6f12997619e41bfb8a8734";
+            update liquibasechangelog set MD5SUM="8:752c454a1fca0af39b57051ecde7bc73" where
+            ID="stockmanagement-1758855877841-7" AND MD5SUM="8:2786d8bc54be71704cc6d8801af3b46b";
+            update liquibasechangelog set MD5SUM="8:10b202c0c25a7cc7ffecf56861b31ca7" where
+            ID="stockmanagement-1758855877841-8" AND MD5SUM="8:e02765bca7e72598aede3b9e68762440";
+            update liquibasechangelog set MD5SUM="8:d9043eaa8957c37499ef3a6b78272501" where
+            ID="stockmanagement-1758855877841-9" AND MD5SUM="8:5feb493ef44c9e4f072170ea8f7b37cf";
+            update liquibasechangelog set MD5SUM="8:22127459a01daea79d1080d0d26445ce" where
+            ID="stockmanagement-1758855877841-10" AND MD5SUM="8:702d43fe7c88f8e4773756911c77b705";
+            update liquibasechangelog set MD5SUM="8:35e680c5a13b971e9f60e5a4e24a51ec" where
+            ID="stockmanagement-1758855877841-11" AND MD5SUM="8:fe1cc6769f2e12a4554b48c4ac46e28f";
+            update liquibasechangelog set MD5SUM="8:559da37d9c2aa38468fbe1518700a62f" where
+            ID="stockmanagement-1758855877841-12" AND MD5SUM="8:b8fe117cfa7782825268ac5930927f77";
+            update liquibasechangelog set MD5SUM="8:472510441aa2ce760e6724f90dd19474" where
+            ID="stockmanagement-1758855877841-13" AND MD5SUM="8:e1b8fd4520fda8fc408a46ad2a248133";
+            update liquibasechangelog set MD5SUM="8:18a09d0ea326cf14ad314ddbd9afb168" where
+            ID="stockmanagement-1758855877841-14" AND MD5SUM="8:7bfdf550071348c715709c6ae73171d3";
+            update liquibasechangelog set MD5SUM="8:c04438fa091fd6498ebb5340ddfbbff4" where
+            ID="stockmanagement-1758855877841-15" AND MD5SUM="8:25bbc29a1079e1bcb30296ce6ea7ecda";
+            update liquibasechangelog set MD5SUM="8:d1c77613d27318eff317a1e54000a28d" where
+            ID="stockmanagement-1758855877841-16" AND MD5SUM="8:28a3edf05af6a0856ae3fca7cf1787f8";
+            update liquibasechangelog set MD5SUM="8:32dca350a72d0f9b489cb25f1ae2b226" where
+            ID="stockmanagement-1758855877841-17" AND MD5SUM="8:db838d343ff95c251772ff7bfbb2840d";
+            update liquibasechangelog set MD5SUM="8:9816cb1d4105237d20c139d5ee87a2ad" where
+            ID="stockmanagement-1758855877841-228" AND MD5SUM="8:2065304b3040fb00c9706ec4b73a5a3d";
+            update liquibasechangelog set MD5SUM="8:c8b15bfc4b28586011c3aec80dffcd88" where
+            ID="stockmanagement-1758855877841-230" AND MD5SUM="8:7b4ecd4a24e2b9cb7c7920b6dae3fa53";
+            update liquibasechangelog set MD5SUM="8:9bd885583b73bb811c7cfc201d8feaa9" where
+            ID="stockmanagement-1758855877841-232" AND MD5SUM="8:683c951bc1a22f29e9a89dd3bf121fac";
+            update liquibasechangelog set MD5SUM="8:b41dbba693caf364b47b316afb94b919" where
+            ID="stockmanagement-1758855877841-241" AND MD5SUM="8:dec4722b33abdac0915dfec8caee9622";
+            update liquibasechangelog set MD5SUM="8:1973b4d0426e1d944086ace2053ed95f" where
+            ID="stockmanagement-1758855877841-242" AND MD5SUM="8:6b561041b37ea52d032909aa85fddbcd";
+            update liquibasechangelog set MD5SUM="8:d3b8d51d9c3162de77ced8ec60d0123f" where
+            ID="stockmanagement-1758855877841-243" AND MD5SUM="8:3af60c3de007c3d10d22d2f32a3aaa05";
+            update liquibasechangelog set MD5SUM="8:785d3725844c76d6f068fede949cd03d" where
+            ID="stockmanagement-1758855877841-245" AND MD5SUM="8:1ba6f81297ec5445e0a40feb940eac19";
+            update liquibasechangelog set MD5SUM="8:6d845d6e0038ae61e2165927922c2d10" where
+            ID="stockmanagement-1758855877841-246" AND MD5SUM="8:cab8b2309ed999da852fa1a90b267a57";
+            update liquibasechangelog set MD5SUM="8:7e106451240cbeeccad5684d40c6f83b" where
+            ID="stockmanagement-1758855877841-247" AND MD5SUM="8:14b3e823995cc77729beee155f596991";
+            update liquibasechangelog set MD5SUM="8:e5447c6229d8621087dc873d82da6e33" where
+            ID="stockmanagement-1758855877841-249" AND MD5SUM="8:799d603042fdd133976eb41e7787ef3f";
+            update liquibasechangelog set MD5SUM="8:ed6b0d7a4f2b3c08efdfc145094d01d3" where
+            ID="stockmanagement-1758855877841-251" AND MD5SUM="8:c766ce48757c5e9016de615f11fd3a96";
+            update liquibasechangelog set MD5SUM="8:a50e433e55483261262735f477bfb6a6" where
+            ID="stockmanagement-1758855877841-253" AND MD5SUM="8:538dbfef4583cd37271ad32708f4e319";
+            update liquibasechangelog set MD5SUM="8:0b0c379c972268a8ce4ab90e3264c091" where
+            ID="stockmanagement-1758855877841-254" AND MD5SUM="8:ffe07f55b0893e906ee62a5386a7fd66";
+            update liquibasechangelog set MD5SUM="8:2db08165994a8ec42e5b009e94cde53f" where
+            ID="stockmanagement-1758855877841-255" AND MD5SUM="8:36e11721b018eda3cd7dcd7f3546da20";
+            update liquibasechangelog set MD5SUM="8:00d0c4826356e7bf16e4ec97414a0722" where
+            ID="stockmanagement-1758855877841-257" AND MD5SUM="8:7e604e96d3b32d15ddb35c3699f8df4c";
+            update liquibasechangelog set MD5SUM="8:3ee8002312f20896cb17551710873e0b" where
+            ID="stockmanagement-1758855877841-258" AND MD5SUM="8:398f9c5f414229a3597b904a57d9c285";
+            update liquibasechangelog set MD5SUM="8:0e813cd209a573c0f753b562c273d2c7" where
+            ID="stockmanagement-1758855877841-259" AND MD5SUM="8:3ed5dc94619eb292474a18786de1d668";
+            update liquibasechangelog set MD5SUM="8:dc201dbda6095194a1f4e6c14f402926" where
+            ID="stockmanagement-1758855877841-261" AND MD5SUM="8:4312bc4d3f2604535f0498702bc5fd77";
+            update liquibasechangelog set MD5SUM="8:10eb7761cafbd358f476a0a9902086dc" where
+            ID="stockmanagement-1758855877841-262" AND MD5SUM="8:bb68c84c5ebf4a2c7c66a868b33428ea";
+            update liquibasechangelog set MD5SUM="8:5e6ce0921bd0768f4d846560cdba9123" where
+            ID="stockmanagement-1758855877841-263" AND MD5SUM="8:2716f80457933b3481522a280b3ef009";
+            update liquibasechangelog set MD5SUM="8:a8117719ee719863b17937cc815d8d7f" where
+            ID="stockmanagement-1758855877841-265" AND MD5SUM="8:4cdfd9655c762e8b5373185e27d7906a";
+            update liquibasechangelog set MD5SUM="8:243f709240dfb0598d7c4a1ec0877a5d" where
+            ID="stockmanagement-1758855877841-266" AND MD5SUM="8:6075855de9382fcc10ae9eb4169b4938";
+            update liquibasechangelog set MD5SUM="8:d7b41f1048d2d0eb0c818afc3be5a048" where
+            ID="stockmanagement-1758855877841-267" AND MD5SUM="8:d5007b1a929333a157b48ed5cdfbce7a";
+            update liquibasechangelog set MD5SUM="8:15a5482ffc8d19e5ade3059b1eac54a4" where
+            ID="stockmanagement-1758855877841-269" AND MD5SUM="8:50c7835794ac7caedb8a39ab4ecc5c7b";
+            update liquibasechangelog set MD5SUM="8:0e95e6b794fdcdba2d52b7015b3d83eb" where
+            ID="stockmanagement-1758855877841-270" AND MD5SUM="8:c78533a513dfa51b82eebf8b9265a820";
+            update liquibasechangelog set MD5SUM="8:db8994531ca754e8c561ba8eb670bb63" where
+            ID="stockmanagement-1758855877841-271" AND MD5SUM="8:135dc83d28e58d2012f56857cff5b402";
+            update liquibasechangelog set MD5SUM="8:8dfa749657d63b9fec18713cd1f4eb94" where
+            ID="stockmanagement-1758855877841-272" AND MD5SUM="8:cf3d0fde28a168823336ac1d4533fb06";
+            update liquibasechangelog set MD5SUM="8:bbc0d3614af0757261cbdd217432d9df" where
+            ID="stockmanagement-1758855877841-301" AND MD5SUM="8:bdcdb2a309f36979e640c518d05000c9";
+            update liquibasechangelog set MD5SUM="8:d9b50cabaad0f301b98e3dc787b02d14" where
+            ID="stockmanagement-1758855877841-311" AND MD5SUM="8:dcc0c6cc01c090427cff12ba168b7818";
+            update liquibasechangelog set MD5SUM="8:983024c01a79b491a143602c20ed32c7" where
+            ID="stockmanagement-1758855877841-313" AND MD5SUM="8:eef1a05906fa9c47ed205da9b6e5d2a8";
+            update liquibasechangelog set MD5SUM="8:e477471ac14e504234e45c5490ecb6a0" where
+            ID="stockmanagement-1758855877841-332" AND MD5SUM="8:3d6d3f97bec84454996da0cc248e0f1d";
+            update liquibasechangelog set MD5SUM="8:aea8af274b5e3a0c01794e34de6807a9" where
+            ID="stockmanagement-1758855877841-333" AND MD5SUM="8:ba17bee92d14027c12d900280fee161c";
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="ugandaemr-20251105-post-metadata-installation-task" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.PostMetaDataInstallationTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Post MetaData Installation Task into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="Post MetaData Installation"/>
+            <column name="description" value="Installation of metadata post start incase it failed on start "/>
+            <column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.PostMetaDataInstallationTask"/>
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss"/>
+            <column name="start_time" valueDate="2017-06-01T11:59:59"/>
+            <column name="repeat_interval" value="86400"/>
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="created_by" value="1"/>
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="0"/>
+            <column name="uuid" value="2d8812bc-ba60-11f0-b8b7-f4d343d76c98"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ugandaemr-20260310-create-non-patient-queue" author="slubwama">
+        <createTable tableName="non_patient_queue">
+            <column name="non_patient_queue_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="uuid" type="varchar(38)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="creator" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="changed_by" type="INT"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="voided" type="bit" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voided_by" type="INT"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)"/>
+
+            <column name="ticket_number" type="varchar(50)"/>
+            <column name="display_name" type="varchar(255)"/>
+            <column name="phone_number" type="varchar(50)"/>
+            <column name="queue_type" type="varchar(100)"/>
+            <column name="status" type="varchar(50)"/>
+
+            <column name="current_location" type="INT"/>
+            <column name="location_to" type="INT"/>
+            <column name="queue_room" type="INT"/>
+
+            <column name="called_by" type="INT"/>
+            <column name="served_by" type="INT"/>
+
+            <column name="priority" type="INT"/>
+            <column name="comment" type="TEXT"/>
+
+            <column name="called_at" type="datetime"/>
+            <column name="arrived_at" type="datetime"/>
+            <column name="started_at" type="datetime"/>
+            <column name="ended_at" type="datetime"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="creator"
+                referencedTableName="users"
+                referencedColumnNames="user_id"
+                constraintName="fk_npq_creator"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="changed_by"
+                referencedTableName="users"
+                referencedColumnNames="user_id"
+                constraintName="fk_npq_changed_by"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="voided_by"
+                referencedTableName="users"
+                referencedColumnNames="user_id"
+                constraintName="fk_npq_voided_by"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="current_location"
+                referencedTableName="location"
+                referencedColumnNames="location_id"
+                constraintName="fk_npq_current_location"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="location_to"
+                referencedTableName="location"
+                referencedColumnNames="location_id"
+                constraintName="fk_npq_location_to"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="queue_room"
+                referencedTableName="location"
+                referencedColumnNames="location_id"
+                constraintName="fk_npq_queue_room"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="called_by"
+                referencedTableName="provider"
+                referencedColumnNames="provider_id"
+                constraintName="fk_npq_called_by"/>
+
+        <addForeignKeyConstraint
+                baseTableName="non_patient_queue"
+                baseColumnNames="served_by"
+                referencedTableName="provider"
+                referencedColumnNames="provider_id"
+                constraintName="fk_npq_served_by"/>
+    </changeSet>
 
 </databaseChangeLog>
 

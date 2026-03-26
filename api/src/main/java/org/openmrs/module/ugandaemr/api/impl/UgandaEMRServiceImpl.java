@@ -4,30 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.openmrs.CareSetting;
-import org.openmrs.Concept;
-import org.openmrs.ConceptNumeric;
-import org.openmrs.DrugOrder;
-import org.openmrs.Encounter;
-import org.openmrs.EncounterType;
-import org.openmrs.EncounterRole;
-import org.openmrs.Location;
-import org.openmrs.Obs;
-import org.openmrs.Order;
-import org.openmrs.OrderType;
-import org.openmrs.Patient;
-import org.openmrs.Provider;
-import org.openmrs.PatientIdentifier;
-import org.openmrs.PatientIdentifierType;
-import org.openmrs.PatientProgram;
-import org.openmrs.PatientProgramAttribute;
-import org.openmrs.ProgramAttributeType;
-import org.openmrs.Person;
-import org.openmrs.Relationship;
-import org.openmrs.TestOrder;
-import org.openmrs.Visit;
-import org.openmrs.VisitType;
-import org.openmrs.User;
+import org.openmrs.*;
 import org.openmrs.api.*;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
@@ -55,6 +32,7 @@ import org.openmrs.module.ugandaemr.api.SimpleObject;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaEMRPatientFlagMetadataBundle;
+import org.openmrs.module.ugandaemr.api.model.NonPatientQueue;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.Identifier;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
@@ -95,6 +73,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import static org.openmrs.OrderType.TEST_ORDER_TYPE_UUID;
+import static org.openmrs.api.context.Context.getAdministrationService;
+import static org.openmrs.module.patientqueueing.PatientQueueingConfig.ROOM_TAG_UUID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_IN;
 import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_OUT;
@@ -1657,6 +1637,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueue.setCreator(Context.getUserService().getUsersByPerson(provider.getPerson(), false).get(0));
                 patientQueue.setDateCreated(new Date());
                 patientQueueingService.assignVisitNumberForToday(patientQueue);
+                patientQueue.setVisitNumber(generateVisitNumber(patientQueue.getQueueRoom(),patientQueue.getPatient()));
                 patientQueueingService.savePatientQue(patientQueue);
             }
         }
@@ -1915,11 +1896,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("import to Concept_Reference Table  Successful");
 
         log.info("import  to Concept_Reference_Range Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Reference_Range.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Reference_Range.xml");
         log.info("import to Concept_Reference_Range Table  Successful");
 
         log.info("import  to Concept_Reference_Range Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Reference_Range.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Reference_Range.xml");
         log.info("import to Concept_Reference_Range Table  Successful");
 
         log.info("Retire Meta data");
@@ -2275,6 +2256,40 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         }
     }
 
+    @Override
+    public List<Patient> getPatientByPhoneNumber(String phoneNumber) {
+        if (StringUtils.isBlank(phoneNumber)) {
+            return Collections.emptyList();
+        }
+
+        String sql = String.format("select p.uuid from person p inner join person_attribute pa on p.person_id = pa.person_id where pa.value = '%s'", phoneNumber);
+
+        List<List<Object>> rows = getAdministrationService().executeSQL(sql, false);
+
+        if (rows == null || rows.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<Patient> patients = new ArrayList<>();
+        PatientService patientService = Context.getPatientService();
+
+        for (List<Object> row : rows) {
+            if (row == null || row.isEmpty() || row.get(0) == null) {
+                continue;
+            }
+
+            String patientUuid = row.get(0).toString();
+            Patient patient = patientService.getPatientByUuid(patientUuid);
+
+            if (patient != null) {
+                patients.add(patient);
+            }
+        }
+
+        return patients;
+    }
+
+
     public void downloadAndExtractFolder(String owner, String repo, String branch, String folder, String destination) throws IOException {
         String zipUrl = "https://github.com/" + owner + "/" + repo + "/archive/refs/heads/" + branch + ".zip";
         String zipPath = destination + "/repo.zip";
@@ -2459,8 +2474,248 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         // Use String.format to insert the quoted and escaped value
         String sql = String.format("SELECT order_id FROM orders WHERE accession_number = '%s'", safeAccessionNumber);
 
-        List<List<Object>> results = Context.getAdministrationService().executeSQL(sql, true);
+        List<List<Object>> results = getAdministrationService().executeSQL(sql, true);
         return !results.isEmpty();
+    }
+
+    public Provider getLeastBusyProviderForLocation(Location location) {
+        if (location == null) {
+            return null;
+        }
+
+        String sql = "SELECT p.provider_id " +
+                "FROM provider p " +
+                "INNER JOIN provider_attribute pa ON pa.provider_id = p.provider_id " +
+                "    AND pa.voided = 0 " +
+                "INNER JOIN provider_attribute_type pat ON pat.provider_attribute_type_id = pa.attribute_type_id " +
+                "    AND pat.retired = 0 " +
+                "    AND pat.uuid = '13a721e4-68e5-4f7a-8aee-3cbcec127179' " +
+                "INNER JOIN location l ON l.uuid = pa.value_reference " +
+                "LEFT JOIN patient_queue pq ON pq.provider_id = p.provider_id " +
+                "    AND pq.location_to = l.location_id " +
+                "    AND COALESCE(pq.voided, 0) = 0 " +
+                "    AND pq.date_completed IS NULL " +
+                "WHERE p.retired = 0 " +
+                "  AND l.location_id = " + location.getLocationId() + " " +
+                "GROUP BY p.provider_id " +
+                "ORDER BY COUNT(pq.patient_queue_id) ASC, RAND() " +
+                "LIMIT 1";
+
+        List<List<Object>> results = Context.getAdministrationService().executeSQL(sql, true);
+
+        if (results == null || results.isEmpty()) {
+            return null;
+        }
+
+        List<Object> row = results.get(0);
+        if (row == null || row.isEmpty() || row.get(0) == null) {
+            return null;
+        }
+
+        Integer providerId = ((Number) row.get(0)).intValue();
+        return Context.getProviderService().getProvider(providerId);
+    }
+
+
+    @Override
+    public NonPatientQueue createQueueEntry(String displayName, String phoneNumber, NonPatientQueue.NonPatientQueueType queueType,
+                                            Location currentLocation, Location locationTo, Location queueRoom,
+                                            Integer priority, String comment) {
+        NonPatientQueue queue = new NonPatientQueue();
+        queue.setUuid(UUID.randomUUID().toString());
+        queue.setDisplayName(displayName);
+        queue.setPhoneNumber(phoneNumber);
+        queue.setQueueType(queueType);
+        queue.setCurrentLocation(currentLocation);
+        queue.setLocationTo(locationTo);
+        queue.setQueueRoom(queueRoom);
+        queue.setPriority(priority);
+        queue.setComment(comment);
+        queue.setStatus(NonPatientQueue.NonPatientQueueStatus.WAITING);
+        queue.setTicketNumber(generateTicketNumber(queueType));
+        return dao.saveNonPatientQueue(queue);
+    }
+
+    @Override
+    public NonPatientQueue saveQueueEntry(NonPatientQueue queue) {
+        return dao.saveNonPatientQueue(queue);
+    }
+
+    @Override
+    public NonPatientQueue getQueueEntryById(Integer id) {
+        return dao.getNonPatientQueueById(id);
+    }
+
+    @Override
+    public NonPatientQueue getQueueEntryByUuid(String uuid) {
+        return dao.getNonPatientQueueByUuid(uuid);
+    }
+
+    @Override
+    public List<NonPatientQueue> getQueueEntryByTicketNumber(String ticketNumber, Date fromDate, Date toDate) {
+        return dao.getNonPatientQueueByTicketNumber(ticketNumber, fromDate, toDate);
+    }
+
+    @Override
+    public List<NonPatientQueue> getQueueEntriesByQueueRoom(Location queueRoom, Date fromDate, Date toDate) {
+        LocationTag queueRomTag = Context.getLocationService().getLocationTagByUuid(ROOM_TAG_UUID);
+
+        List<Location> childLocations = new ArrayList<>();
+        flattenLocationHierarchy(queueRoom, childLocations, queueRomTag, true);
+        return dao.getNonPatientQueuesByQueueRoom(childLocations, fromDate, toDate);
+    }
+
+    @Override
+    public List<NonPatientQueue> getQueueEntriesByQueueRoomAndStatus(Location queueRoom, NonPatientQueue.NonPatientQueueStatus status) {
+        LocationTag queueRomTag = Context.getLocationService().getLocationTagByUuid(ROOM_TAG_UUID);
+
+        List<Location> childLocations = new ArrayList<>();
+        flattenLocationHierarchy(queueRoom, childLocations, queueRomTag, true);
+        return dao.getNonPatientQueuesByQueueRoomAndStatus(childLocations, status);
+    }
+
+    @Override
+    public List<NonPatientQueue> getAllActiveQueueEntries() {
+        return dao.getAllActiveNonPatientQueues();
+    }
+
+    @Override
+    public NonPatientQueue callQueueEntry(NonPatientQueue queue, Provider provider) {
+        queue.setStatus(NonPatientQueue.NonPatientQueueStatus.CALLED);
+        queue.setCalledBy(provider);
+        queue.setCalledAt(new Date());
+        return dao.saveNonPatientQueue(queue);
+    }
+
+    @Override
+    public NonPatientQueue markArrived(NonPatientQueue queue) {
+        queue.setStatus(NonPatientQueue.NonPatientQueueStatus.ARRIVED);
+        queue.setArrivedAt(new Date());
+        return dao.saveNonPatientQueue(queue);
+    }
+
+    @Override
+    public NonPatientQueue startServing(NonPatientQueue queue, Provider provider) {
+        queue.setStatus(NonPatientQueue.NonPatientQueueStatus.SERVING);
+        queue.setServedBy(provider);
+        queue.setStartedAt(new Date());
+        return dao.saveNonPatientQueue(queue);
+    }
+
+    @Override
+    public NonPatientQueue completeQueueEntry(NonPatientQueue queue, Provider provider) {
+        queue.setStatus(NonPatientQueue.NonPatientQueueStatus.COMPLETED);
+        queue.setServedBy(provider);
+        queue.setEndedAt(new Date());
+        return dao.saveNonPatientQueue(queue);
+    }
+
+    @Override
+    public void voidQueueEntry(NonPatientQueue queue, String reason) {
+        queue.setVoided(true);
+        queue.setVoidReason(reason);
+        dao.saveNonPatientQueue(queue);
+    }
+
+    private String generateTicketNumber(NonPatientQueue.NonPatientQueueType queueType) {
+        String prefix = resolvePrefix(queueType);
+        String datePart = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        long numberPart = System.currentTimeMillis() % 1000;
+        return datePart + "-" + prefix + "-" + String.format("%03d", numberPart);
+    }
+
+    private String resolvePrefix(NonPatientQueue.NonPatientQueueType queueType) {
+        if (queueType == null) {
+            return "GEN";
+        }
+        if (queueType.equals(NonPatientQueue.NonPatientQueueType.REGISTRATION)) {
+            return "REG";
+        }
+        if (queueType.equals(NonPatientQueue.NonPatientQueueType.VISITOR)) {
+            return "VIS";
+        }
+        if (queueType.equals(NonPatientQueue.NonPatientQueueType.ADMIN)) {
+            return "ADM";
+        }
+        if (queueType.equals(NonPatientQueue.NonPatientQueueType.PAYMENT)) {
+            return "PAY";
+        }
+        return "GEN";
+    }
+
+    private void flattenLocationHierarchy(Location parentLocation, List<Location> childLocations, LocationTag locationTag,
+                                          boolean onlyInQueueRooms) {
+        if (onlyInQueueRooms) {
+            if (parentLocation.getTags().contains(locationTag)) {
+                childLocations.add(parentLocation);
+            }
+        } else {
+            childLocations.add(parentLocation);
+        }
+
+        for (Location childLocation : parentLocation.getChildLocations(false)) {
+            flattenLocationHierarchy(childLocation, childLocations, locationTag, onlyInQueueRooms);
+        }
+    }
+
+    public String generateVisitNumber(Location location, Patient patient) {
+        Date today = new Date();
+        SimpleDateFormat formatterExt = new SimpleDateFormat("dd/MM/yyyy");
+
+        String dateString = formatterExt.format(today);
+        String locationName = location.getName();
+        if (locationName.length() > 3) {
+            locationName = locationName.substring(0, 3);
+        }
+
+        String prefix = dateString + "-" + locationName + "-";
+
+        Set<Integer> issuedNumbers = new HashSet<>();
+
+
+        List<PatientQueue> patientQueues = Context.getService(PatientQueueingService.class).getPatientQueueList((Provider)null, OpenmrsUtil.firstSecondOfDay(today), OpenmrsUtil.getLastMomentOfDay(today), (Location)null, (Location)null, patient, (PatientQueue.Status)null);
+
+        for (PatientQueue queue : patientQueues) {
+            Integer seq = extractSequenceNumber(queue.getVisitNumber(), prefix);
+            if (seq != null) {
+                issuedNumbers.add(seq);
+            }
+        }
+
+        // Non-patient queues
+        List<NonPatientQueue> nonPatientQueues = this.getQueueEntriesByQueueRoom(
+                location,
+                OpenmrsUtil.firstSecondOfDay(today),
+                OpenmrsUtil.getLastMomentOfDay(today)
+        );
+
+        for (NonPatientQueue queue : nonPatientQueues) {
+            Integer seq = extractSequenceNumber(queue.getTicketNumber(), prefix);
+            if (seq != null) {
+                issuedNumbers.add(seq);
+            }
+        }
+
+        int nextNumberInQueue = issuedNumbers.isEmpty() ? 1 : Collections.max(issuedNumbers) + 1;
+
+        return prefix + String.format("%03d", nextNumberInQueue);
+    }
+
+    private Integer extractSequenceNumber(String queueNumber, String prefix) {
+        if (queueNumber == null || !queueNumber.startsWith(prefix)) {
+            return null;
+        }
+
+        String suffix = queueNumber.substring(prefix.length()).trim();
+        if (suffix.isEmpty()) {
+            return null;
+        }
+
+        try {
+            return Integer.valueOf(suffix);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
 }
