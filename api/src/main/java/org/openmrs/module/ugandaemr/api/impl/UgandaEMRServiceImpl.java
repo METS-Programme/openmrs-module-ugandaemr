@@ -1935,15 +1935,15 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("UgandaEMR Privileges Imported");
 
         log.info("Start import of UgandaEMR Visits");
-        dataImporter.importData(metaDataFilePath + "VisitTypes.xml");
+        //dataImporter.importData(metaDataFilePath + "VisitTypes.xml");
         log.info("UgandaEMR Visits Imported");
 
         log.info("Start import of UgandaEMR Relationship Types");
-        dataImporter.importData(metaDataFilePath + "RelationshipTypes.xml");
+        //dataImporter.importData(metaDataFilePath + "RelationshipTypes.xml");
         log.info("UgandaEMR Relationship Types Imported");
 
         log.info("Start import of Program related objects");
-        dataImporter.importData(metaDataFilePath + "Programs.xml");
+        //dataImporter.importData(metaDataFilePath + "Programs.xml");
         log.info(" Program related objects Imported");
 
         log.info("import  of  Drugs  Starting");
@@ -1951,7 +1951,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("import of Drugs  Successful");
 
         log.info("Start import of orderFrequencies related objects");
-        dataImporter.importData(metaDataFilePath + "order_frequency.xml");
+        //dataImporter.importData(metaDataFilePath + "order_frequency.xml");
         log.info(" orderFrequencies related objects Imported");
 
         log.info("Start import of stock item objects");
