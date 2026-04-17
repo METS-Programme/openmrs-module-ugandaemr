@@ -3,6 +3,7 @@ package org.openmrs.module.ugandaemr.api.impl;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.openmrs.CareSetting;
 import org.openmrs.Concept;
@@ -36,7 +37,6 @@ import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.adt.AdtService;
-import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
@@ -52,8 +52,6 @@ import org.openmrs.module.ugandaemr.activator.AppConfigurationInitializer;
 import org.openmrs.module.ugandaemr.activator.Initializer;
 import org.openmrs.module.ugandaemr.activator.JsonFormsInitializer;
 import org.openmrs.module.ugandaemr.api.SimpleObject;
-import org.openmrs.module.ugandaemr.api.deploy.bundle.CommonMetadataBundle;
-import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaEMRPatientFlagMetadataBundle;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.Identifier;
@@ -88,7 +86,6 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.DirectoryStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
@@ -1680,7 +1677,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         OrderService orderService = Context.getOrderService();
         Order order = orderService.getOrderByUuid(orderUuid);
 
-        if (order == null || accessionNumber == null || specimenSourceUuid == null) {
+        if (order == null || StringUtils.isBlank(accessionNumber) || StringUtils.isBlank(specimenSourceUuid)) {
             return null;
         }
 
@@ -1688,23 +1685,33 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 ? "Order referred to CPHL"
                 : "To be processed";
 
-        // If order has accession number and it's different, update it
-        if (StringUtils.isNotBlank(order.getAccessionNumber()) &&
-                !StringUtils.equals(accessionNumber, order.getAccessionNumber())) {
-            return (TestOrder) orderService.updateOrderFulfillerStatus(
-                    order, Order.FulfillerStatus.IN_PROGRESS, fulfillerComment, accessionNumber);
-        }
+        Integer patientId = order.getPatient() != null ? order.getPatient().getPatientId() : null;
+        Integer conceptId = order.getConcept() != null ? order.getConcept().getConceptId() : null;
 
-        // Case: new test order needs to be created
         if (StringUtils.isNotBlank(instructions)) {
             if (!validateCPHLBarCode(accessionNumber)) {
                 throw new IllegalArgumentException(String.format("SampleId %s is not a valid barcode", accessionNumber));
             }
 
-            if (accessionNumberAlreadyUsed(accessionNumber)) {
+            if (accessionNumberAlreadyUsed(accessionNumber, patientId, conceptId)) {
                 throw new IllegalArgumentException(String.format("SampleId %s is already in use", accessionNumber));
             }
+        }
 
+        // Existing order already has an accession number and caller is changing it
+        if (StringUtils.isNotBlank(order.getAccessionNumber())
+                && !StringUtils.equals(accessionNumber, order.getAccessionNumber())
+                && StringUtils.isBlank(instructions)) {
+
+            TestOrder updatedOrder = (TestOrder) orderService.updateOrderFulfillerStatus(
+                    order, Order.FulfillerStatus.IN_PROGRESS, fulfillerComment, accessionNumber);
+
+            updateSpecimenSourceManually(order, specimenSourceUuid);
+            return updatedOrder;
+        }
+
+        // Create revised order when instructions are provided
+        if (StringUtils.isNotBlank(instructions)) {
             TestOrder testOrder = new TestOrder();
             testOrder.setAccessionNumber(accessionNumber);
             testOrder.setInstructions("REFER TO " + instructions.toUpperCase());
@@ -1727,7 +1734,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             return testOrder;
         }
 
-        // Case: no instructions — update existing order
+        // Default: update existing order
         TestOrder updatedOrder = (TestOrder) orderService.updateOrderFulfillerStatus(
                 order, Order.FulfillerStatus.IN_PROGRESS, fulfillerComment, accessionNumber);
 
@@ -1915,11 +1922,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         log.info("import to Concept_Reference Table  Successful");
 
         log.info("import  to Concept_Reference_Range Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/Concept_Reference_Range.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/Concept_Reference_Range.xml");
         log.info("import to Concept_Reference_Range Table  Successful");
 
         log.info("import  to Concept_Reference_Range Table  Starting");
-        dataImporter.importData(metaDataFilePath+"concepts_and_drugs/tools-2024/Concept_Reference_Range.xml");
+        dataImporter.importData(metaDataFilePath + "concepts_and_drugs/tools-2024/Concept_Reference_Range.xml");
         log.info("import to Concept_Reference_Range Table  Successful");
 
         log.info("Retire Meta data");
@@ -2452,15 +2459,105 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
 
-    private boolean accessionNumberAlreadyUsed(String accessionNumber) {
-        // Escape single quotes to prevent SQL injection or errors
+    private boolean accessionNumberAlreadyUsed(String accessionNumber, Integer patientId, Integer conceptId) {
+        if (StringUtils.isBlank(accessionNumber) || patientId == null) {
+            return false;
+        }
+
         String safeAccessionNumber = accessionNumber.replace("'", "''");
+        String startOfDay = null;
+        try {
+            startOfDay = org.openmrs.module.ugandaemr.utils.DateFormatUtil
+                    .dateFormtterString(new Date(), DAY_START_TIME);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
-        // Use String.format to insert the quoted and escaped value
-        String sql = String.format("SELECT order_id FROM orders WHERE accession_number = '%s'", safeAccessionNumber);
+        if (!isConceptAllowedToDuplicateAccessionNumber(conceptId)) {
+            String sql = String.format(
+                    "SELECT order_id FROM orders " +
+                            "WHERE accession_number = '%s' " +
+                            "AND voided = 0",
+                    safeAccessionNumber
+            );
 
-        List<List<Object>> results = Context.getAdministrationService().executeSQL(sql, true);
-        return !results.isEmpty();
+            List<List<Object>> results = Context.getAdministrationService().executeSQL(sql, true);
+            return !results.isEmpty();
+        }
+
+        String previousDaySql = String.format(
+                "SELECT order_id FROM orders " +
+                        "WHERE accession_number = '%s' " +
+                        "AND voided = 0 " +
+                        "AND date_created < '%s'",
+                safeAccessionNumber, startOfDay
+        );
+
+        List<List<Object>> previousDayResults =
+                Context.getAdministrationService().executeSQL(previousDaySql, true);
+
+        if (!previousDayResults.isEmpty()) {
+            return true;
+        }
+
+        String differentPatientTodaySql = String.format(
+                "SELECT order_id FROM orders " +
+                        "WHERE accession_number = '%s' " +
+                        "AND voided = 0 " +
+                        "AND date_created >= '%s' " +
+                        "AND patient_id <> %d",
+                safeAccessionNumber, startOfDay, patientId
+        );
+
+        List<List<Object>> differentPatientTodayResults =
+                Context.getAdministrationService().executeSQL(differentPatientTodaySql, true);
+
+        return !differentPatientTodayResults.isEmpty();
+    }
+
+
+    private boolean isConceptAllowedToDuplicateAccessionNumber(Integer conceptId) {
+        if (conceptId == null) {
+            return false;
+        }
+
+        String gpValue = Context.getAdministrationService()
+                .getGlobalProperty("ugandaemrsync.testReferralValidators");
+
+        if (StringUtils.isBlank(gpValue)) {
+            log.warn("Global property ugandaemrsync.testReferralValidators is empty or missing");
+            return false;
+        }
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(gpValue);
+            JsonNode allowable = root.path("allowableMultiTestInOneBundle");
+
+            if (!allowable.isArray()) {
+                log.warn("Missing or invalid 'allowableMultiTestInOneBundle' in testReferralValidators GP");
+                return false;
+            }
+
+            for (JsonNode node : allowable) {
+                String conceptUuid = node.getTextValue();
+                Concept concept = Context.getConceptService().getConceptByUuid(conceptUuid);
+
+                if (concept == null) {
+                    log.warn("No concept found for UUID: " + conceptUuid);
+                    continue;
+                }
+
+                if (conceptId.equals(concept.getConceptId())) {
+                    return true;
+                }
+            }
+        }
+        catch (Exception e) {
+            log.error("Invalid JSON in global property ugandaemrsync.testReferralValidators", e);
+        }
+
+        return false;
     }
 
 }
