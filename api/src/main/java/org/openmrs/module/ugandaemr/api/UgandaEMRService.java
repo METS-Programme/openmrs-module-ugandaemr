@@ -18,6 +18,7 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.activator.Initializer;
+import org.openmrs.module.ugandaemr.api.dto.StabilityCriteria;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
@@ -427,6 +428,15 @@ public interface UgandaEMRService extends OpenmrsService {
 
     public void downloadFrontendFromGitHub();
     public void downloadOmodsFromGitHub();
+
+    /**
+     * Generates stability criteria for a patient based on their clinical data
+     * @param patient the patient to generate stability criteria for
+     * @param encounter the encounter (can be null)
+     * @param visit the visit (can be null)
+     * @return StabilityCriteria object containing the patient's stability information
+     */
+    public StabilityCriteria generateStabilityCriteria(Patient patient, Encounter encounter, Visit visit);
 
 
 }
