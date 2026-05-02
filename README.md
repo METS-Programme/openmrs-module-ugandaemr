@@ -1,4 +1,7 @@
 # UgandaEMR OpenMRS Module
+[![License](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![OpenMRS](https://img.shields.io/badge/OpenMRS-2.7%2B-blue.svg)](https://openmrs.org)
+[![Version](https://img.shields.io/badge/version-5.0.5--SNAPSHOT-orange.svg)](https://github.com/METS-Programme/openmrs-module-ugandaemr-sync)
 
 UgandaEMR is a comprehensive electronic medical records system built as an extension module for the OpenMRS platform. It provides specialized functionality for healthcare delivery in Uganda, including patient management, laboratory services, pharmacy operations, and clinical decision support.
 
