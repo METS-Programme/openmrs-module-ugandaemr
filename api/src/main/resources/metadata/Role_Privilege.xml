@@ -648,6 +648,28 @@
 
     <privilege privilege="Task: Create new bill" description="Able to access bill page" uuid="bc8c512c-cef4-45ea-a594-6e956a30154a"/>
 
+    <!-- UGANDAEMR SYNC PRIVILEGES -->
+    <privilege privilege="UgandaemrSync: View Sync Tasks" description="Allows viewing sync task history and status" uuid="a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d"/>
+    <privilege privilege="UgandaemrSync: Manage Sync Tasks" description="Allows creating and managing sync tasks" uuid="b2c3d4e5-f6a7-4b5c-9d0e-1f2a3b4c5d6e"/>
+    <privilege privilege="UgandaemrSync: View Sync Task Types" description="Allows viewing sync task type configurations" uuid="c3d4e5f6-a7b8-4c5d-0e1f-2a3b4c5d6e7f"/>
+    <privilege privilege="UgandaemrSync: Manage Sync Task Types" description="Allows managing sync task type configurations" uuid="d4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a"/>
+    <privilege privilege="UgandaemrSync: View FHIR Resources" description="Allows viewing FHIR sync resources" uuid="e5f6a7b8-c9d0-4e5f-2a3b-4c5d6e7f8a9b"/>
+    <privilege privilege="UgandaemrSync: Manage FHIR Resources" description="Allows managing FHIR sync resources" uuid="f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c"/>
+    <privilege privilege="UgandaemrSync: View FHIR Profiles" description="Allows viewing FHIR profile configurations" uuid="a7b8c9d0-e1f2-4a5b-4c5d-6e7f8a9b0c1d"/>
+    <privilege privilege="UgandaemrSync: Manage FHIR Profiles" description="Allows managing FHIR profile configurations" uuid="b8c9d0e1-f2a3-4b5c-5d6e-7f8a9b0c1d2e"/>
+    <privilege privilege="UgandaemrSync: View FHIR Cases" description="Allows viewing FHIR case-based profiles" uuid="c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f"/>
+    <privilege privilege="UgandaemrSync: Manage FHIR Cases" description="Allows managing FHIR case-based profiles" uuid="d0e1f2a3-b4c5-4d5e-7f8a-9b0c1d2e3f4a"/>
+    <privilege privilege="UgandaemrSync: View Lab Results" description="Allows viewing lab results from external systems" uuid="e1f2a3b4-c5d6-4e5f-8a9b-0c1d2e3f4a5b"/>
+    <privilege privilege="UgandaemrSync: Manage Lab Results" description="Allows managing lab results from external systems" uuid="f2a3b4c5-d6e7-4f5a-9b0c-1d2e3f4a5b6c"/>
+    <privilege privilege="UgandaemrSync: Manage Lab Orders" description="Allows sending lab orders to external systems" uuid="a3b4c5d6-e7f8-4a5b-0c1d-2e3f4a5b6c7d"/>
+    <privilege privilege="UgandaemrSync: View Referrals" description="Allows viewing referral information" uuid="b4c5d6e7-f8a9-4b5c-1d2e-3f4a5b6c7d8e"/>
+    <privilege privilege="UgandaemrSync: Manage Referrals" description="Allows managing referral information" uuid="c5d6e7f8-a9b0-4c5d-2e3f-4a5b6c7d8e9f"/>
+    <privilege privilege="UgandaemrSync: View Referral Orders" description="Allows viewing referral orders for CPHL" uuid="d6e7f8a9-b0c1-4d5e-3f4a-5b6c7d8e9f0a"/>
+    <privilege privilege="UgandaemrSync: View Reports" description="Allows viewing sync reports and statistics" uuid="e7f8a9b0-c1d2-4e5f-4a5b-6c7d8e9f0a1b"/>
+    <privilege privilege="UgandaemrSync: Send Reports" description="Allows sending reports to external systems" uuid="f8a9b0c1-d2e3-4f5a-5b6c-7d8e9f0a1b2c"/>
+    <privilege privilege="UgandaemrSync: View Sync Statistics" description="Allows viewing sync statistics and metrics" uuid="a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d"/>
+    <privilege privilege="UgandaemrSync: Manage Sync Configuration" description="Allows managing sync module configuration" uuid="b0c1d2e3-f4a5-4b5c-7d8e-9f0a1b2c3d4e"/>
+
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
     <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
@@ -1501,6 +1523,41 @@
     <role_privilege  role="Reception"  privilege="View Cashier Bills"/>
     <role_privilege  role="Reception"  privilege="View Cashier Metadata"/>
 
+    <!-- UGANDAEMR SYNC ROLE PRIVILEGE MAPPINGS -->
+
+    <!-- Laboratory staff get lab results and lab order management -->
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Sync Tasks"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View FHIR Resources"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View FHIR Profiles"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Lab Results"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: Manage Lab Results"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: Manage Lab Orders"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Referrals"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Referral Orders"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Reports"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Sync Statistics"/>
+
+    <!-- Privilege Level: Full gets all sync privileges -->
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Sync Tasks"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Sync Tasks"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Sync Task Types"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Sync Task Types"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View FHIR Resources"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage FHIR Resources"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View FHIR Profiles"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage FHIR Profiles"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View FHIR Cases"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage FHIR Cases"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Lab Results"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Lab Results"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Lab Orders"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Referrals"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Referrals"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Referral Orders"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Reports"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Send Reports"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Sync Statistics"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Sync Configuration"/>
 </dataset>
 
 
