@@ -54,12 +54,12 @@ Comprehensive documentation is available for developers, administrators, and use
 - **[API Documentation](./docs/API.md)** - Complete REST API reference with all endpoints, authentication, request/response formats, and usage examples
 - **[Architecture Documentation](./docs/ARCHITECTURE.md)** - System architecture overview, module structure, data flow, and design patterns
 - **[Security Documentation](./docs/SECURITY.md)** - Security improvements, best practices, vulnerability handling, and compliance information
-- **[Developer Guide](./DEVELOPMENT.md)** - Development environment setup, coding standards, testing guidelines, and contribution process
+- **[Developer Guide](./docs/DEVELOPMENT.md)** - Development environment setup, coding standards, testing guidelines, and contribution process
 
 ### Quick Reference
 
 **For Developers:**
-- Start with [Developer Guide](./DEVELOPMENT.md) for setup instructions
+- Start with [Developer Guide](./docs/DEVELOPMENT.md) for setup instructions
 - Review [Architecture Documentation](./docs/ARCHITECTURE.md) for system design understanding
 - Consult [API Documentation](./docs/API.md) for REST endpoint details
 - Follow [Security Guidelines](./docs/SECURITY.md) for secure development practices
@@ -67,7 +67,7 @@ Comprehensive documentation is available for developers, administrators, and use
 **For System Administrators:**
 - Review [Architecture Documentation](./docs/ARCHITECTURE.md) for deployment architecture
 - Consult [Security Documentation](./docs/SECURITY.md) for security configuration
-- Follow [Developer Guide](./DEVELOPMENT.md) deployment section for production setup
+- Follow [Developer Guide](./docs/DEVELOPMENT.md) deployment section for production setup
 
 **For API Users:**
 - Use [API Documentation](./docs/API.md) for complete endpoint reference
@@ -111,7 +111,7 @@ mvn test -Dtest=PatientServiceTest
 
 ### Development Setup
 
-Detailed development environment setup instructions are available in the [Developer Guide](./DEVELOPMENT.md).
+Detailed development environment setup instructions are available in the [Developer Guide](./docs/DEVELOPMENT.md).
 
 Key development commands:
 ```bash
@@ -175,7 +175,7 @@ The module includes comprehensive test coverage:
 - **Security Tests:** SQL injection prevention and input validation
 - **Performance Tests:** Batch processing and optimization verification
 
-See [Developer Guide](./DEVELOPMENT.md) for testing guidelines and standards.
+See [Developer Guide](./docs/DEVELOPMENT.md) for testing guidelines and standards.
 
 ## Performance Optimization
 
@@ -199,7 +199,7 @@ Systematic improvements across all aspects of the codebase:
 
 ## Contributing
 
-We welcome contributions to the UgandaEMR module! Please see the [Developer Guide](./DEVELOPMENT.md) for:
+We welcome contributions to the UgandaEMR module! Please see the [Developer Guide](./docs/DEVELOPMENT.md) for:
 
 - Development workflow and coding standards
 - Testing requirements and guidelines
