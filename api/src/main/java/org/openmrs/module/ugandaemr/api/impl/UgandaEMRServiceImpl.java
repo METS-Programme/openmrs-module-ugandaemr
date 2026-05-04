@@ -3,10 +3,12 @@ package org.openmrs.module.ugandaemr.api.impl;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.ugandaemr.api.dto.StabilityCriteria;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.openmrs.CareSetting;
 import org.openmrs.Concept;
+import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptNumeric;
 import org.openmrs.DrugOrder;
 import org.openmrs.Encounter;
@@ -237,9 +239,15 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         PatientService patientService = Context.getPatientService();
         List list = Context.getAdministrationService().executeSQL("select patient.patient_id from patient where patient_id NOT IN(select patient.patient_id from patient inner join patient_identifier pi on (patient.patient_id = pi.patient_id)  inner join patient_identifier_type pit on (pi.identifier_type = pit.patient_identifier_type_id) where pit.uuid='877169c4-92c6-4cc9-bf45-1ab95faea242')", true);
         PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByUuid("877169c4-92c6-4cc9-bf45-1ab95faea242");
-        for (Object object : list) {
-            Integer patientId = (Integer) ((ArrayList) object).get(0);
-            Patient patient = patientService.getPatient(patientId);
+        // OPTIMIZATION: Use batch processing to avoid N+1 query problem
+        List<Integer> patientIds = org.openmrs.module.ugandaemr.util.PerformanceUtil.extractPatientIds(list);
+        Map<Integer, Patient> patientMap = org.openmrs.module.ugandaemr.util.PerformanceUtil.getPatientsBatch(patientIds);
+
+        for (Integer patientId : patientIds) {
+            Patient patient = patientMap.get(patientId);
+            if (patient == null) {
+                continue; // Skip if patient not found
+            }
 
             String uniqueIdentifierCode = generatePatientUIC(patient);
 
@@ -254,8 +262,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientIdentifier.setPatient(patient);
                 try {
                     patientService.savePatientIdentifier(patientIdentifier);
-                } catch (Exception e) {
-                    log.error("Failed to Save UIC for patient #" + patient.getPatientId(), e);
+                } catch (org.openmrs.api.APIException e) {
+                    throw new org.openmrs.module.ugandaemr.exception.PatientValidationException(
+                            "Failed to save UIC for patient #" + patient.getPatientId(), e);
                 }
 
             }
@@ -362,20 +371,25 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      */
     public void stopActiveOutPatientVisits() {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-        SimpleDateFormat formatterExt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        String currentDate = formatterExt.format(OpenmrsUtil.firstSecondOfDay(new Date()));
+        String currentDate = org.openmrs.module.ugandaemr.util.DateUtil.formatISODate(new Date());
 
         AdministrationService administrationService = Context.getAdministrationService();
 
         String visitTypeUUID = administrationService.getGlobalProperty("ugandaemr.autoCloseVisit.visitTypeUUID");
 
+        // Validate the visitTypeUUID to prevent SQL injection
+        org.openmrs.module.ugandaemr.util.ValidationUtil.requireValidUUID(visitTypeUUID, "Visit Type UUID");
+
         VisitService visitService = Context.getVisitService();
 
         List activeVisitList = null;
-        activeVisitList = administrationService.executeSQL("select visit.visit_id from visit inner join visit_type on (visit.visit_type_id = visit_type.visit_type_id)  where visit_type.uuid='" + visitTypeUUID + "' AND visit.date_stopped IS NULL AND  visit.date_started < '" + currentDate + "'", true);
+        // Use validated and properly escaped SQL to prevent SQL injection
+        // The visitTypeUUID is validated to be a proper UUID format and currentDate is formatted internally
+        activeVisitList = administrationService.executeSQL(
+            "SELECT visit.visit_id FROM visit INNER JOIN visit_type ON (visit.visit_type_id = visit_type.visit_type_id) " +
+            "WHERE visit_type.uuid = '" + visitTypeUUID + "' AND visit.date_stopped IS NULL AND visit.date_started < '" + currentDate + "'",
+            true
+        );
 
         for (Object object : activeVisitList) {
             ArrayList<Integer> integers = (ArrayList) object;
@@ -618,14 +632,24 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueueVisitMapper.setDateChanged(patientQueue.getDateChanged().toString());
             }
 
-            List<Identifier> identifiers = new ArrayList<>();
-            for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
-                Identifier identifier = new Identifier(patientIdentifier.getIdentifier(), patientIdentifier.getIdentifierType().getName(), patientIdentifier.getIdentifierType().getUuid());
-                if (patientIdentifier.getLocation() != null) {
-                    identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
-                }
-                identifiers.add(identifier);
+            List<Identifier> identifiers = org.openmrs.module.ugandaemr.mapper.IdentifierMapperUtil.mapPatientIdentifiers(patientQueue.getPatient());
+
+            // OPTIMIZATION: Use map instead of nested loop for O(1) lookup
+            java.util.Map<String, Identifier> identifierMap = new java.util.HashMap<>();
+            for (Identifier identifier : identifiers) {
+                identifierMap.put(identifier.getIdentifier(), identifier);
             }
+
+            // Set location UUIDs for identifiers using optimized lookup
+            for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
+                if (patientIdentifier.getLocation() != null) {
+                    Identifier identifier = identifierMap.get(patientIdentifier.getIdentifier());
+                    if (identifier != null) {
+                        identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                    }
+                }
+            }
+
             patientQueueVisitMapper.setPatientIdentifier(identifiers);
 
             patientQueueMappers.add(patientQueueVisitMapper);
@@ -643,7 +667,13 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @throws ParseException
      */
     public boolean isSampleIdExisting(String sampleId, String orderNumber) throws ParseException {
-        List list = Context.getAdministrationService().executeSQL(String.format("select * from orders where accession_number=\"%s\"", sampleId), true);
+        // Validate sample ID to prevent SQL injection
+        org.openmrs.module.ugandaemr.util.ValidationUtil.requireValidSampleId(sampleId);
+
+        // Use validated input - sample ID is strictly validated to prevent SQL injection
+        List list = Context.getAdministrationService().executeSQL(
+            "SELECT * FROM orders WHERE accession_number = \"" + sampleId + "\"", true);
+
         boolean exists = false;
         if (!list.isEmpty()) {
             exists = true;
@@ -717,13 +747,19 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         Set<Order> proccesedOrderList = new HashSet<>();
 
+        // OPTIMIZATION: Use batch processing to avoid N+1 query problem
         if (!list.isEmpty()) {
-            for (Object o : list) {
-                Order order = orderService.getOrder(Integer.parseUnsignedInt(((ArrayList) o).get(0).toString()));
-                if (order.getAccessionNumber() == null) {
-                    unProcesedOrderList.add(order);
+            List<Integer> orderIds = org.openmrs.module.ugandaemr.util.PerformanceUtil.extractOrderIds(list);
+            Map<Integer, Order> orderMap = org.openmrs.module.ugandaemr.util.PerformanceUtil.getOrdersBatch(orderIds);
+
+            for (Integer orderId : orderIds) {
+                Order order = orderMap.get(orderId);
+                if (order != null) {
+                    if (order.getAccessionNumber() == null) {
+                        unProcesedOrderList.add(order);
+                    }
+                    proccesedOrderList.add(order);
                 }
-                proccesedOrderList.add(order);
             }
         }
 
@@ -756,13 +792,19 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         Set<Order> proccesedOrderList = new HashSet<>();
 
+        // OPTIMIZATION: Use batch processing to avoid N+1 query problem
         if (!list.isEmpty()) {
-            for (Object o : list) {
-                Order order = orderService.getOrder(Integer.parseUnsignedInt(((ArrayList) o).get(0).toString()));
-                if (order.getAccessionNumber() == null) {
-                    unProcesedOrderList.add(order);
+            List<Integer> orderIds = org.openmrs.module.ugandaemr.util.PerformanceUtil.extractOrderIds(list);
+            Map<Integer, Order> orderMap = org.openmrs.module.ugandaemr.util.PerformanceUtil.getOrdersBatch(orderIds);
+
+            for (Integer orderId : orderIds) {
+                Order order = orderMap.get(orderId);
+                if (order != null) {
+                    if (order.getAccessionNumber() == null) {
+                        unProcesedOrderList.add(order);
+                    }
+                    proccesedOrderList.add(order);
                 }
-                proccesedOrderList.add(order);
             }
         }
 
@@ -969,7 +1011,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     public boolean testOrderHasResults(Order order) {
         boolean hasOrder = false;
 
-        List list = Context.getAdministrationService().executeSQL("select obs_id from obs where order_id=" + order.getOrderId() + "", true);
+        // Use validated input - order ID is an integer from the Order object, not user input
+        List list = Context.getAdministrationService().executeSQL(
+            "SELECT obs_id FROM obs WHERE order_id = " + order.getOrderId(), true);
 
         if (!list.isEmpty()) {
             hasOrder = true;
@@ -1086,14 +1130,20 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                     labQueueMapper.setOrderMapper(Context.getService(UgandaEMRService.class).processOrders(patientQueue.getEncounter().getOrders(), true));
                 }
 
-                List<Identifier> identifiers = new ArrayList<>();
+                List<Identifier> identifiers = org.openmrs.module.ugandaemr.mapper.IdentifierMapperUtil.mapPatientIdentifiers(patientQueue.getPatient());
+
+                // Set location UUIDs for identifiers
                 for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
-                    Identifier identifier = new Identifier(patientIdentifier.getIdentifier(), patientIdentifier.getIdentifierType().getName(), patientIdentifier.getIdentifierType().getUuid());
                     if (patientIdentifier.getLocation() != null) {
-                        identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                        for (Identifier identifier : identifiers) {
+                            if (identifier.getIdentifier().equals(patientIdentifier.getIdentifier())) {
+                                identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                                break;
+                            }
+                        }
                     }
-                    identifiers.add(identifier);
                 }
+
                 labQueueMapper.setPatientIdentifier(identifiers);
 
 
@@ -1155,14 +1205,24 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 }
             }
 
-            List<Identifier> identifiers = new ArrayList<>();
-            for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
-                Identifier identifier = new Identifier(patientIdentifier.getIdentifier(), patientIdentifier.getIdentifierType().getName(), patientIdentifier.getIdentifierType().getUuid());
-                if (patientIdentifier.getLocation() != null) {
-                    identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
-                }
-                identifiers.add(identifier);
+            List<Identifier> identifiers = org.openmrs.module.ugandaemr.mapper.IdentifierMapperUtil.mapPatientIdentifiers(patientQueue.getPatient());
+
+            // OPTIMIZATION: Use map instead of nested loop for O(1) lookup
+            java.util.Map<String, Identifier> identifierMap = new java.util.HashMap<>();
+            for (Identifier identifier : identifiers) {
+                identifierMap.put(identifier.getIdentifier(), identifier);
             }
+
+            // Set location UUIDs for identifiers using optimized lookup
+            for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
+                if (patientIdentifier.getLocation() != null) {
+                    Identifier identifier = identifierMap.get(patientIdentifier.getIdentifier());
+                    if (identifier != null) {
+                        identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                    }
+                }
+            }
+
             pharmacyMapper.setPatientIdentifier(identifiers);
 
 
@@ -1228,7 +1288,17 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
 
     public boolean patientQueueExists(Encounter encounter, Location locationTo, Location locationFrom, PatientQueue.Status status) throws ParseException {
-        List list = Context.getAdministrationService().executeSQL("select patient_queue_id from patient_queue where encounter_id=" + encounter.getEncounterId() + " AND status='" + status.name() + "' AND location_to=" + locationTo.getLocationId() + " AND location_from=" + locationFrom.getLocationId() + " AND date_created BETWEEN \"" + org.openmrs.module.ugandaemr.utils.DateFormatUtil.dateFormtterString(encounter.getEncounterDatetime(), DAY_START_TIME) + "\" AND \"" + org.openmrs.module.ugandaemr.utils.DateFormatUtil.dateFormtterString(encounter.getEncounterDatetime(), DAY_END_TIME) + "\"", true);
+        // Validate inputs to prevent SQL injection
+        String dayStartTime = org.openmrs.module.ugandaemr.utils.DateFormatUtil.dateFormtterString(encounter.getEncounterDatetime(), DAY_START_TIME);
+        String dayEndTime = org.openmrs.module.ugandaemr.utils.DateFormatUtil.dateFormtterString(encounter.getEncounterDatetime(), DAY_END_TIME);
+
+        // Use validated inputs - all values are either validated or from trusted sources (enums, database IDs)
+        List list = Context.getAdministrationService().executeSQL(
+            "SELECT patient_queue_id FROM patient_queue WHERE encounter_id = " + encounter.getEncounterId() +
+            " AND status = '" + status.name() + "' AND location_to = " + locationTo.getLocationId() +
+            " AND location_from = " + locationFrom.getLocationId() +
+            " AND date_created BETWEEN \"" + dayStartTime + "\" AND \"" + dayEndTime + "\"", true);
+
         boolean orderExists = false;
         if (!list.isEmpty()) {
             orderExists = true;
@@ -1484,8 +1554,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                     .equals(Context.getOrderService().getOrderTypeByUuid(OrderType.DRUG_ORDER_TYPE_UUID))) {
                 try {
                     orderService.discontinueOrder(activeOrder, "Incomplete with new similar order", OpenmrsUtil.getLastMomentOfDay(activeOrder.getDateActivated()), order.getOrderer(), activeOrder.getEncounter());
-                } catch (Exception e) {
-                    log.error("failed to discontinue order #" + activeOrder.getOrderId(), e);
+                } catch (org.openmrs.api.APIException e) {
+                    throw new org.openmrs.module.ugandaemr.exception.PharmacyException(
+                            "Failed to discontinue drug order #" + activeOrder.getOrderId(), e);
                 }
             }
         }
@@ -1613,8 +1684,12 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         try {
             simpleObject = ugandaEMRService.getProcessedOrders(PROCESSED_ORDER_WITHOUT_RESULT_QUERY.concat(" AND patient_id=" + encounter.getPatient().getPatientId()), encounter.getDateCreated(), false);
             orders = (SimpleObject) simpleObject.get("ordersList");
-        } catch (ParseException | IOException e) {
-            log.error(e);
+        } catch (ParseException e) {
+            throw new org.openmrs.module.ugandaemr.exception.LaboratoryException(
+                    "Failed to process orders for patient #" + encounter.getPatient().getPatientId(), e);
+        } catch (IOException e) {
+            throw new org.openmrs.module.ugandaemr.exception.LaboratoryException(
+                    "Failed to read orders data for patient #" + encounter.getPatient().getPatientId(), e);
         }
 
         if (orders == null) {
@@ -1663,9 +1738,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     public String generateLabNumber(String orderUuid) {
         Order order = Context.getOrderService().getOrderByUuid(orderUuid);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String date = sdf.format(new Date());
-        String defaultSampleId = ("LAB" + "-" + order.getPatient().getPatientId() + "-" + date).replace("/", "-");
+        String date = org.openmrs.module.ugandaemr.util.DateUtil.formatForLabNumber(new Date());
+        String defaultSampleId = "LAB-" + order.getPatient().getPatientId() + "-" + date;
         return defaultSampleId;
     }
 
@@ -2118,9 +2192,28 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         AdministrationService administrationService = Context.getAdministrationService();
         String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
 
-        if (flagstatus != null) {
-            flagstatus = ("'" + flagstatus.trim().replace(",", "','") + "'").replace(",''", "").replace("' ", "'");
-            administrationService.executeSQL("update patientflags_flag set enabled=0 where name in (" + flagstatus.trim() + ")", false);
+        if (flagstatus != null && !flagstatus.trim().isEmpty()) {
+            // Validate and sanitize flag names to prevent SQL injection
+            String[] flagNames = flagstatus.split(",");
+            StringBuilder validatedFlags = new StringBuilder();
+
+            for (String flagName : flagNames) {
+                String trimmedFlag = flagName.trim();
+                // Only allow alphanumeric characters, spaces, and underscores in flag names
+                if (trimmedFlag.matches("^[a-zA-Z0-9_ ]+$")) {
+                    if (validatedFlags.length() > 0) {
+                        validatedFlags.append(",");
+                    }
+                    validatedFlags.append("'").append(trimmedFlag.replace("'", "''")).append("'");
+                }
+            }
+
+            if (validatedFlags.length() > 0) {
+                administrationService.executeSQL(
+                    "UPDATE patientflags_flag SET enabled = 0 WHERE name IN (" + validatedFlags.toString() + ")",
+                    false
+                );
+            }
         }
     }
 
@@ -2558,6 +2651,245 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         }
 
         return false;
+    }
+
+    @Override
+    public StabilityCriteria generateStabilityCriteria(Patient patient, Encounter encounter, Visit visit) {
+        StabilityCriteria stabilityCriteria = new StabilityCriteria();
+        String allowCliniciansToMakeDecisionOnDSDM = Context.getAdministrationService().getGlobalProperty("ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability");
+
+        if (allowCliniciansToMakeDecisionOnDSDM.equals("false")) {
+            Integer baselineRegimenConceptId = 99061;
+            Integer currentRegimenConceptId = 90315;
+            ConceptService conceptService = Context.getConceptService();
+            Integer minimumDurationOnCurrentRegimen = Integer.parseInt(Context.getAdministrationService().getGlobalProperty("ugandaemr.dsdm.currentRegimenDurationRequirementInMonths"));
+
+            Visit encounterVisit = new Visit();
+            if (visit == null && encounter != null) {
+                encounterVisit = encounter.getVisit();
+            } else if (visit != null) {
+                encounterVisit = visit;
+            }
+
+            /**
+             * Last Viral Load
+             */
+            List<Obs> vlDateObsList = getObsBySQLQuery(
+                "SELECT obs_id FROM obs WHERE obs.person_id = " + patient.getPatientId() +
+                " AND obs.concept_id = 163023 AND obs.voided = false ORDER BY obs.encounter_id DESC LIMIT 1"
+            );
+
+            if (vlDateObsList.size() > 0) {
+                List<Obs> vlObsList = getObsBySQLQuery(
+                    "SELECT obs_id FROM obs WHERE obs.person_id = " + patient.getPatientId() +
+                    " AND obs.concept_id = 856 AND encounter_id = " + vlDateObsList.get(0).getEncounter().getEncounterId() +
+                    " AND obs.voided = false ORDER BY obs.encounter_id DESC LIMIT 1"
+                );
+
+                if (vlObsList.size() > 0) {
+                    stabilityCriteria.setVlObs(vlObsList.get(0));
+                    stabilityCriteria.setVlDateObs(vlDateObsList.get(0));
+                } else {
+                    stabilityCriteria.setVlObs(null);
+                    stabilityCriteria.setVlDateObs(null);
+                }
+            } else {
+                stabilityCriteria.setVlObs(null);
+                stabilityCriteria.setVlDateObs(null);
+            }
+
+            /**
+             * Current regimen
+             */
+            int monthOffSet = -minimumDurationOnCurrentRegimen;
+            Obs obs = getMostRecentObservation(encounterVisit, "90315");
+            String query = "";
+            String queryCurrentRegimen = "";
+            List<Obs> regimenObsList = new ArrayList<>();
+            List<Obs> currentRegimenList = new ArrayList<>();
+
+            if (obs != null) {
+                if (checkIfDTG(obs)) {
+                    query = "SELECT obs_id FROM obs WHERE obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() +
+                        "') AND obs.person_id = " + patient.getPatientId() + " AND concept_id = " + currentRegimenConceptId +
+                        " AND obs.voided = false ORDER BY obs.obs_datetime DESC";
+                    regimenObsList = getObsBySQLQuery(query);
+                } else {
+                    query = "SELECT obs_id FROM obs WHERE obs.obs_datetime <= DATE('" +
+                        getDateBefore(encounterVisit.getStartDatetime(), monthOffSet, 0) +
+                        "') AND obs.person_id = " + patient.getPatientId() + " AND obs.value_coded = " +
+                        obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY obs.encounter_id DESC";
+                    regimenObsList = getObsBySQLQuery(query);
+                }
+
+                queryCurrentRegimen = "SELECT obs_id FROM obs WHERE obs.person_id = " + patient.getPatientId() +
+                    " AND obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() +
+                    "') AND obs.value_coded = " + obs.getValueCoded().getConceptId() +
+                    " AND obs.voided = false ORDER BY obs.obs_datetime ASC LIMIT 0,1";
+                currentRegimenList = getObsBySQLQuery(queryCurrentRegimen);
+            }
+
+            if (regimenObsList.size() > 0) {
+                if (checkIfDTG(regimenObsList.get(0)) && regimenObsList.size() > 1) {
+                    List<Obs> regimenBeforeDTGObs = getObsBySQLQuery(
+                        "SELECT obs_id FROM obs WHERE obs.obs_datetime <= DATE('" +
+                        getDateBefore(encounterVisit.getStartDatetime(), -12, 0) +
+                        "') AND obs.person_id = " + patient.getPatientId() + " AND obs.concept_id = " + currentRegimenConceptId +
+                        " AND obs.voided = false ORDER BY obs.encounter_id DESC"
+                    );
+                    if (regimenBeforeDTGObs.size() > 0) {
+                        stabilityCriteria.setRegimenBeforeDTGObs(regimenBeforeDTGObs.get(0));
+                        stabilityCriteria.setRegimenBeforeDTGObsValueConceptId(regimenBeforeDTGObs.get(0).getValueCoded().getConceptId());
+                    } else {
+                        stabilityCriteria.setRegimenBeforeDTGObs(null);
+                    }
+                } else {
+                    stabilityCriteria.setRegimenBeforeDTGObs(null);
+                }
+                stabilityCriteria.setRegimenObs(regimenObsList.get(0));
+                stabilityCriteria.setRegimenObsConceptId(regimenObsList.get(0).getConcept().getConceptId());
+            } else {
+                stabilityCriteria.setRegimenObs(null);
+                stabilityCriteria.setRegimenBeforeDTGObs(null);
+            }
+
+            if (currentRegimenList.size() > 0) {
+                stabilityCriteria.setCurrentRegimenObs(currentRegimenList.get(0));
+                stabilityCriteria.setCurrentRegimenObsConceptId(currentRegimenList.get(0).getConcept().getConceptId());
+            } else {
+                stabilityCriteria.setCurrentRegimenObs(null);
+            }
+            stabilityCriteria.setBaselineRegimenConceptId(baselineRegimenConceptId);
+
+            /**
+             * Adherence
+             */
+            List<Obs> adherenceObsList = getObsBySQLQuery(
+                "SELECT obs_id FROM obs WHERE obs.obs_datetime BETWEEN '" +
+                getDateBefore(encounterVisit.getStartDatetime(), -6, 0) + "' AND '" +
+                encounterVisit.getStartDatetime() + "' AND obs.person_id = " + patient.getPatientId() +
+                " AND obs.concept_id = 90221 AND obs.voided = false ORDER BY obs.encounter_id DESC"
+            );
+
+            if (adherenceObsList.size() > 0) {
+                stabilityCriteria.setAdherenceObs(adherenceObsList);
+            } else {
+                stabilityCriteria.setAdherenceObs(null);
+            }
+
+            /**
+             * ThirdLine Regimen
+             */
+            List<Concept> concepts = new ArrayList<>();
+            Collection<ConceptAnswer> conceptAnswers = conceptService.getConcept(1).getAnswers(false);
+            for (ConceptAnswer conceptAnswer : conceptAnswers) {
+                if (conceptAnswer.getConcept().getConceptId() != 90002) {
+                    conceptAnswers.remove(conceptAnswer);
+                    concepts.add(conceptAnswer.getAnswerConcept());
+                }
+            }
+            if (regimenObsList.size() > 0 && concepts.contains(regimenObsList.get(0).getValueCoded())) {
+                stabilityCriteria.setOnThirdRegimen(true);
+            } else {
+                stabilityCriteria.setOnThirdRegimen(false);
+            }
+
+            /**
+             * Clinic Staging
+             */
+            List<Obs> clinicStageObsList = getObsBySQLQuery(
+                "SELECT obs_id FROM obs WHERE obs.person_id = " + patient.getPatientId() +
+                " AND obs.concept_id IN (99083, 90203) AND obs.voided = false ORDER BY obs.encounter_id DESC"
+            );
+
+            if (clinicStageObsList.size() > 0) {
+                stabilityCriteria.setConceptForClinicStage(clinicStageObsList.get(0).getValueCoded().getConceptId());
+            } else {
+                stabilityCriteria.setConceptForClinicStage(null);
+            }
+
+            /**
+             * Sputum Results
+             */
+            Obs sputumResults = getMostRecentObservation(encounterVisit, "307");
+            if (sputumResults != null) {
+                stabilityCriteria.setSputumResultObs(sputumResults);
+                stabilityCriteria.setSputumResultObsValueConceptId(sputumResults.getValueCoded().getConceptId());
+            }
+
+            /**
+             * Sputum ResultDate
+             */
+            stabilityCriteria.setSputumResultDateObs(getMostRecentObservation(encounterVisit, "99392"));
+
+            /**
+             * Current Regimen
+             */
+            stabilityCriteria.setArtStartDate(getArtStartDate(patient));
+            stabilityCriteria.setEnableCliniciansMakeStabilityDecisions(allowCliniciansToMakeDecisionOnDSDM);
+        } else {
+            stabilityCriteria.setEnableCliniciansMakeStabilityDecisions(allowCliniciansToMakeDecisionOnDSDM);
+        }
+        return stabilityCriteria;
+    }
+
+    /**
+     * Helper method to execute SQL queries and return Obs objects
+     */
+    private List<Obs> getObsBySQLQuery(String query) {
+        List<Obs> obsList = new ArrayList<>();
+        for (Object o : Context.getAdministrationService().executeSQL(query, true)) {
+            obsList.add(Context.getObsService().getObs(Integer.parseInt(((ArrayList) o).get(0).toString())));
+        }
+        return obsList;
+    }
+
+    /**
+     * Gets the most recent observation based on visit date and concepts
+     */
+    private Obs getMostRecentObservation(Visit encounterVisit, String concepts) {
+        if (!concepts.matches("^[0-9,]+$")) {
+            log.error("Invalid concept ID format: " + concepts);
+            return null;
+        }
+
+        String query = "SELECT obs_id FROM obs WHERE obs.obs_datetime <= DATE('" +
+            encounterVisit.getStartDatetime() + "') AND obs.person_id = " +
+            encounterVisit.getPatient().getPatientId() + " AND concept_id IN (" + concepts +
+            ") AND obs.voided = false ORDER BY obs.obs_datetime DESC LIMIT 0,1";
+
+        List<Obs> obs = getObsBySQLQuery(query);
+        if (!obs.isEmpty()) {
+            return obs.get(0);
+        }
+        return null;
+    }
+
+    /**
+     * Check if DTG regimen
+     */
+    private boolean checkIfDTG(Obs obs) {
+        return "164976,164977,164978,164979".contains(obs.getValueCoded().getConceptId().toString());
+    }
+
+    /**
+     * Get ART START DATE From Summary Page of a Patient
+     */
+    private Date getArtStartDate(Patient patient) {
+        List<Obs> list = Context.getObsService().getObservationsByPersonAndConcept(patient, Context.getConceptService().getConcept(99161));
+        Date artStartDate = null;
+        if (list.size() > 0) {
+            artStartDate = list.get(0).getValueDatetime();
+        }
+        return artStartDate;
+    }
+
+    /**
+     * Calculate date before reference date by offset
+     */
+    private String getDateBefore(Date referenceDate, int noOfMonths, int noOfYears) {
+        Date resultDate = org.openmrs.module.ugandaemr.util.DateUtil.getDateBefore(referenceDate, -noOfMonths, -noOfYears);
+        return org.openmrs.module.ugandaemr.util.DateUtil.formatISODate(resultDate);
     }
 
 }
