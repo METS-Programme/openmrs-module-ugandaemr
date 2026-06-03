@@ -1,6 +1,6 @@
 {
   "name": "HMIS 003 HIV Care ART Card - Clinical Assessment",
-  "version": "4.1.0",
+  "version": "5.0.8",
   "description": "A visit for a client for clinical assessment",
   "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
   "encounter": "ART Card - Encounter",
@@ -13,6 +13,34 @@
     {
       "label": "HIV CARE/ART CARD - CLINICAL ASSESSMENT",
       "sections": [
+        {
+          "label": "Represented",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Is client represented",
+              "type": "obs",
+              "required": "true",
+              "id": "clientRepresented",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "51409d82-b2c0-11ed-afa1-0242ac120002",
+                "defaultValue": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
         {
           "label": "NCDs (Non-communicable Diseases) Status",
           "isExpanded": "true",
@@ -31,19 +59,19 @@
                   },
                   {
                     "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed (BP ≥140 or ≥ 90mmHg) and on lifestyle modification"
+                    "label": "Newly Diagnosed (BP \u2265140 or \u2265 90mmHg) and on lifestyle modification"
                   },
                   {
                     "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
-                    "label": "Newly Diagnosed (BP ≥140 or ≥ 90mmHg) and on lifestyle modification & Medication"
+                    "label": "Newly Diagnosed (BP \u2265140 or \u2265 90mmHg) and on lifestyle modification & Medication"
                   },
                   {
                     "concept": "5b839510-a3d0-41fa-bbeb-e446d98140d8",
-                    "label": "Known Hypertensive, not controlled (BP ≥140 or ≥ 90mmHg) and on lifestyle modification"
+                    "label": "Known Hypertensive, not controlled (BP \u2265140 or \u2265 90mmHg) and on lifestyle modification"
                   },
                   {
                     "concept": "0e43e79e-92ba-42dd-b436-564e1bc1d856",
-                    "label": "Known Hypertensive, not controlled (BP ≥140 or ≥  90mmHg) and on lifestyle modification & Medication"
+                    "label": "Known Hypertensive, not controlled (BP \u2265140 or \u2265  90mmHg) and on lifestyle modification & Medication"
                   },
                   {
                     "concept": "4c71f560-3d28-4ed5-9a81-e79e9706960d",
@@ -79,11 +107,11 @@
                   },
                   {
                     "concept": "fd36c202-06ad-4e9b-95e7-d3e02d34c936",
-                    "label": "Normal blood sugar (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl)"
+                    "label": "Normal blood sugar (FBS\u22647.0mmol/126mg/dl or RBS\u226411mmol/200mg/dl)"
                   },
                   {
                     "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl) on lifestyle modification"
+                    "label": "Newly Diagnosed (FBS\u22647.0mmol/126mg/dl or RBS\u226411mmol/200mg/dl) on lifestyle modification"
                   },
                   {
                     "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
@@ -99,11 +127,11 @@
                   },
                   {
                     "concept": "973a7e7c-2e1d-4431-813f-ce03d5afda62",
-                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl)  on lifestyle modification"
+                    "label": "Known Diabetic and controlled (FBS\u22647.0mmol/126mg/dl or RBS\u226411 mmol/200mg/dl)  on lifestyle modification"
                   },
                   {
                     "concept": "7307349d-c333-4dee-a271-3a11cc656815",
-                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl) on medication and lifestyle modification"
+                    "label": "Known Diabetic and controlled (FBS\u22647.0mmol/126mg/dl or RBS\u226411 mmol/200mg/dl) on medication and lifestyle modification"
                   },
                   {
                     "concept": "8473a4cb-5431-4775-83b2-6f0c8086ecbe",
@@ -137,15 +165,15 @@
                   },
                   {
                     "concept": "9a3ecb59-6cfd-4c9a-b63b-1f4bda0a3a47",
-                    "label": "Has signs and symptoms with low/moderate suicide Risk (SRQ-20 ≥ 6, SAD PERSONs Score ≤7) on Psychotherapy"
+                    "label": "Has signs and symptoms with low/moderate suicide Risk (SRQ-20 \u2265 6, SAD PERSONs Score \u22647) on Psychotherapy"
                   },
                   {
                     "concept": "2e3760ca-aea9-4958-a2c6-6ad32dc79445",
-                    "label": "Has signs and symptoms with high suicide Risk (SRQ-20 ≥ 6, SAD PERSONs Score >7) on Medication only"
+                    "label": "Has signs and symptoms with high suicide Risk (SRQ-20 \u2265 6, SAD PERSONs Score >7) on Medication only"
                   },
                   {
                     "concept": "8faa9bb9-9065-44bc-b426-ef0336ff4c94",
-                    "label": "Has signs and symptoms with high suicide Risk (SRQ-20 ≥ 6, SAD PERSONs Score >7) on Psychotherapy and Medication"
+                    "label": "Has signs and symptoms with high suicide Risk (SRQ-20 \u2265 6, SAD PERSONs Score >7) on Psychotherapy and Medication"
                   },
                   {
                     "concept": "0888ffe4-47d1-4f72-8d98-df2ff30a6f79",
@@ -193,7 +221,7 @@
                   },
                   {
                     "concept": "3a67585e-e401-4320-a31e-0d7c97818e61",
-                    "label": "Has Signs and Symptoms (Audit - C (≥ 3, ≤ 5) on Brief Intervention"
+                    "label": "Has Signs and Symptoms (Audit - C (\u2265 3, \u2264 5) on Brief Intervention"
                   },
                   {
                     "concept": "9b0fdd9e-0607-441b-80cd-de7ef710376c",
@@ -1431,7 +1459,7 @@
                 "answers": [
                   {
                     "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Good ≥ 95%"
+                    "label": "Good \u2265 95%"
                   },
                   {
                     "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",

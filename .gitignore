@@ -104,3 +104,12 @@ package.json
 package-lock.json
 node/*
 
+# Claude Code settings
+.claude/
+
+# Development documentation archives
+.development-docs/
+
+# Java version file
+.java-version
+

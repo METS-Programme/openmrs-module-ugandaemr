@@ -277,7 +277,7 @@
             },
             {
               "type": "obs",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "443dd826-9234-4066-b68a-13fa3b768276",

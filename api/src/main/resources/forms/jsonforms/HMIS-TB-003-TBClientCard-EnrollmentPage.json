@@ -1,6 +1,6 @@
 {
   "name": "DS TB: HMIS TB 003 - TB Client Card Enrollment Page",
-  "version": "4.1.0",
+  "version": "5.0.8",
   "description": "This is a summary of the TB Treatment program",
   "encounterType": "334bf97e-28e2-4a27-8727-a5ce31c7cd66",
   "encounter": "TB Summary (Enrollment)",
@@ -534,11 +534,11 @@
                   },
                   {
                     "concept": "fd36c202-06ad-4e9b-95e7-d3e02d34c936",
-                    "label": "Normal blood sugar (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl)"
+                    "label": "Normal blood sugar (FBS\u22647.0mmol/126mg/dl or RBS\u226411mmol/200mg/dl)"
                   },
                   {
                     "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed (FBS≤7.0mmol/126mg/dl or RBS≤11mmol/200mg/dl) on lifestyle modification"
+                    "label": "Newly Diagnosed (FBS\u22647.0mmol/126mg/dl or RBS\u226411mmol/200mg/dl) on lifestyle modification"
                   },
                   {
                     "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
@@ -554,11 +554,11 @@
                   },
                   {
                     "concept": "973a7e7c-2e1d-4431-813f-ce03d5afda62",
-                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl)  on lifestyle modification"
+                    "label": "Known Diabetic and controlled (FBS\u22647.0mmol/126mg/dl or RBS\u226411 mmol/200mg/dl)  on lifestyle modification"
                   },
                   {
                     "concept": "7307349d-c333-4dee-a271-3a11cc656815",
-                    "label": "Known Diabetic and controlled (FBS≤7.0mmol/126mg/dl or RBS≤11 mmol/200mg/dl) on medication and lifestyle modification"
+                    "label": "Known Diabetic and controlled (FBS\u22647.0mmol/126mg/dl or RBS\u226411 mmol/200mg/dl) on medication and lifestyle modification"
                   },
                   {
                     "concept": "8473a4cb-5431-4775-83b2-6f0c8086ecbe",

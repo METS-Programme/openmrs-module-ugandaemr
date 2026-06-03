@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.dataexchange.DataImporter;
+import org.openmrs.module.ugandaemr.utils.DataImporter;
 import org.openmrs.test.jupiter.BaseModuleContextSensitiveTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -26,7 +26,7 @@ public class RolePrivilegeImportTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void shouldImportWithOutAnyError() {
-        DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
+        DataImporter dataImporter = Context.getRegisteredComponent("ugandaemrDataImporter", DataImporter.class);
         dataImporter.importData(ROLE_PRIVILLEGE_DATASET_XML);
         assertNotNull(userService.getPrivilege("App: ugandaemrpoc.findPatient"));
         assertNotNull(userService.getRole("Data Clerk"));

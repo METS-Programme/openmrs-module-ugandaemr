@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>ugandaemr</artifactId>
-	<version>5.0.2-SNAPSHOT</version>
+	<version>5.0.10-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -77,12 +77,11 @@
 		<calculationVersion>1.3.0</calculationVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
 		<dataEntryStatisticsVersion>1.8.0</dataEntryStatisticsVersion>
-		<dataexchangeVersion>1.3.8</dataexchangeVersion>
 		<dataintegrityVersion>4.4.4</dataintegrityVersion>
 		<emrapiVersion>2.3.0</emrapiVersion>
 		<eventVersion>2.10.0</eventVersion>
 		<openmrsAtomfeedVersion>2.6.1</openmrsAtomfeedVersion>
-		<fhir2Version>2.5.0</fhir2Version>
+		<fhir2Version>2.8.0</fhir2Version>
 		<formfilterVersion>1.3.0</formfilterVersion>
 		<htmlwidgetsVersion>1.11.0</htmlwidgetsVersion>
 		<idgenVersion>4.14.0</idgenVersion>
@@ -94,13 +93,12 @@
 		<metadatasharingVersion>1.10.0</metadatasharingVersion>
 		<openconceptlabModuleVersion>2.4.0</openconceptlabModuleVersion>
 		<patientFlagsVersion>3.0.8</patientFlagsVersion>
-		<referencemetadataVersion>2.12.0</referencemetadataVersion>
 		<reportingRestVersion>1.15.0</reportingRestVersion>
 		<reportingVersion>1.27.0</reportingVersion>
 		<reportingCompatibilityVersion>2.0.9</reportingCompatibilityVersion>
 		<serializationxstreamVersion>0.2.16</serializationxstreamVersion>
 		<patientqueueingVersion>2.0.1</patientqueueingVersion>
-		<ugandaemrSyncVersion>2.0.5</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>3.0.0</ugandaemrSyncVersion>
 		<cohortModuleVersion>3.7.3</cohortModuleVersion>
 		<stockmanagementVersion>2.0.3</stockmanagementVersion>
 		<spaModuleVersion>2.0.0</spaModuleVersion>
@@ -113,7 +111,7 @@
 		<ugandaemrReportsVersion>2.1.6</ugandaemrReportsVersion>
 
 		<!-- content packs -->
-		<ugandaemr-content.version>1.0.3</ugandaemr-content.version>
+		<ugandaemr-content.version>1.0.7</ugandaemr-content.version>
 	</properties>
 
 	<dependencyManagement>
@@ -194,6 +192,28 @@
 
 			<!-- End OpenMRS core -->
 
+			<!-- DBUnit for data import -->
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>2.4.7</version>
+				<scope>compile</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
 			<!-- custom module -->
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
@@ -209,12 +229,6 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>dataexchange-api</artifactId>
-				<version>${dataexchangeVersion}</version>
-				<scope>provided</scope>
-			</dependency>
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>emrapi-api</artifactId>

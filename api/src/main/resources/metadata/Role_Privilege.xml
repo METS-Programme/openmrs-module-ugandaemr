@@ -648,6 +648,28 @@
 
     <privilege privilege="Task: Create new bill" description="Able to access bill page" uuid="bc8c512c-cef4-45ea-a594-6e956a30154a"/>
 
+    <!-- UGANDAEMR SYNC PRIVILEGES -->
+    <privilege privilege="UgandaemrSync: View Sync Tasks" description="Allows viewing sync task history and status" uuid="a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d"/>
+    <privilege privilege="UgandaemrSync: Manage Sync Tasks" description="Allows creating and managing sync tasks" uuid="b2c3d4e5-f6a7-4b5c-9d0e-1f2a3b4c5d6e"/>
+    <privilege privilege="UgandaemrSync: View Sync Task Types" description="Allows viewing sync task type configurations" uuid="c3d4e5f6-a7b8-4c5d-0e1f-2a3b4c5d6e7f"/>
+    <privilege privilege="UgandaemrSync: Manage Sync Task Types" description="Allows managing sync task type configurations" uuid="d4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a"/>
+    <privilege privilege="UgandaemrSync: View FHIR Resources" description="Allows viewing FHIR sync resources" uuid="e5f6a7b8-c9d0-4e5f-2a3b-4c5d6e7f8a9b"/>
+    <privilege privilege="UgandaemrSync: Manage FHIR Resources" description="Allows managing FHIR sync resources" uuid="f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c"/>
+    <privilege privilege="UgandaemrSync: View FHIR Profiles" description="Allows viewing FHIR profile configurations" uuid="a7b8c9d0-e1f2-4a5b-4c5d-6e7f8a9b0c1d"/>
+    <privilege privilege="UgandaemrSync: Manage FHIR Profiles" description="Allows managing FHIR profile configurations" uuid="b8c9d0e1-f2a3-4b5c-5d6e-7f8a9b0c1d2e"/>
+    <privilege privilege="UgandaemrSync: View FHIR Cases" description="Allows viewing FHIR case-based profiles" uuid="c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f"/>
+    <privilege privilege="UgandaemrSync: Manage FHIR Cases" description="Allows managing FHIR case-based profiles" uuid="d0e1f2a3-b4c5-4d5e-7f8a-9b0c1d2e3f4a"/>
+    <privilege privilege="UgandaemrSync: View Lab Results" description="Allows viewing lab results from external systems" uuid="e1f2a3b4-c5d6-4e5f-8a9b-0c1d2e3f4a5b"/>
+    <privilege privilege="UgandaemrSync: Manage Lab Results" description="Allows managing lab results from external systems" uuid="f2a3b4c5-d6e7-4f5a-9b0c-1d2e3f4a5b6c"/>
+    <privilege privilege="UgandaemrSync: Manage Lab Orders" description="Allows sending lab orders to external systems" uuid="a3b4c5d6-e7f8-4a5b-0c1d-2e3f4a5b6c7d"/>
+    <privilege privilege="UgandaemrSync: View Referrals" description="Allows viewing referral information" uuid="b4c5d6e7-f8a9-4b5c-1d2e-3f4a5b6c7d8e"/>
+    <privilege privilege="UgandaemrSync: Manage Referrals" description="Allows managing referral information" uuid="c5d6e7f8-a9b0-4c5d-2e3f-4a5b6c7d8e9f"/>
+    <privilege privilege="UgandaemrSync: View Referral Orders" description="Allows viewing referral orders for CPHL" uuid="d6e7f8a9-b0c1-4d5e-3f4a-5b6c7d8e9f0a"/>
+    <privilege privilege="UgandaemrSync: View Reports" description="Allows viewing sync reports and statistics" uuid="e7f8a9b0-c1d2-4e5f-4a5b-6c7d8e9f0a1b"/>
+    <privilege privilege="UgandaemrSync: Send Reports" description="Allows sending reports to external systems" uuid="f8a9b0c1-d2e3-4f5a-5b6c-7d8e9f0a1b2c"/>
+    <privilege privilege="UgandaemrSync: View Sync Statistics" description="Allows viewing sync statistics and metrics" uuid="a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d"/>
+    <privilege privilege="UgandaemrSync: Manage Sync Configuration" description="Allows managing sync module configuration" uuid="b0c1d2e3-f4a5-4b5c-7d8e-9f0a1b2c3d4e"/>
+
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
     <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
@@ -1501,6 +1523,181 @@
     <role_privilege  role="Reception"  privilege="View Cashier Bills"/>
     <role_privilege  role="Reception"  privilege="View Cashier Metadata"/>
 
+    <!-- UGANDAEMR SYNC ROLE PRIVILEGE MAPPINGS -->
+
+    <!-- Laboratory staff get lab results and lab order management -->
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Sync Tasks"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View FHIR Resources"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View FHIR Profiles"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Lab Results"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: Manage Lab Results"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: Manage Lab Orders"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Referrals"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Referral Orders"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Reports"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="UgandaemrSync: View Sync Statistics"/>
+
+    <!-- Privilege Level: Full gets all sync privileges -->
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Sync Tasks"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Sync Tasks"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Sync Task Types"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Sync Task Types"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View FHIR Resources"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage FHIR Resources"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View FHIR Profiles"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage FHIR Profiles"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View FHIR Cases"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage FHIR Cases"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Lab Results"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Lab Results"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Lab Orders"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Referrals"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Referrals"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Referral Orders"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Reports"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Send Reports"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: View Sync Statistics"/>
+    <role_privilege  role="Privilege Level: Full"  privilege="UgandaemrSync: Manage Sync Configuration"/>
+
+
+    <!-- ROLES AND PRIVILEGES FOR LAB Management Module-->
+    <!-- PRIVILEGES-->
+    <!--* BASE PRIVILEGES *-->
+    <privilege  privilege="App: labmanagement.dashboard"  description="Able to view lab management application dashboard"  uuid="648c6d15-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.approvalconfigurations"  description="Able to view lab approval configurations"  uuid="6f75562e-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.approvalconfigurations.mutate"  description="Able to create and update lab approval configurations"  uuid="74d8ca29-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.testconfigurations"  description="Able to view lab test configurations"  uuid="79c1e259-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.testconfigurations.mutate"  description="Able to create and update lab test configurations"  uuid="7fd18f21-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.testrequests"  description="Able to view lab tests requested"  uuid="8539ed99-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.testrequests.mutate"  description="Able to create and update lab test requests"  uuid="8a2598ee-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.testrequests.approve"  description="Able to approve lab test requests"  uuid="8f6cf6ac-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.samples"  description="Able to view lab samples"  uuid="9490deb2-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.samples.collect"  description="Able to collect lab samples"  uuid="9956be6d-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.samples.mutate"  description="Able to create, update and reuse lab samples"  uuid="9e00a163-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.storage"  description="Able to view lab storage"  uuid="4b765300-6f52-11ef-81e5-00155d503f06"/>
+    <privilege  privilege="Task: labmanagement.storage.mutate"  description="Able to create and update lab storage"  uuid="529e083b-6f52-11ef-81e5-00155d503f06"/>
+
+    <privilege  privilege="App: labmanagement.worksheets"  description="Able to view lab worksheets"  uuid="a3d58dab-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.worksheets.mutate"  description="Able to create and update lab worksheets"  uuid="a8cd8e78-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.testresults"  description="Able to view lab test results"  uuid="ad4063a2-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.testresults.mutate"  description="Able to create and update lab test results"  uuid="b1c82945-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.testresults.approve"  description="Able to approve lab test results"  uuid="b887639b-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.reports"  description="Able to view lab reports"  uuid="c04aac47-35c8-11ef-9df0-00155d919f83"/>
+    <privilege  privilege="Task: labmanagement.reports.mutate"  description="Able to create lab reports"  uuid="c5464fbf-35c8-11ef-9df0-00155d919f83"/>
+
+    <privilege  privilege="App: labmanagement.repository"  description="Able to access sample repository"  uuid="1b4c1810-707b-11ef-a8bb-00155d79962d"/>
+    <privilege  privilege="Task: labmanagement.repository.mutate"  description="Able to manage sample repository"  uuid="14289fe5-707b-11ef-a8bb-00155d79962d"/>
+
+
+    <!-- ROLES -->
+    <role  role="Lab Management Base Role"  description="This Role is the default Role for lab management with basic functionality with less privileges"  uuid="dc37b5f4-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Results Approver" description="This enables approving lab test results in the lab management application"  uuid="e47f4f3f-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Request Approver" description="This enables approving lab test requests in the lab management application"  uuid="ea1ea036-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Administrator" description="This Role enables full access to lab management application"  uuid="ef07dd2d-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Technician" description="This Role enables access to daily lab operations"  uuid="f49af8e2-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Receptionist" description="This Role enables access for receptionists to directly make lab requests for walk-ins"  uuid="fa391316-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Clinician" description="This Role enables access to clinicians to make lab requests"  uuid="ff495a1a-35c3-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Phlebotomist" description="This Role enables access for sample collection"  uuid="9c04f977-35ca-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Reporting" description="This Role enables a provider to access reports"  uuid="04366bfd-35c4-11ef-9df0-00155d919f83"/>
+    <role  role="Laboratory Repository Manager" description="This Role enables a provider to manage sample repository"  uuid="edb1b3d5-707a-11ef-a8bb-00155d79962d"/>
+
+    <!-- ROLE PRIVILEGES -->
+    <!--* BASE ROLE  *-->
+    <role_role parent_role="Base Role"  child_role="Lab Management Base Role"/>
+    <role_privilege  role="Lab Management Base Role" privilege="App: labmanagement.dashboard"/>
+    <role_privilege  role="Lab Management Base Role" privilege="App: labmanagement.approvalconfigurations"/>
+    <role_privilege  role="Lab Management Base Role" privilege="App: labmanagement.testconfigurations"/>
+    <role_privilege  role="Lab Management Base Role" privilege="App: labmanagement.storage"/>
+    <role_privilege  role="Lab Management Base Role" privilege="Get Concepts"/>
+    <role_privilege  role="Lab Management Base Role" privilege="Get Locations"/>
+    <role_privilege  role="Lab Management Base Role" privilege="Get Users"/>
+    <role_privilege  role="Lab Management Base Role" privilege="Get Roles"/>
+    <role_privilege  role="Lab Management Base Role" privilege="Get Patients"/>
+    <role_privilege  role="Lab Management Base Role" privilege="View Providers" />
+    <role_privilege  role="Lab Management Base Role" privilege="Get Care Settings" />
+
+
+    <!--* Laboratory Receptionist *-->
+    <role_role parent_role="Lab Management Base Role"  child_role="Laboratory Receptionist"/>
+    <role_privilege  role="Laboratory Receptionist" privilege="App: labmanagement.testrequests"/>
+    <role_privilege  role="Laboratory Receptionist" privilege="Task: labmanagement.testrequests.mutate"/>
+    <role_privilege  role="Laboratory Receptionist" privilege="Add Visits" />
+    <role_privilege  role="Laboratory Receptionist" privilege="Get Encounters" />
+    <role_privilege  role="Laboratory Receptionist" privilege="Add Encounters" />
+    <role_privilege  role="Laboratory Receptionist" privilege="Edit Encounters" />
+    <role_privilege  role="Laboratory Receptionist" privilege="Edit Orders" />
+
+    <!--* Laboratory Clinician *-->
+    <role_role parent_role="Laboratory Receptionist"  child_role="Laboratory Clinician"/>
+    <role_privilege  role="Laboratory Clinician" privilege="App: labmanagement.testresults"/>
+
+    <!--* Laboratory Request Approver *-->
+    <role_role parent_role="Lab Management Base Role"  child_role="Laboratory Request Approver"/>
+    <role_privilege  role="Laboratory Request Approver" privilege="Get Encounters" />
+    <role_privilege  role="Laboratory Request Approver" privilege="App: labmanagement.testrequests"/>
+    <role_privilege  role="Laboratory Request Approver" privilege="Task: labmanagement.testrequests.approve"/>
+    <role_privilege  role="Laboratory Request Approver" privilege="Edit Orders" />
+
+    <!--* Laboratory Phlebotomist *-->
+    <role_role parent_role="Lab Management Base Role"  child_role="Laboratory Phlebotomist"/>
+    <role_privilege  role="Laboratory Phlebotomist" privilege="Get Encounters" />
+    <role_privilege  role="Laboratory Phlebotomist" privilege="App: labmanagement.testrequests"/>
+    <role_privilege  role="Laboratory Phlebotomist" privilege="App: labmanagement.samples"/>
+    <role_privilege  role="Laboratory Phlebotomist" privilege="Task: labmanagement.samples.collect"/>
+    <role_privilege  role="Laboratory Phlebotomist" privilege="Edit Orders" />
+
+    <!--* Laboratory Technician *-->
+    <role_role parent_role="Laboratory Clinician"  child_role="Laboratory Technician"/>
+    <role_role parent_role="Laboratory Phlebotomist"  child_role="Laboratory Technician"/>
+    <role_privilege  role="Laboratory Technician" privilege="Task: labmanagement.samples.mutate"/>
+    <role_privilege  role="Laboratory Technician" privilege="App: labmanagement.worksheets"/>
+    <role_privilege  role="Laboratory Technician" privilege="Task: labmanagement.worksheets.mutate"/>
+    <role_privilege  role="Laboratory Technician" privilege="Task: labmanagement.testresults.mutate"/>
+    <role_privilege  role="Laboratory Technician" privilege="App: labmanagement.reports"/>
+    <role_privilege  role="Laboratory Technician" privilege="Task: labmanagement.reports.mutate"/>
+    <role_privilege  role="Laboratory Technician"  privilege="Manage Scheduler"/>
+
+    <!--* Laboratory Reporting *-->
+    <role_role parent_role="Lab Management Base Role"  child_role="Laboratory Reporting"/>
+    <role_privilege  role="Laboratory Reporting" privilege="Get Encounters" />
+    <role_privilege  role="Laboratory Reporting" privilege="App: labmanagement.testrequests"/>
+    <role_privilege  role="Laboratory Reporting" privilege="App: labmanagement.samples"/>
+    <role_privilege  role="Laboratory Reporting" privilege="App: labmanagement.worksheets"/>
+    <role_privilege  role="Laboratory Reporting" privilege="App: labmanagement.testresults"/>
+    <role_privilege  role="Laboratory Reporting" privilege="App: labmanagement.reports"/>
+    <role_privilege  role="Laboratory Reporting" privilege="Task: labmanagement.reports.mutate"/>
+    <role_privilege  role="Laboratory Reporting"  privilege="Manage Scheduler"/>
+
+    <!--* Laboratory Results Approver *-->
+    <role_role parent_role="Laboratory Reporting"  child_role="Laboratory Results Approver"/>
+    <role_privilege  role="Laboratory Results Approver" privilege="Task: labmanagement.testresults.approve"/>
+    <role_privilege  role="Laboratory Results Approver" privilege="Manage Alerts" />
+
+    <!--* Laboratory Administrator *-->
+    <role_role parent_role="Laboratory Technician"  child_role="Laboratory Administrator"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Task: labmanagement.approvalconfigurations.mutate"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Task: labmanagement.testconfigurations.mutate"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Task: labmanagement.testconfigurations.mutate"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Task: labmanagement.testresults.approve"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Task: labmanagement.storage.mutate"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Manage Locations"/>
+    <role_privilege  role="Laboratory Administrator" privilege="Manage Alerts" />
+    <role_privilege  role="Laboratory Administrator" privilege="App: labmanagement.repository" />
+    <role_privilege  role="Laboratory Administrator" privilege="Task: labmanagement.repository.mutate" />
+
+    <!--* Laboratory Repository *-->
+    <role_role parent_role="Lab Management Base Role"  child_role="Laboratory Repository Manager"/>
+    <role_privilege  role="Laboratory Repository Manager" privilege="App: labmanagement.repository" />
+    <role_privilege  role="Laboratory Repository Manager" privilege="Task: labmanagement.repository.mutate"/>
+    <role_privilege  role="Laboratory Repository Manager" privilege="App: labmanagement.samples"/>
+    <role_privilege  role="Laboratory Repository Manager" privilege="App: labmanagement.testrequests"/>
 </dataset>
 
 
