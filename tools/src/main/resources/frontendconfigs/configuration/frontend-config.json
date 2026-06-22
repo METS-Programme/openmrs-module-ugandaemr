@@ -1150,13 +1150,32 @@
     }
   },
   "@openmrs/esm-patient-vitals-app": {
-    "vitals": {
-      "useMuacColors": true,
-      "showPrintButton": true,
-      "useFormEngine": false
-    },
     "concepts": {
-      "vitalSignsConceptSetUuid": "dc98127e-30ab-102d-86b0-7a5022ba4115"
+      "systolicBloodPressureUuid": "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "diastolicBloodPressureUuid": "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "pulseUuid": "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "temperatureUuid": "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "oxygenSaturationUuid": "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "heightUuid": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "weightUuid": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "respiratoryRateUuid": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "generalPatientNoteUuid": "165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "midUpperArmCircumferenceUuid": "1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "bodyMassIndexUuid": "dca1f717-30ab-102d-86b0-7a5022ba4115"
+    },
+    "vitalSignsConceptSetUuid": "dc98127e-30ab-102d-86b0-7a5022ba4115",
+    "vitals": {
+      "useFormEngine": false,
+      "encounterTypeUuid": "67a71486-1a54-468f-ac3e-7091a9a79584",
+      "vitalsOverdueThresholdHours": 12,
+      "showPrintButton": true,
+      "formUuid": "9f26aad4-244a-46ca-be49-1196df1a8c9a",
+      "formName": "Vitals",
+      "useMuacColors": true
+    },
+    "biometrics": {
+      "bmiUnit": "kg / m²",
+      "bmiMinimumAge": 0
     }
   },
   "@openmrs/esm-patient-orders-app": {
