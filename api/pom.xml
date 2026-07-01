@@ -36,22 +36,7 @@
 		</dependency>
 
 		<!-- End OpenMRS core -->
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>addresshierarchy-api</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>stockmanagement-api</artifactId>
-			<version>1.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>calculation-api</artifactId>
-		</dependency>
 
 
 		<dependency>
@@ -65,10 +50,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.openmrs</groupId>
-			<artifactId>event-api</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -97,41 +78,10 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>metadatadeploy-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
 			<artifactId>metadatamapping-api</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>metadatasharing-api</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>patientflags-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>patientflags-api-metadata</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>reporting-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>serialization.xstream-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>serialization.xstream-api-2.0</artifactId>
-		</dependency>
 
         <dependency>
             <groupId>org.openmrs.module</groupId>

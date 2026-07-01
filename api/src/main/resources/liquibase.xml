@@ -745,27 +745,6 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-01-01-2024-0010" author="iakileng">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE metadata_uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
-			</sqlCheck>
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE uuid ='2fcc3a81-0500-47df-88bd-c0a56d113662';
-			</sqlCheck>
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM patient_identifier_type WHERE uuid="be8f222a-3751-4f93-8c74-3aff399c19b6";
-			</sqlCheck>
-		</preConditions>
-		<comment> Enabling OPD Number to be displayed in UgandaEMR on a patient dashboard </comment>
-		<sql>
-			INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
-			SELECT 1, 'org.openmrs.PatientIdentifierType', 'be8f222a-3751-4f93-8c74-3aff399c19b6',null, null, null, 2, NOW(), null, null, 0, null, null, null,'2fcc3a81-0500-47df-88bd-c0a56d113662';
-		</sql>
-	</changeSet>
-
 	<changeSet id="ugandaemr-2023-08-30-0828" author="slubwama">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="1">

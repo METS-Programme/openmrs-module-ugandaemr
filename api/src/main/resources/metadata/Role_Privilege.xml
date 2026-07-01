@@ -890,6 +890,7 @@
     <role_privilege  role="Base Clinical Role"  privilege="Edit conditions"/>
     <role_privilege  role="Base Clinical Role"  privilege="Edit Patient Details Button"/>
     <role_privilege  role="Base Clinical Role"  privilege="Edit Patient Programs"/>
+    <role_privilege  role="Base Clinical Role"  privilege="Get Allergies"/>
     <role_privilege  role="Base Clinical Role"  privilege="Get conditions"/>
     <role_privilege  role="Base Clinical Role"  privilege="Get Forms"/>
     <role_privilege  role="Base Clinical Role"  privilege="Get Patient Programs"/>
@@ -1698,6 +1699,15 @@
     <role_privilege  role="Laboratory Repository Manager" privilege="Task: labmanagement.repository.mutate"/>
     <role_privilege  role="Laboratory Repository Manager" privilege="App: labmanagement.samples"/>
     <role_privilege  role="Laboratory Repository Manager" privilege="App: labmanagement.testrequests"/>
+
+
+    <!--* Ward Administration *-->
+    <role  role="Ward Management"  description="Manage IPD Wards"  uuid="8643553d-710d-4e21-b948-0cd73b648c2d"/>
+    <role_role parent_role="Base Role"  child_role="Ward Management"/>
+    <role_privilege  role="Ward Management" privilege="Get Bed Tags"/>
+    <role_privilege  role="Ward Management" privilege="Get Bed Type"/>
+    <role_privilege  role="Ward Management" privilege="Get Beds"/>
+    <role_privilege  role="Ward Management" privilege="Assign Beds"/>
 </dataset>
 
 

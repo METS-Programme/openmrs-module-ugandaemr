@@ -29,7 +29,7 @@ public class ExitMCHProgramASLostToFollowUpTask extends AbstractTask {
 		lostToFollowUpDays = Integer.parseInt(Context.getAdministrationService().getGlobalProperty("ugandaemr.lostToFollowUpDaysMCH", "315"));
 		
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
-		Program tbProgram = service.getProgramByUuid(Programs.MCH_PROGRAM.uuid());
+		Program tbProgram = service.getProgramByUuid(Programs.MCH_PROGRAM_UUID);
 
 		//exit if patient is enrolled and lost to follow up
 		for (PatientProgram patientProgram : service.getPatientPrograms(null, tbProgram, null, null, null, null, false)) {

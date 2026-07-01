@@ -41,20 +41,17 @@ import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.adt.AdtService;
 import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
-import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatamapping.MetadataTermMapping;
 import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.mapper.PatientQueueMapper;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
-import org.openmrs.module.stockmanagement.api.dto.DispenseRequest;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
 import org.openmrs.module.ugandaemr.activator.AppConfigurationInitializer;
 import org.openmrs.module.ugandaemr.activator.Initializer;
 import org.openmrs.module.ugandaemr.activator.JsonFormsInitializer;
 import org.openmrs.module.ugandaemr.api.SimpleObject;
-import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaEMRPatientFlagMetadataBundle;
 import org.openmrs.module.ugandaemr.api.queuemapper.CheckInPatient;
 import org.openmrs.module.ugandaemr.api.queuemapper.Identifier;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
@@ -79,10 +76,8 @@ import org.openmrs.order.OrderUtil;
 import org.openmrs.parameter.EncounterSearchCriteria;
 import org.openmrs.parameter.EncounterSearchCriteriaBuilder;
 import org.openmrs.util.OpenmrsUtil;
-import org.openmrs.module.stockmanagement.api.StockManagementService;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -97,8 +92,17 @@ import java.util.zip.ZipInputStream;
 
 import static org.openmrs.OrderType.TEST_ORDER_TYPE_UUID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
-import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_IN;
-import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_OUT;
+import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_IN_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_IN_NAME;
+import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_OUT_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_OUT_NAME;
+import static org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization.PARENT_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.PatientIdentifierTypes.ART_PATIENT_NUMBER_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.PatientIdentifierTypes.HIV_CARE_NUMBER_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.PatientIdentifierTypes.NATIONAL_ID_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.Programs.TB_PROGRAM_UUID;
+import static org.openmrs.module.ugandaemr.metadata.core.Programs.MCH_PROGRAM_UUID;
+
 
 public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEMRService {
 
@@ -129,8 +133,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         PersonService personService = Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
         List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
-        artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
-        artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
+        artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(ART_PATIENT_NUMBER_UUID));
+        artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(HIV_CARE_NUMBER_UUID));
         // find the mother by identifier
         List<Patient> mothers = patientService.getPatients(null, // name of the person
                 motherARTNumber, //mother ART number
@@ -257,7 +261,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 PatientIdentifier patientIdentifier = new PatientIdentifier();
                 patientIdentifier.setIdentifier(uniqueIdentifierCode);
                 patientIdentifier.setIdentifierType(patientIdentifierType);
-                patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(LocationOrganization.PARENT.uuid()));
+                patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(PARENT_UUID));
                 patientIdentifier.setCreator(Context.getUserService().getUser(1));
                 patientIdentifier.setPreferred(false);
                 patientIdentifier.setDateCreated(new Date());
@@ -419,7 +423,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     public Map transferredOut(Patient patient, Date date) {
         Map map = new HashMap();
         EncounterService encounterService = Context.getEncounterService();
-        List<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_OUT.name());
+        List<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_OUT_NAME);
 
         EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).setFromDate(date).createEncounterSearchCriteria();
 
@@ -428,7 +432,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Collections.reverse(encounters);
         if (encounters.size() > 0) {
             Encounter encounter = encounters.get(0);
-            if (encounters.get(0).getEncounterType() == Context.getEncounterService().getEncounterType(TRANSFER_OUT.name())) {
+            if (encounters.get(0).getEncounterType() == Context.getEncounterService().getEncounterType(TRANSFER_OUT_NAME)) {
                 List<Encounter> encounters1 = new ArrayList<>();
                 List<Concept> transferOutPlaceConceptList = new ArrayList<>();
                 transferOutPlaceConceptList.add(Context.getConceptService().getConcept(UgandaEMRConstants.TRANSFER_OUT_PLACE_CONCEPT_ID));
@@ -459,7 +463,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         EncounterService encounterService = Context.getEncounterService();
 
-        Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN.name());
+        Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN_NAME);
 
         EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).setFromDate(date).createEncounterSearchCriteria();
 
@@ -499,8 +503,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         EncounterService encounterService = Context.getEncounterService();
         Collection<EncounterType> encounterTypes = new ArrayList<>();
 
-        encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_IN.uuid()));
-        encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_OUT.uuid()));
+        encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_IN_UUID));
+        encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_OUT_UUID));
 
         EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
 
@@ -1407,27 +1411,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         return encounter;
     }
 
-    private void reduceStockBalances(DispensingModelWrapper resultWrapper) {
-        List<DispenseRequest> dispenseRequests = new ArrayList<>();
-        resultWrapper.getDrugOrderMappers().forEach(drugOrderMapper1 -> {
-            if (StringUtils.isNotBlank(drugOrderMapper1.getStockBatchNo()) && drugOrderMapper1.getQuantity() != null && drugOrderMapper1.getQuantity() > 0) {
-                DispenseRequest dispenseRequest = new DispenseRequest();
-                dispenseRequest.setEncounterId(drugOrderMapper1.getEncounterId());
-                dispenseRequest.setOrderId(drugOrderMapper1.getOrderId());
-                dispenseRequest.setLocationUuid(drugOrderMapper1.getDispensingLocation());
-                dispenseRequest.setPatientId(drugOrderMapper1.getPatientId());
-                dispenseRequest.setStockItemUuid(drugOrderMapper1.getStockItem());
-                dispenseRequest.setStockBatchUuid(drugOrderMapper1.getStockBatchNo());
-                dispenseRequest.setQuantity(BigDecimal.valueOf(drugOrderMapper1.getQuantity()));
-                dispenseRequest.setStockItemPackagingUOMUuid(drugOrderMapper1.getStockQuantityUnitUuid());
-                dispenseRequests.add(dispenseRequest);
-            }
-        });
-        if (dispenseRequests.size() > 0) {
-            Context.getService(StockManagementService.class).dispenseStockItems(dispenseRequests);
-        }
-    }
-
     /**
      * This Method processes dispensing observations
      *
@@ -2114,41 +2097,12 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 EmrApiConstants.PRIMARY_IDENTIFIER_TYPE
         );
         PatientIdentifierType openmrsIdType = Context.getPatientService()
-                .getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
+                .getPatientIdentifierTypeByUuid(NATIONAL_ID_UUID);
 
         // Overwrite if not set yet
         if (!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())) {
             primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
             metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
-        }
-    }
-
-
-    public void installCommonMetadata() {
-        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
-        try {
-            log.info("Installing metadata");
-            log.info("Installing address hierarchy");
-            log.info("Finished installing addresshierarchy");
-
-        } catch (Exception e) {
-            Module mod = ModuleFactory.getModuleById("ugandaemr");
-            ModuleFactory.stopModule(mod);
-            throw new RuntimeException("failed to install the common metadata ", e);
-        }
-    }
-
-    public void installPatientFlags() {
-        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
-        try {
-            log.info("Installing patient flags");
-            deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
-            log.info("Finished installing patient flags");
-
-        } catch (Exception e) {
-            Module mod = ModuleFactory.getModuleById("ugandaemr");
-            ModuleFactory.stopModule(mod);
-            throw new RuntimeException("failed to install the common metadata ", e);
         }
     }
 
@@ -2191,32 +2145,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
     public void setFlagStatus() {
-        AdministrationService administrationService = Context.getAdministrationService();
-        String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
-
-        if (flagstatus != null && !flagstatus.trim().isEmpty()) {
-            // Validate and sanitize flag names to prevent SQL injection
-            String[] flagNames = flagstatus.split(",");
-            StringBuilder validatedFlags = new StringBuilder();
-
-            for (String flagName : flagNames) {
-                String trimmedFlag = flagName.trim();
-                // Only allow alphanumeric characters, spaces, and underscores in flag names
-                if (trimmedFlag.matches("^[a-zA-Z0-9_ ]+$")) {
-                    if (validatedFlags.length() > 0) {
-                        validatedFlags.append(",");
-                    }
-                    validatedFlags.append("'").append(trimmedFlag.replace("'", "''")).append("'");
-                }
-            }
-
-            if (validatedFlags.length() > 0) {
-                administrationService.executeSQL(
-                    "UPDATE patientflags_flag SET enabled = 0 WHERE name IN (" + validatedFlags.toString() + ")",
-                    false
-                );
-            }
-        }
+        // No-op - patientflags module removed
+        // Flag status is now managed through CSV-based configuration
     }
 
     public void disableEnableAPPS() {

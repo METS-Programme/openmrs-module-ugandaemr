@@ -25,17 +25,11 @@ public class CoreConfigurationInitializer implements Initializer {
         try {
             log.info("Starting core configuration setup");
 
-            ugandaEMRService.installPatientFlags();
-            log.info("Patient flags installed");
-
             ugandaEMRService.initializePrimaryIdentifierTypeMapping();
             log.info("Primary identifier type mapping initialized");
 
             ugandaEMRService.setHealthFacilityLocation();
             log.info("Health facility location set");
-
-            ugandaEMRService.setFlagStatus();
-            log.info("Flag status set");
 
             log.info("Core configuration setup completed successfully");
         } catch (Exception e) {

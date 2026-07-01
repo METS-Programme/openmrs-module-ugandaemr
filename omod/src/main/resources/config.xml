@@ -49,12 +49,6 @@
             org.openmrs.module.idgen
         </require_module>
         <require_module>
-            org.openmrs.module.metadatadeploy
-        </require_module>
-        <require_module>
-            org.openmrs.module.patientflags
-        </require_module>
-        <require_module>
             org.openmrs.module.patientqueueing
         </require_module>
 
@@ -64,14 +58,6 @@
 
         <require_module>
             org.openmrs.module.addresshierarchy
-        </require_module>
-
-        <require_module>
-            org.openmrs.module.metadatasharing
-        </require_module>
-
-        <require_module>
-            org.openmrs.module.patientflags
         </require_module>
 
         <require_module>

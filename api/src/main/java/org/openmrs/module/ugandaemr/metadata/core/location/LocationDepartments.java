@@ -1,112 +1,19 @@
 package org.openmrs.module.ugandaemr.metadata.core.location;
 
-import org.openmrs.module.metadatadeploy.descriptor.LocationDescriptor;
-import org.openmrs.module.metadatadeploy.descriptor.LocationTagDescriptor;
+/**
+ * UgandaEMR Location Department constants
+ * Contains UUID, name, and description for all department locations used in UgandaEMR.
+ */
+public final class LocationDepartments {
 
-import java.util.Arrays;
-import java.util.List;
+    private LocationDepartments() {}
 
-import static org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization.PARENT;
+    public static final String OPD_UUID = "c8b19970-087a-4ed9-9054-c40ba8015358";
+    public static final String OPD_NAME = "Out Patient Department";
 
-public class LocationDepartments {
+    public static final String IPD_UUID = "79b169dd-4b35-4312-a2f0-d72ece1ac4ba";
+    public static final String IPD_NAME = "In Patient Department";
 
-	public static LocationDescriptor OPD = new LocationDescriptor(){
-
-		@Override
-		public String uuid() {
-			return "c8b19970-087a-4ed9-9054-c40ba8015358";
-		}
-
-		@Override
-		public String description() {
-			return "Clinic where Out-Patient Services are provided";
-		}
-
-		@Override
-		public String name() {
-			return "Out Patient Department";
-		}
-
-		@Override
-		public LocationDescriptor parent() {
-			return PARENT;
-		}
-
-		@Override
-		public List<LocationTagDescriptor> tags() {
-
-			return Arrays.asList(
-					LocationTags.DEPARTMENT
-			);
-
-		}
-
-	};
-
-	public static LocationDescriptor IPD = new LocationDescriptor(){
-
-		@Override
-		public String uuid() {
-			return "79b169dd-4b35-4312-a2f0-d72ece1ac4ba";
-		}
-
-		@Override
-		public String description() {
-			return "The Overall Internal Medicine department";
-		}
-
-		@Override
-		public String name() {
-			return "In Patient Department";
-		}
-
-		@Override
-		public LocationDescriptor parent() {
-			return PARENT;
-		}
-
-		@Override
-		public List<LocationTagDescriptor> tags() {
-
-			return Arrays.asList(
-					LocationTags.DEPARTMENT
-			);
-
-		}
-
-	};
-
-	public static LocationDescriptor RADIOLOGY = new LocationDescriptor(){
-
-		@Override
-		public String uuid() {
-			return "f586757c-3846-11ee-be56-0242ac120002";
-		}
-
-		@Override
-		public String description() {
-			return "The Overall department for Imaging Center and Radiology Services";
-		}
-
-		@Override
-		public String name() {
-			return "Radiology Department";
-		}
-
-		@Override
-		public LocationDescriptor parent() {
-			return PARENT;
-		}
-
-		@Override
-		public List<LocationTagDescriptor> tags() {
-
-			return Arrays.asList(
-					LocationTags.DEPARTMENT,
-					LocationTags.LOGIN_LOCATION
-			);
-
-		}
-
-	};
+    public static final String RADIOLOGY_UUID = "f586757c-3846-11ee-be56-0242ac120002";
+    public static final String RADIOLOGY_NAME = "Radiology Department";
 }

@@ -11,8 +11,6 @@ public class PostMetaDataInstallationTask extends AbstractTask {
     public void execute() throws InterruptedException, ExecutionException {
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
-        ugandaEMRService.installPatientFlags();
-
         // initialise primary Identifier
         ugandaEMRService.initializePrimaryIdentifierTypeMapping();
 

@@ -404,10 +404,6 @@ public interface UgandaEMRService extends OpenmrsService {
 
     public void importMetaDataFromXMLFiles();
 
-    public void installCommonMetadata();
-
-    public void installPatientFlags();
-
     public void removeOldChangeLocksForDataIntegrityModule();
 
     public void generateOpenMRSIdentifierForPatientsWithout();

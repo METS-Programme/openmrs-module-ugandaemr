@@ -115,27 +115,19 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
     private void executeMetadataInitializers() {
         DataImporter dataImporter = Context.getRegisteredComponent("ugandaemrDataImporter", DataImporter.class);
 
-        // Critical initializers - will stop module on failure
-        // Following the order from original importInternalMetaData method:
-        // 1. addConcepts
-        executeInitializer(new ConceptsMetadataInitializer(dataImporter));
-
-        // 2. attributeTypes
+        // 1. attributeTypes
         executeInitializer(new AttributeTypesInitializer(dataImporter));
 
-        // 3. addRolePrivilege
+        // 2. addRolePrivilege
         executeInitializer(new RolePrivilegeInitializer(dataImporter));
 
-        // 4. addVisitTypes
-        executeNonCriticalInitializer(new VisitTypesInitializer(dataImporter));
-
-        // 5. addRelationship
+        // 4. addRelationship
         executeInitializer(new RelationshipTypesInitializer(dataImporter));
 
-        // 6. addOrderFrequencies
+        // 5. addOrderFrequencies
         executeInitializer(new OrderFrequenciesInitializer(dataImporter));
 
-        // 7. addStockManagementData
+        // 6. addStockManagementData
         executeNonCriticalInitializer(new StockManagementInitializer(dataImporter));
     }
 

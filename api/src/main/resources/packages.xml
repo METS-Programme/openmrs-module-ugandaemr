@@ -1,6 +1,0 @@
-<!--
-Defines packages to be loaded by the Metadata Sharing module on startup of this module
--->
-<org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
-
-</org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
