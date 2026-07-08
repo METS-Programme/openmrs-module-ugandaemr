@@ -398,6 +398,12 @@
     </globalProperty>
 
     <globalProperty>
+        <property>ugandaemr.configuration.ampathFormsPath</property>
+        <defaultValue>/configuration/ampathforms/</defaultValue>
+        <description>The ampath forms path of UgandaEMR (supports multiple distribution subdirectories)</description>
+    </globalProperty>
+
+    <globalProperty>
         <property>ugandaemr.metadata.externalhtmlforms.initialize</property>
         <defaultValue>false</defaultValue>
         <description>Allow external initialization of HTML Forms</description>

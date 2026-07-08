@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>ugandaemr</artifactId>
-	<version>5.0.15-SNAPSHOT</version>
+	<version>5.0.16-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -66,18 +66,18 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>2.8.3</openMRSVersion>
+		<openMRSVersion>2.8.7</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webservices.restModuleVersion>3.5.0</webservices.restModuleVersion>
 		<addresshierarchyVersion>2.21.0</addresshierarchyVersion>
-		<bahmniappointmentVersion>2.1.0-SNAPSHOT</bahmniappointmentVersion>
+		<bahmniappointmentVersion>2.1.0</bahmniappointmentVersion>
 		<teleconsultationVersion>2.0.0</teleconsultationVersion>
 		<calculationVersion>2.0.0</calculationVersion>
 		<dataEntryStatisticsVersion>1.8.0</dataEntryStatisticsVersion>
 		<emrapiVersion>3.4.0</emrapiVersion>
 		<eventVersion>4.0.0</eventVersion>
-		<fhir2Version>4.0.0</fhir2Version>
+		<fhir2Version>4.1.0</fhir2Version>
 		<htmlwidgetsVersion>2.0.1</htmlwidgetsVersion>
 		<idgenVersion>5.0.4</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
@@ -88,10 +88,10 @@
 		<patientFlagsVersion>3.0.10</patientFlagsVersion>
 		<reportingRestVersion>2.0.0</reportingRestVersion>
 		<reportingVersion>2.1.0</reportingVersion>
-		<reportingCompatibilityVersion>2.0.9</reportingCompatibilityVersion>
+		<reportingCompatibilityVersion>2.10.0</reportingCompatibilityVersion>
 		<serializationxstreamVersion>0.3.0</serializationxstreamVersion>
 		<patientqueueingVersion>2.0.1</patientqueueingVersion>
-		<ugandaemrSyncVersion>3.0.0</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>3.0.3</ugandaemrSyncVersion>
 		<cohortModuleVersion>3.7.3</cohortModuleVersion>
 		<stockmanagementVersion>3.0.0</stockmanagementVersion>
 		<spaModuleVersion>2.0.0</spaModuleVersion>
@@ -106,7 +106,7 @@
 		<ugandaemrReportsVersion>2.1.6</ugandaemrReportsVersion>
 
 		<!-- content packs -->
-		<ugandaemr-content.version>1.0.11</ugandaemr-content.version>
+		<ugandaemr-content.version>1.0.12</ugandaemr-content.version>
 	</properties>
 
 	<dependencyManagement>

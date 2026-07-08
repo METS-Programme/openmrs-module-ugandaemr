@@ -1,5 +1,5 @@
 {
-  "@openmrs/esm-laboratory-app": {
+  "@ugandaemr/esm-laboratory-app": {
     "Display conditions": {
       "privileges": [
         "Manage Laboratory"

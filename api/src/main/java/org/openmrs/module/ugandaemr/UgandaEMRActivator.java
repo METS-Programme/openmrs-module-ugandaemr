@@ -74,13 +74,10 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
                 updateMetadataInitializationFlag();
             }
 
-            // Phase 3: Form Initializers (always run)
-            executeFormInitializers();
-
-            // Phase 4: Core Configuration (always runs)
+            // Phase 3: Core Configuration (always runs)
             executeInitializer(new CoreConfigurationInitializer());
 
-            // Phase 5: Cleanup and Finalization (always run)
+            // Phase 4: Cleanup and Finalization (always run)
             executeInitializer(new DataIntegrityCleanupInitializer());
             executeInitializer(new PatientIdentifierInitializer());
 
@@ -115,29 +112,14 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
     private void executeMetadataInitializers() {
         DataImporter dataImporter = Context.getRegisteredComponent("ugandaemrDataImporter", DataImporter.class);
 
-        // 1. attributeTypes
-        executeInitializer(new AttributeTypesInitializer(dataImporter));
+        // 1. Concepts and Drugs (~80% of metadata) - critical
+        executeInitializer(new ConceptsMetadataInitializer(dataImporter));
 
-        // 2. addRolePrivilege
+        // 2. addRolePrivilege - critical
         executeInitializer(new RolePrivilegeInitializer(dataImporter));
 
-        // 4. addRelationship
-        executeInitializer(new RelationshipTypesInitializer(dataImporter));
-
-        // 5. addOrderFrequencies
-        executeInitializer(new OrderFrequenciesInitializer(dataImporter));
-
-        // 6. addStockManagementData
+        // 3. addStockManagementData - non-critical
         executeNonCriticalInitializer(new StockManagementInitializer(dataImporter));
-    }
-
-    /**
-     * Execute form initializers from the service layer
-     */
-    private void executeFormInitializers() {
-        for (Initializer initializer : ugandaEMRService.initialiseForms()) {
-            executeInitializer(initializer);
-        }
     }
 
     /**
