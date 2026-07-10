@@ -15,6 +15,7 @@ package org.openmrs.module.ugandaemr.api.db;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.openmrs.Encounter;
 import org.openmrs.Obs;
@@ -41,6 +42,8 @@ public interface UgandaEMRDAO {
 	public PublicHoliday getPublicHolidaybyUuid(String uuid);
 
 	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate);
+
+	public List<Map<String, Object>> getCrddpPharmacies(String cohortTypeUuid);
 
 	/**
 	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#saveOrderObs(org.openmrs.module.ugandaemr.api.lab.OrderObs)
