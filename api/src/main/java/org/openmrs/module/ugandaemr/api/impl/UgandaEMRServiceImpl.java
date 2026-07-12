@@ -534,6 +534,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     }
 
     @Override
+    public List<Map<String, Object>> getCrddpPharmacies(String cohortTypeUuid) {
+        return dao.getCrddpPharmacies(cohortTypeUuid);
+    }
+
+    @Override
     public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate) throws APIException {
         return dao.getPublicHolidaysByDate(publicHolidayDate);
     }

@@ -9,7 +9,7 @@
         for a list of supported elements and attributes
     -->
 
-	<changeSet id="ugandaemr-20260618-concept-dictionary-ref" author="slubwama">
+	<changeSet id="ugandaemr-20260710-concept-dictionary-ref" author="slubwama">
 		<preConditions onFail="MARK_RAN" onError="HALT">
 			<and>
 				<tableExists tableName="concept"/>
@@ -1547,6 +1547,35 @@ VALUES
 			    'org.openmrs.module.ugandaemrsync.tasks.TBDataTask',
 			    'org.openmrs.module.ugandaemrsync.tasks.CrossBorderIntegrationSyncTask'
 			) OR schedulable_class LIKE 'org.openmrs.module.dataintegrity.%';
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20250710-fix-stockmgmt-role-charset" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<and>
+				<dbms type="mysql" />
+				<tableExists tableName="stockmgmt_user_role_scope" />
+				<!-- Check if the character set is NOT utf8mb3 -->
+				<not>
+					<sqlCheck expectedResult="1">
+						SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+						WHERE TABLE_SCHEMA = DATABASE()
+						AND TABLE_NAME = 'stockmgmt_user_role_scope'
+						AND COLUMN_NAME = 'role'
+						AND CHARACTER_SET_NAME = 'utf8mb3'
+						AND COLLATION_NAME = 'utf8mb3_general_ci'
+					</sqlCheck>
+				</not>
+			</and>
+		</preConditions>
+		<comment>
+			Fix character set mismatch in stockmgmt_user_role_scope.role column.
+			This ensures compatibility with OpenMRS core role table for foreign key constraints.
+			Required for UgandaEMR/epcare databases that may have legacy latin1 character set.
+		</comment>
+		<sql>
+			ALTER TABLE stockmgmt_user_role_scope
+			MODIFY COLUMN role VARCHAR(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
 		</sql>
 	</changeSet>
 

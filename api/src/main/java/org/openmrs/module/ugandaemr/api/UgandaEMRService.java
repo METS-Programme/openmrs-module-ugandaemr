@@ -14,6 +14,7 @@
 package org.openmrs.module.ugandaemr.api;
 
 import org.openmrs.*;
+import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
@@ -134,7 +135,9 @@ public interface UgandaEMRService extends OpenmrsService {
 
     public PublicHoliday getPublicHolidaybyUuid(String uuid);
 
-
+    @Authorized("View Patient Cohorts")
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> getCrddpPharmacies(String cohortTypeUuid);
 
     /**
      * Checks id a patient has an HIV Summary page
