@@ -1290,5 +1290,17 @@
         "address5": "Village"
       }
     }
+  },
+  "@openmrs/esm-stock-management-app": {
+    "packingUnitsUUID": "bce2b1af-98b1-48a2-98a2-3e4ffb3c79c2",
+    "stockItemCategoryUUID": "6d24eb6e-b42f-4706-ab2d-ae4472161f6a",
+    "stockSourceTypeUUID": "2e1e8049-9cbe-4a2d-b1e5-8a91e5d7d97d",
+    "stockAdjustmentReasonUUID": "3bbfaa44-d5b8-404d-b4c1-2bf49ad8ce25",
+    "stockTakeReasonUUID": "3bbfaa44-d5b8-404d-b4c1-2bf49ad8ce25"
+  },
+  "@openmrs/esm-app-shell": {
+    "Enabled feature flags": [
+      "rde"
+    ]
   }
 }
