@@ -80,6 +80,7 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
             // Phase 4: Cleanup and Finalization (always run)
             executeInitializer(new DataIntegrityCleanupInitializer());
             executeInitializer(new PatientIdentifierInitializer());
+            executeNonCriticalInitializer(new LabResultsQueueBackfillInitializer());
 
             log.info("ugandaemr Module started");
 

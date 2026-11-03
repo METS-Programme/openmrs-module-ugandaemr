@@ -386,6 +386,14 @@ public interface UgandaEMRService extends OpenmrsService {
     public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus);
 
     /**
+     * Creates missing results-ready queue entries for laboratory results that
+     * were completed today before automatic queue returns were enabled.
+     *
+     * @return number of new results-ready queue entries created
+     */
+    public int backfillCompletedLabResultsForToday();
+
+    /**
      * Generates LabNumber for the day for the patient
      * @param orderUuid the uuid of the order to be generated a lab number
      * @return generated lab number as a string

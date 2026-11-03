@@ -46,6 +46,16 @@ public interface UgandaEMRDAO {
 	public List<Map<String, Object>> getCrddpPharmacies(String cohortTypeUuid);
 
 	/**
+	 * Finds encounters whose laboratory orders received results and were marked
+	 * completed within the supplied period.
+	 *
+	 * @param from lower bound for the result observation timestamp
+	 * @param to upper bound for the result observation timestamp
+	 * @return distinct encounter ids that have completed laboratory results
+	 */
+	public List<Integer> getCompletedLabResultEncounterIds(Date from, Date to);
+
+	/**
 	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#saveOrderObs(org.openmrs.module.ugandaemr.api.lab.OrderObs)
 	 */
     public OrderObs saveOrderObs(OrderObs orderObs);

@@ -63,6 +63,7 @@ import org.openmrs.module.ugandaemr.api.lab.mapper.OrderMapper;
 import org.openmrs.module.ugandaemr.api.lab.util.LaboratoryUtil;
 import org.openmrs.module.ugandaemr.api.lab.util.TestResultModel;
 import org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization;
+import org.openmrs.module.ugandaemr.metadata.core.location.LocationTags;
 import org.openmrs.module.ugandaemr.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.ugandaemr.pharmacy.DispensingModelWrapper;
 import org.openmrs.module.ugandaemr.pharmacy.mapper.DrugOrderMapper;
@@ -1663,67 +1664,161 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
 
     public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus) {
-        PatientQueue patientQueue = new PatientQueue();
+        if (encounter == null || encounter.getPatient() == null) {
+            throw new org.openmrs.module.ugandaemr.exception.LaboratoryException(
+                    "An encounter with a patient is required to return laboratory results to a clinician");
+        }
+
+        Location clinicalLocation = locationTo != null ? locationTo : encounter.getLocation();
+        if (clinicalLocation == null) {
+            log.warn("Unable to return patient #" + encounter.getPatient().getPatientId()
+                    + " to a clinician because the ordering encounter has no location");
+            return null;
+        }
 
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         Provider provider = ugandaEMRService.getProviderFromEncounter(encounter);
-
-        SimpleObject simpleObject = new SimpleObject();
-        SimpleObject orders = null;
-        try {
-            simpleObject = ugandaEMRService.getProcessedOrders(PROCESSED_ORDER_WITHOUT_RESULT_QUERY.concat(" AND patient_id=" + encounter.getPatient().getPatientId()), encounter.getDateCreated(), false);
-            orders = (SimpleObject) simpleObject.get("ordersList");
-        } catch (ParseException e) {
-            throw new org.openmrs.module.ugandaemr.exception.LaboratoryException(
-                    "Failed to process orders for patient #" + encounter.getPatient().getPatientId(), e);
-        } catch (IOException e) {
-            throw new org.openmrs.module.ugandaemr.exception.LaboratoryException(
-                    "Failed to read orders data for patient #" + encounter.getPatient().getPatientId(), e);
-        }
-
-        if (orders == null) {
-            ugandaEMRService.completePreviousQueue(encounter.getPatient(), encounter.getLocation(), PatientQueue.Status.PENDING);
-        }
-
         List<PatientQueue> patientQueueList = patientQueueingService.getPatientQueueList(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), null, null, encounter.getPatient(), null);
 
-        List<PatientQueue> fromLabQueue = new ArrayList<>();
-
-
-        for (PatientQueue potentialQueueFromLab : patientQueueList) {
-            Encounter labEncounter = potentialQueueFromLab.getEncounter();
-            PatientQueue.Status labStatus = potentialQueueFromLab.getStatus();
-            boolean queueStatus = labStatus.equals(PatientQueue.Status.PENDING) || labStatus.equals(PatientQueue.Status.PICKED);
-            if (labEncounter != null && labEncounter.equals(encounter) && queueStatus && potentialQueueFromLab.getLocationFrom() == locationFrom && potentialQueueFromLab.getLocationTo().equals(encounter.getLocation())) {
-                fromLabQueue.add(patientQueue);
-            }
+        PatientQueue laboratoryQueue = getMostRecentActiveLaboratoryQueue(patientQueueList, locationFrom);
+        Location laboratoryLocation = locationFrom;
+        if (laboratoryLocation == null && laboratoryQueue != null) {
+            laboratoryLocation = laboratoryQueue.getQueueRoom() != null
+                    ? laboratoryQueue.getQueueRoom()
+                    : laboratoryQueue.getLocationTo();
         }
 
-        boolean queueExists = false;
-        try {
-            queueExists = patientQueueExists(encounter, encounter.getLocation(), locationFrom, PatientQueue.Status.PENDING);
-        } catch (ParseException e) {
-            log.error(e);
+        // Some laboratory workflows record and approve results without first moving
+        // the patient into a laboratory queue. The ordering clinical location is a
+        // safe fallback source in that case: the results-ready marker carries the
+        // workflow meaning, while the target remains the room that placed the order.
+        if (laboratoryLocation == null) {
+            laboratoryLocation = clinicalLocation;
+            log.info("No active laboratory queue found for patient #"
+                    + encounter.getPatient().getPatientId()
+                    + "; creating a results-ready queue at the ordering clinical location");
         }
 
-        if (!queueExists) {
-            if (fromLabQueue.isEmpty()) {
-                patientQueue.setLocationFrom(locationFrom);
-                patientQueue.setPatient(encounter.getPatient());
-                patientQueue.setLocationTo(encounter.getLocation());
-                patientQueue.setQueueRoom(encounter.getLocation());
-                patientQueue.setProvider(provider);
-                patientQueue.setEncounter(encounter);
-                patientQueue.setStatus(PatientQueue.Status.PENDING);
-                patientQueue.setCreator(Context.getUserService().getUsersByPerson(provider.getPerson(), false).get(0));
-                patientQueue.setDateCreated(new Date());
-                patientQueueingService.assignVisitNumberForToday(patientQueue);
-                patientQueueingService.savePatientQue(patientQueue);
-            }
+        if (laboratoryQueue != null) {
+            patientQueueingService.completePatientQueue(laboratoryQueue);
         }
+
+        PatientQueue existingReturnQueue = getActiveResultsReturnQueue(patientQueueList, clinicalLocation);
+        if (existingReturnQueue != null) {
+            return existingReturnQueue;
+        }
+
+        PatientQueue patientQueue = new PatientQueue();
+        patientQueue.setLocationFrom(laboratoryLocation);
+        patientQueue.setPatient(encounter.getPatient());
+        patientQueue.setLocationTo(clinicalLocation);
+        patientQueue.setQueueRoom(clinicalLocation);
+        patientQueue.setProvider(provider);
+        patientQueue.setEncounter(encounter);
+        patientQueue.setStatus(PatientQueue.Status.PENDING);
+        patientQueue.setComment(QUEUE_STATUS_HAS_RESULTS);
+        User queueCreator = Context.getAuthenticatedUser() != null
+                ? Context.getAuthenticatedUser()
+                : encounter.getCreator();
+        patientQueue.setCreator(queueCreator);
+        patientQueue.setDateCreated(new Date());
+        if (laboratoryQueue != null) {
+            patientQueue.setPriority(laboratoryQueue.getPriority());
+            patientQueue.setPriorityComment(laboratoryQueue.getPriorityComment());
+        }
+        patientQueueingService.assignVisitNumberForToday(patientQueue);
+        patientQueueingService.savePatientQue(patientQueue);
 
         return patientQueue;
+    }
+
+    @Override
+    public int backfillCompletedLabResultsForToday() {
+        Date now = new Date();
+        Date startOfToday = OpenmrsUtil.firstSecondOfDay(now);
+        Date endOfToday = OpenmrsUtil.getLastMomentOfDay(now);
+        List<Integer> encounterIds = dao.getCompletedLabResultEncounterIds(startOfToday, endOfToday);
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        int created = 0;
+
+        for (Integer encounterId : encounterIds) {
+            Encounter encounter = Context.getEncounterService().getEncounter(encounterId);
+            if (encounter == null || encounter.getPatient() == null || encounter.getLocation() == null) {
+                log.warn("Skipping completed laboratory result backfill for invalid encounter #" + encounterId);
+                continue;
+            }
+
+            try {
+                List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueList(
+                        null, startOfToday, endOfToday, null, null, encounter.getPatient(), null);
+                if (getActiveResultsReturnQueue(patientQueues, encounter.getLocation()) != null) {
+                    continue;
+                }
+
+                PatientQueue queue = sendPatientBackToClinician(
+                        encounter, encounter.getLocation(), null, QUEUE_STATUS_SENT_TO_LAB);
+                if (queue != null) {
+                    created++;
+                }
+            } catch (Exception e) {
+                log.error("Failed to backfill completed laboratory results for encounter #" + encounterId, e);
+            }
+        }
+
+        log.info("Completed laboratory results backfill processed " + encounterIds.size()
+                + " encounters and returned " + created + " patients to clinical queues");
+        return created;
+    }
+
+    PatientQueue getMostRecentActiveLaboratoryQueue(List<PatientQueue> queues, Location requestedLaboratoryLocation) {
+        PatientQueue mostRecent = null;
+        for (PatientQueue queue : queues) {
+            if (!isActiveQueue(queue)) {
+                continue;
+            }
+
+            Location queueLocation = queue.getQueueRoom() != null ? queue.getQueueRoom() : queue.getLocationTo();
+            boolean matchesRequestedLocation = requestedLaboratoryLocation != null
+                    && (requestedLaboratoryLocation.equals(queue.getLocationTo())
+                    || requestedLaboratoryLocation.equals(queue.getQueueRoom()));
+            boolean isLaboratoryQueue = requestedLaboratoryLocation == null && isLaboratoryLocation(queueLocation);
+
+            if ((matchesRequestedLocation || isLaboratoryQueue)
+                    && (mostRecent == null || isCreatedAfter(queue, mostRecent))) {
+                mostRecent = queue;
+            }
+        }
+        return mostRecent;
+    }
+
+    PatientQueue getActiveResultsReturnQueue(List<PatientQueue> queues, Location clinicalLocation) {
+        for (PatientQueue queue : queues) {
+            if (isActiveQueue(queue)
+                    && clinicalLocation.equals(queue.getLocationTo())
+                    && QUEUE_STATUS_HAS_RESULTS.equalsIgnoreCase(queue.getComment())) {
+                return queue;
+            }
+        }
+        return null;
+    }
+
+    private boolean isActiveQueue(PatientQueue queue) {
+        return queue != null && (PatientQueue.Status.PENDING.equals(queue.getStatus())
+                || PatientQueue.Status.PICKED.equals(queue.getStatus()));
+    }
+
+    private boolean isLaboratoryLocation(Location location) {
+        return location != null && location.getTags().stream().anyMatch(tag ->
+                LocationTags.LABORATORY_UUID.equals(tag.getUuid())
+                        || LocationTags.LABORATORY_NAME.equalsIgnoreCase(tag.getName()));
+    }
+
+    private boolean isCreatedAfter(PatientQueue candidate, PatientQueue current) {
+        if (candidate.getDateCreated() == null) {
+            return false;
+        }
+        return current.getDateCreated() == null || candidate.getDateCreated().after(current.getDateCreated());
     }
 
     public String generateLabNumber(String orderUuid) {
