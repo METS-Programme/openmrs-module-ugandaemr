@@ -73,11 +73,14 @@ public class ApproveOrderResource extends DelegatingCrudResource<ApproveOrder> {
         delegate.setOrders(orders);
         if (orders.size() > 0) {
             delegate.setUuid(orders.get(0).getEncounter().getUuid());
-            if (location != null || queueRoom != null) {
-                PatientQueue patientQueue = Context.getService(UgandaEMRService.class).sendPatientBackToClinician(orders.get(0).getEncounter(), orders.get(0).getEncounter().getLocation(), location, QUEUE_STATUS_SENT_TO_LAB);
-                if (patientQueue != null) {
-                    delegate.setPatientQueue(patientQueue);
-                }
+            Location laboratoryLocation = queueRoom != null ? queueRoom : location;
+            PatientQueue patientQueue = Context.getService(UgandaEMRService.class).sendPatientBackToClinician(
+                    orders.get(0).getEncounter(),
+                    orders.get(0).getEncounter().getLocation(),
+                    laboratoryLocation,
+                    QUEUE_STATUS_SENT_TO_LAB);
+            if (patientQueue != null) {
+                delegate.setPatientQueue(patientQueue);
             }
         }
 

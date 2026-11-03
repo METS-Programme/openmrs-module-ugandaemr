@@ -110,6 +110,34 @@ public class HibernateUgandaEMRDAO implements UgandaEMRDAO {
 		return pharmacies;
 	}
 
+	@Override
+	public List<Integer> getCompletedLabResultEncounterIds(Date from, Date to) {
+		final String sql =
+				"SELECT DISTINCT o.encounter_id " +
+						"FROM orders o " +
+						"INNER JOIN test_order t ON t.order_id = o.order_id " +
+						"INNER JOIN obs result ON result.order_id = o.order_id " +
+						"WHERE o.fulfiller_status = 'COMPLETED' " +
+						"AND o.voided = 0 " +
+						"AND result.voided = 0 " +
+						"AND o.encounter_id IS NOT NULL " +
+						"AND result.date_created BETWEEN :from AND :to";
+
+		@SuppressWarnings("unchecked")
+		List<Number> encounterIds = getSessionFactory()
+				.getCurrentSession()
+				.createSQLQuery(sql)
+				.setParameter("from", from)
+				.setParameter("to", to)
+				.list();
+
+		List<Integer> results = new ArrayList<Integer>();
+		for (Number encounterId : encounterIds) {
+			results.add(encounterId.intValue());
+		}
+		return results;
+	}
+
 	/**
 	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#saveOrderObs(org.openmrs.module.ugandaemr.api.lab.OrderObs)
 	 */
